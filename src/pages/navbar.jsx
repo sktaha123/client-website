@@ -34,15 +34,15 @@ const Navbar = () => {
 
             {/* Social Icons (Desktop only) */}
             <div className="hidden md:flex items-center space-x-6">
-              <a href="#"><img src="/src/assets/svgs/instagram.svg" className="h-5 w-5 opacity-80 hover:opacity-100 transition" /></a>
-              <a href="#"><img src="/src/assets/svgs/linkedin.svg" className="h-5 w-5 opacity-80 hover:opacity-100 transition" /></a>
-              <a href="#"><img src="/src/assets/svgs/telegram.svg" className="h-5 w-5 opacity-80 hover:opacity-100 transition" /></a>
-              <a href="#"><img src="/src/assets/svgs/facebook.svg" className="h-5 w-5 opacity-80 hover:opacity-100 transition" /></a>
+              <a href="#"><img src="/svgs/instagram.svg" className="h-5 w-5 opacity-80 hover:opacity-100 transition" /></a>
+              <a href="#"><img src="/svgs/linkedin.svg" className="h-5 w-5 opacity-80 hover:opacity-100 transition" /></a>
+              <a href="#"><img src="/svgs/telegram.svg" className="h-5 w-5 opacity-80 hover:opacity-100 transition" /></a>
+              <a href="#"><img src="/svgs/facebook.svg" className="h-5 w-5 opacity-80 hover:opacity-100 transition" /></a>
 
               {/* WhatsApp Dropdown */}
               <div className="relative group">
                 <img
-                  src="/src/assets/svgs/whatsapp.svg"
+                  src="/svgs/whatsapp.svg"
                   alt="WhatsApp"
                   className="h-5 w-5 cursor-pointer opacity-80 hover:opacity-100 transition"
                 />
