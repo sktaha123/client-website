@@ -1,14 +1,16 @@
 
 
 import { useState } from 'react'
-
+import Navbar from './pages/navbar.jsx'
 
 function App() {
 
   return (
     <>
+      <Navbar />
      <div>
-      <h1>This website is in contruction. Please check back later!</h1>
+      
+      
 
      </div>
     </>
