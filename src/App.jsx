@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Navbar from './pages/navbar.jsx'
+import Homepage from './pages/homepage.jsx'
 
 function App() {
 
@@ -9,6 +10,7 @@ function App() {
     <>
       <Navbar />
      <div>
+      <Homepage/>
       
       
 
