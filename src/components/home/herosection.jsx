@@ -2,8 +2,8 @@ import React from "react";
 
 const Herosection = () => {
   return (
-    <div className="w-full  h-[70vh] md:h-[65vh] lg:h-[80vh] rounded-b-4xl flex justify-center">
-      <div className="relative  w-full max-w-[90rem] h-full rounded-b-4xl overflow-hidden">
+    <div className="w-full  h-[65vh] md:h-[65vh] lg:h-[80vh] rounded-b-3xl flex justify-center">
+      <div className="relative  w-full max-w-[90rem] h-full rounded-b-3xl overflow-hidden">
 
         {/* Background Image */}
         <img
@@ -13,7 +13,7 @@ const Herosection = () => {
         />
 
         {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/20 to-black/90" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-black/90" />
 
         {/* Content Layer */}
         <div className="relative top-1/20 z-10 w-full h-full flex items-center justify-center px-4 md:px-12">
@@ -30,9 +30,9 @@ const Herosection = () => {
             <h1
               className="
                 text-white
-                text-2xl md:text-4xl lg:text-5xl
-                font-semibold
-                leading-snug md:leading-tight
+                text-2xl md:text-5xl lg:text-5xl
+                font-bold
+                leading-snug md:leading-12
                 drop-shadow-[0_6px_20px_rgba(0,0,0,0.6)]
               "
             >
@@ -54,9 +54,9 @@ const Herosection = () => {
                 rounded-full
                 text-sm md:text-base font-medium
                 hover:bg-gray-100
-                hover:scale-[1.03]
+                hover:scale-[1.03] cursor-pointer
                 transition-all duration-300
-                shadow-lg
+                hover:shadow-white/90 hover:shadow-lg 
               "
             >
               Explore Our Services 

@@ -18,10 +18,10 @@ const Navbar = () => {
       {/* NAVBAR */}
       <div
         className={`
-          fixed top-0 w-full z-50 rounded-b-4xl
+          fixed top-0 w-full z-50 rounded-b-3xl
           transition-all duration-300 ease-in-out
           ${scrolled
-            ? "bg-white/20 shadow-md backdrop-blur-lg"
+            ? "bg-white/20 shadow-md backdrop-blur-sm"
             : "bg-black/20  shadow-none "
           }
         `}
@@ -36,7 +36,18 @@ const Navbar = () => {
           />
 
           {/* Desktop Socials */}
-          <div className="hidden md:flex space-x-7  bg-indigo-950/10 backdrop-blur-sm border border-white/10 px-4 py-3 rounded-full shadow-lg mx-auto">
+<div
+  className={`
+    hidden md:flex space-x-7
+    bg-indigo-950/10 backdrop-blur-sm
+    border border-white/10
+    px-4 py-3 rounded-full
+    shadow-lg mx-auto
+    transition-all duration-300
+
+    ${scrolled ? "shadow-black/40 shadow-sm" : "shadow-white/40 shadow-sm"}
+  `}
+>
 
             {/* Social Icons */}
             {[
@@ -130,11 +141,11 @@ const Navbar = () => {
     cursor-pointer md:mr-0
     mr-3
     transition-all duration-300 ease-out
-    shadow-lg
+    
 
     ${scrolled
-                  ? "bg-black text-white hover:bg-gray-900"
-                  : "bg-white/90 text-black hover:bg-white"
+                  ? "bg-black shadow-black/40 shadow-md text-white hover:bg-gray-900"
+                  : "bg-white/90 shadow-white/40 shadow-md text-black hover:bg-white"
                 }
   `}
             >
@@ -164,7 +175,7 @@ const Navbar = () => {
                 alt="Close menu"
                 className={`
       absolute inset-0 
-      transition-all duration-300 ease-out
+      transition-all duration-500 ease-out
       ${isMenuOpen ? "opacity-100 rotate-0 scale-100" : "opacity-0 -rotate-90 scale-75"}
     `}
               />
@@ -178,8 +189,8 @@ const Navbar = () => {
       <div
         className={`
           md:hidden fixed w-15 right-2 top-[40vh] z-50 -translate-y-1/2
-          flex flex-col items-center space-y-6 px-3  py-4 bg-gray-100 shadow-lg rounded-3xl
-          transition-all duration-300
+          flex flex-col items-center space-y-6 px-3  py-4 shadow-black/40 shadow-md bg-white/90 backdrop-blur-sm border border-white/20 shadow-lg rounded-3xl
+          transition-all duration-500
           ${isMenuOpen ? "translate-x-0 opacity-100" : "translate-x-24 opacity-0 pointer-events-none"}
         `}
       >
