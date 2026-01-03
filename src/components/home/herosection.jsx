@@ -46,21 +46,48 @@ const Herosection = () => {
             </p>
 
             {/* CTA */}
-            <button
-              className="
-                mt-3
-                bg-white text-black
-                px-8 py-3
-                rounded-full
-                text-sm md:text-base font-medium
-                hover:bg-gray-100
-                hover:scale-[1.03] cursor-pointer
-                transition-all duration-300
-                hover:shadow-white/90 hover:shadow-lg 
-              "
-            >
-              Explore Our Services 
-            </button>
+           <button
+  className="
+    mt-4
+    inline-flex items-center justify-center gap-2
+    px-4 py-2
+    rounded-full
+    bg-white text-black
+    text-sm md:text-base font-medium
+    shadow-md
+    transition-all duration-300 ease-out
+    cursor-pointer
+    group
+
+    hover:bg-gray-50
+    hover:shadow-lg
+
+    active:scale-[0.98]
+    focus:outline-none
+    focus-visible:ring-2
+    focus-visible:ring-white/70
+    focus-visible:ring-offset-2
+  "
+>
+  <span className="transition-colors duration-300">
+    Explore Our Services
+  </span>
+
+  <span
+    className="
+      bg-gray-300
+      p-1 rounded-full
+      transition-all duration-300 ease-out
+
+      group-hover:bg-gray-400
+      group-hover:translate-x-[2px]
+    "
+  >
+    <img src="/svgs/go.svg" alt="" className="w-5 h-5" />
+  </span>
+</button>
+
+
 
           </div>
         </div>
