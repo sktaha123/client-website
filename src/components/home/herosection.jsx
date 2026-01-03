@@ -7,7 +7,7 @@ const Herosection = () => {
 
         {/* Background Image */}
         <img
-          src="/svgs/recruithero.jpg"
+          src="/svgs/recruithero1.jpg"
           alt="hero picture"
           className="absolute inset-0 w-full h-full object-cover object-bottom scale-105"
         />
@@ -29,7 +29,7 @@ const Herosection = () => {
             {/* Main Heading */}
             <h1
               className="
-                text-white
+                text-gray-50
                 text-2xl md:text-5xl lg:text-5xl
                 font-bold
                 leading-snug md:leading-12
@@ -52,14 +52,14 @@ const Herosection = () => {
     inline-flex items-center justify-center gap-2
     px-4 py-2
     rounded-full
-    bg-white text-black
+    bg-gray-50 text-black
     text-sm md:text-base font-medium
     shadow-md
     transition-all duration-300 ease-out
     cursor-pointer
     group
 
-    hover:bg-gray-50
+    hover:bg-gray-300
     hover:shadow-lg
 
     active:scale-[0.98]
@@ -67,9 +67,10 @@ const Herosection = () => {
     focus-visible:ring-2
     focus-visible:ring-white/70
     focus-visible:ring-offset-2
+    
   "
 >
-  <span className="transition-colors duration-300">
+  <span className="transition-colors  duration-300">
     Explore Our Services
   </span>
 
@@ -79,8 +80,8 @@ const Herosection = () => {
       p-1 rounded-full
       transition-all duration-300 ease-out
 
-      group-hover:bg-gray-400
-      group-hover:translate-x-[2px]
+      group-hover:bg-gray-50
+      group-hover:translate-x-[5px]
     "
   >
     <img src="/svgs/go.svg" alt="" className="w-5 h-5" />

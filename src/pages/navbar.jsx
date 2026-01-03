@@ -19,7 +19,7 @@ const Navbar = () => {
       <div
         className={`
           fixed top-0 w-full z-50 rounded-b-3xl
-          transition-all duration-300 ease-in-out
+          transition-all duration-100 ease-in-out
           ${scrolled
             ? "bg-white/20 shadow-md backdrop-blur-sm"
             : "bg-black/20  shadow-none "
@@ -40,12 +40,12 @@ const Navbar = () => {
   className={`
     hidden md:flex space-x-7
     bg-indigo-950/10 backdrop-blur-sm
-    border border-white/10
+    
     px-4 py-3 rounded-full
-    shadow-lg mx-auto
-    transition-all duration-300
+    shadow-sm mx-auto
+    transition-all duration-100
 
-    ${scrolled ? "shadow-black/40 shadow-sm" : "shadow-white/40 shadow-sm"}
+    ${scrolled ? "shadow-black/40 shadow-sm " : "shadow-gray-500 shadow-sm"}
   `}
 >
 
@@ -72,7 +72,7 @@ const Navbar = () => {
                 className="size-5 cursor-pointer transition-transform duration-200 hover:scale-110"
               />
 
-              <div
+              <a href=""></a><div
                 className="
         absolute top-8 left-1/2 -translate-x-1/2
         bg-white rounded-xl shadow-lg w-40
@@ -145,7 +145,7 @@ const Navbar = () => {
 
     ${scrolled
                   ? "bg-black shadow-black/40 shadow-md text-white hover:bg-gray-900"
-                  : "bg-white/90 shadow-white/40 shadow-md text-black hover:bg-white"
+                  : "bg-gray-50 shadow-white/40 shadow-md text-black hover:bg-gray-200"
                 }
   `}
             >
@@ -175,7 +175,7 @@ const Navbar = () => {
                 alt="Close menu"
                 className={`
       absolute inset-0 
-      transition-all duration-500 ease-out
+      transition-all duration-200 ease-out
       ${isMenuOpen ? "opacity-100 rotate-0 scale-100" : "opacity-0 -rotate-90 scale-75"}
     `}
               />
@@ -191,9 +191,10 @@ const Navbar = () => {
     fixed inset-0 z-40
    bg-black/70 backdrop-blur-sm
 
-    transition-opacity duration-700 ease-in-out
+    transition-opacity duration-200 ease-in-out
     ${isMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"}
   `}
+  onClick={() => setIsMenuOpen(!isMenuOpen)}
 />
 
 
@@ -201,7 +202,7 @@ const Navbar = () => {
         className={`
           md:hidden fixed w-15 right-2 top-[31vh] z-50 -translate-y-1/2
           flex flex-col items-center space-y-6 px-3  py-4 shadow-black/40 shadow-md bg-white/90 backdrop-blur-sm border border-white/20  rounded-3xl
-          transition-all duration-500
+          transition-all duration-200
           ${isMenuOpen ? "translate-x-0 opacity-100" : "translate-x-24 opacity-0 pointer-events-none"}
         `}
       >
@@ -222,7 +223,7 @@ const Navbar = () => {
               setOpenGmail(false);
             }}
           />
-          <div className={`absolute right-12 top-1/2 -translate-y-1/2 shadow-black/40 shadow-md bg-white border border-white/20  rounded-2xl px-4 py-3 space-y-2 w-45 transition-all duration-500 ${openWhatsapp ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
+          <div className={`absolute right-12 top-1/2 -translate-y-1/2 shadow-black/40 shadow-md bg-white border border-white/20  rounded-2xl px-4 py-3 space-y-2 w-45 transition-all duration-200 ${openWhatsapp ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
             <a href="https://wa.me/919004378003" className="block text-sm">🇮🇳 +91 9004378003</a>
             <a href="https://wa.me/971506012581" className="block text-sm">🇦🇪 +971 506012581</a>
           </div>
@@ -238,7 +239,7 @@ const Navbar = () => {
               setOpenWhatsapp(false);
             }}
           />
-          <div className={`absolute right-12 top-1/2 -translate-y-1/2 shadow-black/40 shadow-md bg-white border border-white/20  rounded-2xl px-4 py-3 w-45 transition-all duration-500 ${openGmail ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
+          <div className={`absolute right-12 top-1/2 -translate-y-1/2 shadow-black/40 shadow-md bg-white border border-white/20  rounded-2xl px-4 py-3 w-45 transition-all duration-200 ${openGmail ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
             <a href="mailto:hello@biznorx.com" className="block text-sm">hello@biznorx.com</a>
           </div>
         </div>
