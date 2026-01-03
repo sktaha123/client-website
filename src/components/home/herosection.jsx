@@ -2,7 +2,7 @@ import React from "react";
 
 const Herosection = () => {
   return (
-    <div className="w-full  h-[65vh] md:h-[65vh] lg:h-[80vh] rounded-b-3xl flex justify-center">
+    <div className="w-full  h-[50vh] md:h-[65vh] lg:h-[80vh] rounded-b-3xl flex justify-center">
       <div className="relative  w-full max-w-[90rem] h-full rounded-b-3xl overflow-hidden">
 
         {/* Background Image */}
