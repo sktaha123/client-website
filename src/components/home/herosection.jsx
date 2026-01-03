@@ -2,8 +2,8 @@ import React from "react";
 
 const Herosection = () => {
   return (
-    <div className="w-full h-[50vh] md:h-[65vh] lg:h-[80vh] rounded-b-4xl flex justify-center">
-      <div className="relative w-full max-w-[90rem] h-full rounded-b-4xl overflow-hidden">
+    <div className="w-full  h-[70vh] md:h-[65vh] lg:h-[80vh] rounded-b-4xl flex justify-center">
+      <div className="relative  w-full max-w-[90rem] h-full rounded-b-4xl overflow-hidden">
 
         {/* Background Image */}
         <img
@@ -16,7 +16,7 @@ const Herosection = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/20 to-black/90" />
 
         {/* Content Layer */}
-        <div className="relative z-10 w-full h-full flex items-center justify-center px-4 md:px-12">
+        <div className="relative top-1/20 z-10 w-full h-full flex items-center justify-center px-4 md:px-12">
 
           {/* Content wrapper */}
           <div className="absolute top-1/2 -translate-y-1/2 md:mt-4 flex flex-col items-center gap-5 md:gap-6 w-[90%] md:w-[70%] lg:w-[60%] text-center font-poppins">
