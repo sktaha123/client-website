@@ -186,10 +186,21 @@ const Navbar = () => {
       </div>
 
       {/* MOBILE MENU */}
+<div
+  className={`
+    fixed inset-0 z-40
+   bg-black/70 backdrop-blur-sm
+
+    transition-opacity duration-700 ease-in-out
+    ${isMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"}
+  `}
+/>
+
+
       <div
         className={`
-          md:hidden fixed w-15 right-2 top-[40vh] z-50 -translate-y-1/2
-          flex flex-col items-center space-y-6 px-3  py-4 shadow-black/40 shadow-md bg-white/90 backdrop-blur-sm border border-white/20 shadow-lg rounded-3xl
+          md:hidden fixed w-15 right-2 top-[31vh] z-50 -translate-y-1/2
+          flex flex-col items-center space-y-6 px-3  py-4 shadow-black/40 shadow-md bg-white/90 backdrop-blur-sm border border-white/20  rounded-3xl
           transition-all duration-500
           ${isMenuOpen ? "translate-x-0 opacity-100" : "translate-x-24 opacity-0 pointer-events-none"}
         `}
@@ -211,7 +222,7 @@ const Navbar = () => {
               setOpenGmail(false);
             }}
           />
-          <div className={`absolute right-10 top-1/2 -translate-y-1/2 bg-white rounded-xl shadow-lg px-4 py-3 space-y-2 w-40 transition-all duration-300 ${openWhatsapp ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
+          <div className={`absolute right-12 top-1/2 -translate-y-1/2 shadow-black/40 shadow-md bg-white border border-white/20  rounded-2xl px-4 py-3 space-y-2 w-45 transition-all duration-500 ${openWhatsapp ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
             <a href="https://wa.me/919004378003" className="block text-sm">🇮🇳 +91 9004378003</a>
             <a href="https://wa.me/971506012581" className="block text-sm">🇦🇪 +971 506012581</a>
           </div>
@@ -227,7 +238,7 @@ const Navbar = () => {
               setOpenWhatsapp(false);
             }}
           />
-          <div className={`absolute right-10 top-1/2 -translate-y-1/2 bg-white rounded-xl shadow-lg px-4 py-3 w-48 transition-all duration-300 ${openGmail ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
+          <div className={`absolute right-12 top-1/2 -translate-y-1/2 shadow-black/40 shadow-md bg-white border border-white/20  rounded-2xl px-4 py-3 w-45 transition-all duration-500 ${openGmail ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
             <a href="mailto:hello@biznorx.com" className="block text-sm">hello@biznorx.com</a>
           </div>
         </div>
