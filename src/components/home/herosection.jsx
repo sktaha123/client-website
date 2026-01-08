@@ -10,9 +10,9 @@ const HeroSection = () => {
         justify-center
 
         bg-gradient-to-b
-        from-[#cfdbd5]/10
-        via-[#e8eddf]
-        to-[#cfdbd5]
+        from-[#050807]
+        via-[#071510]
+        to-[#0b2a1f]
 
         px-4
         sm:px-6
@@ -26,7 +26,8 @@ const HeroSection = () => {
       <div
         className="
           w-full
-          max-w-3xl
+          max-w-4xl
+          md:max-w-5xl
 
           flex
           flex-col
@@ -48,7 +49,7 @@ const HeroSection = () => {
             text-sm
             sm:text-base
             font-semibold
-            text-[#f5cb5c]
+            text-[#1f5e46]
           "
         >
           Workforce & Business Solutions
@@ -57,14 +58,16 @@ const HeroSection = () => {
         {/* Heading */}
         <h1
           className="
-            font-raleway
-            text-4xl
-            sm:text-4xl
-            md:text-5xl
+            font-inter
+            text-5xl
+            sm:text-5xl
+            md:text-6xl
+            lg:text-[4.20rem]
+
             font-semibold
-            text-[#242423]
+            text-[#f3f4f2]
             leading-tight
-            md:leading-snug
+            
           "
         >
           A Modern Business Street Built on Trust and Innovation
@@ -78,7 +81,7 @@ const HeroSection = () => {
             text-base
             sm:text-lg
             md:text-xl
-            text-[#333533]
+            text-[#cfd6d2]
           "
         >
           Bridging decades of business wisdom with modern digital execution to
@@ -89,17 +92,16 @@ const HeroSection = () => {
         <div className="pt-4">
           <button
             className="
-              bg-[#f5cb5c]
-              hover:bg-[#e6b846]
+              bg-[#1f5e46]
+              hover:bg-[#2a7a5c]
 
               font-helvetica
               tracking-tightest
               text-base
               sm:text-lg
               font-semibold
-              text-[#242423]
 
-              text-white
+              text-[#f3f4f2]
               px-6
               py-2.5
               sm:py-3
@@ -108,6 +110,7 @@ const HeroSection = () => {
               transition-all
               duration-200
               hover:-translate-y-1
+              hover:shadow-[0_12px_30px_rgba(31,94,70,0.45)]
             "
           >
             Submit CV

@@ -27,22 +27,23 @@ export default function Trust() {
   return (
     <section
       className="
-        py-12
-        bg-gradient-to-r
-        from-[#e8eddf]
-        to-[#cfdbd5]
-        border-b border-[#cfdbd5]/50
+        py-14
+        bg-[#071510]
+        border-b border-[#cfd6d2]/10
       "
     >
       <div className="max-w-[90rem] mx-auto px-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {trustItems.map((item, index) => {
             const Icon = item.icon;
+
             return (
               <div
                 key={index}
                 className="
                   flex flex-col items-center text-center
+                  transition-all duration-300
+                  
                   group
                 "
               >
@@ -51,23 +52,26 @@ export default function Trust() {
                   className="
                     w-14 h-14
                     rounded-full
-                    bg-[#f5cb5c]/25
+                    bg-[#1f5e46]/20
+                    border border-[#cfd6d2]/15
                     flex items-center justify-center
                     mb-4
-                    transition-colors
-                    group-hover:bg-[#f5cb5c]/40
+                    transition-all duration-300
+                    group-hover:bg-[#1f5e46]
+                    group-hover:border-[#1f5e46]
+                    group-hover:shadow-[0_12px_28px_rgba(31,94,70,0.35)]
                   "
                 >
-                  <Icon className="h-6 w-6 text-black/50" />
+                  <Icon className="h-6 w-6 text-[#f3f4f2]" />
                 </div>
 
                 {/* Title */}
-                <div className="text-lg font-semibold text-[#242423]">
+                <div className="text-lg font-raleway font-semibold text-[#f3f4f2]">
                   {item.title}
                 </div>
 
                 {/* Subtitle */}
-                <div className="text-sm text-[#333533]">
+                <div className="text-sm font-helvetica tracking-tightest text-[#cfd6d2]">
                   {item.subtitle}
                 </div>
               </div>

@@ -5,6 +5,9 @@ import { AboutSection } from '../components/home/AboutSection.jsx'
 import { ServicesSection } from '../components/home/ServicesSection.jsx'
 import { ProcessSection } from '@/components/home/ProcessSection.jsx'
 import { WhyChooseSection } from '@/components/home/WhyChooseSection.jsx'
+import { PhilosophySection } from '@/components/home/PhilosophySection.jsx'
+import { IndustriesSection } from '@/components/home/IndustriesSection.jsx'
+import { FinalCTA } from '@/components/home/FinalCTA.jsx'
 
 
 const homepage = () => {
@@ -17,6 +20,9 @@ const homepage = () => {
         <ServicesSection/>
         <ProcessSection/>
         <WhyChooseSection/>
+        <PhilosophySection/>
+        <IndustriesSection/>
+        <FinalCTA/>
         
     </div>
   )

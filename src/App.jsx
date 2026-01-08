@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Navbar from './pages/navbar.jsx'
 import Homepage from './pages/homepage.jsx'
+import { Footer } from './components/home/Footer.jsx'
 
 
 
@@ -20,6 +21,7 @@ function App() {
       
 
      </div>
+     <Footer/>
     </>
   )
 }
