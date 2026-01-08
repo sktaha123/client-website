@@ -58,7 +58,7 @@ const HeroSection = () => {
         {/* Heading */}
         <h1
           className="
-            font-inter
+            font-raleway
             text-5xl
             sm:text-5xl
             md:text-6xl

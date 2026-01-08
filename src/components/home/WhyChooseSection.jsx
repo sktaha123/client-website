@@ -28,9 +28,11 @@ export function WhyChooseSection() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
 
             {/* Left Content */}
-            <div>
+            <div className="flex flex-col items-center justify-center ">
               <div
                 className="
+                
+                
                   inline-block
                   px-4 py-1.5
                   bg-[#1f5e46]/15
@@ -49,6 +51,7 @@ export function WhyChooseSection() {
               <h2
                 className="
                   text-4xl md:text-5xl
+                  text-center
                   text-[#f3f4f2]
                   mb-6
                   leading-tight
@@ -62,6 +65,7 @@ export function WhyChooseSection() {
               <p
                 className="
                   text-lg
+                   text-center 
                   text-[#cfd6d2]
                   leading-relaxed
                   font-helvetica
