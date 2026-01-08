@@ -4,16 +4,19 @@ import Trust  from '../components/home/trust.jsx'
 import { AboutSection } from '../components/home/AboutSection.jsx'
 import { ServicesSection } from '../components/home/ServicesSection.jsx'
 import { ProcessSection } from '@/components/home/ProcessSection.jsx'
+import { WhyChooseSection } from '@/components/home/WhyChooseSection.jsx'
 
 
 const homepage = () => {
   return (
     <div>
+      
         <Herosection/>
         <Trust/>
         <AboutSection/>
         <ServicesSection/>
         <ProcessSection/>
+        <WhyChooseSection/>
         
     </div>
   )

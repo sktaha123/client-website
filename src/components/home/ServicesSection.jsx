@@ -9,6 +9,7 @@ import {
   TrendingUp 
 } from 'lucide-react';
 import { Card } from '../ui/card.jsx';
+import { useInView } from "@/hooks/useInView";
 
 const coreServices = [
   {
@@ -57,8 +58,20 @@ const specializedServices = [
 ];
 
 export function ServicesSection() {
+  const { ref, isVisible } = useInView();
+
   return (
+    
     <section id="services" className="py-24 bg-[#cfdbd5]/20">
+    <div
+      ref={ref}
+      className={`
+        transition-all duration-750 ease-out
+        ${isVisible
+          ? "opacity-100 translate-y-0"
+          : "opacity-0 translate-y-10"}
+      `}
+    >
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <div className="inline-block px-4 py-1.5 bg-[#f5cb5c]/20 text-[#f5cb5c] text-xs uppercase tracking-wider rounded-full mb-6 font-raleway">
@@ -128,6 +141,8 @@ export function ServicesSection() {
           </div>
         </div>
       </div>
+      </div>
     </section>
+   
   );
 }
