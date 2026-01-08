@@ -28,12 +28,21 @@ const industries = [
   { icon: HardHat, name: "Construction" },
 ];
 
+import { useInView } from "@/hooks/useInView";
+
 export function IndustriesSection() {
+  const { ref, isVisible } = useInView();
+
   return (
-    <section
-      id="industries"
-      className="py-24 bg-[#071510]"
-    >
+    <section id="industries" className="py-24 bg-[#071510]">
+       <div
+        ref={ref}
+        className={`
+          transition-all duration-700 ease-out
+          ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-x-150"}
+        `}
+      >
+      
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Header */}
@@ -89,6 +98,14 @@ export function IndustriesSection() {
 
             return (
               <div
+        ref={ref}
+        className={`
+          transition-all duration-700 ease-out
+          ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-x-220"}
+        `}
+      >
+
+              <div
                 key={index}
                 className="
                   flex flex-col items-center justify-center
@@ -138,6 +155,7 @@ export function IndustriesSection() {
                   {industry.name}
                 </span>
               </div>
+            </div>
             );
           })}
         </div>
@@ -162,6 +180,7 @@ export function IndustriesSection() {
           </p>
         </div>
 
+      </div>
       </div>
     </section>
   );

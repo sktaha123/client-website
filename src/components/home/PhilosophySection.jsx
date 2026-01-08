@@ -1,6 +1,9 @@
 import { Quote } from "lucide-react";
+import { useInView } from "@/hooks/useInView";
 
 export function PhilosophySection() {
+const { ref, isVisible } = useInView();
+
   return (
     <section
       className="
@@ -11,6 +14,13 @@ export function PhilosophySection() {
         overflow-hidden
       "
     >
+        <div
+        ref={ref}
+        className={`
+          transition-all duration-700 ease-out
+          ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-x-150"}
+        `}
+      >
       {/* Subtle Grid Texture */}
       <div className="absolute inset-0 opacity-[0.06]">
         <div
@@ -66,6 +76,7 @@ export function PhilosophySection() {
       {/* Ambient Green Glows */}
       <div className="absolute top-20 left-12 w-72 h-72 bg-[#1f5e46] rounded-full opacity-15 blur-3xl" />
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#0b2a1f] rounded-full opacity-20 blur-3xl" />
+      </div>
     </section>
   );
 }
