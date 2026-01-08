@@ -1,11 +1,13 @@
-/** @type {import('tailwindcss').Config} */
 export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Inter", "ui-sans-serif", "system-ui","Raleway", "Poppins", "Google Sans", "Martel Sans", "Red Rose", "sans-serif"],
+        raleway: ['Raleway', 'sans-serif'],
+        helvetica: ['Helvetica', 'Arial', 'sans-serif'],
+      },
+      letterSpacing: {
+        tightest: '-0.06em', // approx -1
       },
     },
   },
-  plugins: [],
 };

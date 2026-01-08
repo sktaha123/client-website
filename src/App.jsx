@@ -4,6 +4,8 @@ import { useState } from 'react'
 import Navbar from './pages/navbar.jsx'
 import Homepage from './pages/homepage.jsx'
 
+
+
 function App() {
 
   return (
@@ -11,6 +13,7 @@ function App() {
       <Navbar />
      <div>
       <Homepage/>
+  
       
       
 
@@ -18,5 +21,8 @@ function App() {
     </>
   )
 }
+
+
+/* #191919 #fab162 */
 
 export default App
