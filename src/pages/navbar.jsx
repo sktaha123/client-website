@@ -14,7 +14,7 @@ const Navbar = () => {
             bg-[#fef6e3]
            
             md:rounded-full
-            md:shadow-2xl
+            shadow-2xl
             
           "
         >
