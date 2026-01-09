@@ -2,81 +2,75 @@ import { Quote } from "lucide-react";
 import { useInView } from "@/hooks/useInView";
 
 export function PhilosophySection() {
-const { ref, isVisible } = useInView();
+  const { ref, isVisible } = useInView();
 
   return (
-    <section
-      className="
-        py-32
-        bg-[#071510]
-        
-        relative
-        overflow-hidden
-      "
-    >
-        <div
-        ref={ref}
-        className={`
-          transition-all duration-700 ease-out
-          ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-x-150"}
-        `}
-      >
-      {/* Subtle Grid Texture */}
-      <div className="absolute inset-0 opacity-[0.06]">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 1px 1px, #cfd6d2 1px, transparent 0)",
-            backgroundSize: "42px 42px",
-          }}
-        />
+    <section className="py-32 md:py-48 bg-[#FAF9F6] relative overflow-hidden font-dm">
+      {/* Structural Background Element */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-[#8B7E6A]/20" />
       </div>
 
-      <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-        {/* Quote Icon */}
-        <Quote className="h-16 w-16 text-[#1f5e46] mx-auto mb-10 opacity-70" />
+      <div
+        ref={ref}
+        className={`
+          max-w-5xl mx-auto px-6 text-center relative z-10
+          transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)]
+          ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}
+        `}
+      >
+        {/* Decorative Top Badge */}
+        <div className="mb-12 flex flex-col items-center">
+          <span className="text-[#8B7E6A] text-[10px] md:text-xs uppercase tracking-[0.4em] font-bold mb-4">
+            The Foundation
+          </span>
+          <div className="w-8 h-[1px] bg-[#8B7E6A]" />
+        </div>
 
-        {/* Quote */}
-        <blockquote
-          className="
-            text-3xl
-            md:text-4xl
-            lg:text-5xl
-            text-[#f3f4f2]
-            mb-10
-            leading-tight
-            font-raleway
-            font-semibold
-          "
-        >
-          “We believe exceptional businesses are built on exceptional people.
-          Our role is to connect ambition with opportunity — responsibly,
-          strategically, and at scale.”
-        </blockquote>
-
-        {/* Divider */}
-        <div className="flex items-center justify-center gap-4">
-          <div className="h-px w-12 bg-[#cfd6d2]/30" />
-          <p
+        {/* Large Editorial Quote */}
+        <div className="relative">
+          {/* Subtle Decorative Quote Icon */}
+          <Quote className="absolute -top-10 left-1/2 -translate-x-1/2 h-12 w-12 text-[#8B7E6A]/10" />
+          
+          <blockquote
             className="
-              text-[#cfd6d2]
-              text-xs
-              uppercase
-              tracking-[0.25em]
-              font-helvetica
+              text-3xl
+              md:text-5xl
+              lg:text-6xl
+              text-[#2D2D2D]
+              mb-16
+              leading-[1.2]
+              font-light
+              tracking-tight
             "
           >
-            Our Philosophy
+            “We believe exceptional businesses are built on{" "}
+            <span className="text-[#8B7E6A] italic font-serif">exceptional people</span>. 
+            Our role is to connect ambition with opportunity — responsibly, 
+            strategically, and at scale.”
+          </blockquote>
+        </div>
+
+        {/* Philosophy Signature */}
+        <div className="flex flex-col items-center gap-6">
+          <div className="flex items-center gap-8">
+            <div className="h-[1px] w-12 bg-[#8B7E6A]/30" />
+            <p className="text-[#2D2219] text-sm font-medium tracking-widest uppercase italic">
+              Our Philosophy
+            </p>
+            <div className="h-[1px] w-12 bg-[#8B7E6A]/30" />
+          </div>
+          
+          {/* Subtle Year/Legacy detail */}
+          <p className="text-[10px] text-[#8B7E6A] font-bold tracking-[0.2em] uppercase">
+            EST. 1966 — Defined by Excellence
           </p>
-          <div className="h-px w-12 bg-[#cfd6d2]/30" />
         </div>
       </div>
 
-      {/* Ambient Green Glows */}
-      <div className="absolute top-20 left-12 w-72 h-72 bg-[#1f5e46] rounded-full opacity-15 blur-3xl" />
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#0b2a1f] rounded-full opacity-20 blur-3xl" />
-      </div>
+      {/* Minimalist Corner Accents */}
+      <div className="absolute bottom-10 left-10 w-32 h-32 border-l border-b border-[#8B7E6A]/10 rounded-bl-[2rem] hidden lg:block" />
+      <div className="absolute top-10 right-10 w-32 h-32 border-r border-t border-[#8B7E6A]/10 rounded-tr-[2rem] hidden lg:block" />
     </section>
   );
 }

@@ -63,7 +63,7 @@ export function MobileMenu() {
 
       {/* Drawer */}
       <div
-        className={`fixed top-0 right-0 h-full w-80 max-w-[85vw]
+        className={`fixed top-0 z-50 right-0 h-full w-80 max-w-[85vw]
           bg-[#FDF5E8]
           text-[#0D0901]
           font-dm

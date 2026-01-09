@@ -1,3 +1,4 @@
+import React from "react";
 import { Award, Globe, Shield, Target } from "lucide-react";
 
 const trustItems = [
@@ -9,52 +10,44 @@ const trustItems = [
 
 export default function Trust() {
   return (
-    <section className="py-5 bg-[#fffbf2] rounded-4xl mx-5 shadow-2xl mb-2">
-      <div className="max-w-[90rem] mx-auto px-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-8">
-          {trustItems.map((item, index) => {
-            const Icon = item.icon;
+    <section className="py-12 bg-[#FAF9F6] font-dm">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Container with a subtle top border to create an architectural break */}
+        <div className="pt-12 border-t border-[#8B7E6A]/10">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-6">
+            {trustItems.map((item, index) => {
+              const Icon = item.icon;
 
-            return (
-              <div
-                key={index}
-                className="
-                  flex flex-col items-center justify-center text-center
-                  bg-[#5b0202]
-                  rounded-4xl
-                  transition-all duration-300
-                  aspect-square md:aspect-auto
-                  p-4 md:py-5
-                  group
-                "
-              >
-                {/* Icon */}
+              return (
                 <div
-                  className="
-                    w-14 h-14 
-                    rounded-full
-                    bg-[#8e0505]
-                    flex items-center justify-center
-                    mb-3 md:mb-4
-                    transition-all duration-300
-                    
-                  "
+                  key={index}
+                  className="group flex flex-col items-center lg:items-start text-center lg:text-left space-y-4"
                 >
-                  <Icon className="h-6 w-6 text-[#fff4d9]" />
-                </div>
+                  {/* Minimalist Icon Treatment */}
+                  <div className="relative">
+                    {/* Background "Ghost" Circle that appears on hover */}
+                    <div className="absolute inset-0 bg-[#8B7E6A]/5 rounded-full scale-0 group-hover:scale-150 transition-transform duration-500 ease-out" />
+                    
+                    <div className="relative flex items-center justify-center w-12 h-12 rounded-xl border border-[#8B7E6A]/20 bg-white shadow-sm transition-all duration-300 group-hover:border-[#8B7E6A] group-hover:shadow-md">
+                      <Icon className="h-5 w-5 text-[#8B7E6A] stroke-[1.5px]" />
+                    </div>
+                  </div>
 
-                {/* Title */}
-                <div className="text-sm md:text-lg font-dm font-semibold text-[#fff4d9]">
-                  {item.title}
+                  <div className="space-y-1">
+                    {/* Title with tighter tracking and bold editorial feel */}
+                    <h3 className="text-xl font-semibold text-[#2D2D2D] tracking-tight">
+                      {item.title}
+                    </h3>
+                    
+                    {/* Subtitle with a muted bronze tone and expanded tracking */}
+                    <p className="text-xs uppercase tracking-[0.2em] font-medium text-[#8B7E6A]/80">
+                      {item.subtitle}
+                    </p>
+                  </div>
                 </div>
-
-                {/* Subtitle */}
-                <div className="text-xs md:text-sm font-dm tracking-tightest text-[#fff4d9]">
-                  {item.subtitle}
-                </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

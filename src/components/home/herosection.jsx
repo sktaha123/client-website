@@ -1,104 +1,69 @@
 import React from "react";
+import { ArrowUpRight } from "lucide-react";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-[70vh] md:min-h-[90vh] shadow-lg mb-10 md:mx-5 overflow-hidden rounded-4xl md:top-8">
-
-      {/* Background Image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage: "url('/svgs/heroimage.jpg')",
-        }}
-      />
-
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black/60 rounded-4xl" />
-
-      {/* Content Wrapper */}
-      <div className="relative z-30 mx-auto min-h-[70vh] md:min-h-[90vh] w-full max-w-6xl px-6">
-
-        {/* MAIN FLEX CONTAINER */}
+    <section className="relative min-h-[85vh] md:min-h-[95vh] px-4 md:px-8 pt-8 font-dm">
+      
+      {/* Background Container - High-End Frame */}
+      <div className="relative h-full w-full overflow-hidden rounded-[3rem] shadow-sm">
+        
+        {/* Background Image with a warmer, cleaner treatment */}
         <div
-          className="
-            flex min-h-[70vh] md:min-h-[90vh]
-            flex-col
-            items-center
-            justify-center
-            text-white
-            md:flex-row
-            md:items-stretch
-            md:justify-between
-            md:gap-6
-          "
-        >
+          className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 hover:scale-105"
+          style={{
+            backgroundImage: "url('/svgs/heroimage.jpg')",
+          }}
+        />
+        
+        {/* Subtle Warm Gradient Overlay (Replaces the heavy black/60) */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#2D2219]/70 via-[#2D2219]/30 to-[#2D2219]/70" />
 
-          {/* LEFT CONTENT */}
-          <div
-            className="
-              flex flex-col
-              items-center
-              md:items-start
-              md:flex-1
-              md:justify-end
-              lg:pb-20
-              md:pb-20
-              md:pl-10
-              
-            "
-          >
-            <span className="text-center font-dm text-[#fff4d9] md:text-left text-3xl md:text-[2.5rem] font-semibold">
-              Innovate, Integrity,<br className="hidden md:block" />
-              And Building Your Future
-            </span>
+        {/* Content Wrapper */}
+        <div className="relative z-30 flex h-full min-h-[85vh] md:min-h-[95vh] w-full flex-col justify-end pb-12 md:pb-24 px-6 md:px-16">
+          
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
+            
+            {/* LEFT: Catchy Editorial Title */}
+            <div className="md:col-span-7">
+              <span className="text-[#EAE4D9] uppercase tracking-[0.3em] text-xs font-semibold mb-6 block">
+                Workforce Excellence
+              </span>
+              <h1 className="text-white text-5xl md:text-[5.5rem] leading-[1] font-light tracking-tight">
+                Innovate. <br />
+                <span className="text-[#8B7E6A] italic">Integrity.</span> <br />
+                Building <span className="font-semibold">Futures.</span>
+              </h1>
+            </div>
+
+            {/* RIGHT: Sophisticated Description & Action */}
+            <div className="md:col-span-5 md:pl-12 flex flex-col items-start gap-8">
+              <p className="text-[#FAF9F6]/80 text-lg md:text-xl leading-relaxed max-w-sm font-light">
+                Bridging decades of business wisdom with modern execution to help organizations scale with confidence.
+              </p>
+
+              <div className="flex flex-wrap gap-4">
+                <a
+                  href="#cv-upload"
+                  className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-[#8B7E6A] px-8 py-4 text-white transition-all hover:bg-[#6B5E4C] shadow-xl shadow-[#2D2219]/20"
+                >
+                  <span className="relative z-10 font-medium">Upload Your CV</span>
+                  <div className="relative z-10 flex h-6 w-6 items-center justify-center rounded-full bg-white/20 transition-transform group-hover:rotate-45">
+                    <ArrowUpRight className="h-4 w-4" />
+                  </div>
+                </a>
+                
+                <button className="px-8 py-4 rounded-full border border-white/30 text-white backdrop-blur-md hover:bg-white/10 transition-all font-medium">
+                  Our Solutions
+                </button>
+              </div>
+            </div>
+
           </div>
-
-          {/* RIGHT CONTENT */}
-          <div
-            className="
-              mt-6
-              flex flex-col
-              items-center
-              md:mt-0
-              md:items-start
-              md:flex-1
-              md:justify-end
-              lg:pb-15
-              lg:pl-40
-              md:pb-15
-              md:pl-10
-              gap-6
-            "
-          >
-            <span className="text-center font-dm md:text-left text-sm md:text-xl text-[#fff4d9] max-w-md">
-              Bridging decades of business wisdom with
-              <br className="hidden md:block" />
-              modern digital execution to help organizations
-              scale with confidence
-            </span>
-
-            <a
-              href="#homepage"
-              className="
-                inline-block
-                rounded-xl
-                font-dm
-                bg-[#750404]
-                hover:bg-[#5b0202]
-                md:px-5 md:py-2.5
-                px-4 py-2
-                text-white
-                font-semibold
-                transition-all duration-200
-                md:text-md
-                shadow-2xl
-              "
-            >
-              Upload Your CV
-            </a>
-          </div>
-
         </div>
+
+        {/* Decorative Element - Soft Light Blur */}
+        <div className="absolute -bottom-20 -left-20 h-80 w-80 rounded-full bg-[#8B7E6A] opacity-20 blur-[120px]" />
       </div>
     </section>
   );

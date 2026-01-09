@@ -5,219 +5,166 @@ import {
   Rocket,
   LineChart,
   CheckCircle2,
-  ArrowRight,
+  ChevronRight,
+  ChevronDown,
 } from "lucide-react";
-import { Card } from "../ui/card.jsx";
 
 const steps = [
   {
     number: "01",
     icon: Search,
     title: "Understand Business Needs",
-    description:
-      "Deep-dive consultation to identify your unique workforce challenges and objectives.",
-    details: [
-      "Comprehensive business assessment",
-      "Stakeholder consultation sessions",
-      "Gap analysis and requirements mapping",
-      "Industry benchmarking",
-    ],
-    color: "from-[#1f5e46] to-[#0b2a1f]",
+    description: "Deep-dive consultation to identify your unique workforce challenges.",
+    details: ["Business assessment", "Gap analysis", "Requirements mapping"],
   },
   {
     number: "02",
     icon: Lightbulb,
     title: "Design Workforce Strategy",
-    description:
-      "Custom solutions tailored to your industry, scale, and compliance requirements.",
-    details: [
-      "Customized workforce planning",
-      "Compliance framework design",
-      "Talent sourcing strategy",
-      "Budget optimization models",
-    ],
-    color: "from-[#0b2a1f] to-[#1f5e46]",
+    description: "Custom solutions tailored to your industry and compliance requirements.",
+    details: ["Workforce planning", "Compliance design", "Budget optimization"],
   },
   {
     number: "03",
     icon: Rocket,
     title: "Deploy & Manage Talent",
-    description:
-      "Seamless onboarding and integration of qualified professionals into your operations.",
-    details: [
-      "Rapid talent deployment",
-      "Comprehensive onboarding process",
-      "Performance tracking systems",
-      "Continuous support and management",
-    ],
-    color: "from-[#1f5e46] to-[#0b2a1f]",
+    description: "Seamless onboarding and integration of qualified professionals.",
+    details: ["Rapid deployment", "Onboarding process", "Performance tracking"],
   },
   {
     number: "04",
     icon: LineChart,
     title: "Optimize, Scale & Support",
-    description:
-      "Continuous monitoring, analytics, and strategic adjustments for sustained success.",
-    details: [
-      "Real-time performance analytics",
-      "Quarterly business reviews",
-      "Scalability planning",
-      "24/7 dedicated support",
-    ],
-    color: "from-[#0b2a1f] to-[#1f5e46]",
+    description: "Continuous monitoring and analytics for sustained success.",
+    details: ["Real-time analytics", "Scalability planning", "24/7 support"],
   },
 ];
 
 export function ProcessSection() {
   const [activeStep, setActiveStep] = useState(null);
-  const safeStep = activeStep !== null ? steps[activeStep] : steps[0];
+
+  // Toggle function for mobile accessibility
+  const handleToggle = (index) => {
+    setActiveStep(activeStep === index ? null : index);
+  };
 
   return (
-    <section className="py-24 bg-[#071510]">
+    <section className="py-16 md:py-24 bg-[#FAF9F6] font-dm overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
-
-        {/* Header */}
-        <div className="text-center mb-16">
-          <span className="inline-block px-4 py-1.5 bg-[#1f5e46]/15 text-[#cfd6d2] text-xs uppercase tracking-wider rounded-full mb-6 font-raleway">
-            How We Work
+        
+        {/* --- Header --- */}
+        <div className="mb-12 md:mb-20">
+          <span className="text-[#8B7E6A] font-medium tracking-[0.2em] uppercase text-xs md:text-sm mb-4 block">
+            Our Approach
           </span>
-          <h2 className="text-4xl md:text-5xl text-[#f3f4f2] mb-4 font-raleway font-semibold">
-            Our Proven Process
+          <h2 className="text-3xl md:text-6xl text-[#2D2D2D] font-light leading-tight max-w-3xl">
+            A Disciplined <span className="text-[#8B7E6A] italic">Strategic</span> Roadmap
           </h2>
-          <p className="text-lg text-[#cfd6d2] max-w-2xl mx-auto font-helvetica tracking-tightest">
-            A disciplined, structured approach to delivering workforce excellence
-          </p>
         </div>
 
-        {/* DESKTOP TIMELINE */}
-        <div className="hidden lg:block relative mb-12">
-          <div className="absolute top-12 left-0 right-0 h-px bg-[#1f5e46]/40" />
+        {/* --- Process Container --- */}
+        <div className="relative">
+          
+          {/* Horizontal Line (Desktop Only) */}
+          <div className="hidden lg:block absolute top-[45px] left-0 w-full h-[1px] bg-[#8B7E6A]/20" />
 
-          <div className="grid grid-cols-4 gap-8 relative">
+          {/* Vertical Line (Mobile Only) */}
+          <div className="lg:hidden absolute left-[39px] top-0 bottom-0 w-[1px] bg-[#8B7E6A]/20" />
+
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 md:gap-12 relative">
             {steps.map((step, index) => {
               const Icon = step.icon;
               const isActive = activeStep === index;
 
               return (
-                <div
+                <div 
                   key={index}
-                  onMouseEnter={() => setActiveStep(index)}
-                  onMouseLeave={() => setActiveStep(null)}
-                  className="text-center cursor-pointer"
+                  // Desktop: Hover behavior
+                  onMouseEnter={() => { if (window.innerWidth >= 1024) setActiveStep(index); }}
+                  onMouseLeave={() => { if (window.innerWidth >= 1024) setActiveStep(null); }}
+                  // Mobile: Click behavior
+                  onClick={() => handleToggle(index)}
+                  className="group relative cursor-pointer outline-none"
+                  role="button"
+                  aria-expanded={isActive}
+                  tabIndex={0}
                 >
-                  <div className="relative inline-flex mb-6">
-                    <div
-                      className={`w-24 h-24 rounded-full bg-gradient-to-br ${step.color}
-                        flex items-center justify-center transition-all duration-300
-                        ${isActive ? "scale-110 shadow-[0_20px_40px_rgba(31,94,70,0.35)]" : ""}
-                      `}
-                    >
-                      <Icon className="h-10 w-10 text-[#f3f4f2]" />
+                  {/* Step Marker (The Circle) */}
+                  <div className="flex items-center gap-6 lg:block lg:mb-8">
+                    <div className={`
+                      relative z-10 w-20 h-20 rounded-full flex items-center justify-center
+                      transition-all duration-500 border shrink-0
+                      ${isActive 
+                        ? "bg-[#8B7E6A] border-[#8B7E6A] shadow-xl shadow-[#8B7E6A]/20 scale-105" 
+                        : "bg-white border-[#8B7E6A]/20"}
+                    `}>
+                      <Icon className={`h-7 w-7 transition-colors duration-500 ${isActive ? "text-white" : "text-[#8B7E6A]"}`} />
+                      
+                      <span className={`
+                        absolute -top-1 -right-1 w-7 h-7 rounded-full flex items-center justify-center text-[10px] font-bold border
+                        transition-colors duration-500
+                        ${isActive ? "bg-[#2D2219] text-white border-[#2D2219]" : "bg-[#EAE4D9] text-[#2D2219] border-white"}
+                      `}>
+                        {step.number}
+                      </span>
                     </div>
 
-                    <div className="absolute -top-2 -right-2 w-10 h-10 bg-[#050807] text-[#f3f4f2] rounded-full flex items-center justify-center text-sm">
-                      {step.number}
+                    {/* Mobile Title (Next to circle on small screens) */}
+                    <div className="lg:hidden flex-1">
+                       <h3 className="text-lg font-semibold text-[#2D2D2D]">{step.title}</h3>
+                       <div className="flex items-center gap-1 text-[#8B7E6A] text-[10px] font-bold uppercase tracking-widest mt-1">
+                          {isActive ? "Close" : "View Details"}
+                          <ChevronDown className={`h-3 w-3 transition-transform ${isActive ? 'rotate-180' : ''}`} />
+                       </div>
                     </div>
                   </div>
 
-                  <h3 className={`text-xl font-raleway font-semibold mb-2 ${
-                    isActive ? "text-[#1f5e46]" : "text-[#f3f4f2]"
-                  }`}>
-                    {step.title}
-                  </h3>
+                  {/* Content Card */}
+                  <div className={`
+                    transition-all duration-500 border rounded-[2rem] md:rounded-[2.5rem]
+                    lg:block // Always show content on desktop
+                    ${isActive 
+                      ? "bg-white border-[#8B7E6A]/30 shadow-2xl p-6 md:p-8 mt-4 lg:mt-0 opacity-100" 
+                      : "bg-transparent border-transparent lg:opacity-100 p-0 lg:p-8 max-h-0 lg:max-h-none overflow-hidden lg:overflow-visible"}
+                  `}>
+                    {/* Desktop Title (Hidden on mobile inside the card) */}
+                    <h3 className="hidden lg:block text-xl font-semibold text-[#2D2D2D] mb-4">
+                      {step.title}
+                    </h3>
+                    
+                    <p className={`text-[#6B5E4C] text-sm leading-relaxed mb-6 font-light ${isActive ? 'mt-0' : 'hidden lg:block'}`}>
+                      {step.description}
+                    </p>
 
-                  <p className="text-sm text-[#cfd6d2] font-helvetica tracking-tightest">
-                    {step.description}
-                  </p>
+                    {/* Reveal Details */}
+                    <div className={`
+                      space-y-3 transition-all duration-500
+                      ${isActive ? "opacity-100 max-h-60" : "opacity-0 max-h-0 pointer-events-none lg:max-h-0"}
+                    `}>
+                      {step.details.map((detail, dIndex) => (
+                        <div key={dIndex} className="flex items-center gap-3">
+                          <CheckCircle2 className="h-4 w-4 text-[#8B7E6A]" />
+                          <span className="text-xs text-[#8B7E6A] font-medium tracking-wide">
+                            {detail}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Desktop Indicator */}
+                    <div className={`hidden lg:flex items-center gap-2 text-[#8B7E6A] mt-2 transition-opacity ${isActive ? 'opacity-0' : 'opacity-50'}`}>
+                        <span className="text-[10px] font-bold uppercase tracking-widest">Explore</span>
+                        <ChevronRight className="h-3 w-3" />
+                    </div>
+                  </div>
                 </div>
               );
             })}
           </div>
         </div>
 
-        {/* DESKTOP DETAILS */}
-        <div className="hidden lg:block">
-          <div
-            className={`
-              overflow-hidden transition-all duration-500 ease-out
-              ${activeStep !== null
-                ? "max-h-[600px] opacity-100 translate-y-0"
-                : "max-h-0 opacity-0 -translate-y-4"}
-            `}
-          >
-            <Card className="p-8 bg-[#0b2a1f] border border-[#cfd6d2]/10">
-              <div className="flex gap-6">
-                <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${safeStep.color} flex items-center justify-center`}>
-                  <safeStep.icon className="h-8 w-8 text-[#f3f4f2]" />
-                </div>
-
-                <div className="flex-1">
-                  <h3 className="text-2xl text-[#f3f4f2] mb-4 font-raleway font-semibold">
-                    Step {safeStep.number}: {safeStep.title}
-                  </h3>
-
-                  <p className="text-[#cfd6d2] mb-6 font-helvetica tracking-tightest">
-                    {safeStep.description}
-                  </p>
-
-                  <div className="grid md:grid-cols-2 gap-3">
-                    {safeStep.details.map((d, i) => (
-                      <div key={i} className="flex items-center gap-3">
-                        <CheckCircle2 className="h-5 w-5 text-[#1f5e46]" />
-                        <span className="text-[#f3f4f2] font-helvetica">{d}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </Card>
-          </div>
-        </div>
-
-        {/* MOBILE ACCORDION */}
-        <div className="lg:hidden space-y-4">
-          {steps.map((step, index) => {
-            const Icon = step.icon;
-            const open = activeStep === index;
-
-            return (
-              <Card
-                key={index}
-                onClick={() => setActiveStep(open ? null : index)}
-                className="overflow-hidden bg-[#0b2a1f] border border-[#cfd6d2]/10"
-              >
-                <div className="p-6 flex items-center gap-4">
-                  <div className={`w-16 h-16 rounded-xl bg-gradient-to-br ${step.color} flex items-center justify-center`}>
-                    <Icon className="h-8 w-8 text-[#f3f4f2]" />
-                  </div>
-
-                  <div className="flex-1">
-                    <h4 className="font-raleway font-semibold text-[#f3f4f2]">
-                      {step.title}
-                    </h4>
-                    <p className="text-sm text-[#cfd6d2] font-helvetica tracking-tightest">
-                      {step.description}
-                    </p>
-                  </div>
-
-                  <ArrowRight className={`text-[#cfd6d2] transition-transform ${open ? "rotate-90" : ""}`} />
-                </div>
-
-                <div className={`grid transition-all duration-300 ${open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
-                  <div className="overflow-hidden px-6 pb-6 space-y-3">
-                    {step.details.map((d, i) => (
-                      <div key={i} className="flex gap-3">
-                        <CheckCircle2 className="h-5 w-5 text-[#1f5e46]" />
-                        <span className="text-[#f3f4f2] font-helvetica">{d}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </Card>
-            );
-          })}
-        </div>
-
+        {/* --- Footer Badge --- */}
+        
       </div>
     </section>
   );

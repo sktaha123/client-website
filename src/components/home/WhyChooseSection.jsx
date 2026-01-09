@@ -1,6 +1,5 @@
 import { Check } from "lucide-react";
 
-
 const benefits = [
   "Six decades of proven business legacy and market expertise",
   "Comprehensive compliance across all regulatory frameworks",
@@ -13,115 +12,77 @@ const benefits = [
 ];
 
 export function WhyChooseSection() {
-  
-
   return (
-    <section className="py-24 bg-[#071510]">
-      
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-
-            {/* Left Content */}
-            <div className="flex flex-col items-center justify-center ">
-              <div
-                className="
-                
-                
-                  inline-block
-                  px-4 py-1.5
-                  bg-[#1f5e46]/15
-                  text-[#cfd6d2]
-                  text-xs
-                  uppercase
-                  tracking-wider
-                  rounded-full
-                  mb-6
-                  font-raleway
-                "
-              >
-                Why Choose BiznorX
-              </div>
-
-              <h2
-                className="
-                  text-4xl md:text-5xl
-                  text-center
-                  text-[#f3f4f2]
-                  mb-6
-                  leading-tight
-                  font-raleway
-                  font-semibold
-                "
-              >
-                The Strategic Advantage You Need
-              </h2>
-
-              <p
-                className="
-                  text-lg
-                   text-center lg:text-left
-                  text-[#cfd6d2]
-                  leading-relaxed
-                  font-helvetica
-                  tracking-tightest
-                "
-              >
-                We don’t just deliver workforce solutions — we operate as a
-                long-term strategic partner, helping organizations build
-                resilient, compliant, and future-ready operations at scale.
-              </p>
+    <section className="py-24 bg-[#FAF9F6] font-dm">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid lg:grid-cols-12 gap-16 items-start">
+          
+          {/* LEFT CONTENT: Sticky Branding & Heading */}
+          <div className="lg:col-span-5 lg:sticky lg:top-32">
+            <div className="inline-flex items-center gap-3 px-4 py-2 bg-[#8B7E6A]/10 rounded-full mb-8">
+              <div className="w-1.5 h-1.5 rounded-full bg-[#8B7E6A]" />
+              <span className="text-[#8B7E6A] text-[11px] font-bold uppercase tracking-[0.2em]">
+                The BiznorX Advantage
+              </span>
             </div>
 
-            {/* Benefits List */}
-            <div className="grid gap-4">
+            <h2 className="text-4xl md:text-6xl text-[#2D2D2D] mb-8 leading-[1.1] font-light">
+              The Strategic <br />
+              <span className="text-[#8B7E6A] italic font-serif">Advantage</span> You Need
+            </h2>
+
+            <p className="text-xl text-[#6B5E4C] leading-relaxed font-light max-w-md">
+              We don’t just deliver workforce solutions — we operate as a 
+              <span className="text-[#2D2D2D] font-medium"> long-term strategic partner</span>, 
+              helping organizations build resilient operations at scale.
+            </p>
+            
+            {/* Decorative Element */}
+            <div className="mt-12 w-24 h-[1px] bg-[#8B7E6A]/30 hidden lg:block" />
+          </div>
+
+          {/* RIGHT CONTENT: Refined List */}
+          <div className="lg:col-span-7">
+            <div className="grid gap-0 border-t border-[#8B7E6A]/10">
               {benefits.map((benefit, index) => (
                 <div
                   key={index}
                   className="
-                    flex items-start gap-4
-                    p-4
-                    bg-[#0b2a1f]
-                    rounded-xl
-                    border border-[#cfd6d2]/10
-                    transition-all duration-300
-                    hover:border-[#1f5e46]
-                    hover:-translate-y-1
-                    hover:shadow-[0_12px_28px_rgba(31,94,70,0.25)]
-                    group
+                    group flex items-center gap-6
+                    py-8 px-4
+                    border-b border-[#8B7E6A]/10
+                    transition-all duration-500
+                    hover:bg-white hover:px-8
                   "
                 >
-                  <div
-                    className="
-                      flex-shrink-0
-                      w-6 h-6
-                      rounded-full
-                      bg-[#1f5e46]/20
-                      flex items-center justify-center
-                      mt-0.5
-                      transition-colors
-                      group-hover:bg-[#1f5e46]
-                    "
-                  >
-                    <Check className="h-4 w-4 text-[#f3f4f2]" />
+                  {/* Subtle Numbering or Icon */}
+                  <div className="flex-shrink-0 relative">
+                    <div className="w-10 h-10 rounded-full border border-[#8B7E6A]/20 flex items-center justify-center transition-all duration-500 group-hover:bg-[#8B7E6A] group-hover:border-[#8B7E6A]">
+                      <Check className="h-4 w-4 text-[#8B7E6A] transition-colors duration-500 group-hover:text-white" />
+                    </div>
+                    {/* Ghost number background */}
+                    <span className="absolute -top-2 -left-2 text-[10px] font-bold text-[#8B7E6A]/30 opacity-0 group-hover:opacity-100 transition-opacity">
+                      0{index + 1}
+                    </span>
                   </div>
 
-                  <p
-                    className="
-                      text-[#f3f4f2]
-                      leading-relaxed
-                      font-helvetica
-                      tracking-tightest
-                    "
-                  >
+                  <p className="text-[#2D2D2D] text-lg font-light leading-snug transition-all duration-500 group-hover:translate-x-2">
                     {benefit}
                   </p>
                 </div>
               ))}
             </div>
 
+            {/* Bottom CTA Hook */}
+            <div className="mt-12 p-8 rounded-[2rem] bg-[#EAE4D9]/30 border border-[#8B7E6A]/10 text-center lg:text-left">
+                <p className="text-[#8B7E6A] font-medium text-sm italic">
+                    "Driving excellence through disciplined processes and local expertise in India & UAE."
+                </p>
+            </div>
           </div>
+
         </div>
-      
+      </div>
     </section>
   );
 }

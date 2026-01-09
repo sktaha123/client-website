@@ -10,12 +10,16 @@ import { IndustriesSection } from '@/components/home/IndustriesSection.jsx'
 import { FinalCTA } from '@/components/home/FinalCTA.jsx'
 
 
+
+
 const homepage = () => {
   return (
-    <div className='bg-[#ffffff]'>
+    <div className='bg-[#FAF9F6]'>
       
         <Herosection/>
         <Trust/>
+        
+   
         <AboutSection/>
         <ServicesSection/>
         <ProcessSection/>

@@ -11,6 +11,7 @@ import {
   Zap,
   PlaneTakeoff,
   HardHat,
+  ArrowUpRight,
 } from "lucide-react";
 
 const industries = [
@@ -29,138 +30,78 @@ const industries = [
 ];
 
 export function IndustriesSection() {
-  
   return (
-    <section id="industries" className="py-24 bg-[#071510]">
-      
+    <section id="industries" className="py-24 bg-[#FAF9F6] font-dm">
       <div className="max-w-7xl mx-auto px-6">
-
-        {/* Header */}
-        <div className="text-center mb-16">
-          <div
-            className="
-              inline-block
-              px-4 py-1.5
-              bg-[#1f5e46]/15
-              text-[#cfd6d2]
-              text-xs
-              uppercase
-              tracking-wider
-              rounded-full
-              mb-6
-              font-raleway
-            "
-          >
-            Industries We Serve
+        
+        {/* --- Header Section --- */}
+        <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+          <div className="max-w-2xl">
+            <span className="text-[#8B7E6A] font-medium tracking-[0.3em] uppercase text-xs mb-4 block">
+              Global reach
+            </span>
+            <h2 className="text-4xl md:text-6xl text-[#2D2D2D] font-light leading-tight">
+              Sector <span className="text-[#8B7E6A] italic font-serif">Expertise</span> That Matters
+            </h2>
           </div>
-
-          <h2
-            className="
-              text-4xl md:text-5xl
-              text-[#f3f4f2]
-              mb-4
-              font-raleway
-              font-semibold
-            "
-          >
-            Sector Expertise That Matters
-          </h2>
-
-          <p
-            className="
-              text-lg
-              text-[#cfd6d2]
-              max-w-2xl
-              mx-auto
-              font-helvetica
-              tracking-tightest
-            "
-          >
+          <p className="text-[#6B5E4C] text-lg font-light max-w-sm">
             Deep industry understanding across diverse verticals, enabling
-            precise and compliant workforce solutions.
+            precise and compliant workforce solutions in India and the UAE.
           </p>
         </div>
 
-        {/* Industries Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5">
+        {/* --- Industries Directory (Minimalist Table) --- */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border-t border-[#8B7E6A]/20">
           {industries.map((industry, index) => {
             const Icon = industry.icon;
-
             return (
               <div
                 key={index}
                 className="
-                  flex flex-col items-center justify-center
-                  p-6
-                  bg-[#0b2a1f]
-                  rounded-xl
-                  border border-[#cfd6d2]/10
-                  cursor-pointer
-                  transition-all duration-300 ease-out
-                  hover:border-[#1f5e46]
-                  hover:-translate-y-1
-                  hover:shadow-[0_14px_30px_rgba(31,94,70,0.25)]
-                  group
+                  group relative flex items-center justify-between
+                  p-10 border-b border-[#8B7E6A]/20
+                  transition-all duration-500 ease-out
+                  hover:bg-white cursor-default
                 "
               >
-                <div
-                  className="
-                    w-12 h-12
-                    rounded-full
-                    border border-[#cfd6d2]/20
-                    flex items-center justify-center
-                    mb-3
-                    transition-all duration-300
-                    group-hover:bg-[#1f5e46]
-                    group-hover:border-[#1f5e46]
-                  "
-                >
-                  <Icon
-                    className="
-                      h-5 w-5
-                      text-[#cfd6d2]
-                      transition-colors duration-300
-                      group-hover:text-[#f3f4f2]
-                    "
-                  />
+                <div className="flex items-center gap-6">
+                  {/* Icon with subtle bronze glow on hover */}
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-[#8B7E6A]/20 rounded-full scale-0 group-hover:scale-150 transition-transform duration-700 blur-xl" />
+                    <Icon className="h-6 w-6 text-[#8B7E6A] relative z-10 transition-transform duration-500 group-hover:-rotate-12" />
+                  </div>
+                  
+                  <span className="text-xl font-medium text-[#2D2D2D] tracking-tight transition-colors duration-300 group-hover:text-[#8B7E6A]">
+                    {industry.name}
+                  </span>
                 </div>
 
-                <span
-                  className="
-                    text-sm
-                    text-[#f3f4f2]
-                    text-center
-                    font-helvetica
-                    tracking-tightest
-                  "
-                >
-                  {industry.name}
-                </span>
+                {/* Minimalist Arrow Reveal */}
+                <ArrowUpRight className="h-4 w-4 text-[#8B7E6A]/30 opacity-0 -translate-y-2 translate-x-2 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0" />
               </div>
             );
           })}
         </div>
 
-        {/* Footer Note */}
-        <div className="mt-14 text-center">
-          <p className="text-[#cfd6d2] font-helvetica tracking-tightest">
-            Don’t see your industry?{" "}
-            <a
-              href="#contact"
-              className="
-                text-[#f3f4f2]
-                border-b border-[#1f5e46]
-                hover:text-[#1f5e46]
-                hover:border-[#f3f4f2]
-                transition-colors
-              "
-            >
-              Let’s talk
-            </a>{" "}
-            about your specific requirements.
+        {/* --- Footer Note --- */}
+        <div className="mt-20 flex flex-col md:flex-row items-center justify-center gap-6">
+          <p className="text-[#6B5E4C] font-light">
+            Don’t see your industry?
           </p>
+          <a
+            href="#contact"
+            className="
+              group flex items-center gap-3 px-8 py-4
+              bg-[#2D2219] text-white rounded-full
+              text-sm font-medium tracking-widest uppercase
+              transition-all duration-300 hover:bg-[#8B7E6A]
+              hover:shadow-2xl hover:shadow-[#8B7E6A]/20
+            "
+          >
+            Request a Consultation
+            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+          </a>
         </div>
-
       </div>
     </section>
   );
