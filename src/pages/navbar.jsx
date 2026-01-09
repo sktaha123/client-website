@@ -1,195 +1,180 @@
 import React, { useState, useEffect } from "react";
-import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
-import { Mail, Linkedin, Instagram, Menu, X, Facebook, ArrowUpRight } from "lucide-react";
+import { Mail, MessageCircle, ArrowRight, Linkedin, Instagram, Facebook, Menu, X, Phone } from "lucide-react";
 import { FaXTwitter, FaWhatsapp } from "react-icons/fa6";
 
-const NAV_LINKS = [
-  { name: "Expertise", href: "#industries" },
-  { name: "Services", href: "#services" },
-  { name: "About", href: "#about" },
-  { name: "Approach", href: "#approch" }, 
-  { name: "Contact", href: "#contact" } 
-];
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
 
-const SOCIALS = [
-  { icon: Linkedin, href: "#" },
-  { icon: Facebook, href: "#" },
-  { icon: FaXTwitter, href: "#" },
-  { icon: Instagram, href: "#" },
-];
-
-const FAST_TRANSITION = { 
-  type: "spring", 
-  stiffness: 400, 
-  damping: 35, 
-  mass: 0.3,
-  restDelta: 0.01 
-};
-
-export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { scrollY } = useScroll();
-
-  // Scroll logic
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    if (latest > 40 && !isScrolled) setIsScrolled(true);
-    if (latest <= 40 && isScrolled) setIsScrolled(false);
-  });
-
-  // Body scroll lock when menu is open
+  // Prevent scrolling when mobile menu is open
   useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = "hidden";
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = 'unset';
     }
-  }, [isMobileMenuOpen]);
+  }, [isOpen]);
+
+  const socialLinks = [
+    { icon: Linkedin, href: "#" },
+    { icon: FaXTwitter, href: "#" },
+    { icon: Instagram, href: "#" },
+    { icon: Facebook, href: "#" },
+  ];
 
   return (
     <>
-      {/* 1. NAVBAR - FLOATING STATE */}
-      <header className="fixed top-0 left-0 right-0 z-[100] flex justify-center pt-3 md:pt-4 px-4 pointer-events-none">
-        <motion.div
-          layout
-          transition={FAST_TRANSITION}
+      <div className="fixed top-0 md:top-2 left-0 right-0 z-50 flex justify-center px-0 md:px-6">
+        <div
           className={`
-            relative flex items-center justify-between h-14 md:h-16 rounded-full border border-[#8B7E6A]/20 
-            backdrop-blur-md shadow-lg pointer-events-auto transform-gpu px-4
-            ${isScrolled ? "bg-[#2D2219] w-[260px] md:w-[320px]" : "bg-[#FAF9F6]/95 w-full max-w-[1000px]"}
+            w-full md:w-[98vw] max-w-7xl
+            bg-[#FAF9F6]/90 backdrop-blur-xl
+            md:rounded-[3rem] border-b md:border border-[#8B7E6A]/15
+            shadow-[0_10px_40px_rgba(45,34,25,0.04)]
+            transition-all duration-500
+            ${isOpen ? "rounded-b-none border-b-transparent" : ""}
           `}
         >
-          {/* Logo */}
-          <motion.div layout transition={FAST_TRANSITION} className="shrink-0 pl-1">
-            <img 
-              src="/svgs/Biznorlogo.png" 
-              alt="Logo" 
-              className={`h-5 md:h-6 transition-all duration-300 ${isScrolled ? "brightness-0 invert" : ""}`} 
-            />
-          </motion.div>
+          <div className="px-6 md:px-10 h-20 flex items-center justify-between">
+            
+            {/* LEFT — LOGO */}
+            <div className="flex items-center justify-start scale-90 md:scale-100 z-[60]">
+              <img
+                src="/svgs/Biznorlogo.png"
+                alt="BiznorX"
+                className="h-12 md:h-14 shrink-0 transition-opacity hover:opacity-80"
+              />
+            </div>
 
-          {/* Nav / Condensed Icons */}
-          <div className="flex-1 flex justify-center overflow-hidden px-2">
-            <AnimatePresence mode="wait">
-              {!isScrolled ? (
-                <motion.nav
-                  key="desktop"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  className="hidden lg:flex items-center gap-8 font-dm"
-                >
-                  {NAV_LINKS.map((link) => (
-                    <a key={link.name} href={link.href} className="text-[10px] font-medium uppercase tracking-[0.15em] text-[#2D2219]/70 hover:text-[#8B7E6A] transition-colors">
-                      {link.name}
+            {/* CENTER — DESKTOP NAV */}
+            <div className="hidden lg:flex items-center space-x-10">
+              <nav className="flex items-center space-x-8">
+                {/* WhatsApp Dropdown */}
+                <div className="relative group/icon cursor-pointer">
+                  <div className="flex items-center gap-2 group">
+                    <MessageCircle className="size-3.5 text-[#8B7E6A]" />
+                    <span className="font-dm text-[10px] uppercase tracking-[0.2em] font-bold text-[#2D2D2D]/60 group-hover:text-[#8B7E6A] transition-colors">
+                      WhatsApp
+                    </span>
+                  </div>
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible translate-y-2 transition-all duration-300 group-hover/icon:opacity-100 group-hover/icon:visible group-hover/icon:translate-y-0">
+                    <div className="bg-[#FAF9F6] border border-[#8B7E6A]/15 rounded-2xl shadow-2xl w-48 p-4 space-y-3">
+                      <a href="https://wa.me/919004378003" className="flex items-center justify-between text-[11px] font-dm text-[#2D2D2D] hover:text-[#8B7E6A] transition-colors">
+                        <span>India</span> <span>+91 90043...</span>
+                      </a>
+                      <a href="https://wa.me/971506012581" className="flex items-center justify-between text-[11px] font-dm text-[#2D2D2D] hover:text-[#8B7E6A] transition-colors">
+                        <span>UAE</span> <span>+971 506...</span>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="relative group/icon cursor-pointer">
+                  <div className="flex items-center gap-2 group">
+                    <Mail className="size-3.5 text-[#8B7E6A]" />
+                    <span className="font-dm text-[10px] uppercase tracking-[0.2em] font-bold text-[#2D2D2D]/60 group-hover:text-[#8B7E6A] transition-colors">
+                      Email
+                    </span>
+                  </div>
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 opacity-0 invisible translate-y-2 transition-all duration-300 group-hover/icon:opacity-100 group-hover/icon:visible group-hover/icon:translate-y-0">
+                    <div className="bg-[#FAF9F6] border border-[#8B7E6A]/15 rounded-2xl shadow-2xl px-5 py-3">
+                      <a href="mailto:hello@biznorx.com" className="text-[11px] font-dm text-[#2D2D2D] hover:text-[#8B7E6A] transition-colors">
+                        hello@biznorx.com
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="w-px h-4 bg-[#8B7E6A]/20" />
+
+                {/* Desktop Socials */}
+                <div className="flex items-center space-x-5">
+                  {socialLinks.map((social, i) => (
+                    <a key={i} href={social.href} className="text-[#2D2D2D]/40 hover:text-[#8B7E6A] transition-colors">
+                      <social.icon className="size-4" />
                     </a>
                   ))}
-                </motion.nav>
-              ) : (
-                <motion.div
-                  key="scrolled"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="flex items-center gap-4 text-white/70"
-                >
-                  <a href="https://wa.me/919004378003" className="hover:text-white"><FaWhatsapp size={15} /></a>
-                  <a href="mailto:hello@biznorx.com" className="hover:text-white"><Mail size={15} /></a>
-                  <a href="#" className="hover:text-white"><Linkedin size={14} /></a>
-                  <a href="#" className="hover:text-white"><Facebook size={14} /></a>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
+                </div>
+              </nav>
+            </div>
 
-          <button 
-            onClick={() => setIsMobileMenuOpen(true)}
-            className={`p-2 shrink-0 transition-colors ${isScrolled ? "text-white" : "text-[#2D2219]"}`}
-          >
-            <Menu size={20} />
-          </button>
-        </motion.div>
-      </header>
-
-      {/* 2. MENU OVERLAY - TOP LAYER */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.15 }}
-            className="fixed inset-0 bg-[#E5E2DD] z-[9999] pointer-events-auto flex flex-col p-6 md:p-12 overflow-hidden"
-          >
-            {/* Menu Header */}
-            <div className="flex justify-between items-start shrink-0">
-              <p className="text-[#8B7E6A] text-[9px] font-dm font-bold uppercase tracking-[0.3em] opacity-60 mb-2"></p>
-              <button 
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="flex items-center gap-2 text-[#2D2219] font-dm font-bold text-[9px] uppercase tracking-widest bg-white/40 py-2 px-5 rounded-full border border-black/5"
+            {/* RIGHT — CTA + HAMBURGER */}
+            <div className="flex items-center space-x-4 z-[60]">
+              <a
+                href="#contact"
+                className="hidden md:flex items-center gap-3 rounded-full bg-[#2D2219] hover:bg-[#8B7E6A] px-7 py-3 text-white text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-500 font-dm shadow-xl shadow-[#2D2219]/10 group"
               >
-                Close <X size={14} />
+                Let's Talk
+                <ArrowRight className="size-3 transition-transform group-hover:translate-x-1" />
+              </a>
+
+              {/* HAMBURGER BUTTON */}
+              <button 
+                onClick={() => setIsOpen(!isOpen)}
+                className="lg:hidden p-2 text-[#2D2219] transition-transform active:scale-90"
+              >
+                {isOpen ? <X className="size-7" /> : <Menu className="size-7" />}
               </button>
             </div>
+          </div>
+        </div>
+      </div>
 
-            {/* Nav Links - Font Weight Reduced */}
-            <nav className="flex-grow flex flex-col justify-center gap-3">
-              
-              {NAV_LINKS.map((item, i) => (
-                <motion.a
-                  key={item.name}
-                  initial={{ x: -10, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1, transition: { delay: i * 0.04 } }}
-                  href={item.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="font-dm text-4xl md:text-7xl font-medium text-[#2D2219] tracking-tight uppercase leading-none hover:text-[#8B7E6A] transition-colors"
-                >
-                  {item.name}
-                </motion.a>
-              ))}
-            </nav>
+      {/* MOBILE MENU OVERLAY */}
+      <div 
+        className={`
+          fixed inset-0 bg-[#FAF9F6] z-40 lg:hidden
+          transition-all duration-700 ease-[cubic-bezier(0.85,0,0.15,1)]
+          ${isOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"}
+        `}
+      >
+        <div className="flex flex-col h-full pt-32 px-8 pb-12">
+          {/* Mobile Nav Links */}
+          <div className="flex flex-col space-y-8 mb-auto">
+            <span className="text-[#8B7E6A] text-[10px] font-bold uppercase tracking-[0.3em]">Menu</span>
+            <a href="#about" onClick={() => setIsOpen(false)} className="text-4xl font-light text-[#2D2219]">About</a>
+            <a href="#services" onClick={() => setIsOpen(false)} className="text-4xl font-light text-[#2D2219]">Services</a>
+            <a href="#industries" onClick={() => setIsOpen(false)} className="text-4xl font-light text-[#2D2219]">Expertise</a>
+            <a href="#contact" onClick={() => setIsOpen(false)} className="text-4xl font-light text-[#2D2219]">Contact</a>
+          </div>
 
-            {/* Optimized Footer */}
-            <div className="shrink-0 border-t border-[#2D2219]/10 pt-8 md:pt-8 mt-4">
-              <div className="flex flex-col md:flex-row justify-between items-end gap-8">
-                
-                {/* Contact Columns */}
-                <div className="w-full md:w-auto space-y-4">
-                  <div className="flex flex-wrap gap-x-8 gap-y-4">
-                    <div className="space-y-1">
-                      <span className="text-[8px] font-bold text-[#8B7E6A] uppercase tracking-tighter">India</span>
-                      <a href="https://wa.me/919004378003" target="_blank" rel="noopener noreferrer" className="block text-sm font-semibold text-[#2D2219] font-dm">+91 90043 78003</a>
-                    </div>
-                    <div className="space-y-1">
-                      <span className="text-[8px] font-bold text-[#8B7E6A] uppercase tracking-tighter">UAE</span>
-                      <a href="https://wa.me/971506012581" target="_blank" rel="noopener noreferrer" className="block text-sm font-semibold text-[#2D2219] font-dm">+971 50 601 2581</a>
-                    </div>
-                  </div>
-                  <a href="mailto:hello@biznorx.com" className="flex items-center gap-2 text-sm font-semibold text-[#2D2219] font-dm group">
-                    hello@biznorx.com <ArrowUpRight size={14} className="opacity-40 group-hover:opacity-100 transition-opacity" />
+          {/* Mobile Contact Hub */}
+          <div className="space-y-8">
+            <div className="grid grid-cols-1 gap-6">
+              <div className="flex flex-col gap-1">
+                <span className="text-[10px] text-[#8B7E6A] font-bold uppercase tracking-widest">Connect on WhatsApp</span>
+                <div className="flex flex-wrap gap-4">
+                  <a href="https://wa.me/919004378003" target="_blank" className="flex items-center gap-2 text-sm text-[#2D2219] font-medium border border-[#8B7E6A]/20 rounded-full px-4 py-2">
+                    <FaWhatsapp className="text-green-600 size-4" /> India
+                  </a>
+                  <a href="https://wa.me/971506012581" className="flex items-center gap-2 text-sm text-[#2D2219] font-medium border border-[#8B7E6A]/20 rounded-full px-4 py-2">
+                    <FaWhatsapp className="text-green-600 size-4" /> UAE
                   </a>
                 </div>
-
-                {/* Socials & Copyright */}
-                <div className="flex flex-col items-end gap-4">
-                  <div className="flex gap-2.5">
-                    {SOCIALS.map((S, i) => (
-                      <a 
-                        key={i} 
-                        href={S.href} 
-                        className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-[#2D2219] hover:bg-[#2D2219] hover:text-white transition-all shadow-sm active:scale-95"
-                      >
-                        <S.icon size={16} />
-                      </a>
-                    ))}
-                  </div>
-                  <p className="text-[#8B7E6A] text-[7px] font-dm font-bold uppercase tracking-[0.2em]">© 2026 BiznorX Legacy</p>
-                </div>
-
+              </div>
+              
+              <div className="flex flex-col gap-1">
+                <span className="text-[10px] text-[#8B7E6A] font-bold uppercase tracking-widest">Email Us</span>
+                <a href="mailto:hello@biznorx.com" className="flex items-center gap-2 text-lg text-[#2D2219] font-medium">
+                  <Mail className="text-[#8B7E6A] size-5" /> hello@biznorx.com
+                </a>
               </div>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+
+            {/* Mobile Socials */}
+            <div className="flex items-center justify-between pt-8 border-t border-[#8B7E6A]/10">
+              <div className="flex space-x-6">
+                {socialLinks.map((social, i) => (
+                  <a key={i} href={social.href} className="text-[#2D2219] hover:text-[#8B7E6A] transition-colors">
+                    <social.icon className="size-6" />
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </>
   );
-}
+};
+
+export default Navbar;
