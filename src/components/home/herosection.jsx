@@ -2,7 +2,7 @@ import React from "react";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-[70vh] md:min-h-[90vh] md:mx-5 overflow-hidden rounded-4xl md:top-8">
+    <section className="relative min-h-[70vh] md:min-h-[90vh] mb-10 md:mx-5 overflow-hidden rounded-4xl md:top-8">
 
       {/* Background Image */}
       <div

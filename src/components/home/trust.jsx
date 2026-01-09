@@ -27,12 +27,13 @@ export default function Trust() {
   return (
     <section
       className="
-        py-14
-        bg-[#071510]
-        border-b border-[#cfd6d2]/10
+        py-5
+        bg-[#fffbf2]
+        rounded-4xl mx-5
+        mb-2
       "
     >
-      <div className="max-w-[90rem] mx-auto px-6">
+      <div className="max-w-[90rem] mx-auto px-6 ">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {trustItems.map((item, index) => {
             const Icon = item.icon;
@@ -43,6 +44,11 @@ export default function Trust() {
                 className="
                   flex flex-col items-center text-center
                   transition-all duration-300
+                  bg-[#fef6e3]
+                  rounded-4xl
+                  py-10
+                
+
                   
                   group
                 "
@@ -52,26 +58,27 @@ export default function Trust() {
                   className="
                     w-14 h-14
                     rounded-full
-                    bg-[#1f5e46]/20
-                    border border-[#cfd6d2]/15
+                    bg-[#750404]
+                hover:
+                   
                     flex items-center justify-center
                     mb-4
                     transition-all duration-300
-                    group-hover:bg-[#1f5e46]
-                    group-hover:border-[#1f5e46]
-                    group-hover:shadow-[0_12px_28px_rgba(31,94,70,0.35)]
+                    group-hover:bg-[#5b0202]
+                    
+                    
                   "
                 >
-                  <Icon className="h-6 w-6 text-[#f3f4f2]" />
+                  <Icon className="h-6 w-6 text-[#fff4d9]" />
                 </div>
 
                 {/* Title */}
-                <div className="text-lg font-raleway font-semibold text-[#f3f4f2]">
+                <div className="text-lg font-dm font-semibold text-[#504017]">
                   {item.title}
                 </div>
 
                 {/* Subtitle */}
-                <div className="text-sm font-helvetica tracking-tightest text-[#cfd6d2]">
+                <div className="text-sm font-dm tracking-tightest text-[#504017]">
                   {item.subtitle}
                 </div>
               </div>

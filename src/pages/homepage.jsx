@@ -12,7 +12,7 @@ import { FinalCTA } from '@/components/home/FinalCTA.jsx'
 
 const homepage = () => {
   return (
-    <div className='bg-[#FDF7E8]'>
+    <div className='bg-[#fffcf6]'>
       
         <Herosection/>
         <Trust/>
