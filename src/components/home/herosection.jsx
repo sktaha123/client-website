@@ -2,119 +2,101 @@ import React from "react";
 
 const HeroSection = () => {
   return (
-    <section
-      className="
-        min-h-screen
-        flex
-        items-center
-        justify-center
+    <section className="relative min-h-[70vh] md:min-h-[90vh] md:mx-5 overflow-hidden rounded-4xl md:top-8">
 
-        bg-gradient-to-b
-        from-[#050807]
-        via-[#071510]
-        to-[#0b2a1f]
-
-        px-4
-        sm:px-6
-        lg:px-8
-
-        py-16
-        sm:py-20
-        lg:py-28
-      "
-    >
+      {/* Background Image */}
       <div
-        className="
-          w-full
-          max-w-4xl
-          md:max-w-5xl
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: "url('/svgs/heroimage.jpg')",
+        }}
+      />
 
-          flex
-          flex-col
-          items-center
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/50 rounded-4xl" />
 
-          text-center
+      {/* Content Wrapper */}
+      <div className="relative z-30 mx-auto min-h-[70vh] md:min-h-[90vh] w-full max-w-6xl px-6">
 
-          space-y-4
-          sm:space-y-6
-          md:space-y-8
-        "
-      >
-        {/* Eyebrow */}
-        <span
+        {/* MAIN FLEX CONTAINER */}
+        <div
           className="
-            font-raleway
-            uppercase
-            tracking-wide
-            text-sm
-            sm:text-base
-            font-semibold
-            text-[#1f5e46]
+            flex min-h-[70vh] md:min-h-[90vh]
+            flex-col
+            items-center
+            justify-center
+            text-white
+            md:flex-row
+            md:items-stretch
+            md:justify-between
+            md:gap-6
           "
         >
-          Workforce & Business Solutions
-        </span>
 
-        {/* Heading */}
-        <h1
-          className="
-            font-raleway
-            text-5xl
-            sm:text-5xl
-            md:text-6xl
-            lg:text-[4.20rem]
-
-            font-semibold
-            text-[#f3f4f2]
-            leading-tight
-            
-          "
-        >
-          A Modern Business Street Built on Trust and Innovation
-        </h1>
-
-        {/* Description */}
-        <p
-          className="
-            font-helvetica
-            tracking-tightest
-            text-base
-            sm:text-lg
-            md:text-xl
-            text-[#cfd6d2]
-          "
-        >
-          Bridging decades of business wisdom with modern digital execution to
-          help organizations scale with confidence.
-        </p>
-
-        {/* CTA */}
-        <div className="pt-4">
-          <button
+          {/* LEFT CONTENT */}
+          <div
             className="
-              bg-[#1f5e46]
-              hover:bg-[#2a7a5c]
-
-              font-helvetica
-              tracking-tightest
-              text-base
-              sm:text-lg
-              font-semibold
-
-              text-[#f3f4f2]
-              px-6
-              py-2.5
-              sm:py-3
-              rounded-xl
-
-              transition-all
-              duration-200
-              hover:-translate-y-1
-              hover:shadow-[0_12px_30px_rgba(31,94,70,0.45)]
+              flex flex-col
+              items-center
+              md:items-start
+              md:flex-1
+              md:justify-end
+              lg:pb-20
+              md:pb-20
+              md:pl-10
             "
           >
-            Submit CV
-          </button>
+            <span className="text-center font-dm text-[#F9E8BD] md:text-left text-3xl md:text-[2.5rem] font-semibold">
+              Innovate, Integrity,<br className="hidden md:block" />
+              And Building Your Future
+            </span>
+          </div>
+
+          {/* RIGHT CONTENT */}
+          <div
+            className="
+              mt-6
+              flex flex-col
+              items-center
+              md:mt-0
+              md:items-start
+              md:flex-1
+              md:justify-end
+              lg:pb-15
+              lg:pl-40
+              md:pb-15
+              md:pl-10
+              gap-6
+            "
+          >
+            <span className="text-center font-dm md:text-left text-sm md:text-xl text-[#F9E8BD] max-w-md">
+              Bridging decades of business wisdom with
+              <br className="hidden md:block" />
+              modern digital execution to help organizations
+              scale with confidence
+            </span>
+
+            <a
+              href="#homepage"
+              className="
+                inline-block
+                rounded-xl
+                font-dm
+                bg-[#F9E8BD]
+                hover:bg-[#edd5ab]
+                md:px-5 md:py-2.5
+                px-4 py-2
+                text-black
+                font-semibold
+                transition-all duration-200
+                md:text-md
+                shadow-2xl
+              "
+            >
+              Upload Your CV
+            </a>
+          </div>
+
         </div>
       </div>
     </section>
