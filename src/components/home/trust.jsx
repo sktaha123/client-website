@@ -31,7 +31,7 @@ export default function Trust() {
                 {/* Icon */}
                 <div
                   className="
-                    w-20 h-20
+                    w-14 h-14
                     rounded-full
                     bg-[#750404]
                     flex items-center justify-center
@@ -44,12 +44,12 @@ export default function Trust() {
                 </div>
 
                 {/* Title */}
-                <div className="text-lg md:text-lg font-dm font-semibold text-[#504017]">
+                <div className="text-sm md:text-lg font-dm font-semibold text-[#504017]">
                   {item.title}
                 </div>
 
                 {/* Subtitle */}
-                <div className="text-sm md:text-sm font-dm tracking-tightest text-[#504017]">
+                <div className="text-xs md:text-sm font-dm tracking-tightest text-[#504017]">
                   {item.subtitle}
                 </div>
               </div>
