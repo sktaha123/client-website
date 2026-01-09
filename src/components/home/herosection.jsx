@@ -13,7 +13,7 @@ const HeroSection = () => {
       />
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black/50 rounded-4xl" />
+      <div className="absolute inset-0 bg-black/60 rounded-4xl" />
 
       {/* Content Wrapper */}
       <div className="relative z-30 mx-auto min-h-[70vh] md:min-h-[90vh] w-full max-w-6xl px-6">
@@ -44,9 +44,10 @@ const HeroSection = () => {
               lg:pb-20
               md:pb-20
               md:pl-10
+              
             "
           >
-            <span className="text-center font-dm text-[#F9E8BD] md:text-left text-3xl md:text-[2.5rem] font-semibold">
+            <span className="text-center font-dm text-[#fff4d9] md:text-left text-3xl md:text-[2.5rem] font-semibold">
               Innovate, Integrity,<br className="hidden md:block" />
               And Building Your Future
             </span>
@@ -69,7 +70,7 @@ const HeroSection = () => {
               gap-6
             "
           >
-            <span className="text-center font-dm md:text-left text-sm md:text-xl text-[#F9E8BD] max-w-md">
+            <span className="text-center font-dm md:text-left text-sm md:text-xl text-[#fff4d9] max-w-md">
               Bridging decades of business wisdom with
               <br className="hidden md:block" />
               modern digital execution to help organizations
@@ -82,11 +83,11 @@ const HeroSection = () => {
                 inline-block
                 rounded-xl
                 font-dm
-                bg-[#F9E8BD]
-                hover:bg-[#edd5ab]
+                bg-[#750404]
+                hover:bg-[#5b0202]
                 md:px-5 md:py-2.5
                 px-4 py-2
-                text-black
+                text-white
                 font-semibold
                 transition-all duration-200
                 md:text-md

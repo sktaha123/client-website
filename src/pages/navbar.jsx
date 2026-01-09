@@ -143,8 +143,8 @@ const Navbar = () => {
                 className="
                 hidden md:block
                    rounded-lg
-                  bg-[#6D4336]
-                  hover:bg-[#57382e]
+                  bg-[#750404]
+                  hover:bg-[#5b0202]
                   px-4 py-2
                   text-white
                   font-semibold

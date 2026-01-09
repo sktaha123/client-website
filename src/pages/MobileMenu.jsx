@@ -66,7 +66,7 @@ export function MobileMenu() {
         className={`fixed top-0 right-0 h-full w-80 max-w-[85vw]
           bg-[#FDF5E8]
           text-[#0D0901]
-          font-martel
+          font-dm
           z-50
           transition-transform duration-300 ease-in-out
           md:hidden
@@ -83,7 +83,7 @@ export function MobileMenu() {
           <div className="flex items-center justify-between">
             <div
               id="mobile-menu-title"
-              className="font-martel text-xl font-bold tracking-wide text-[#0D0901]"
+              className="font-dm text-xl font-bold tracking-wide text-[#0D0901]"
             >
               BiznorX
             </div>
@@ -95,7 +95,7 @@ export function MobileMenu() {
               <X className="w-5 h-5" />
             </button>
           </div>
-          <p className="font-martel text-xs text-[#0D0901]/70 mt-1">
+          <p className="font-dm text-xs text-[#0D0901]/70 mt-1">
             Enterprise Workforce Solutions
           </p>
         </div>
