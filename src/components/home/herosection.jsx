@@ -29,9 +29,9 @@ const HeroSection = () => {
               <span className="text-[#EAE4D9] uppercase tracking-[0.3em] text-xs font-semibold mb-6 block">
                 Workforce Excellence
               </span>
-              <h1 className="text-white text-5xl md:text-[5.5rem] leading-[1] font-light tracking-tight">
+              <h1 className="text-white  text-5xl md:text-[5.5rem] leading-[1] font-light tracking-tight">
                 Innovate. <br />
-                <span className="text-[#8B7E6A] italic">Integrity.</span> <br />
+                <span className="text-[#f6e3c7] md:text-[#8B7E6A] italic">Integrity.</span> <br />
                 Building <span className="font-semibold">Futures.</span>
               </h1>
             </div>
