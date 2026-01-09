@@ -122,7 +122,7 @@ export default function Navbar() {
           >
             {/* Menu Header */}
             <div className="flex justify-between items-start shrink-0">
-              <p className="text-[#8B7E6A] text-[9px] font-dm font-bold uppercase tracking-[0.3em] opacity-60 mb-2">Explore</p>
+              <p className="text-[#8B7E6A] text-[9px] font-dm font-bold uppercase tracking-[0.3em] opacity-60 mb-2"></p>
               <button 
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="flex items-center gap-2 text-[#2D2219] font-dm font-bold text-[9px] uppercase tracking-widest bg-white/40 py-2 px-5 rounded-full border border-black/5"
