@@ -9,7 +9,7 @@ const trustItems = [
 
 export default function Trust() {
   return (
-    <section className="py-5 bg-[#f0dcac] rounded-4xl mx-5 shadow-lg mb-2">
+    <section className="py-5 bg-[#fffbf2] rounded-4xl mx-5 shadow-2xl mb-2">
       <div className="max-w-[90rem] mx-auto px-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-8">
           {trustItems.map((item, index) => {
@@ -20,36 +20,36 @@ export default function Trust() {
                 key={index}
                 className="
                   flex flex-col items-center justify-center text-center
-                  bg-[#fef6e3]
+                  bg-[#5b0202]
                   rounded-4xl
                   transition-all duration-300
                   aspect-square md:aspect-auto
-                  p-4 md:py-10
+                  p-4 md:py-5
                   group
                 "
               >
                 {/* Icon */}
                 <div
                   className="
-                    w-14 h-14
+                    w-14 h-14 
                     rounded-full
-                    bg-[#750404]
+                    bg-[#8e0505]
                     flex items-center justify-center
                     mb-3 md:mb-4
                     transition-all duration-300
-                    group-hover:bg-[#5b0202]
+                    
                   "
                 >
                   <Icon className="h-6 w-6 text-[#fff4d9]" />
                 </div>
 
                 {/* Title */}
-                <div className="text-sm md:text-lg font-dm font-semibold text-[#504017]">
+                <div className="text-sm md:text-lg font-dm font-semibold text-[#fff4d9]">
                   {item.title}
                 </div>
 
                 {/* Subtitle */}
-                <div className="text-xs md:text-sm font-dm tracking-tightest text-[#504017]">
+                <div className="text-xs md:text-sm font-dm tracking-tightest text-[#fff4d9]">
                   {item.subtitle}
                 </div>
               </div>

@@ -11,7 +11,7 @@ const Navbar = () => {
           className="
             w-[100vw] md:w-[90vw]
             max-w-7xl
-            bg-[#fef6e3]
+            bg-[#fffbf2]
            
             md:rounded-full
             shadow-2xl
