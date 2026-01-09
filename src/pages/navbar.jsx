@@ -28,7 +28,7 @@ const Navbar = () => {
           className={`
             w-full md:w-[98vw] max-w-7xl
             bg-[#FAF9F6]/90 backdrop-blur-xl
-            md:rounded-[3rem] border-b md:border border-[#8B7E6A]/15
+            md:rounded-[3rem]  
             shadow-[0_10px_40px_rgba(45,34,25,0.04)]
             transition-all duration-500
             ${isOpen ? "rounded-b-none border-b-transparent" : ""}
@@ -37,13 +37,18 @@ const Navbar = () => {
           <div className="px-6 md:px-10 h-20 flex items-center justify-between">
             
             {/* LEFT — LOGO */}
-            <div className="flex items-center justify-start scale-90 md:scale-100 z-[60]">
-              <img
-                src="/svgs/Biznorlogo.png"
-                alt="BiznorX"
-                className="h-12 md:h-14 shrink-0 transition-opacity hover:opacity-80"
-              />
-            </div>
+           <div className="flex items-center justify-start scale-90 md:scale-100 z-[60]">
+  <img
+    src="/svgs/Biznorlogo.png"
+    alt="BiznorX"
+    className="h-12 md:h-20 shrink-0 transition-all duration-500 hover:opacity-100 opacity-90"
+    style={{
+      /* This filter shifts colors to a sophisticated #8B7E6A-like tone */
+      filter: "sepia(0.4) saturate(1.2) brightness(0.9) hue-rotate(10deg)",
+      /* Optional: Use contrast(1.1) if the logo looks too flat */
+    }}
+  />
+</div>
 
             {/* CENTER — DESKTOP NAV */}
             <div className="hidden lg:flex items-center space-x-10">
