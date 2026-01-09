@@ -9,7 +9,7 @@ const trustItems = [
 
 export default function Trust() {
   return (
-    <section className="py-5 bg-[#fffbf2] rounded-4xl mx-5 mb-2">
+    <section className="py-5 bg-[#f0dcac] rounded-4xl mx-5 shadow-lg mb-2">
       <div className="max-w-[90rem] mx-auto px-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-8">
           {trustItems.map((item, index) => {
