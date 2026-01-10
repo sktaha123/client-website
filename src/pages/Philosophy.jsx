@@ -7,9 +7,7 @@ export function Philosophy() {
   return (
     <section className="mt-25 md:py-48 bg-biz-cream relative overflow-hidden font-dm">
       {/* Structural Background Element */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-biz-bronze/20" />
-      </div>
+     
 
       <div
         ref={ref}
