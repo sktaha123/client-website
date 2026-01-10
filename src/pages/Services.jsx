@@ -81,9 +81,7 @@ export function Services() {
                     <div className="p-4 bg-white/10 backdrop-blur-md rounded-2xl">
                       {React.createElement(services[active].icon, { size: 28 })}
                     </div>
-                    <span className="text-[10px] font-black tracking-ultra opacity-50 uppercase">
-                      Category: {services[active].cat}
-                    </span>
+                    
                   </div>
 
                   <h3 className="text-4xl md:text-5xl font-light tracking-tight mb-6">
