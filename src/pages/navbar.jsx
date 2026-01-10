@@ -50,7 +50,7 @@ const Navbar = () => {
               <img
                 src="/svgs/Biznorlogo.png"
                 alt="BiznorX"
-                className="h-17 md:h-20 shrink-0 opacity-90 hover:opacity-100 transition-opacity"
+                className="h-20 md:h-20 shrink-0 opacity-90 hover:opacity-100 transition-opacity"
               />
             </Link>
 
