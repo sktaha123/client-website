@@ -1,5 +1,6 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useRef } from "react";
+
 import Navbar from "./pages/navbar.jsx";
 import { Footer } from "./components/Footer.jsx";
 
@@ -13,38 +14,48 @@ import { Whychooseus } from "./pages/Whychooseus.jsx";
 import { Hero } from "./pages/Hero.jsx";
 import ScrollToSection from "./components/ScrollToSection.jsx";
 
-function App() {
+/* 🔹 Layout wrapper to access route */
+function Layout() {
   const contentRef = useRef(null);
+  const location = useLocation();
+
+  const isHome = location.pathname === "/";
 
   return (
-    <BrowserRouter>
+    <>
       <ScrollToSection targetRef={contentRef} />
 
       <Navbar />
       <Hero />
 
-      {/* 👇 THIS is the anchor */}
       <main
-  ref={contentRef}
-  className="
-    pt-[96px]
-    pb-[200px]
-    min-h-screen
-  "
->
-  <Routes>
-    <Route path="/" element={<Home />} />
-    <Route path="/about" element={<About />} />
-    <Route path="/services" element={<Services />} />
-    <Route path="/industries" element={<Industries />} />
-    <Route path="/process" element={<Process />} />
-    <Route path="/whychooseus" element={<Whychooseus />} />
-    <Route path="/contact" element={<Contact />} />
-  </Routes>
-</main>
-
+        ref={contentRef}
+        className={
+          isHome
+            ? ""
+            : "pt-[96px] pb-[200px] min-h-screen bg-biz-cream"
+        }
+      >
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/industries" element={<Industries />} />
+          <Route path="/process" element={<Process />} />
+          <Route path="/whychooseus" element={<Whychooseus />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </main>
 
       <Footer />
+    </>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Layout />
     </BrowserRouter>
   );
 }

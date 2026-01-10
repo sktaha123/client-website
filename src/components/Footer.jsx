@@ -23,7 +23,7 @@ const LEGAL_LINKS = ["Privacy", "Terms", "Cookies"];
 
 export function Footer() {
   return (
-    <footer className="bg-[#FAF9F6] border-t border-[#8B7E6A]/10 pt-24 pb-12 font-dm overflow-hidden">
+    <footer className="bg-[#FAF9F6]  pt-24 pb-12 font-dm overflow-hidden">
       <motion.div
         className="max-w-7xl mx-auto px-6"
         variants={CONTAINER_VARIANTS}

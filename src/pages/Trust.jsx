@@ -10,7 +10,7 @@ const trustItems = [
 
 export  function Trust() {
   return (
-    <section className="py-12 bg-biz-cream font-dm">
+    <section className="py-7 bg-biz-cream font-dm">
       <div className="max-w-7xl mx-auto px-6">
         {/* Container with a subtle top border to create an architectural break */}
         <div className="pt-12 border-t border-biz-stone/40">
