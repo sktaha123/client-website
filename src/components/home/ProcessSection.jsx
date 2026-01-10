@@ -54,9 +54,10 @@ export function ProcessSection() {
         
         {/* --- Header --- */}
         <div className="mb-16 md:mb-28">
-          <span className="text-[#8B7E6A] font-bold tracking-[0.3em] uppercase text-xs md:text-sm mb-6 block">
-            Our Approach
-          </span>
+          <div className="flex items-center gap-4 mb-8">
+              <span className="text-[#8B7E6A] font-bold tracking-[0.4em] uppercase text-[10px]">Our Approach</span>
+              <div className="h-[1px] flex-1 bg-[#D9CDBA]" />
+            </div>
           <h2 className="text-4xl md:text-7xl text-[#2D2D2D] font-light leading-[1.1] max-w-4xl tracking-tight">
             A Disciplined <span className="text-[#8B7E6A] italic font-serif">Strategic</span> Roadmap
           </h2>

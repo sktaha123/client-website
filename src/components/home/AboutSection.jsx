@@ -26,7 +26,7 @@ export const AboutSection = () => {
               className="flex items-center gap-4 mb-12"
             >
               <span className="text-[11px] font-black uppercase tracking-[0.6em] text-[#8B7E6A]">About BiznorX</span>
-              <Minus className="text-[#D9CDBA] w-12" />
+               <div className="h-[1px] flex-1 bg-[#D9CDBA]" />
             </motion.div>
 
             <motion.h2 

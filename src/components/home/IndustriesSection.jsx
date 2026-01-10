@@ -33,13 +33,15 @@ export function IndustriesSection() {
   return (
     <section id="industries" className="py-24 bg-[#FAF9F6] font-dm">
       <div className="max-w-7xl mx-auto px-6">
-        
+
         {/* --- Header Section --- */}
         <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
           <div className="max-w-2xl">
-            <span className="text-[#8B7E6A] font-medium tracking-[0.3em] uppercase text-xs mb-4 block">
-              Global reach
-            </span>
+            <div className="flex items-center gap-4 mb-8">
+              <span className="text-[#8B7E6A] font-bold tracking-[0.4em] uppercase text-[10px]">What we do</span>
+              <div className="h-[1px] flex-1 bg-[#D9CDBA]" />
+            </div>
+
             <h2 className="text-4xl md:text-6xl text-[#2D2D2D] font-light leading-tight">
               Sector <span className="text-[#8B7E6A] italic font-serif">Expertise</span> That Matters
             </h2>
@@ -70,7 +72,7 @@ export function IndustriesSection() {
                     <div className="absolute inset-0 bg-[#8B7E6A]/20 rounded-full scale-0 group-hover:scale-150 transition-transform duration-700 blur-xl" />
                     <Icon className="h-6 w-6 text-[#8B7E6A] relative z-10 transition-transform duration-500 group-hover:-rotate-12" />
                   </div>
-                  
+
                   <span className="text-xl font-medium text-[#2D2D2D] tracking-tight transition-colors duration-300 group-hover:text-[#8B7E6A]">
                     {industry.name}
                   </span>
