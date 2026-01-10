@@ -24,17 +24,25 @@ function App() {
       <Hero />
 
       {/* 👇 THIS is the anchor */}
-      <main ref={contentRef}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/industries" element={<Industries />} />
-          <Route path="/process" element={<Process />} />
-          <Route path="/whychooseus" element={<Whychooseus />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-      </main>
+      <main
+  ref={contentRef}
+  className="
+    pt-[96px]
+    pb-[200px]
+    min-h-screen
+  "
+>
+  <Routes>
+    <Route path="/" element={<Home />} />
+    <Route path="/about" element={<About />} />
+    <Route path="/services" element={<Services />} />
+    <Route path="/industries" element={<Industries />} />
+    <Route path="/process" element={<Process />} />
+    <Route path="/whychooseus" element={<Whychooseus />} />
+    <Route path="/contact" element={<Contact />} />
+  </Routes>
+</main>
+
 
       <Footer />
     </BrowserRouter>

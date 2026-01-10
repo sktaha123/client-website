@@ -65,7 +65,7 @@ export function Hero() {
                   Integrity.
                 </motion.span>
                 <motion.span custom={3} initial="hidden" animate="visible" variants={fadeInUp} className="block will-change-transform">
-                  Building <span className="font-semibold text-biz-cream-light">Futures.</span>
+                   <span className="font-semibold text-biz-cream-light">Inspire.</span>
                 </motion.span>
               </h1>
             </div>
