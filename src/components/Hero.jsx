@@ -2,7 +2,7 @@ import React from "react";
 import { ArrowUpRight } from "lucide-react";
 import { motion } from "framer-motion";
 
-const HeroSection = () => {
+const Hero = () => {
   // Use 'will-change' to tell the browser to promote these elements to their own GPU layer
   // This prevents the browser from re-calculating the layout during animation.
   const fadeInUp = {
@@ -126,4 +126,4 @@ const HeroSection = () => {
   );
 };
 
-export default HeroSection;
+export default Hero;

@@ -2,11 +2,58 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 @import "tailwindcss";
 
+@theme {
+  /* Fonts */
+  --font-martel: "Martel Sans", "sans-serif";
+  --font-dm: "DM Sans", "sans-serif";
 
+  /* Expanded BiznorX Color Palette */
+  
+  /* CREAM: Backgrounds & Paper layers */
+  --color-biz-cream: #FBF8F6;
+  --color-biz-cream-light: #FFFFFF;
+  --color-biz-cream-dark: #F1ECE9;
 
-@theme{
-  --font-martel: Martel Sans, "sans-serif";
-  --font-dm: DM Sans, "sans-serif";
+  /* CHARCOAL: Primary Text & Depth */
+  --color-biz-charcoal: #2A1E1A;
+  --color-biz-charcoal-muted: #4A3A34;
+  --color-biz-charcoal-soft: #75665F;
+  --color-biz-charcoal-ink: #180F0C;
+
+  /* BRONZE: Accents & Branding */
+  --color-biz-bronze: #7A1E1E;
+  --color-biz-bronze-light: #A84A4A;
+  --color-biz-bronze-dark: #5E1414;
+  --color-biz-bronze-pale: #E9D6D6;
+
+  /* SAND/STONE: Supporting neutrals */
+  --color-biz-sand: #EFE2DE;
+  --color-biz-sand-muted: #D8C5C1;
+
+  /* Custom Animations & Spacing */
+  --tracking-widest: 0.3em;
+  --tracking-ultra: 0.5em;
+  --radius-biz: 2.5rem;
 }
 
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-biz-cream);
+    color: var(--color-biz-charcoal);
+    font-family: var(--font-dm);
+    -webkit-font-smoothing: antialiased;
+  }
+}
 
+@layer components {
+  .professional-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-ultra);
+    color: var(--color-biz-bronze);
+  }
+}

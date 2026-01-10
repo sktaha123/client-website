@@ -1,14 +1,14 @@
 import { Quote } from "lucide-react";
 import { useInView } from "@/hooks/useInView";
 
-export function PhilosophySection() {
+export function Philosophy() {
   const { ref, isVisible } = useInView();
 
   return (
-    <section className="py-32 md:py-48 bg-[#FAF9F6] relative overflow-hidden font-dm">
+    <section className="py-32 md:py-48 bg-biz-cream relative overflow-hidden font-dm">
       {/* Structural Background Element */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-[#8B7E6A]/20" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-biz-bronze/20" />
       </div>
 
       <div
@@ -21,31 +21,31 @@ export function PhilosophySection() {
       >
         {/* Decorative Top Badge */}
         <div className="mb-12 flex flex-col items-center">
-          <span className="text-[#8B7E6A] text-[10px] md:text-xs uppercase tracking-[0.4em] font-bold mb-4">
+          <span className="text-biz-bronze text-[10px] md:text-xs uppercase tracking-ultra font-bold mb-4">
             The Foundation
           </span>
-          <div className="w-8 h-[1px] bg-[#8B7E6A]" />
+          <div className="w-8 h-[1px] bg-biz-bronze" />
         </div>
 
         {/* Large Editorial Quote */}
         <div className="relative">
           {/* Subtle Decorative Quote Icon */}
-          <Quote className="absolute -top-10 left-1/2 -translate-x-1/2 h-12 w-12 text-[#8B7E6A]/10" />
+          <Quote className="absolute -top-10 left-1/2 -translate-x-1/2 h-12 w-12 text-biz-bronze/10" />
           
           <blockquote
             className="
               text-3xl
               md:text-5xl
               lg:text-6xl
-              text-[#2D2D2D]
+              text-biz-charcoal
               mb-16
               leading-[1.2]
               font-light
-              tracking-tight
+              tracking-tightest
             "
           >
             “We believe exceptional businesses are built on{" "}
-            <span className="text-[#8B7E6A] italic font-serif">exceptional people</span>. 
+            <span className="text-biz-bronze italic font-serif">exceptional people</span>. 
             Our role is to connect ambition with opportunity — responsibly, 
             strategically, and at scale.”
           </blockquote>
@@ -54,23 +54,25 @@ export function PhilosophySection() {
         {/* Philosophy Signature */}
         <div className="flex flex-col items-center gap-6">
           <div className="flex items-center gap-8">
-            <div className="h-[1px] w-12 bg-[#8B7E6A]/30" />
-            <p className="text-[#2D2219] text-sm font-medium tracking-widest uppercase italic">
+            <div className="h-[1px] w-12 bg-biz-bronze/30" />
+            <p className="text-biz-charcoal-muted text-sm font-medium tracking-widest uppercase italic">
               Our Philosophy
             </p>
-            <div className="h-[1px] w-12 bg-[#8B7E6A]/30" />
+            <div className="h-[1px] w-12 bg-biz-bronze/30" />
           </div>
           
           {/* Subtle Year/Legacy detail */}
-          <p className="text-[10px] text-[#8B7E6A] font-bold tracking-[0.2em] uppercase">
+          <p className="text-[10px] text-biz-bronze font-bold tracking-widest uppercase">
             EST. 1966 — Defined by Excellence
           </p>
         </div>
       </div>
 
       {/* Minimalist Corner Accents */}
-      <div className="absolute bottom-10 left-10 w-32 h-32 border-l border-b border-[#8B7E6A]/10 rounded-bl-[2rem] hidden lg:block" />
-      <div className="absolute top-10 right-10 w-32 h-32 border-r border-t border-[#8B7E6A]/10 rounded-tr-[2rem] hidden lg:block" />
+      <div className="absolute bottom-10 left-10 w-32 h-32 border-l border-b border-biz-bronze/10 rounded-bl-biz hidden lg:block" />
+      <div className="absolute top-10 right-10 w-32 h-32 border-r border-t border-biz-bronze/10 rounded-tr-biz hidden lg:block" />
     </section>
   );
 }
+
+export default Philosophy;
