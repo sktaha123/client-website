@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, UserCheck, Settings, Rocket } from "lucide-react";
+import { Search, UserCheck, Settings, Rocket, Plus, Minus } from "lucide-react";
 
 const steps = [
   {
@@ -8,122 +8,134 @@ const steps = [
     title: "Strategic Analysis",
     icon: Search,
     desc: "We dive deep into your organizational DNA to identify the exact talent gaps and cultural requirements needed for sustainable growth.",
-    color: "bg-biz-sand"
   },
   {
     id: "02",
     title: "Precision Sourcing",
     icon: UserCheck,
     desc: "Leveraging our 60-year network and AI-driven tools, we pinpoint candidates who don't just fill a role but elevate it.",
-    color: "bg-biz-bronze-pale"
   },
   {
     id: "03",
     title: "Seamless Integration",
     icon: Settings,
     desc: "From EOR compliance to cultural onboarding, we manage the complexities of deployment across India and the UAE.",
-    color: "bg-biz-charcoal-ink text-biz-cream-light"
   },
   {
     id: "04",
     title: "Continuous Optimization",
     icon: Rocket,
     desc: "Our partnership doesn't end at hiring. We provide ongoing support and upskilling to ensure long-term operational excellence.",
-    color: "bg-biz-bronze text-white"
   }
 ];
 
-const Process = () => {
+export function Process() {
   const [active, setActive] = useState(0);
 
-  // Auto-cycle the process steps
+  // Corrected Auto-cycle logic:
+  // Adding 'active' to the dependency array ensures the 6s timer 
+  // restarts from scratch whenever a user manually clicks a step.
   useEffect(() => {
     const interval = setInterval(() => {
       setActive((prev) => (prev + 1) % steps.length);
-    }, 5000);
+    }, 6000);
+
     return () => clearInterval(interval);
-  }, []);
+  }, [active]); // 🔹 Reset timer on every state change
 
   return (
-    <section className="w-full flex flex-col justify-center px-6">
-      <div className="max-w-7xl mx-auto w-full">
-        {/* Header - Compact for 90vh */}
-        <div className="mb-10">
-          <span className="text-biz-bronze text-[10px] font-black uppercase tracking-ultra">Our Methodology</span>
-          <h2 className="text-4xl md:text-5xl text-biz-charcoal-ink font-light tracking-tightest mt-2">
-            The <span className="text-biz-bronze italic font-serif">Roadmap</span> to Success
+    <section className="py-8 bg-biz-cream font-dm" style={{ minHeight: 'calc(90vh - 96px)' }}>
+      <motion.div
+        className="max-w-5xl mx-auto px-6 w-full relative z-10"
+        initial={{ opacity: 0, y: 48 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{
+          duration: 0.6,
+          ease: [0.215, 0.61, 0.355, 1],
+        }}
+        viewport={{ once: true, margin: "-80px" }}
+      >
+        {/* Compact Professional Header */}
+        <div className="mb-10 md:mb-10 text-center lg:text-left">
+          <span className="text-biz-bronze font-bold tracking-ultra uppercase text-[10px]">
+            Execution Roadmap
+          </span>
+
+          <h2 className="text-4xl md:text-5xl text-biz-charcoal-ink font-light tracking-tightest mt-2 leading-tight">
+            A systematic approach to <br />
+            <span className="text-biz-bronze font-serif ">unmatched</span> operational precision.
           </h2>
         </div>
 
-        {/* Main Process Area */}
-        <div className="grid lg:grid-cols-12 gap-8 items-center">
-          
-          {/* LEFT: Visual Progress Track */}
-          <div className="lg:col-span-4 flex lg:flex-col gap-4">
-            {steps.map((step, i) => (
+        {/* Vertical Pipeline */}
+        <div className="space-y-4">
+          {steps.map((step, i) => (
+            <div
+              key={step.id}
+              className={`group transition-all duration-500 border-b border-biz-charcoal-ink/5 ${
+                active === i ? "pb-8" : "pb-4"
+              }`}
+            >
               <button
-                key={step.id}
                 onClick={() => setActive(i)}
-                className={`relative flex items-center gap-6 p-4 rounded-xl transition-all duration-500 text-left ${
-                  active === i ? "bg-white shadow-xl shadow-biz-charcoal/5 scale-105 z-10" : "opacity-40 grayscale hover:grayscale-0 hover:opacity-100"
-                }`}
+                className="w-full flex items-center justify-between text-left py-4"
               >
-                <span className="text-2xl font-serif italic text-biz-bronze">{step.id}</span>
-                <div className="flex flex-col">
-                  <span className="text-xs font-black uppercase tracking-widest text-biz-bronze">Step</span>
-                  <span className="text-sm font-bold text-biz-charcoal">{step.title}</span>
-                </div>
-                {active === i && (
-                  <motion.div 
-                    layoutId="activeGlow" 
-                    className="absolute inset-0 border-2 border-biz-bronze/20 rounded-xl" 
-                  />
-                )}
-              </button>
-            ))}
-          </div>
-
-          {/* RIGHT: Dynamic Stage Detail */}
-          <div className="lg:col-span-8 relative min-h-[350px]">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={active}
-                initial={{ opacity: 0, x: 30 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -30 }}
-                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                className={`w-full h-full p-12 md:p-16 rounded-biz-xl shadow-2xl relative overflow-hidden ${steps[active].color}`}
-              >
-                <div className="relative z-10 flex flex-col justify-center h-full">
-                  <div className="mb-8 p-4 bg-white/10 backdrop-blur-md rounded-2xl w-fit">
-                    {React.createElement(steps[active].icon, { size: 40 })}
-                  </div>
-                  <h3 className="text-3xl md:text-5xl font-light mb-6 leading-tight">
-                    {steps[active].title}
+                <div className="flex items-center gap-8">
+                  <span className={`text-sm font-mono transition-colors duration-300 ${
+                    active === i ? "text-biz-bronze" : "text-biz-charcoal-soft/40"
+                  }`}>
+                    {step.id}
+                  </span>
+                  <h3 className={`text-xl md:text-2xl transition-all duration-300 ${
+                    active === i ? "text-biz-charcoal-ink font-semibold translate-x-1" : "text-biz-charcoal-soft font-light"
+                  }`}>
+                    {step.title}
                   </h3>
-                  <p className="text-lg md:text-xl font-light opacity-80 leading-relaxed max-w-xl">
-                    {steps[active].desc}
-                  </p>
                 </div>
 
-                {/* Vertical Progress Bar */}
-                <div className="absolute right-0 top-0 w-1.5 h-full bg-black/5">
-                  <motion.div 
-                    key={`bar-${active}`}
-                    initial={{ height: 0 }}
-                    animate={{ height: "100%" }}
-                    transition={{ duration: 5, ease: "linear" }}
-                    className="w-full bg-biz-bronze"
-                  />
+                <div className={`p-2 rounded-full transition-all duration-300 ${
+                  active === i ? "bg-biz-bronze text-white rotate-0" : "bg-biz-cream text-biz-charcoal-ink/40 rotate-90"
+                }`}>
+                  {active === i ? <Minus size={16} /> : <Plus size={16} />}
                 </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
+              </button>
 
+              <AnimatePresence>
+                {active === i && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
+                    className="overflow-hidden"
+                  >
+                    <div className="grid md:grid-cols-12 gap-8 pt-4 pl-12 md:pl-16">
+                      <div className="md:col-span-8">
+                        <p className="text-lg text-biz-bronze font-light leading-relaxed">
+                          {step.desc}
+                        </p>
+
+                        {/* Progress Indicator - Synced with the 6s timer */}
+                        <div className="mt-8 h-[1px] w-full bg-biz-cream relative overflow-hidden">
+                          <motion.div
+                            key={`bar-${i}`}
+                            initial={{ x: "-100%" }}
+                            animate={{ x: "0%" }}
+                            transition={{ duration: 6, ease: "linear" }}
+                            className="absolute inset-0 bg-biz-bronze"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
-};
+}
 
 export default Process;

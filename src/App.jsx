@@ -1,8 +1,5 @@
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { useRef } from "react";
-
-import Navbar from "./pages/navbar.jsx";
-import { Footer } from "./components/Footer.jsx";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "./components/Layout.jsx";
 
 import Home from "./pages/Home.jsx";
 import About from "./pages/About.jsx";
@@ -11,32 +8,12 @@ import Industries from "./pages/Industries.jsx";
 import Contact from "./pages/Contact.jsx";
 import Process from "./pages/Process.jsx";
 import { Whychooseus } from "./pages/Whychooseus.jsx";
-import { Hero } from "./pages/Hero.jsx";
-import ScrollToSection from "./components/ScrollToSection.jsx";
 
-/* 🔹 Layout wrapper to access route */
-function Layout() {
-  const contentRef = useRef(null);
-  const location = useLocation();
-
-  const isHome = location.pathname === "/";
-
+function App() {
   return (
-    <>
-      <ScrollToSection targetRef={contentRef} />
-
-      <Navbar />
-      <Hero />
-
-      <main
-        ref={contentRef}
-        className={
-          isHome
-            ? ""
-            : "pt-[96px] pb-[200px] min-h-screen bg-biz-cream"
-        }
-      >
-        <Routes>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/services" element={<Services />} />
@@ -44,18 +21,8 @@ function Layout() {
           <Route path="/process" element={<Process />} />
           <Route path="/whychooseus" element={<Whychooseus />} />
           <Route path="/contact" element={<Contact />} />
-        </Routes>
-      </main>
-
-      <Footer />
-    </>
-  );
-}
-
-function App() {
-  return (
-    <BrowserRouter>
-      <Layout />
+        </Route>
+      </Routes>
     </BrowserRouter>
   );
 }

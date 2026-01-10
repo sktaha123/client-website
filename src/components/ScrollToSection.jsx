@@ -1,31 +1,29 @@
-// src/components/ScrollToSection.jsx
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
-export default function ScrollToSection({ targetRef }) {
+const NAVBAR_OFFSET = 96;
+
+function ScrollToSection({ targetRef }) {
   const location = useLocation();
 
   useEffect(() => {
-    // HOME PAGE → scroll to very top (Navbar)
-    if (location.pathname === "/") {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-      return;
-    }
+    if (!targetRef?.current) return;
 
-    // OTHER PAGES → scroll to routed content (below Hero)
-    if (targetRef?.current) {
-      const top =
-        targetRef.current.getBoundingClientRect().top + window.scrollY;
+    // Allow layout + motion to finish
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        const top =
+          targetRef.current.getBoundingClientRect().top + window.scrollY;
 
-      window.scrollTo({
-        top,
-        behavior: "smooth",
+        window.scrollTo({
+          top: top - NAVBAR_OFFSET,
+          behavior: "smooth",
+        });
       });
-    }
-  }, [location.pathname, targetRef]);
+    });
+  }, [location.pathname]); // 🔑 KEY FIX
 
   return null;
 }
+
+export default ScrollToSection;

@@ -1,25 +1,17 @@
-import React from 'react'
-import Hero from '@/components/Hero'
-import { Footer } from '@/components/Footer'
-import { Trust } from './Trust'
-import Philosophy from './Philosophy'
+import { Hero } from "./Hero.jsx";
+import About from "./About.jsx";
+import Services from "./Services.jsx";
+import { Trust } from "./Trust.jsx";
+import Philosophy from "./Philosophy.jsx";
 
-
-
-
-
-
-const Home = () => {
+function Home() {
   return (
-    <div className='bg-[#FAF9F6]'>
+    <>
+      <Hero />
       <Trust/>
       <Philosophy/>
-
-
-
-      
-    </div>
-  )
+    </>
+  );
 }
 
-export default Home
+export default Home;

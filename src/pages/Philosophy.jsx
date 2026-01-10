@@ -5,7 +5,7 @@ export function Philosophy() {
   const { ref, isVisible } = useInView();
 
   return (
-    <section className="mt-25 md:py-48 bg-biz-cream relative overflow-hidden font-dm">
+    <section className="pt-25 md:py-48 bg-biz-cream relative overflow-hidden font-dm">
       {/* Structural Background Element */}
      
 
