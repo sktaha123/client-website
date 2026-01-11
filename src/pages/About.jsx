@@ -35,25 +35,25 @@ export const About = () => {
   const handlePrev = () => setIndex((prev) => (prev - 1 + slides.length) % slides.length);
 
   return (
-    <section 
-      id="about" 
+    <section
+      id="about"
       className="relative w-full flex items-center justify-center overflow-hidden bg-biz-cream"
       style={{ minHeight: 'calc(90vh - 96px)' }}
     >
-     <motion.div
-  className="max-w-7xl mx-auto px-6 w-full relative z-10"
-  initial={{ opacity: 0, y: 48 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{
-    duration: 0.6,
-    ease: [0.215, 0.61, 0.355, 1], // premium cubic easing
-  }}
-  viewport={{ once: true, margin: "-80px" }}
->
+      <motion.div
+        className="max-w-7xl mx-auto px-6 w-full relative z-10"
+        initial={{ opacity: 0, y: 48 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{
+          duration: 0.6,
+          ease: [0.215, 0.61, 0.355, 1], // premium cubic easing
+        }}
+        viewport={{ once: true, margin: "-80px" }}
+      >
 
-        
+
         <div className="grid lg:grid-cols-12 gap-12 items-center">
-          
+
           {/* LEFT: STATIC TEXT */}
           <div className="lg:col-span-5 space-y-6">
             <div className="flex items-center gap-4">
@@ -61,7 +61,7 @@ export const About = () => {
               <div className="h-[1px] w-12 bg-biz-bronze-pale" />
             </div>
 
-            <h2 className="text-5xl md:text-7xl text-biz-charcoal-ink font-light leading-[1.1] tracking-tightest">
+            <h2 className="text-5xl md:text-6xl text-biz-charcoal-ink font-light leading-[1.1] tracking-tightest">
               A modern <br />
               revival of <br />
               <span className="text-biz-bronze italic font-serif">old ethics.</span>
@@ -70,7 +70,13 @@ export const About = () => {
             <div className="flex items-start gap-3 text-biz-charcoal-soft">
               <Quote className="h-5 w-5 text-biz-bronze/40 shrink-0" />
               <p className="text-lg font-light leading-relaxed">
-                Empowering enterprises by respecting heritage while enabling future progress.
+                <span> At biznorX, we are more than a platform—we are a new old business street. Rooted in integrity and honor, we blend the legacy of past generations with the speed and innovation of tomorrow’s technology.</span>
+                <br />      <br />
+
+                <span>For over 60 years, our legacy has been built on trust and resilience. Today, we carry it forward by empowering entrepreneurs and enterprises with solutions that unite tradition and digital agility.</span>
+                <br />
+                <br /><span>BiznorX is more than a name—it’s a commitment to excellence, a promise of innovation, and a symbol of unity across markets.</span>
+
               </p>
             </div>
           </div>
@@ -78,7 +84,7 @@ export const About = () => {
           {/* RIGHT: ANIMATED CARD */}
           <div className="lg:col-span-7 relative">
             <div className="relative h-[450px] w-full flex items-center justify-center">
-              
+
               <AnimatePresence mode="wait">
                 <motion.div
                   key={index}
@@ -101,7 +107,7 @@ export const About = () => {
                     <h3 className="text-3xl md:text-4xl text-biz-charcoal font-medium mb-6 tracking-tight">
                       {slides[index].title}
                     </h3>
-                    
+
                     <p className="text-lg text-biz-charcoal-soft font-light leading-relaxed mb-10">
                       {slides[index].content}
                     </p>
@@ -109,13 +115,13 @@ export const About = () => {
                     <div className="mt-auto flex items-center justify-between">
                       {/* Navigation */}
                       <div className="flex gap-4">
-                        <button 
+                        <button
                           onClick={handlePrev}
                           className="group p-2 border-b border-biz-bronze-pale hover:border-biz-bronze transition-all"
                         >
                           <ChevronLeft className="text-biz-charcoal group-hover:text-biz-bronze transition-colors" size={20} />
                         </button>
-                        <button 
+                        <button
                           onClick={handleNext}
                           className="group p-2 border-b border-biz-bronze-pale hover:border-biz-bronze transition-all"
                         >
@@ -126,9 +132,9 @@ export const About = () => {
                       {/* Progress Dot Indicator */}
                       <div className="flex gap-2">
                         {slides.map((_, i) => (
-                          <div 
-                            key={i} 
-                            className={`h-1.5 rounded-full transition-all duration-300 ${index === i ? "w-6 bg-biz-bronze" : "w-1.5 bg-biz-bronze-pale"}`} 
+                          <div
+                            key={i}
+                            className={`h-1.5 rounded-full transition-all duration-300 ${index === i ? "w-6 bg-biz-bronze" : "w-1.5 bg-biz-bronze-pale"}`}
                           />
                         ))}
                       </div>
