@@ -142,7 +142,7 @@ const Alix = () => {
               </div>
 
               <h2 className="text-5xl md:text-7xl font-['Martel_Sans'] font-extrabold text-[var(--color-biz-charcoal)] leading-[1.05] mb-10">
-                Alix ChatBot <br /> 
+                Alix ChatBot <br />
               </h2>
 
               <p className="text-[19px] text-[var(--color-biz-charcoal-muted)] leading-relaxed max-w-lg">
@@ -179,78 +179,76 @@ const Alix = () => {
 
           {/* Mobile AI Chat Preview */}
           <div className="relative mx-auto w-full max-w-[350px] lg:max-w-[300px]">
-  {/* Soft device glow */}
-  <div className="absolute inset-0 bg-[var(--color-biz-bronze)] opacity-[0.04] blur-[120px] rounded-full pointer-events-none" />
+            {/* Soft device glow */}
+            <div className="absolute inset-0 bg-[var(--color-biz-bronze)] opacity-[0.04] blur-[120px] rounded-full pointer-events-none" />
 
-  {/* Phone Frame */}
-  <div className="relative bg-[var(--color-biz-charcoal)] rounded-[3.5rem] p-[10px] shadow-[0_50px_120px_-30px_rgba(0,0,0,0.25)]">
-    <div className="bg-white rounded-[3rem] overflow-hidden flex flex-col h-[720px]  lg:h-[80vh] ">
+            {/* Phone Frame */}
+            <div className="relative bg-[var(--color-biz-charcoal)] rounded-[3.5rem] p-[10px] shadow-[0_50px_120px_-30px_rgba(0,0,0,0.25)]">
+              <div className="bg-white rounded-[3rem] overflow-hidden flex flex-col h-[720px]  lg:h-[80vh] ">
 
 
-      {/* Status Bar (Mobile Illusion) */}
-      <div className="h-8 flex items-center justify-between px-6 text-[10px] text-[var(--color-biz-charcoal-muted)]">
-        <span className="font-semibold">9:41</span>
-        <div className="flex gap-1.5">
-          <div className="w-4 h-2 border border-current rounded-sm relative">
-            <div className="absolute inset-[2px] bg-current rounded-sm" />
-          </div>
-          <div className="w-1 h-2 bg-current rounded-sm" />
-        </div>
-      </div>
+                {/* Status Bar (Mobile Illusion) */}
+                <div className="h-8 flex items-center justify-between px-6 text-[10px] text-[var(--color-biz-charcoal-muted)]">
+                  <span className="font-semibold">9:41</span>
+                  <div className="flex gap-1.5">
+                    <div className="w-4 h-2 border border-current rounded-sm relative">
+                      <div className="absolute inset-[2px] bg-current rounded-sm" />
+                    </div>
+                    <div className="w-1 h-2 bg-current rounded-sm" />
+                  </div>
+                </div>
 
-      {/* App Header */}
-      <div className="px-6 py-4 flex items-center gap-3 border-b border-[var(--color-biz-sand-muted)]">
-        <div className="w-10 h-10 rounded-xl bg-[var(--color-biz-sand)] flex items-center justify-center">
-          <Cpu className="w-5 h-5 text-[var(--color-biz-charcoal)]" />
-        </div>
-        <div className="flex flex-col">
-          <span className="text-[11px] font-extrabold uppercase tracking-widest text-[var(--color-biz-charcoal)]">
-            Alix
-          </span>
-          <div className="flex items-center gap-1.5">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-            <span className="text-[9px] text-[var(--color-biz-charcoal-muted)]">
-              Active
-            </span>
-          </div>
-        </div>
-      </div>
+                {/* App Header */}
+                <div className="px-6 py-4 flex items-center gap-3 border-b border-[var(--color-biz-sand-muted)]">
+                  <div className="w-10 h-10 rounded-xl bg-[var(--color-biz-sand)] flex items-center justify-center">
+                    <Cpu className="w-5 h-5 text-[var(--color-biz-charcoal)]" />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-[11px] font-extrabold uppercase tracking-widest text-[var(--color-biz-charcoal)]">
+                      Alix
+                    </span>
+                    <div className="flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                      <span className="text-[9px] text-[var(--color-biz-charcoal-muted)]">
+                        Active
+                      </span>
+                    </div>
+                  </div>
+                </div>
 
-      {/* Chat Area */}
-      <div
-        ref={scrollContainerRef}
-        className="flex-1 px-6 py-8 space-y-8 overflow-y-auto bg-gradient-to-b from-white to-[var(--color-biz-cream-light)] scrollbar-hide"
-      >
-        {messages.map((msg, i) => (
-          <div
-            key={i}
-            className={`flex ${
-              msg.type === 'user' ? 'justify-end' : 'justify-start'
-            }`}
-          >
-            <div
-              className={`px-4 py-3 rounded-2xl max-w-[85%] text-[13px] leading-relaxed shadow-sm ${
-                msg.type === 'user'
-                  ? 'bg-[var(--color-biz-sand)] text-[var(--color-biz-charcoal)] rounded-br-md'
-                  : 'bg-white text-[var(--color-biz-charcoal)] border border-[var(--color-biz-sand-muted)] rounded-bl-md'
-              }`}
-            >
-              {msg.displayedContent}
+                {/* Chat Area */}
+                <div
+                  ref={scrollContainerRef}
+                  className="flex-1 px-6 py-8 space-y-8 overflow-y-auto bg-gradient-to-b from-white to-[var(--color-biz-cream-light)] scrollbar-hide"
+                >
+                  {messages.map((msg, i) => (
+                    <div
+                      key={i}
+                      className={`flex ${msg.type === 'user' ? 'justify-end' : 'justify-start'
+                        }`}
+                    >
+                      <div
+                        className={`px-4 py-3 rounded-2xl max-w-[85%] text-[13px] leading-relaxed shadow-sm ${msg.type === 'user'
+                            ? 'bg-[var(--color-biz-sand)] text-[var(--color-biz-charcoal)] rounded-br-md'
+                            : 'bg-white text-[var(--color-biz-charcoal)] border border-[var(--color-biz-sand-muted)] rounded-bl-md'
+                          }`}
+                      >
+                        {msg.displayedContent}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Input Bar (Non-interactive) */}
+                <div className="px-6 py-4 border-t border-[var(--color-biz-sand-muted)] bg-white">
+                  <div className="h-11 rounded-2xl bg-[var(--color-biz-sand)] flex items-center px-4">
+                    <div className="h-1.5 w-1/2 bg-[var(--color-biz-charcoal)] opacity-[0.08] rounded-full" />
+                  </div>
+                </div>
+
+              </div>
             </div>
           </div>
-        ))}
-      </div>
-
-      {/* Input Bar (Non-interactive) */}
-      <div className="px-6 py-4 border-t border-[var(--color-biz-sand-muted)] bg-white">
-        <div className="h-11 rounded-2xl bg-[var(--color-biz-sand)] flex items-center px-4">
-          <div className="h-1.5 w-1/2 bg-[var(--color-biz-charcoal)] opacity-[0.08] rounded-full" />
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
 
         </div>
       </div>
