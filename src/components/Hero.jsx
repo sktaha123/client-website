@@ -11,7 +11,7 @@ const Hero = () => {
       opacity: 1,
       y: 0,
       transition: {
-        delay: 0.2 + i * 0.08, // Slightly tighter delays
+        delay: 0.1 + i * 0.01, // Slightly tighter delays
         duration: 0.8,
         ease: [0.215, 0.61, 0.355, 1],
       },

@@ -7,9 +7,6 @@
   --font-martel: "Martel Sans", "sans-serif";
   --font-dm: "DM Sans", "sans-serif";
 
-  /* Expanded BiznorX Color Palette */
-  
-  /* CREAM: Backgrounds & Paper layers */
   --color-biz-cream: #FBF8F6;
   --color-biz-cream-light: #FFFFFF;
   --color-biz-cream-dark: #F1ECE9;
@@ -30,6 +27,7 @@
   --color-biz-sand: #EFE2DE;
   --color-biz-sand-muted: #D8C5C1;
 
+
   /* Custom Animations & Spacing */
   --tracking-widest: 0.3em;
   --tracking-ultra: 0.5em;
@@ -40,6 +38,7 @@
   html {
     scroll-behavior: smooth;
   }
+
   body {
     background-color: var(--color-biz-cream);
     color: var(--color-biz-charcoal);
