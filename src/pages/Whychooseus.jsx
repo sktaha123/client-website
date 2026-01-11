@@ -113,7 +113,7 @@ export function Whychooseus() {
               <h2 className="text-4xl md:text-5xl font-light leading-tight">
                 Why Industry <br />
                 Leaders Trust <br />
-                <span className="font-serif italic text-biz-bronze">BiznorX</span>
+                <span className="font-serif  text-biz-bronze">BiznorX</span>
               </h2>
             </div>
 
@@ -122,18 +122,19 @@ export function Whychooseus() {
   {/* LEFT — Buttons */}
   <div className="flex justify-between items-center lg:justify-start lg:gap-6">
     <div className="flex gap-2">
+      
       <button
         onClick={prev}
-        className="p-4 rounded-full border border-white/10 hover:bg-white/10 transition-all active:scale-95"
+        className="p-4 rounded-full group border border-white/10 hover:bg-white/10 transition-all active:scale-95"
       >
-        <ArrowLeft size={20} className="text-biz-bronze" />
+        <ArrowLeft size={20} className="text-bronze group-hover:text-biz-bronze transition-colors"  />
       </button>
 
       <button
         onClick={next}
         className="p-4 rounded-full border border-white/10 hover:bg-white/10 transition-all active:scale-95"
       >
-        <ArrowRight size={20} className="text-biz-bronze" />
+        <ArrowRight size={20} className="text-bronze group-hover:text-biz-bronze transition-colors" />
       </button>
     </div>
 

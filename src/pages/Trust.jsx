@@ -1,19 +1,34 @@
 import React from "react";
-import { Award, Globe, Shield, Target } from "lucide-react";
+import {
+  Award,
+  Globe,
+  Shield,
+  Target,
+  Briefcase,
+  Scale,
+  Layers,
+  TrendingUp
+} from "lucide-react";
 
 const trustItems = [
   { icon: Award, title: "60+ Years", subtitle: "Business Legacy" },
   { icon: Globe, title: "Global Presence", subtitle: "India & UAE" },
   { icon: Shield, title: "Enterprise-Grade", subtitle: "Compliance" },
   { icon: Target, title: "Industry-Focused", subtitle: "Solutions" },
+
+  { icon: Briefcase, title: "Trusted Partners", subtitle: "Long-Term Alliances" },
+  { icon: Scale, title: "Risk Managed", subtitle: "Governance First" },
+  { icon: Layers, title: "Cross-Border", subtitle: "Execution Ready" },
+  { icon: TrendingUp, title: "Outcome Driven", subtitle: "Measurable Impact" },
 ];
+
 
 export  function Trust() {
   return (
-    <section className="py-7 bg-biz-cream font-dm">
+    <section className="pt-7 bg-biz-cream font-dm">
       <div className="max-w-7xl mx-auto px-6">
         {/* Container with a subtle top border to create an architectural break */}
-        <div className="pt-12 border-t border-biz-stone/40">
+        <div className="pt-12 ">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-6">
             {trustItems.map((item, index) => {
               const Icon = item.icon;
@@ -21,14 +36,14 @@ export  function Trust() {
               return (
                 <div
                   key={index}
-                  className="group flex flex-col items-center lg:items-start text-center lg:text-left space-y-4"
+                  className="group flex flex-col items-center  lg:items-start text-center lg:text-left space-y-4"
                 >
                   {/* Minimalist Icon Treatment */}
                   <div className="relative">
                     {/* Background "Ghost" Circle that appears on hover */}
                     <div className="absolute inset-0 bg-biz-bronze/5 rounded-full scale-0 group-hover:scale-150 transition-transform duration-500 ease-out" />
                     
-                    <div className="relative flex items-center justify-center w-12 h-12 rounded-biz border border-biz-stone/60 bg-white shadow-sm transition-all duration-300 group-hover:border-biz-bronze group-hover:shadow-md">
+                    <div className="relative flex items-center justify-center w-12 h-12 rounded-biz  bg-white shadow-sm transition-all duration-300 group-hover:border-biz-bronze group-hover:shadow-md">
                       <Icon className="h-5 w-5 text-biz-bronze stroke-[1.5px]" />
                     </div>
                   </div>

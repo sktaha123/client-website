@@ -37,7 +37,7 @@ export const About = () => {
   return (
     <section
       id="about"
-      className="relative w-full flex items-center justify-center overflow-hidden bg-biz-cream"
+      className="relative w-full flex pb-5 items-center justify-center overflow-hidden bg-biz-cream"
       style={{ minHeight: 'calc(90vh - 96px)' }}
     >
       <motion.div

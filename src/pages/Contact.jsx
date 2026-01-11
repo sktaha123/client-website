@@ -38,38 +38,41 @@ const CONTAINER_VARIANTS = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.1, delayChildren: 0.2 },
+    transition: { staggerChildren: 0.15, delayChildren: 0.3 },
   },
 };
 
 const ITEM_VARIANTS = {
-  hidden: { opacity: 0, y: 15 },
+  hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
+    transition: { duration: 1, ease: [0.16, 1, 0.3, 1] }
   },
 };
 
 const LocationItem = React.memo(({ title, city }) => (
-  <div className="flex items-start gap-4 group/loc cursor-default">
-    <div className="mt-1 text-biz-bronze transition-transform duration-500 group-hover/loc:-translate-y-1">
+  <motion.div 
+    variants={ITEM_VARIANTS}
+    className="flex items-start gap-4 group/loc cursor-default"
+  >
+    <div className="mt-1 text-biz-bronze transition-transform duration-500 group-hover/loc:-translate-y-1 group-hover/loc:scale-110">
       <MapPin className="h-4 w-4" />
     </div>
     <div className="flex flex-col">
       <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-biz-bronze/60 mb-1">
         {title}
       </span>
-      <p className="text-base text-biz-charcoal font-medium">
+      <p className="text-base text-biz-charcoal font-medium group-hover/loc:text-biz-bronze transition-colors">
         {city}
       </p>
     </div>
-  </div>
+  </motion.div>
 ));
 
 export function Contact() {
   return (
-    <section id="contact" className="bg-biz-cream pt-32 pb-24 font-dm overflow-hidden">
+    <section id="contact" className="bg-biz-cream pt-8 pb-24 font-dm overflow-hidden">
       <motion.div
         className="max-w-7xl mx-auto px-6 lg:px-12"
         variants={CONTAINER_VARIANTS}
@@ -82,11 +85,23 @@ export function Contact() {
           {/* LEFT: BRANDING & NARRATIVE */}
           <motion.div variants={ITEM_VARIANTS} className="lg:col-span-5 space-y-10">
             <div className="space-y-4">
-              <h2 className="text-biz-bronze text-[12px] font-bold uppercase tracking-[0.5em]">
+              <motion.h2 
+                initial={{ opacity: 0, letterSpacing: "0.2em" }}
+                whileInView={{ opacity: 1, letterSpacing: "0.5em" }}
+                transition={{ duration: 1.5 }}
+                className="text-biz-bronze text-[12px] font-bold uppercase"
+              >
                 Contact
-              </h2>
-              <h3 className="text-6xl lg:text-7xl text-biz-charcoal tracking-tighter font-bold uppercase leading-[0.85]">
-                Biznor<span className="text-biz-bronze/80">X</span>
+              </motion.h2>
+              <h3 className="text-6xl lg:text-7xl text-biz-charcoal tracking-tighter font-bold uppercase leading-[0.85] overflow-hidden">
+                <motion.span
+                  initial={{ y: "100%" }}
+                  whileInView={{ y: 0 }}
+                  transition={{ duration: 0.8, ease: "circOut" }}
+                  className="inline-block"
+                >
+                  Biznor<span className="text-biz-bronze/80">X</span>
+                </motion.span>
               </h3>
             </div>
             
@@ -105,7 +120,13 @@ export function Contact() {
                     <motion.a
                       key={social.label}
                       href={social.href}
-                      whileHover={{ y: -2 }}
+                      whileHover={{ 
+                        y: -5, 
+                        scale: 1.2,
+                        rotate: 5
+                      }}
+                      whileTap={{ scale: 0.9 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
                       className="text-biz-charcoal/40 hover:text-biz-bronze transition-colors duration-300"
                     >
                       <Icon className="h-5 w-5" />
@@ -127,15 +148,16 @@ export function Contact() {
                     <motion.a
                       key={method.label}
                       href={method.href}
-                      className="group block transform-gpu"
-                      whileHover={{ x: 8 }}
+                      className="group block transform-gpu origin-left"
+                      whileHover={{ x: 20 }}
+                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
                     >
                       <p className="text-[10px] text-biz-bronze font-bold uppercase tracking-[0.4em] mb-3 opacity-50 group-hover:opacity-100 transition-opacity">
                         {method.label}
                       </p>
                       <div className="flex items-center gap-6">
-                        <Icon className={`h-6 w-6 text-biz-charcoal/20 transition-all duration-500 ${method.accent} group-hover:scale-110`} />
-                        <span className="text-3xl md:text-5xl text-biz-charcoal font-bold tracking-tighter transition-colors">
+                        <Icon className={`h-6 w-6 text-biz-charcoal/20 transition-all duration-500 ${method.accent} group-hover:scale-125 group-hover:rotate-[15deg]`} />
+                        <span className="text-3xl md:text-5xl text-biz-charcoal font-bold tracking-tighter transition-all duration-300 group-hover:text-biz-charcoal-ink group-hover:tracking-normal">
                           {method.value}
                         </span>
                       </div>
@@ -145,7 +167,7 @@ export function Contact() {
               </div>
 
               {/* Physical Footprint */}
-              <div className="pt-16 border-t border-biz-charcoal/5">
+              <div className="pt-8 border-t border-biz-charcoal/5">
                 <div className="grid md:grid-cols-2 gap-12">
                   <LocationItem title="India Office" city="Mumbai, MH" />
                   <LocationItem title="UAE Office" city="Dubai, UAE" />
