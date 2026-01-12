@@ -20,9 +20,10 @@ const serviceImages = [
   "/cardsimages/s2.webp",
   "/cardsimages/s3.webp",
   "/cardsimages/s4.webp",
-  "/images/services/global.jpg",
-  "/images/services/training.jpg",
-  "/images/services/technical.jpg",
+  "/cardsimages/s5.webp",
+  "/cardsimages/s6.webp",
+  "/cardsimages/s7.webp",
+
 ];
 
 
@@ -73,65 +74,70 @@ export function Services() {
         <div className="grid lg:grid-cols-12 gap-12 items-stretch">
 
           {/* RIGHT SECTION → FOCUS CARD */}
-          <div className="order-1 lg:order-2 lg:col-span-7 md:mb-10 relative flex items-center">
-            <AnimatePresence mode="wait">
+          <div className="order-1 lg:order-2 lg:col-span-7 md:mb-10 relative flex items-center min-h-[420px] overflow-hidden">
+
+            <AnimatePresence>
               <motion.div
                 key={active}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.2, ease: "easeOut" }}
-                className="relative w-full p-10 md:p-16 rounded-biz shadow-2xl overflow-hidden min-h-[420px]"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{
+                  opacity: {
+                    duration: 0.4,
+                    ease: [0.215, 0.61, 0.355, 1],
+                  },
+                }}
+                className="absolute inset-0 w-full p-10 md:p-16 rounded-biz overflow-hidden will-change-[opacity]"
                 style={{
                   backgroundImage: `
-                        linear-gradient(
-                                          rgba(0,0,0,0.55),
-                                          rgba(0,0,0,0.55)
-                                            ),
-                                            url(${serviceImages[active]})
-                                                                         `,
+        linear-gradient(rgba(0,0,0,0.88), rgba(0,0,0,0.66)),
+        url(${serviceImages[active]})
+      `,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                   backgroundRepeat: "no-repeat",
                 }}
               >
 
+
+
                 {/* Decorative Background Icon */}
-<div className="absolute -bottom-10 -right-10 opacity-[0.06] rotate-12 text-biz-cream-light">
-  {React.createElement(services[active].icon, { size: 240 })}
-</div>
+                <div className="absolute -bottom-10 -right-10 opacity-[0.06] rotate-12 text-biz-cream-light">
+                  {React.createElement(services[active].icon, { size: 240 })}
+                </div>
 
-<div className="relative z-10">
-  <div className="flex justify-between items-start mb-12">
-    {/* Icon Badge */}
-    <div className="p-4 bg-white/15 backdrop-blur-md rounded-2xl text-biz-cream-light">
-      {React.createElement(services[active].icon, { size: 28 })}
-    </div>
-  </div>
+                <div className="relative z-10">
+                  <div className="flex justify-between items-start mb-12">
+                    {/* Icon Badge */}
+                    <div className="p-4 bg-white/15 backdrop-blur-md rounded-2xl text-biz-cream-light">
+                      {React.createElement(services[active].icon, { size: 28 })}
+                    </div>
+                  </div>
 
-  {/* Title — Bright & Premium */}
-  <h3 className="text-4xl md:text-5xl font-light tracking-tight mb-6 text-biz-cream-light">
-    {services[active].title}
-  </h3>
+                  {/* Title — Bright & Premium */}
+                  <h3 className="text-4xl md:text-5xl font-light tracking-tight mb-6 text-biz-cream-light">
+                    {services[active].title}
+                  </h3>
 
-  {/* Description — Soft Cream for Readability */}
-  <p className="text-lg md:text-xl leading-relaxed font-light text-biz-cream/90 max-w-md">
-    {services[active].desc}
-  </p>
-</div>
+                  {/* Description — Soft Cream for Readability */}
+                  <p className="text-lg md:text-xl leading-relaxed font-light text-biz-cream/90 max-w-md">
+                    {services[active].desc}
+                  </p>
+                </div>
 
-{/* Auto Progress Bar */}
-<div className="absolute bottom-0 left-0 w-full h-1 bg-white/10">
-  {isAuto && (
-    <motion.div
-      key={`bar-${active}`}
-      initial={{ width: 0 }}
-      animate={{ width: "100%" }}
-      transition={{ duration: 5, ease: "linear" }}
-      className="h-full bg-biz-bronze"
-    />
-  )}
-</div>
+                {/* Auto Progress Bar */}
+                <div className="absolute bottom-0 rounded-2xl left-0 w-full h-1 bg-white/10">
+                  {isAuto && (
+                    <motion.div
+                      key={`bar-${active}`}
+                      initial={{ width: 0 }}
+                      animate={{ width: "100%" }}
+                      transition={{ duration: 5, ease: "linear" }}
+                      className="h-full bg-biz-bronze"
+                    />
+                  )}
+                </div>
 
               </motion.div>
             </AnimatePresence>
@@ -139,38 +145,72 @@ export function Services() {
 
           {/* LEFT SECTION → NAVIGATION */}
           <div className="order-2 lg:order-1 lg:col-span-5 flex flex-col justify-center">
-            <div className="space-y-1">
-              {services.map((service, i) => (
-                <button
-                  key={service.id}
-                  onMouseEnter={() => { setActive(i); setIsAuto(false); }}
-                  onMouseLeave={() => setIsAuto(true)}
-                  onClick={() => setActive(i)}
-                  className={`group flex items-center gap-4 w-full text-left py-3 px-4 rounded-xl transition-all duration-300 ${active === i
-                    ? "bg-biz-bronze-pale/20 translate-x-2"
-                    : "opacity-40 hover:opacity-100"
-                    }`}
-                >
-                  <span className={`text-[10px] font-bold font-serif italic ${active === i ? "text-biz-bronze" : "text-biz-charcoal"
-                    }`}>
-                    {service.id}
-                  </span>
+  <div className="space-y-1">
+    {services.map((service, i) => {
+      const isActive = active === i;
 
-                  <span className={`text-sm md:text-base font-medium tracking-tight ${active === i ? "text-biz-charcoal-ink" : "text-biz-charcoal-soft"
-                    }`}>
-                    {service.title}
-                  </span>
+      return (
+        <button
+          key={service.id}
+          onMouseEnter={() => { setActive(i); setIsAuto(false); }}
+          onMouseLeave={() => setIsAuto(true)}
+          onClick={() => setActive(i)}
+          className={`
+            group relative
+            flex items-center gap-4 w-full text-left
+            py-3 px-4 rounded-xl
+            transition-[background-color,opacity]
+            duration-300 ease-out
+            will-change-[opacity,background-color]
+            ${isActive
+              ? "bg-biz-bronze-pale/20 opacity-100"
+              : "opacity-50 hover:opacity-100"}
+          `}
+        >
+          {/* ID */}
+          <span
+            className={`
+              text-[10px] font-bold font-serif italic
+              transition-colors duration-300
+              ${isActive ? "text-biz-bronze" : "text-biz-charcoal"}
+            `}
+          >
+            {service.id}
+          </span>
 
-                  {active === i && (
-                    <motion.div
-                      layoutId="dot"
-                      className="w-1.5 h-1.5 rounded-full bg-biz-bronze ml-auto"
-                    />
-                  )}
-                </button>
-              ))}
-            </div>
-          </div>
+          {/* Title */}
+          <span
+            className={`
+              text-sm md:text-base font-medium tracking-tight
+              transition-colors duration-300
+              ${isActive
+                ? "text-biz-charcoal-ink"
+                : "text-biz-charcoal-soft"}
+            `}
+          >
+            {service.title}
+          </span>
+
+          {/* Active dot (smooth, no layout shift) */}
+          <span className="ml-auto relative w-2 h-2">
+            {isActive && (
+              <motion.span
+                layoutId="service-dot"
+                className="absolute inset-0 rounded-full bg-biz-bronze"
+                transition={{
+                  type: "spring",
+                  stiffness: 500,
+                  damping: 30,
+                }}
+              />
+            )}
+          </span>
+        </button>
+      );
+    })}
+  </div>
+</div>
+
 
         </div>
       </motion.div>
