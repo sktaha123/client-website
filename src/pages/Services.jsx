@@ -1,18 +1,67 @@
 import React, { useState, useEffect } from "react";
 import {
-  Users, Layers, UserPlus, HardHat,
-  Globe, GraduationCap, Laptop
+  Users,
+  Layers,
+  UserPlus,
+  HardHat,
+  Globe,
+  GraduationCap,
+  Laptop,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
+/* ---------------- DATA ---------------- */
+
 const services = [
-  { id: "01", icon: Users, title: "Executive Recruitment", cat: "EXECUTIVE", desc: "Tailored hiring solutions connecting businesses with talent that ensures cultural fit and long-term success. Finding leaders who drive growth.", bg: "bg-biz-sand" },
-  { id: "02", icon: Layers, title: "Bulk Recruitment", cat: "OPERATIONS", desc: "Efficient large-scale hiring designed to meet urgent demands without compromising quality. Precision and speed for high-volume needs.", bg: "bg-biz-bronze-pale" },
-  { id: "03", icon: UserPlus, title: "EOR Services", cat: "COMPLIANCE", desc: "Staffing & Employer of Record solutions that simplify compliance, payroll, and HR management across borders.", bg: "bg-biz-charcoal-ink text-biz-cream-light" },
-  { id: "04", icon: HardHat, title: "Blue Collar Hiring", cat: "MANPOWER", desc: "Specialized recruitment for skilled and semi-skilled workers, supporting operational excellence and industrial demand.", bg: "bg-biz-bronze text-white" },
-  { id: "05", icon: Globe, title: "Global Placement", cat: "FRONTIER", desc: "International recruitment expertise bridging markets and helping professionals expand across borders with ease.", bg: "bg-biz-sand" },
-  { id: "06", icon: GraduationCap, title: "Training Academy", cat: "ACADEMY", desc: "Customized upskilling programs to enhance productivity and prepare teams for evolving industry needs.", bg: "bg-biz-bronze-pale" },
-  { id: "07", icon: Laptop, title: "Technical Consulting", cat: "INNOVATION", desc: "Strategic consulting blending technical expertise with insight for sustainable business innovation and digital shifts.", bg: "bg-biz-charcoal-ink text-biz-cream-light" },
+  {
+    id: "01",
+    icon: Users,
+    title: "Executive Recruitment",
+    cat: "EXECUTIVE",
+    desc: "Tailored hiring solutions connecting businesses with talent that ensures cultural fit and long-term success. Finding leaders who drive growth.",
+  },
+  {
+    id: "02",
+    icon: Layers,
+    title: "Bulk Recruitment",
+    cat: "OPERATIONS",
+    desc: "Efficient large-scale hiring designed to meet urgent demands without compromising quality. Precision and speed for high-volume needs.",
+  },
+  {
+    id: "03",
+    icon: UserPlus,
+    title: "EOR Services",
+    cat: "COMPLIANCE",
+    desc: "Staffing & Employer of Record solutions that simplify compliance, payroll, and HR management across borders.",
+  },
+  {
+    id: "04",
+    icon: HardHat,
+    title: "Blue Collar Hiring",
+    cat: "MANPOWER",
+    desc: "Specialized recruitment for skilled and semi-skilled workers, supporting operational excellence and industrial demand.",
+  },
+  {
+    id: "05",
+    icon: Globe,
+    title: "Global Placement",
+    cat: "FRONTIER",
+    desc: "International recruitment expertise bridging markets and helping professionals expand across borders with ease.",
+  },
+  {
+    id: "06",
+    icon: GraduationCap,
+    title: "Training Academy",
+    cat: "ACADEMY",
+    desc: "Customized upskilling programs to enhance productivity and prepare teams for evolving industry needs.",
+  },
+  {
+    id: "07",
+    icon: Laptop,
+    title: "Technical Consulting",
+    cat: "INNOVATION",
+    desc: "Strategic consulting blending technical expertise with insight for sustainable business innovation and digital shifts.",
+  },
 ];
 
 const serviceImages = [
@@ -23,9 +72,9 @@ const serviceImages = [
   "/cardsimages/s5.webp",
   "/cardsimages/s6.webp",
   "/cardsimages/s7.webp",
-
 ];
 
+/* ---------------- COMPONENT ---------------- */
 
 export function Services() {
   const [active, setActive] = useState(0);
@@ -34,13 +83,12 @@ export function Services() {
   useEffect(() => {
     if (!isAuto) return;
 
-    // Resetting the timer whenever 'active' or 'isAuto' changes
     const timer = setInterval(() => {
       setActive((prev) => (prev + 1) % services.length);
     }, 5000);
 
     return () => clearInterval(timer);
-  }, [active, isAuto]); // 🔹 Added 'active' here to reset the 5s clock on every change
+  }, [active, isAuto]);
 
   return (
     <section
@@ -52,15 +100,10 @@ export function Services() {
         className="max-w-7xl mx-auto px-6 w-full"
         initial={{ opacity: 0, y: 48 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{
-          duration: 0.6,
-          ease: [0.215, 0.61, 0.355, 1], // premium cubic easing
-        }}
+        transition={{ duration: 0.6, ease: [0.215, 0.61, 0.355, 1] }}
         viewport={{ once: true, margin: "-80px" }}
       >
-
-
-        {/* 🔹 SECTION HEADING */}
+        {/* SECTION HEADING */}
         <div className="mb-10 md:mb-0 text-center lg:text-left">
           <span className="text-biz-bronze font-bold tracking-ultra uppercase text-[10px]">
             Ecosystem
@@ -70,64 +113,53 @@ export function Services() {
           </h2>
         </div>
 
-        {/* 🔹 CONTENT GRID */}
+        {/* CONTENT GRID */}
         <div className="grid lg:grid-cols-12 gap-12 items-stretch">
-
-          {/* RIGHT SECTION → FOCUS CARD */}
-          <div className="order-1 lg:order-2 lg:col-span-7 md:mb-10 relative flex items-center min-h-[420px] overflow-hidden">
-
-            <AnimatePresence>
+          {/* RIGHT — FOCUS CARD */}
+          <div className="order-1 lg:order-2 lg:col-span-7 relative flex items-center min-h-[420px] overflow-hidden">
+            <AnimatePresence initial={false}>
               <motion.div
                 key={active}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{
-                  opacity: {
-                    duration: 0.4,
-                    ease: [0.215, 0.61, 0.355, 1],
-                  },
-                }}
-                className="absolute inset-0 w-full p-10 md:p-16 rounded-biz overflow-hidden will-change-[opacity]"
+                transition={{ duration: 0.25, ease: "easeOut" }}
+                className="
+                  absolute inset-0 w-full p-10 md:p-16 rounded-biz
+                  overflow-hidden translate-z-0 will-change-[opacity]
+                "
                 style={{
                   backgroundImage: `
-        linear-gradient(rgba(0,0,0,0.88), rgba(0,0,0,0.66)),
-        url(${serviceImages[active]})
-      `,
+                    linear-gradient(rgba(0,0,0,0.88), rgba(0,0,0,0.66)),
+                    url(${serviceImages[active]})
+                  `,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
-                  backgroundRepeat: "no-repeat",
                 }}
               >
-
-
-
-                {/* Decorative Background Icon */}
-                <div className="absolute -bottom-10 -right-10 opacity-[0.06] rotate-12 text-biz-cream-light">
+                {/* Decorative Icon */}
+                <div className="absolute -bottom-10 -right-10 opacity-[0.06] rotate-12 text-biz-cream-light pointer-events-none">
                   {React.createElement(services[active].icon, { size: 240 })}
                 </div>
 
                 <div className="relative z-10">
-                  <div className="flex justify-between items-start mb-12">
-                    {/* Icon Badge */}
-                    <div className="p-4 bg-white/15 backdrop-blur-md rounded-2xl text-biz-cream-light">
+                  <div className="mb-12">
+                    <div className="p-4 bg-white/15 rounded-2xl inline-block text-biz-cream-light">
                       {React.createElement(services[active].icon, { size: 28 })}
                     </div>
                   </div>
 
-                  {/* Title — Bright & Premium */}
                   <h3 className="text-4xl md:text-5xl font-light tracking-tight mb-6 text-biz-cream-light">
                     {services[active].title}
                   </h3>
 
-                  {/* Description — Soft Cream for Readability */}
                   <p className="text-lg md:text-xl leading-relaxed font-light text-biz-cream/90 max-w-md">
                     {services[active].desc}
                   </p>
                 </div>
 
-                {/* Auto Progress Bar */}
-                <div className="absolute bottom-0 rounded-2xl left-0 w-full h-1 bg-white/10">
+                {/* Auto Progress */}
+                <div className="absolute bottom-0 left-0 w-full h-1 bg-white/10">
                   {isAuto && (
                     <motion.div
                       key={`bar-${active}`}
@@ -138,80 +170,84 @@ export function Services() {
                     />
                   )}
                 </div>
-
               </motion.div>
             </AnimatePresence>
           </div>
 
-          {/* LEFT SECTION → NAVIGATION */}
+          {/* LEFT — NAVIGATION */}
           <div className="order-2 lg:order-1 lg:col-span-5 flex flex-col justify-center">
-  <div className="space-y-1">
-    {services.map((service, i) => {
-      const isActive = active === i;
+            <div className="space-y-1">
+              {services.map((service, i) => {
+                const isActive = active === i;
 
-      return (
-        <button
-          key={service.id}
-          onMouseEnter={() => { setActive(i); setIsAuto(false); }}
-          onMouseLeave={() => setIsAuto(true)}
-          onClick={() => setActive(i)}
-          className={`
-            group relative
-            flex items-center gap-4 w-full text-left
-            py-3 px-4 rounded-xl
-            transition-[background-color,opacity]
-            duration-300 ease-out
-            will-change-[opacity,background-color]
-            ${isActive
-              ? "bg-biz-bronze-pale/20 opacity-100"
-              : "opacity-50 hover:opacity-100"}
-          `}
-        >
-          {/* ID */}
-          <span
-            className={`
-              text-[10px] font-bold font-serif italic
-              transition-colors duration-300
-              ${isActive ? "text-biz-bronze" : "text-biz-charcoal"}
-            `}
-          >
-            {service.id}
-          </span>
+                return (
+                  <button
+                    key={service.id}
+                    onMouseEnter={() => {
+                      setActive(i);
+                      setIsAuto(false);
+                    }}
+                    onMouseLeave={() => setIsAuto(true)}
+                    onClick={() => setActive(i)}
+                    className={`
+                      group relative flex items-center gap-4 w-full text-left
+                      py-3 px-4 rounded-xl
+                      transition-[background-color,opacity]
+                      duration-300 ease-out
+                      will-change-[opacity,background-color]
+                      ${
+                        isActive
+                          ? "bg-biz-bronze-pale/20 opacity-100"
+                          : "opacity-50 hover:opacity-100"
+                      }
+                    `}
+                  >
+                    <span
+                      className={`
+                        text-[10px] font-bold font-serif italic
+                        transition-colors duration-300
+                        ${
+                          isActive
+                            ? "text-biz-bronze"
+                            : "text-biz-charcoal"
+                        }
+                      `}
+                    >
+                      {service.id}
+                    </span>
 
-          {/* Title */}
-          <span
-            className={`
-              text-sm md:text-base font-medium tracking-tight
-              transition-colors duration-300
-              ${isActive
-                ? "text-biz-charcoal-ink"
-                : "text-biz-charcoal-soft"}
-            `}
-          >
-            {service.title}
-          </span>
+                    <span
+                      className={`
+                        text-sm md:text-base font-medium tracking-tight
+                        transition-colors duration-300
+                        ${
+                          isActive
+                            ? "text-biz-charcoal-ink"
+                            : "text-biz-charcoal-soft"
+                        }
+                      `}
+                    >
+                      {service.title}
+                    </span>
 
-          {/* Active dot (smooth, no layout shift) */}
-          <span className="ml-auto relative w-2 h-2">
-            {isActive && (
-              <motion.span
-                layoutId="service-dot"
-                className="absolute inset-0 rounded-full bg-biz-bronze"
-                transition={{
-                  type: "spring",
-                  stiffness: 500,
-                  damping: 30,
-                }}
-              />
-            )}
-          </span>
-        </button>
-      );
-    })}
-  </div>
-</div>
-
-
+                    <span className="ml-auto relative w-2 h-2">
+                      {isActive && (
+                        <motion.span
+                          layoutId="service-dot"
+                          className="absolute inset-0 rounded-full bg-biz-bronze"
+                          transition={{
+                            type: "spring",
+                            stiffness: 500,
+                            damping: 30,
+                          }}
+                        />
+                      )}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </motion.div>
     </section>

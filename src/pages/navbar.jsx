@@ -24,7 +24,7 @@ const Navbar = () => {
     { name: "Process", to: "/process" },
     { name: "Industries", to: "/industries" },
     { name: "Why BiznorX", to: "/whychooseus" },
-    { name: "Contact", to: "/contact" },
+    { name: "Software Solutions", to: "/software" },
   ];
 
   return (
@@ -33,7 +33,7 @@ const Navbar = () => {
       <div className="fixed top-0 md:top-1 left-0 right-0 z-50 flex justify-center px-0 md:px-6">
         <div
           className="
-            w-full md:w-[98vw] max-w-7xl
+            w-full md:w-[99vw] max-w-7xl
             bg-biz-cream/90 backdrop-blur-xl
             md:rounded-biz
             shadow-[0_10px_40px_rgba(45,34,25,0.04)]
@@ -61,7 +61,7 @@ const Navbar = () => {
                   key={link.name}
                   to={link.to}
                   className="
-                    font-dm text-[11px]
+                    font-dm text-[10px]
                     uppercase tracking-widest
                     font-bold
                     text-biz-charcoal/60
@@ -90,7 +90,7 @@ const Navbar = () => {
                   group
                 "
               >
-                Let's Talk
+                Contact
                 <ArrowRight className="size-3 transition-transform group-hover:translate-x-1" />
               </Link>
 

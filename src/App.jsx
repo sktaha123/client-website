@@ -8,6 +8,8 @@ import Industries from "./pages/Industries.jsx";
 import Contact from "./pages/Contact.jsx";
 import Process from "./pages/Process.jsx";
 import { Whychooseus } from "./pages/Whychooseus.jsx";
+import Software from "./pages/Software.jsx";
+
 
 function App() {
   return (
@@ -21,6 +23,7 @@ function App() {
           <Route path="/process" element={<Process />} />
           <Route path="/whychooseus" element={<Whychooseus />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/software" element={<Software />} />
         </Route>
       </Routes>
     </BrowserRouter>

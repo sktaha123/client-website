@@ -44,7 +44,7 @@ export function Process() {
   }, [active]); // 🔹 Reset timer on every state change
 
   return (
-    <section className="py-8 bg-biz-cream font-dm" style={{ minHeight: 'calc(90vh - 96px)' }}>
+    <section className="py-3 bg-biz-cream font-dm" style={{ minHeight: 'calc(90vh - 96px)' }}>
       <motion.div
         className="max-w-5xl mx-auto px-6 w-full relative z-10"
         initial={{ opacity: 0, y: 48 }}
