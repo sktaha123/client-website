@@ -15,6 +15,17 @@ const services = [
   { id: "07", icon: Laptop, title: "Technical Consulting", cat: "INNOVATION", desc: "Strategic consulting blending technical expertise with insight for sustainable business innovation and digital shifts.", bg: "bg-biz-charcoal-ink text-biz-cream-light" },
 ];
 
+const serviceImages = [
+  "/cardsimages/s1.webp",
+  "/cardsimages/s2.webp",
+  "/cardsimages/s3.webp",
+  "/cardsimages/s4.webp",
+  "/images/services/global.jpg",
+  "/images/services/training.jpg",
+  "/images/services/technical.jpg",
+];
+
+
 export function Services() {
   const [active, setActive] = useState(0);
   const [isAuto, setIsAuto] = useState(true);
@@ -67,44 +78,61 @@ export function Services() {
               <motion.div
                 key={active}
                 initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.2, ease: "easeOut" }}
-                className={`w-full p-10 md:p-16 rounded-biz shadow-2xl relative overflow-hidden min-h-[420px] ${services[active].bg}`}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
+                className="relative w-full p-10 md:p-16 rounded-biz shadow-2xl overflow-hidden min-h-[420px]"
+                style={{
+                  backgroundImage: `
+                        linear-gradient(
+                                          rgba(0,0,0,0.55),
+                                          rgba(0,0,0,0.55)
+                                            ),
+                                            url(${serviceImages[active]})
+                                                                         `,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                }}
               >
-                <div className="absolute -bottom-10 -right-10 opacity-5 rotate-12">
-                  {React.createElement(services[active].icon, { size: 240 })}
-                </div>
 
-                <div className="relative z-10">
-                  <div className="flex justify-between items-start mb-12">
-                    <div className="p-4 bg-white/10 backdrop-blur-md rounded-2xl">
-                      {React.createElement(services[active].icon, { size: 28 })}
-                    </div>
-                    
-                  </div>
+                {/* Decorative Background Icon */}
+<div className="absolute -bottom-10 -right-10 opacity-[0.06] rotate-12 text-biz-cream-light">
+  {React.createElement(services[active].icon, { size: 240 })}
+</div>
 
-                  <h3 className="text-4xl md:text-5xl font-light tracking-tight mb-6">
-                    {services[active].title}
-                  </h3>
+<div className="relative z-10">
+  <div className="flex justify-between items-start mb-12">
+    {/* Icon Badge */}
+    <div className="p-4 bg-white/15 backdrop-blur-md rounded-2xl text-biz-cream-light">
+      {React.createElement(services[active].icon, { size: 28 })}
+    </div>
+  </div>
 
-                  <p className="text-lg md:text-xl leading-relaxed font-light opacity-80 max-w-md">
-                    {services[active].desc}
-                  </p>
-                </div>
+  {/* Title — Bright & Premium */}
+  <h3 className="text-4xl md:text-5xl font-light tracking-tight mb-6 text-biz-cream-light">
+    {services[active].title}
+  </h3>
 
-                {/* Auto Progress Bar - Syncs perfectly with the 5s timer */}
-                <div className="absolute bottom-0 left-0 w-full h-1 bg-black/5">
-                  {isAuto && (
-                    <motion.div
-                      key={`bar-${active}`}
-                      initial={{ width: 0 }}
-                      animate={{ width: "100%" }}
-                      transition={{ duration: 5, ease: "linear" }}
-                      className="h-full bg-biz-bronze"
-                    />
-                  )}
-                </div>
+  {/* Description — Soft Cream for Readability */}
+  <p className="text-lg md:text-xl leading-relaxed font-light text-biz-cream/90 max-w-md">
+    {services[active].desc}
+  </p>
+</div>
+
+{/* Auto Progress Bar */}
+<div className="absolute bottom-0 left-0 w-full h-1 bg-white/10">
+  {isAuto && (
+    <motion.div
+      key={`bar-${active}`}
+      initial={{ width: 0 }}
+      animate={{ width: "100%" }}
+      transition={{ duration: 5, ease: "linear" }}
+      className="h-full bg-biz-bronze"
+    />
+  )}
+</div>
+
               </motion.div>
             </AnimatePresence>
           </div>
@@ -119,8 +147,8 @@ export function Services() {
                   onMouseLeave={() => setIsAuto(true)}
                   onClick={() => setActive(i)}
                   className={`group flex items-center gap-4 w-full text-left py-3 px-4 rounded-xl transition-all duration-300 ${active === i
-                      ? "bg-biz-bronze-pale/20 translate-x-2"
-                      : "opacity-40 hover:opacity-100"
+                    ? "bg-biz-bronze-pale/20 translate-x-2"
+                    : "opacity-40 hover:opacity-100"
                     }`}
                 >
                   <span className={`text-[10px] font-bold font-serif italic ${active === i ? "text-biz-bronze" : "text-biz-charcoal"

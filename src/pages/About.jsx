@@ -2,27 +2,31 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 
+const slideImages = [
+  "/cardsimages/about1.webp",
+  "/cardsimages/about2.webp",
+  "/cardsimages/about3.webp",
+];
+
+
 const slides = [
   {
     tag: "THE HERITAGE",
     title: "Rooted in Integrity",
     content:
-      "For over six decades, our legacy has been shaped by resilience and accountability. We unite the wisdom of the past with the intelligence of tomorrow's technology.",
-    image: "/cardsimages/about1.jpg"
+      "For over six decades, our legacy has been shaped by resilience and accountability. We unite the wisdom of the past with the intelligence of tomorrow's technology."
   },
   {
     tag: "THE VISION",
     title: "Thoughtful Innovation",
     content:
-      "A place where reputation is currency. We bridge traditional business ethics with digital precision, scalability, and global reach across India and the UAE.",
-    image: "/cardsimages/about2.jpg"
+      "A place where reputation is currency. We bridge traditional business ethics with digital precision, scalability, and global reach across India and the UAE."
   },
   {
     tag: "THE COMMITMENT",
     title: "Character-Led Growth",
     content:
-      "Growth should never come at the cost of character. We are a unifying force connecting ambitions—building businesses that last, not just scale.",
-    image: "/cardsimages/about3.jpg"
+      "Growth should never come at the cost of character. We are a unifying force connecting ambitions—building businesses that last, not just scale."
   }
 ];
 
@@ -105,24 +109,26 @@ export const About = () => {
                   className="relative w-full p-12 md:p-16 rounded-biz overflow-hidden border border-biz-bronze-pale/20 shadow-[20px_20px_60px_rgba(0,0,0,0.03)]"
                 >
                   {/* 🔹 BACKGROUND IMAGE PLACEHOLDER */}
-                  <div
-                    className="absolute inset-0 bg-cover bg-center"
-                    style={{
-                      backgroundImage: `url(${slides[index].image})`
-                    }}
-                  />
+                  {/* Background Image */}
+                  <div className="absolute inset-0 z-0">
+                    <img
+                      src={slideImages[index]}
+                      alt=""
+                      loading="eager"
+                      className="w-full h-full object-cover opacity-0 animate-[fadeIn_0.6s_ease-out_forwards]"
+                    />
 
+                    <div className="absolute inset-0 bg-black/35" />
+                  </div>
 
-                  {/* 🔹 DARK OVERLAY */}
-                  <div className="absolute inset-0 bg-black/60" />
 
                   {/* 🔹 CONTENT */}
                   <div className="relative z-10 flex flex-col h-full text-white">
                     <div className="flex justify-between items-center mb-10">
-                      <span className="text-biz-bronze text-[10px] font-bold tracking-[0.2em]">
+                      <span className="text-biz-bronze-pale text-[15px] font-bold tracking-[0.2em]">
                         {slides[index].tag}
                       </span>
-                      <span className="text-white/40 font-serif italic text-sm">
+                      <span className="text-white/100 font-serif  text-sm">
                         0{index + 1}
                       </span>
                     </div>
@@ -155,7 +161,7 @@ export const About = () => {
                         {slides.map((_, i) => (
                           <div
                             key={i}
-                            className={`h-1.5 rounded-full transition-all duration-300 ${index === i ? "w-6 bg-biz-bronze" : "w-1.5 bg-white/30"
+                            className={`h-1.5 rounded-full transition-all duration-300 ${index === i ? "w-6 bg-biz-bronze-pale" : "w-1.5 bg-white/30"
                               }`}
                           />
                         ))}

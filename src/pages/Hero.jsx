@@ -44,7 +44,7 @@ export function Hero() {
           transition={{ duration: 1.5, ease: "easeOut" }}
           className="absolute inset-0 bg-cover bg-center will-change-transform transition-transform duration-1000 ease-out hover:scale-105"
           style={{
-            backgroundImage: "url('/svgs/heroimage.jpg')",
+            backgroundImage: "url('/svgs/heroimage.webp')",
             backgroundColor: "#2D2219" 
           }}
         />

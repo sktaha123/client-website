@@ -7,6 +7,11 @@
 
 @import "tailwindcss";
 
+@keyframes fadeIn {
+  to { opacity: 0.8; }
+}
+
+
 
 :root {
   --font-alix: "Plus Jakarta", "Inter Tight", "DM Sans","Space Grotesk", sans-serif;
