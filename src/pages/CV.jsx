@@ -1,287 +1,263 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
-
+import { motion, AnimatePresence } from "framer-motion";
 
 const CV = () => {
-    const [loading, setLoading] = useState(false);
-    const [status, setStatus] = useState("");
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    contact: "",
+    altContact: "",
+    location: "",
+    country: "",
+    category: "",
+    otherCategory: "",
+  });
 
-   const [formData, setFormData] = useState({
-  name: "",
-  email: "",
-  contact: "",
-  altContact: "",
-  category: "",
-  customCategory: "", // ✅ NEW
-  location: "",
-  cvFile: null,
-});
+  const [file, setFile] = useState(null);
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
+  const categories = [
+    "Manufacturing","Healthcare","Technology","Retail","Real Estate",
+    "Logistics","Education","Hospitality","Banking & Finance",
+    "Energy","Aviation","Construction","Other"
+  ];
 
-    const handleChange = (e) => {
-        const { name, value, files } = e.target;
+  /* ---------------- PROGRESS ---------------- */
+  const filledFields = Object.values(formData).filter(Boolean).length + (file ? 1 : 0);
+  const progress = Math.min(100, Math.round((filledFields / 9) * 100));
 
-        if (name === "cvFile") {
-            setFormData({ ...formData, cvFile: files[0] });
-        } else {
-            setFormData({ ...formData, [name]: value });
-        }
+  /* ---------------- FILE ---------------- */
+  const handleFile = (selectedFile) => {
+    setError("");
+
+    if (!selectedFile) return;
+
+    if (!/(\.pdf|\.doc)$/i.test(selectedFile.name)) {
+      setError("Only PDF or DOC files are allowed.");
+      return;
+    }
+
+    if (selectedFile.size > 5 * 1024 * 1024) {
+      setError("CV size must be under 5MB.");
+      return;
+    }
+
+    setFile(selectedFile);
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    handleFile(e.dataTransfer.files[0]);
+  };
+
+  /* ---------------- SUBMIT ---------------- */
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+
+    if (!file) {
+      setError("Please upload your CV.");
+      return;
+    }
+
+    setLoading(true);
+
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+
+    reader.onload = async () => {
+      const payload = {
+        ...formData,
+        category: formData.category === "Other" ? formData.otherCategory : formData.category,
+        fileData: reader.result.split(",")[1],
+        fileName: formData.name.replace(/\s+/g, "_"),
+        mimeType: file.type,
+      };
+
+      try {
+        await fetch(
+          "https://script.google.com/macros/s/AKfycbxRZCCyxXQc7_OEeXvcXtzGYaKKVMZbwD_nbl0ifJrehPQeRLle8N8Xv7mPx409XLY/exec",
+          {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          }
+        );
+        setSuccess(true);
+      } catch {
+        setError("Submission failed. Please try again.");
+      } finally {
+        setLoading(false);
+      }
     };
+  };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+  /* ================= RENDER ================= */
+  return (
+    <section className="min-h-[90vh] flex items-center justify-center bg-biz-cream px-6 font-dm">
+  <AnimatePresence mode="wait">
+    {success ? (
+      /* ---------- SUCCESS STATE ---------- */
+      <motion.div
+        initial={{ opacity: 0, scale: 0.92 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="
+          text-center
+          bg-biz-cream-light
+          p-12
+          rounded-[2rem]
+          border border-biz-bronze/15
+          shadow-[0_30px_90px_rgba(0,0,0,0.06)]
+        "
+      >
+        <h2 className="text-3xl font-light text-biz-charcoal-ink mb-4">
+          Application Received
+        </h2>
+        <p className="text-biz-charcoal-soft">
+          Our ATS has successfully processed your profile.
+        </p>
+      </motion.div>
+    ) : (
+      /* ---------- FORM ---------- */
+      <motion.form
+        onSubmit={handleSubmit}
+        initial={{ opacity: 0, y: 32 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="
+          w-full max-w-[520px]
+          bg-biz-cream-light
+          p-8 md:p-10
+          rounded-[2rem]
+          border border-biz-bronze/15
+          shadow-[0_40px_120px_rgba(0,0,0,0.08)]
+          flex flex-col gap-4
+        "
+      >
+        {/* ---------- ATS PROGRESS ---------- */}
+        <div className="mb-2">
+          <div className="flex justify-between text-[10px] text-biz-charcoal-soft mb-1">
+            <span>Profile Completion</span>
+            <span>{progress}%</span>
+          </div>
+          <div className="h-1 bg-biz-sand rounded-full overflow-hidden">
+            <motion.div
+              className="h-full bg-biz-bronze"
+              animate={{ width: `${progress}%` }}
+            />
+          </div>
+        </div>
 
-        if (!formData.cvFile) {
-            setStatus("Please upload your CV.");
-            return;
-        }
+        {/* ---------- INPUTS ---------- */}
+        {[
+          ["Name","name",true],
+          ["Email","email",true,"email"],
+          ["Contact","contact",true],
+          ["Alt Contact (Optional)","altContact"],
+          ["Location","location",true],
+          ["Country","country",true],
+        ].map(([placeholder,key,required,type="text"]) => (
+          <input
+            key={key}
+            type={type}
+            placeholder={placeholder}
+            required={required}
+            onChange={(e)=>setFormData({...formData,[key]:e.target.value})}
+            className="biz-input"
+          />
+        ))}
 
-        setLoading(true);
-        setStatus("");
+        {/* ---------- CATEGORY ---------- */}
+        <select
+          required
+          onChange={(e)=>setFormData({...formData,category:e.target.value})}
+          className="biz-input appearance-none"
+        >
+          <option value="">Select Category</option>
+          {categories.map(c => (
+            <option key={c} value={c}>{c}</option>
+          ))}
+        </select>
 
-        try {
-            const reader = new FileReader();
+        {formData.category === "Other" && (
+          <input
+            placeholder="Please specify"
+            required
+            onChange={(e)=>setFormData({...formData,otherCategory:e.target.value})}
+            className="biz-input"
+          />
+        )}
 
-            reader.onload = async () => {
-                const base64File = reader.result.split(",")[1];
+        {/* ---------- CV UPLOAD ---------- */}
+        <div
+          onDrop={handleDrop}
+          onDragOver={(e)=>e.preventDefault()}
+          className="
+            border-2 border-dashed border-biz-bronze/30
+            rounded-xl p-6
+            text-center
+            text-biz-charcoal-soft
+            bg-biz-cream
+            transition-all duration-300
+            hover:border-biz-bronze
+            hover:bg-biz-cream-dark
+          "
+        >
+          {file ? (
+            <p className="font-medium text-biz-charcoal-ink">
+              {file.name} ({(file.size/1024/1024).toFixed(2)} MB)
+            </p>
+          ) : (
+            <p>Drag & drop CV here or click below</p>
+          )}
 
-                const payload = {
-                    name: formData.name,
-                    email: formData.email,
-                    contact: formData.contact,
-                    altContact: formData.altContact,
-                    category: formData.category,
-                    location: formData.location,
-                    cvName: formData.cvFile.name,
-                    cvType: formData.cvFile.type,
-                    cvFile: base64File,
-                };
+          <input
+            type="file"
+            accept=".pdf,.doc"
+            onChange={(e)=>handleFile(e.target.files[0])}
+            className="
+              mt-3 text-sm
+              file:mr-4 file:py-2 file:px-4
+              file:rounded-full
+              file:border-0
+              file:bg-biz-bronze
+              file:text-white
+              file:font-medium
+              hover:file:bg-biz-bronze-dark
+              transition
+            "
+          />
+        </div>
 
-                const controller = new AbortController();
-                setTimeout(() => controller.abort(), 15000); // 15s timeout
+        {/* ---------- ERROR ---------- */}
+        {error && (
+          <p className="text-sm text-red-600">{error}</p>
+        )}
 
-                const response = await fetch(
-                    "https://script.google.com/macros/s/AKfycby_PvdHv2eMYZfrD79METs_JCkJu9AT3fQIUy4lbJT4oFAXK3y42g13YrGXT-AcerCg9g/exec",
-                    {
-                        method: "POST",
-                        body: JSON.stringify(payload),
-                        signal: controller.signal,
-                    }
-                );
+        {/* ---------- SUBMIT ---------- */}
+        <button
+          disabled={loading}
+          className="
+            mt-4 py-3 rounded-full
+            bg-biz-charcoal-ink
+            text-biz-cream-light
+            font-semibold tracking-wide
+            hover:bg-biz-bronze
+            transition-all duration-300
+            disabled:opacity-50
+            disabled:cursor-not-allowed
+          "
+        >
+          {loading ? "Submitting..." : "Submit CV"}
+        </button>
+      </motion.form>
+    )}
+  </AnimatePresence>
+</section>
 
-
-                const result = await response.json();
-
-                if (result.success) {
-                    setStatus("CV submitted successfully.");
-                    setFormData({
-                        name: "",
-                        email: "",
-                        contact: "",
-                        altContact: "",
-                        category: "",
-                        location: "",
-                        cvFile: null,
-                    });
-                } else {
-                    setStatus("Submission failed. Please try again.");
-                }
-
-                setLoading(false);
-            };
-
-            reader.readAsDataURL(formData.cvFile);
-        } catch (error) {
-            setLoading(false);
-            setStatus("Something went wrong. Please try again.");
-        }
-    };
-
-    return (
-        <motion.div
-  initial={{ opacity: 0, y: 48 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{
-    duration: 0.6,
-    ease: [0.215, 0.61, 0.355, 1],
-  }}
-  viewport={{ once: true, margin: "-80px" }}
-  >
-       <form
-  onSubmit={handleSubmit}
-  className="
-    max-w-3xl mx-auto
-    p-10 md:p-12
-    bg-white
-    rounded-[2.5rem]
-    shadow-[0_40px_80px_rgba(0,0,0,0.08)]
-    space-y-8
-  "
->
-  {/* Header */}
-  <div className="text-center space-y-3">
-    <span className="text-xs font-bold tracking-[0.35em] uppercase text-gray-500">
-      Career Application
-    </span>
-    <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-gray-900">
-      Upload Your CV
-    </h2>
-    <p className="text-gray-500 text-sm max-w-md mx-auto">
-      Share your details and resume. Our team will review your profile carefully.
-    </p>
-  </div>
-
-  {/* Grid Inputs */}
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-    <input
-      type="text"
-      name="name"
-      placeholder="Full Name"
-      value={formData.name}
-      onChange={handleChange}
-      required
-      className="input-field"
-    />
-
-    <input
-      type="email"
-      name="email"
-      placeholder="Email Address"
-      value={formData.email}
-      onChange={handleChange}
-      required
-      className="input-field"
-    />
-
-    <input
-      type="tel"
-      name="contact"
-      placeholder="Contact Number"
-      value={formData.contact}
-      onChange={handleChange}
-      required
-      className="input-field"
-    />
-
-    <input
-      type="tel"
-      name="altContact"
-      placeholder="Alternate Contact (optional)"
-      value={formData.altContact}
-      onChange={handleChange}
-      className="input-field"
-    />
-  </div>
-
-  {/* Category */}
- <select
-  name="category"
-  value={formData.category}
-  onChange={handleChange}
-  required
-  className="input-field"
->
-  <option value="">Select Category</option>
-  <option value="Developer">Developer</option>
-  <option value="Designer">Designer</option>
-  <option value="Marketing">Marketing</option>
-  <option value="Operations">Operations</option>
-  <option value="Other">Other</option>
-</select>
-
-{formData.category === "Other" && (
-  <input
-    type="text"
-    name="customCategory"
-    placeholder="Enter your category"
-    value={formData.customCategory}
-    onChange={handleChange}
-    required
-    className="input-field"
-  />
-)}
-
-
-  {/* Location */}
-  <input
-    type="text"
-    name="location"
-    placeholder="Place of Living"
-    value={formData.location}
-    onChange={handleChange}
-    required
-    className="input-field"
-  />
-
-  {/* File Upload */}
-  <div className="space-y-2">
-    <label className="block text-sm font-semibold text-gray-700">
-      Upload CV (PDF / DOC)
-    </label>
-    <label className="inline-flex items-center gap-2 text-xs font-medium text-gray-600 bg-gray-50 px-3 py-1.5 rounded-full border border-gray-200">
-  <span className="text-gray-400">Format:</span>
-  <span className="font-semibold text-biz-bronze">Name_Category.pdf</span>
-</label>
-
-    <input
-      type="file"
-      name="cvFile"
-      accept=".pdf,.doc,.docx"
-      onChange={handleChange}
-      required
-      className="
-        w-full
-        text-sm
-        file:mr-4
-        file:py-3
-        file:px-6
-        file:rounded-full
-        file:border-0
-        file:bg-black
-        file:text-white
-        file:font-bold
-        hover:file:opacity-90
-        cursor-pointer
-      "
-    />
-    <p className="text-xs text-gray-400">
-      Max file size: 2MB
-    </p>
-  </div>
-
-  {/* Submit Button */}
-  <button
-    type="submit"
-    disabled={loading}
-    className="
-      group
-      relative
-      w-full
-      py-4
-      rounded-full
-      bg-black
-      text-white
-      font-bold
-      tracking-wide
-      transition-all
-      hover:opacity-90
-      disabled:opacity-50
-      disabled:cursor-not-allowed
-    "
-  >
-    {loading ? "Submitting..." : "Submit CV"}
-  </button>
-
-  {/* Status Message */}
-  {status && (
-    <p className="text-center text-sm text-gray-600 pt-2">
-      {status}
-    </p>
-  )}
-</form>
-</motion.div>
-
-    );
+  );
 };
 
 export default CV;

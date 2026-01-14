@@ -90,3 +90,43 @@
     focus:border-black
     transition;
 }
+
+
+/* Premium Input Style – BiznorX */
+.biz-input {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border-radius: 0.9rem;
+  border: 1px solid rgba(122, 30, 30, 0.18); /* bronze soft */
+  background-color: #FFFFFF;
+  color: #180F0C; /* biz-charcoal-ink */
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.25s ease;
+  outline: none;
+}
+
+/* Placeholder */
+.biz-input::placeholder {
+  color: #75665F; /* biz-charcoal-soft */
+  font-weight: 400;
+}
+
+/* Focus state */
+.biz-input:focus {
+  border-color: #7A1E1E; /* biz-bronze */
+  box-shadow: 0 0 0 3px rgba(122, 30, 30, 0.12);
+  background-color: #FFFFFF;
+}
+
+/* Hover (subtle, not noisy) */
+.biz-input:hover {
+  border-color: rgba(122, 30, 30, 0.35);
+}
+
+/* Disabled */
+.biz-input:disabled {
+  background-color: #F1ECE9;
+  cursor: not-allowed;
+}
+
