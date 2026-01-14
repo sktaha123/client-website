@@ -73,3 +73,20 @@
     color: var(--color-biz-bronze);
   }
 }
+
+.input-field {
+  @apply
+    w-full
+    p-4
+    rounded-xl
+    border
+    border-gray-200
+    bg-white
+    text-gray-900
+    placeholder-gray-400
+    focus:outline-none
+    focus:ring-2
+    focus:ring-black/10
+    focus:border-black
+    transition;
+}

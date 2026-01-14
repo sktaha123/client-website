@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import ExpertiseSection from '@/components/software/ExpertiseSection';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Rocket, Monitor, Layers, Palette, BarChart, 
-  ArrowRight,ArrowUpRight, Plus, Minus, Check, ShieldCheck, 
-  Zap, Globe, Cpu 
+import {
+  Rocket, Monitor, Layers, Palette, BarChart,
+  ArrowRight, ArrowUpRight, Plus, Minus, Check, ShieldCheck,
+  Zap, Globe, Cpu
 } from 'lucide-react';
 
 const services = [
   {
     title: "Software Development",
     icon: <Cpu />,
-    img: "https://images.unsplash.com/photo-1518433278981-2a2df4aa4a9a?q=80&w=1200&auto=format&fit=crop",
+    img: "/cardsimages/softsoft.webp",
     desc: "We deliver secure, scalable, and high-performance software development services tailored to complex business requirements, operational workflows, and long-term growth.",
     items: [
       "Custom enterprise software solutions",
@@ -23,7 +23,7 @@ const services = [
   {
     title: "Website Development",
     icon: <Globe />,
-    img: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?q=80&w=1200&auto=format&fit=crop",
+    img: "/cardsimages/softweb.webp",
     desc: "We design and develop fast, responsive, and SEO-friendly websites that strengthen digital presence, improve user experience, and drive measurable conversions.",
     items: [
       "Corporate & business website development",
@@ -35,7 +35,7 @@ const services = [
   {
     title: "SaaS Platform Development",
     icon: <Layers />,
-    img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop",
+    img: "/cardsimages/softsaas.webp",
     desc: "We help businesses plan, build, and scale SaaS platforms with clean architecture, intuitive user flows, and cloud-ready infrastructure designed for growth.",
     items: [
       "SaaS MVP & product development",
@@ -47,7 +47,7 @@ const services = [
   {
     title: "Creative Content & Design",
     icon: <Palette />,
-    img: "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=1200&auto=format&fit=crop",
+    img: "/cardsimages/softcontent.webp",
     desc: "We create strategic visual design and creative content that strengthens brand identity, builds trust, and communicates clarity across digital platforms.",
     items: [
       "UI/UX design systems & user flows",
@@ -59,7 +59,7 @@ const services = [
   {
     title: "Digital Marketing",
     icon: <BarChart />,
-    img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop",
+    img: "/cardsimages/softmarket.webp",
     desc: "We deliver data-driven digital marketing services that increase visibility, attract the right audience, and convert engagement into sustainable business growth.",
     items: [
       "SEO & content marketing strategy",
@@ -103,11 +103,11 @@ const Software = () => {
 
   return (
     <div className="bg-biz-cream font-dm text-biz-charcoal selection:bg-biz-bronze selection:text-white">
-      
+
       {/* --- HERO SECTION --- */}
-      <section className="relative pt-12 pb-20 lg:pt-7 lg:pb-32 px-6 overflow-hidden">
+      <section className="relative pt-17 pb-20 lg:pt-7 lg:pb-32 px-6 overflow-hidden">
         <div className="max-w-7xl mx-auto relative z-10">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -121,28 +121,28 @@ const Software = () => {
               Where Strategy Meets <span className="text-biz-bronze">Execution.</span>
             </h1>
             <p className="text-biz-charcoal-muted text-xl max-w-3xl mx-auto mb-12 leading-relaxed">
-From custom software to SaaS platforms and high-performance websites, we build digital systems that help businesses operate smarter, scale faster, and stay competitive in a changing market.            </p>
+              From custom software to SaaS platforms and high-performance websites, we build digital systems that help businesses operate smarter, scale faster, and stay competitive in a changing market.            </p>
             <motion.button
-  whileHover={{ scale: 1.03 }}
-  whileTap={{ scale: 0.98 }}
-  className="group relative cursor-pointer inline-flex items-center gap-4 overflow-hidden rounded-biz bg-biz-charcoal-ink px-12 py-6 font-bold text-biz-cream-light transition-colors duration-300 hover:bg-biz-bronze shadow-xl shadow-biz-charcoal-ink/25 mx-auto"
->
-  <span className="relative z-10 tracking-widest uppercase text-sm">
-Talk to Our Team  </span>
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.98 }}
+              className="group relative cursor-pointer inline-flex items-center gap-4 overflow-hidden rounded-biz bg-biz-charcoal-ink px-12 py-6 font-bold text-biz-cream-light transition-colors duration-300 hover:bg-biz-bronze shadow-xl shadow-biz-charcoal-ink/25 mx-auto"
+            >
+              <span className="relative z-10 tracking-widest uppercase text-sm">
+                Talk to Our Team  </span>
 
-  {/* Arrow Container */}
-  <div className="relative z-10 flex h-7 w-7 items-center justify-center rounded-full bg-biz-cream-light/20 transition-transform duration-500 transform group-hover:translate-x-1 group-hover:rotate-45">
-    <ArrowUpRight className="h-4 w-4" />
-  </div>
+              {/* Arrow Container */}
+              <div className="relative z-10 flex h-7 w-7   aspect-square shrink-0 items-center justify-center rounded-full bg-biz-cream-light/20 transition-transform duration-500 transform group-hover:translate-x-1 group-hover:rotate-45">
+                <ArrowUpRight className="h-4 w-4" />
+              </div>
 
-  {/* Light Sweep */}
-  <motion.div
-    initial={{ x: "-105%" }}
-    whileHover={{ x: "105%" }}
-    transition={{ duration: 0.6, ease: "easeInOut" }}
-    className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-biz-cream-light/10 to-transparent"
-  />
-</motion.button>
+              {/* Light Sweep */}
+              <motion.div
+                initial={{ x: "-105%" }}
+                whileHover={{ x: "105%" }}
+                transition={{ duration: 0.6, ease: "easeInOut" }}
+                className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-biz-cream-light/10 to-transparent"
+              />
+            </motion.button>
 
 
           </motion.div>
@@ -155,7 +155,7 @@ Talk to Our Team  </span>
 
       {/* --- FAQ SECTION WITH ANIMATION --- */}
       <section className="py-32 bg-biz-cream">
-        <div className="max-w-4xl mx-auto px-6">
+        <div className=" max-w-[99vw] md:max-w-5xl mx-auto px-6">
           <div className="text-center mb-20">
             <span className="professional-label mb-4 block">Clear Answers</span>
             <h2 className="font-alix text-4xl md:text-5xl font-bold">Frequently Asked Questions</h2>
@@ -163,11 +163,11 @@ Talk to Our Team  </span>
 
           <div className="space-y-0">
             {faqs.map((faq, i) => (
-              <div 
-                key={i} 
-                className={`  transition-all duration-300 ${activeFaq === i ? 'border-biz-bronze bg-biz-cream-dark' : 'border-biz-sand bg-transparent'}`}
+              <div
+                key={i}
+                className={`  transition-all duration-300 ${activeFaq === i ? 'border-biz-bronze ' : 'border-biz-sand bg-transparent'}`}
               >
-                <button 
+                <button
                   onClick={() => setActiveFaq(activeFaq === i ? null : i)}
                   className="w-full px-8 py-7 flex justify-between items-center text-left"
                 >
@@ -176,14 +176,14 @@ Talk to Our Team  </span>
                     <Plus size={20} />
                   </div>
                 </button>
-                
+
                 <AnimatePresence>
                   {activeFaq === i && (
                     <motion.div
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.4, ease: "easeInOut" }}
+                      transition={{ duration: 0.25, ease: "easeInOut" }}
                       className="overflow-hidden"
                     >
                       <div className="px-8 pb-8 text-biz-bronze leading-relaxed text-lg border-t border-biz-sand/50 pt-6">
@@ -210,27 +210,27 @@ Talk to Our Team  </span>
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.button
-  whileHover={{ scale: 1.03 }}
-  whileTap={{ scale: 0.98 }}
-  className="group relative inline-flex items-center gap-4 overflow-hidden rounded-full bg-biz-bronze px-12 py-6 font-bold text-lg text-biz-cream-light transition-all hover:bg-biz-bronze-dark shadow-xl shadow-biz-bronze/30"
->
-  <span className="relative z-10 tracking-widest uppercase text-sm">
-    Start Your Project
-  </span>
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.98 }}
+                className="group relative inline-flex items-center gap-4 overflow-hidden rounded-full bg-biz-bronze px-12 py-6 font-bold text-lg text-biz-cream-light transition-all hover:bg-biz-bronze-dark shadow-xl shadow-biz-bronze/30"
+              >
+                <span className="relative z-10 tracking-widest uppercase text-sm">
+                  Start Your Project
+                </span>
 
-  <div className="relative z-10 flex h-7 w-7 items-center justify-center rounded-full bg-biz-cream-light/20 transition-transform duration-500 group-hover:rotate-45">
-    <ArrowUpRight className="h-4 w-4" />
-  </div>
+                <div className="relative z-10   aspect-square shrink-0 flex h-7 w-7 items-center justify-center rounded-full bg-biz-cream-light/20 transition-transform duration-500 group-hover:rotate-45">
+                  <ArrowUpRight className="h-4 w-4" />
+                </div>
 
-  <motion.div
-    initial={{ x: "-105%" }}
-    whileHover={{ x: "105%" }}
-    transition={{ duration: 0.6, ease: "easeInOut" }}
-    className="absolute inset-0 bg-gradient-to-r from-transparent via-biz-cream-light/10 to-transparent pointer-events-none"
-  />
-</motion.button>
+                <motion.div
+                  initial={{ x: "-105%" }}
+                  whileHover={{ x: "105%" }}
+                  transition={{ duration: 0.6, ease: "easeInOut" }}
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-biz-cream-light/10 to-transparent pointer-events-none"
+                />
+              </motion.button>
 
-              
+
             </div>
           </div>
           {/* Decorative Circles */}

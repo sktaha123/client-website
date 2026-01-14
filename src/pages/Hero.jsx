@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { ArrowUpRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
 export function Hero() {
   const [index, setIndex] = useState(0);
+  const navigate = useNavigate();
+
   const words = [
     { text: "Innovate", class: "text-biz-cream-light" },
     { text: "Integrity", class: "text-biz-bronze italic font-serif" },
@@ -29,6 +32,8 @@ export function Hero() {
       },
     }),
   };
+
+
 
   return (
     <section className="relative min-h-[85vh] md:min-h-[80vh] px-4 md:px-8 md:pt-[10px] font-dm overflow-hidden bg-biz-cream">
@@ -111,24 +116,27 @@ export function Hero() {
               </p>
 
               <div className="flex flex-wrap gap-4">
-                <motion.a
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.98 }}
-                  href="#cv-upload"
-                  className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-biz-bronze px-8 py-4 text-biz-cream-light transition-all hover:bg-biz-charcoal shadow-xl shadow-biz-charcoal-ink/20"
-                >
-                  <span className="relative z-10 font-bold tracking-widest uppercase text-sm">Upload Your CV</span>
-                  <div className="relative z-10 flex h-6 w-6 items-center justify-center rounded-full bg-biz-cream-light/20 transition-transform duration-500 group-hover:rotate-45">
-                    <ArrowUpRight className="h-4 w-4" />
-                  </div>
+                 <motion.button
+      whileHover={{ scale: 1.03 }}
+      whileTap={{ scale: 0.98 }}
+      onClick={() => navigate("/upload-cv")}
+      className="group relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-biz-bronze px-8 py-4 text-biz-cream-light transition-all hover:bg-biz-charcoal shadow-xl shadow-biz-charcoal-ink/20"
+    >
+      <span className="relative z-10 font-bold tracking-widest uppercase text-sm">
+        Upload Your CV
+      </span>
 
-                  <motion.div
-                    initial={{ x: "-105%" }}
-                    whileHover={{ x: "105%" }}
-                    transition={{ duration: 0.6, ease: "easeInOut" }}
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-biz-cream-light/10 to-transparent pointer-events-none"
-                  />
-                </motion.a>
+      <div className="relative z-10 flex h-6 w-6 items-center justify-center rounded-full bg-biz-cream-light/20 transition-transform duration-500 group-hover:rotate-45">
+        <ArrowUpRight className="h-4 w-4" />
+      </div>
+
+      <motion.div
+        initial={{ x: "-105%" }}
+        whileHover={{ x: "105%" }}
+        transition={{ duration: 0.6, ease: "easeInOut" }}
+        className="absolute inset-0 bg-gradient-to-r from-transparent via-biz-cream-light/10 to-transparent pointer-events-none"
+      />
+    </motion.button>
               </div>
             </motion.div>
           </div>

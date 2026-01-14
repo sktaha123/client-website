@@ -9,6 +9,7 @@ import Contact from "./pages/Contact.jsx";
 import Process from "./pages/Process.jsx";
 import { Whychooseus } from "./pages/Whychooseus.jsx";
 import Software from "./pages/Software.jsx";
+import CV from "./pages/CV.jsx";
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route path="/whychooseus" element={<Whychooseus />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/software" element={<Software />} />
+          <Route path="/upload-cv" element={<CV />} /> 
         </Route>
       </Routes>
     </BrowserRouter>

@@ -93,7 +93,7 @@ const ExpertiseBlock = ({ service, index, total }) => {
       style={{ zIndex: index + 1 }}
     >
       <div
-        className={`relative flex flex-col lg:flex-row items-center h-[85vh] lg:h-[80vh] w-full bg-white lg:bg-transparent rounded-[3rem] lg:rounded-none shadow-xl shadow-biz-charcoal-ink/5 lg:shadow-none overflow-hidden lg:overflow-visible ${
+        className={`relative flex flex-col lg:flex-row items-center h-[85vh] lg:h-[80vh] w-full bg-white lg:bg-transparent rounded-[3rem] lg:rounded-none  shadow-biz-charcoal-ink/5 lg:shadow-none overflow-hidden lg:overflow-visible ${
           index % 2 !== 0 ? "lg:flex-row-reverse" : ""
         }`}
       >
