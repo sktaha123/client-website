@@ -32,7 +32,7 @@ export function Hero() {
 
   return (
     <section className="relative min-h-[85vh] md:min-h-[80vh] px-4 md:px-8 md:pt-[10px] font-dm overflow-hidden bg-biz-cream">
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, scale: 0.98 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1, ease: "easeOut" }}
@@ -45,17 +45,17 @@ export function Hero() {
           className="absolute inset-0 bg-cover bg-center will-change-transform transition-transform duration-1000 ease-out hover:scale-105"
           style={{
             backgroundImage: "url('/svgs/heroimage.webp')",
-            backgroundColor: "#2D2219" 
+            backgroundColor: "#2D2219"
           }}
         />
-        
+
         <div className="absolute inset-0 bg-gradient-to-r from-biz-charcoal-ink/80 via-biz-charcoal/40 to-biz-charcoal-ink/80 pointer-events-none" />
 
         <div className="relative z-30 flex h-full min-h-[85vh] md:min-h-[95vh] w-full flex-col justify-end pb-12 md:pb-24 px-6 md:px-16">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
-            
+
             <div className="md:col-span-7">
-              <motion.span 
+              <motion.span
                 custom={0}
                 initial="hidden"
                 animate="visible"
@@ -64,7 +64,7 @@ export function Hero() {
               >
                 Workforce Excellence
               </motion.span>
-              
+
               {/* NEXT LEVEL TEXT TRANSITION START */}
               <h1 className="text-biz-cream-light text-6xl md:text-[7.5rem] leading-[1.1] font-light tracking-tightest h-[1.2em] flex items-center overflow-hidden">
                 <AnimatePresence mode="wait">
@@ -99,7 +99,7 @@ export function Hero() {
               {/* NEXT LEVEL TEXT TRANSITION END */}
             </div>
 
-            <motion.div 
+            <motion.div
               custom={4}
               initial="hidden"
               animate="visible"
@@ -121,8 +121,8 @@ export function Hero() {
                   <div className="relative z-10 flex h-6 w-6 items-center justify-center rounded-full bg-biz-cream-light/20 transition-transform duration-500 group-hover:rotate-45">
                     <ArrowUpRight className="h-4 w-4" />
                   </div>
-                  
-                  <motion.div 
+
+                  <motion.div
                     initial={{ x: "-105%" }}
                     whileHover={{ x: "105%" }}
                     transition={{ duration: 0.6, ease: "easeInOut" }}
@@ -134,17 +134,17 @@ export function Hero() {
           </div>
         </div>
 
-        <motion.div 
-          animate={{ 
+        <motion.div
+          animate={{
             scale: [1, 1.05, 1],
-            opacity: [0.15, 0.25, 0.15] 
+            opacity: [0.15, 0.25, 0.15]
           }}
-          transition={{ 
-            duration: 10, 
-            repeat: Infinity, 
-            ease: "linear" 
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "linear"
           }}
-          className="absolute -bottom-20 -left-20 h-80 w-80 rounded-full bg-biz-bronze blur-[100px] pointer-events-none will-change-transform" 
+          className="absolute -bottom-20 -left-20 h-80 w-80 rounded-full bg-biz-bronze blur-[100px] pointer-events-none will-change-transform"
         />
       </motion.div>
     </section>
