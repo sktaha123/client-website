@@ -218,6 +218,11 @@ const CV = () => {
     <label className="block text-sm font-semibold text-gray-700">
       Upload CV (PDF / DOC)
     </label>
+    <label className="inline-flex items-center gap-2 text-xs font-medium text-gray-600 bg-gray-50 px-3 py-1.5 rounded-full border border-gray-200">
+  <span className="text-gray-400">Format:</span>
+  <span className="font-semibold text-biz-bronze">Name_Category.pdf</span>
+</label>
+
     <input
       type="file"
       name="cvFile"
