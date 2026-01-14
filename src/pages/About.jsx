@@ -89,7 +89,7 @@ export const About = () => {
                 </span>
                 <br /><br />
                 <span>
-                  BiznorX is more than a name—it’s a commitment to excellence, a promise of innovation, and a symbol of unity across markets.
+                  biznorX is more than a name—it’s a commitment to excellence, a promise of innovation, and a symbol of unity across markets.
                 </span>
               </p>
             </div>

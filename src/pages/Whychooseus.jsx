@@ -113,7 +113,7 @@ export function Whychooseus() {
               <h2 className="text-4xl md:text-5xl font-light leading-tight">
                 Why Industry <br />
                 Leaders Trust <br />
-                <span className="font-serif  text-biz-bronze">BiznorX</span>
+                <span className="font-serif  text-biz-bronze">biznorX</span>
               </h2>
             </div>
 

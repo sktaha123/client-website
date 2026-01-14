@@ -93,14 +93,14 @@ export function Contact() {
               >
                 Contact
               </motion.h2>
-              <h3 className="text-6xl lg:text-7xl text-biz-charcoal tracking-tighter font-bold uppercase leading-[0.85] overflow-hidden">
+              <h3 className="text-6xl lg:text-7xl text-biz-charcoal tracking-tighter font-bold  leading-[0.85] overflow-hidden">
                 <motion.span
                   initial={{ y: "100%" }}
                   whileInView={{ y: 0 }}
                   transition={{ duration: 0.8, ease: "circOut" }}
                   className="inline-block"
                 >
-                  Biznor<span className="text-biz-bronze/80">X</span>
+                  biznor<span className="text-biz-bronze/80">X</span>
                 </motion.span>
               </h3>
             </div>
