@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ArrowRight, Menu, X } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,6 +25,7 @@ const Navbar = () => {
     { name: "Industries", to: "/industries" },
     { name: "Why BiznorX", to: "/whychooseus" },
     { name: "Software Solutions", to: "/software" },
+    { name: "Contact Us", to: "/contact" },
   ];
 
   return (
@@ -36,7 +37,7 @@ const Navbar = () => {
             w-full md:w-[99vw] max-w-7xl
             bg-biz-cream/90 backdrop-blur-xl
             md:rounded-biz
-            shadow-[0_10px_40px_rgba(45,34,25,0.04)]
+            shadow-[0_2px_40px_rgba(45,34,25,0.04)]
             transition-all duration-500
           "
         >
@@ -55,24 +56,32 @@ const Navbar = () => {
             </Link>
 
             {/* CENTER — DESKTOP NAV */}
+            {/* CENTER — DESKTOP NAV */}
             <nav className="hidden lg:flex items-center space-x-10">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  to={link.to}
-                  className="
-                    font-dm text-[10px]
-                    uppercase tracking-widest
-                    font-bold
-                    text-biz-charcoal/60
-                    hover:text-biz-bronze
-                    transition-colors
-                  "
-                >
-                  {link.name}
-                </Link>
-              ))}
+              {navLinks
+                .filter((link) => link.name !== "Contact Us")
+                .map((link) => (
+                  <NavLink
+                    key={link.name}
+                    to={link.to}
+                    className={({ isActive }) =>
+                      `
+          font-dm text-[10px]
+          uppercase tracking-widest
+          font-bold
+          transition-colors
+          ${isActive
+                        ? "text-biz-bronze"
+                        : "text-biz-charcoal/60 hover:text-biz-bronze"
+                      }
+          `
+                    }
+                  >
+                    {link.name}
+                  </NavLink>
+                ))}
             </nav>
+
 
             {/* RIGHT — CTA + HAMBURGER */}
             <div className="flex items-center space-x-4 z-[60]">
@@ -122,14 +131,24 @@ const Navbar = () => {
 
           <nav className="flex flex-col space-y-6">
             {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.to}
-                className="text-4xl font-light text-biz-charcoal"
-              >
-                {link.name}
-              </Link>
-            ))}
+    <NavLink
+      key={link.name}
+      to={link.to}
+      className={({ isActive }) =>
+        `
+        text-4xl font-light
+        transition-colors
+        ${
+          isActive
+            ? "text-biz-bronze"
+            : "text-biz-charcoal"
+        }
+        `
+      }
+    >
+      {link.name}
+    </NavLink>
+  ))}
           </nav>
         </div>
       </div>

@@ -7,6 +7,7 @@ import {
   Globe,
   GraduationCap,
   Laptop,
+  Code2,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -62,6 +63,13 @@ const services = [
     cat: "INNOVATION",
     desc: "Strategic consulting blending technical expertise with insight for sustainable business innovation and digital shifts.",
   },
+  {
+  id: "08",
+  icon: Code2,
+  title: "Software Services",
+  cat: "TECHNOLOGY",
+  desc: "End-to-end software services delivering scalable, secure, and performance-driven solutions tailored to evolving business needs.",
+},
 ];
 
 const serviceImages = [
@@ -72,6 +80,7 @@ const serviceImages = [
   "/cardsimages/s5.webp",
   "/cardsimages/s6.webp",
   "/cardsimages/s7.webp",
+  "/cardsimages/s8.webp",
 ];
 
 /* ---------------- COMPONENT ---------------- */
@@ -123,7 +132,7 @@ export function Services() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.25, ease: "easeOut" }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
                 className="
                   absolute inset-0 w-full p-10 md:p-16 rounded-biz
                   overflow-hidden translate-z-0 will-change-[opacity]
