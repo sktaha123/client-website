@@ -79,15 +79,15 @@ export const About = () => {
 
             <div className="flex items-start gap-3 text-biz-charcoal-soft">
               <Quote className="h-5 w-5 text-biz-bronze/40 shrink-0" />
-              <p className="text-lg font-light leading-relaxed">
-                <span>
+              <p className="text-lg font-light flex flex-col leading-relaxed">
+                <span className="mb-2">
                   At biznorX, we are more than a platform—we are a new old business street. Rooted in integrity and honor, we blend the legacy of past generations with the speed and innovation of tomorrow’s technology.
                 </span>
-                <br /><br />
-                <span>
+                
+                <span className="mb-2">
                   For over 60 years, our legacy has been built on trust and resilience. Today, we carry it forward by empowering entrepreneurs and enterprises with solutions that unite tradition and digital agility.
                 </span>
-                <br /><br />
+               
                 <span>
                   biznorX is more than a name—it’s a commitment to excellence, a promise of innovation, and a symbol of unity across markets.
                 </span>
@@ -102,10 +102,10 @@ export const About = () => {
               <AnimatePresence mode="wait">
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, x: 20 }}
+                  initial={{ opacity: 0, x: 15 }}
                   animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  exit={{ opacity: 0, x: -15 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
                   className="relative w-full p-12 md:p-16 rounded-biz overflow-hidden border border-biz-bronze-pale/20 shadow-[20px_20px_60px_rgba(0,0,0,0.03)]"
                 >
                   {/* 🔹 BACKGROUND IMAGE PLACEHOLDER */}
@@ -118,7 +118,7 @@ export const About = () => {
                       className="w-full h-full object-cover opacity-0 animate-[fadeIn_0.6s_ease-out_forwards]"
                     />
 
-                    <div className="absolute inset-0 bg-black/35" />
+                    <div className="absolute inset-0 bg-black/60" />
                   </div>
 
 
