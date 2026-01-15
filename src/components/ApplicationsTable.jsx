@@ -19,7 +19,7 @@ export default function ApplicationsTable() {
         const res = await fetch(API_URL);
         const data = await res.json();
 
-        console.log("API DATA RECEIVED:", data);
+      
 
         if (Array.isArray(data)) {
           setRows(data);
