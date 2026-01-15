@@ -83,44 +83,63 @@ export default function ApplicationsTable() {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 10 }}
+      initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, ease: "easeOut" }}
+      transition={{ duration: 0.45, ease: "easeOut" }}
       className="w-full space-y-10"
     >
       {/* Header / Filter Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-6 rounded-2xl bg-white/70 px-8 py-6 shadow-sm backdrop-blur">
+      <div className="
+    flex flex-wrap items-center justify-between gap-6
+    rounded-2xl
+    bg-[var(--color-biz-cream-light)]
+    px-8 py-6
+    shadow-sm
+  ">
         <div>
-          <h3 className="text-xl font-semibold tracking-tight text-gray-900">
-            Applications
-            <span className="rounded-md bg-blue-50 ml-2 px-2.5 py-0.5 text-md font-bold text-blue-600">
-            {filteredRows.length}
-          </span>
-          </h3>
-          
-          <p className="mt-1 text-sm text-gray-500">
+          <div className="flex items-center gap-3">
+            <h3 className="text-xl font-semibold tracking-tight text-[var(--color-biz-charcoal)]">
+              Applications
+            </h3>
+            <span className="
+          rounded-full
+          bg-[var(--color-biz-bronze-pale)]
+          px-3 py-1
+          text-sm font-semibold
+          text-[var(--color-biz-bronze-dark)]
+        ">
+              {filteredRows.length}
+            </span>
+          </div>
+
+          <p className="mt-1 text-sm text-[var(--color-biz-charcoal-soft)]">
             Review and manage submitted profiles
           </p>
         </div>
 
-        {/* Styled Category Dropdown */}
-        <div className="relative">
+        {/* Category Dropdown */}
+        <div className="relative min-w-[220px]">
           <select
             value={category}
             onChange={(e) => setCategory(e.target.value)}
             className="
-          appearance-none
-          rounded-xl
-          border border-gray-200
-          bg-white/90
-          px-5 py-2.5 pr-10
-          text-sm text-gray-700
-          shadow-sm
-          transition
-          hover:border-gray-300
-          focus:border-gray-400
-          focus:outline-none
-        "
+      appearance-none
+      w-full
+      rounded-xl
+      border
+      border-[var(--color-biz-sand-muted)]
+      bg-[var(--color-biz-cream-light)]
+      px-5 py-2.5 pr-12
+      text-sm font-medium
+      text-[var(--color-biz-charcoal)]
+      shadow-sm
+      transition-all
+      hover:border-[var(--color-biz-charcoal-soft)]
+      focus:border-[var(--color-biz-bronze)]
+      focus:outline-none
+      focus:ring-1
+      focus:ring-[var(--color-biz-bronze-pale)]
+    "
           >
             {categories.map((cat) => (
               <option key={cat} value={cat}>
@@ -129,20 +148,48 @@ export default function ApplicationsTable() {
             ))}
           </select>
 
-          <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">
-            ▾
-          </span>
+          {/* Custom Chevron */}
+          <div className="
+    pointer-events-none
+    absolute right-4 top-1/2
+    -translate-y-1/2
+    text-[var(--color-biz-charcoal-soft)]
+  ">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path
+                fillRule="evenodd"
+                d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.25a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </div>
         </div>
+
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto rounded-2xl bg-white/70 shadow-sm backdrop-blur">
-       
+      <div className="
+    overflow-x-auto
+    rounded-2xl
+    bg-[var(--color-biz-cream-light)]
+    shadow-sm
+  ">
         <table className="w-full text-sm">
-          <thead className="sticky top-0 bg-gray-50/80 text-xs uppercase tracking-wide text-gray-500 backdrop-blur">
+          <thead className="
+        sticky top-0
+        bg-[var(--color-biz-cream-dark)]
+        text-xs uppercase tracking-wide
+        text-[var(--color-biz-charcoal-soft)]
+      ">
             <tr>
               <th className="px-6 py-4 text-left">Timestamp</th>
-              <th className="px-6 py-4 text-left">Name</th>
+              <th className="px-6 py-4 text-left">Candidate</th>
               <th className="px-6 py-4 text-left">Email</th>
               <th className="px-6 py-4 text-left">Contact</th>
               <th className="px-6 py-4 text-left">Alt. Contact</th>
@@ -153,56 +200,67 @@ export default function ApplicationsTable() {
             </tr>
           </thead>
 
-          <tbody className="divide-y divide-gray-100">
+          <tbody className="divide-y divide-[var(--color-biz-sand)]">
             {filteredRows.map((row, i) => (
               <motion.tr
                 key={i}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: i * 0.02 }}
-                className="transition hover:bg-gray-50/60"
+                className="
+              transition
+              hover:bg-[var(--color-biz-cream)]
+            "
               >
-
-                 <td className="px-6 py-4 text-xs text-gray-500">
-                  <div className="font-medium text-gray-900">
-                    {row.Timestamp ? format(new Date(row.Timestamp), 'MMM dd, yyyy') : 'N/A'}
+                <td className="px-6 py-4">
+                  <div className="text-sm font-medium text-[var(--color-biz-charcoal)]">
+                    {row.Timestamp
+                      ? format(new Date(row.Timestamp), "MMM dd, yyyy")
+                      : "N/A"}
                   </div>
-                  <div className="text-[10px] text-gray-400">
-                    {row.Timestamp ? formatDistanceToNow(new Date(row.Timestamp), { addSuffix: true }) : ''}
+                  <div className="mt-0.5 text-[11px] text-[var(--color-biz-charcoal-soft)]">
+                    {row.Timestamp
+                      ? formatDistanceToNow(new Date(row.Timestamp), { addSuffix: true })
+                      : ""}
                   </div>
                 </td>
-                
-                <td className="px-6 py-4 font-medium text-gray-900">
+
+                <td className="px-6 py-4 font-medium text-[var(--color-biz-charcoal)]">
                   {row.name || row.Name}
                 </td>
 
-                <td className="px-6 py-4 text-gray-600">
+                <td className="px-6 py-4 text-[var(--color-biz-charcoal-muted)]">
                   {row.email || row.Email}
                 </td>
 
-                <td className="px-6 py-4 text-gray-700">
+                <td className="px-6 py-4 text-[var(--color-biz-charcoal)]">
                   {row.contact || row.Contact}
                 </td>
 
-                <td className="px-6 py-4 text-gray-700">
+                <td className="px-6 py-4 text-[var(--color-biz-charcoal)]">
                   {row["alternate contact"] || row["Alternate Contact"]}
                 </td>
 
-                <td className="px-6 py-4 text-gray-600">
+                <td className="px-6 py-4 text-[var(--color-biz-charcoal-muted)]">
                   {row.location || row.Location}
                 </td>
 
-                <td className="px-6 py-4 text-gray-600">
+                <td className="px-6 py-4 text-[var(--color-biz-charcoal-muted)]">
                   {row.country || row.Country}
                 </td>
 
                 <td className="px-6 py-4">
-                  <span className="inline-flex items-center rounded-full bg-gray-100/70 px-3 py-1 text-xs font-medium text-gray-700">
+                  <span className="
+                inline-flex items-center
+                rounded-full
+                bg-[var(--color-biz-bronze-pale)]
+                px-3 py-1
+                text-xs font-medium
+                text-[var(--color-biz-bronze-dark)]
+              ">
                     {row.category || row.Categories}
                   </span>
                 </td>
-
-               
 
                 <td className="px-6 py-4">
                   <a
@@ -212,12 +270,13 @@ export default function ApplicationsTable() {
                     className="
                   inline-flex items-center
                   rounded-lg
+                  border border-[var(--color-biz-sand-muted)]
                   px-3 py-1.5
                   text-xs font-medium
-                  text-gray-700
+                  text-[var(--color-biz-charcoal)]
                   transition
-                  hover:bg-gray-900
-                  hover:text-white
+                  hover:bg-[var(--color-biz-bronze)]
+                  hover:text-[var(--color-biz-cream-light)]
                 "
                   >
                     View CV
@@ -234,14 +293,22 @@ export default function ApplicationsTable() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="rounded-2xl bg-white/70 py-16 text-center shadow-sm backdrop-blur"
+          className="
+        rounded-2xl
+        bg-[var(--color-biz-cream-light)]
+        py-20
+        text-center
+        shadow-sm
+      "
         >
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-[var(--color-biz-charcoal-soft)]">
             No applications found for this category.
           </p>
         </motion.div>
       )}
     </motion.div>
+
+
 
   );
 }
