@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+
+
+
 const CV = () => {
   const [formData, setFormData] = useState({
     name: "",
