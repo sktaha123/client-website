@@ -81,7 +81,7 @@ export const About = () => {
               <Quote className="h-5 w-5 text-biz-bronze/40 shrink-0" />
               <p className="text-lg font-light flex flex-col leading-relaxed">
                 <span className="mb-2">
-                  At biznorX, we are more than a platform—we are a new old business street. Rooted in integrity and honor, we blend the legacy of past generations with the speed and innovation of tomorrow’s technology.
+                  At <span className="text-biz-charcoal-ink lg:text-xl font-bold">biznor</span><span className="text-biz-bronze/80 lg:text-xl font-bold">X</span>, we are more than a platform—we are a new old business street. Rooted in integrity and honor, we blend the legacy of past generations with the speed and innovation of tomorrow’s technology.
                 </span>
                 
                 <span className="mb-2">
@@ -89,7 +89,7 @@ export const About = () => {
                 </span>
                
                 <span>
-                  biznorX is more than a name—it’s a commitment to excellence, a promise of innovation, and a symbol of unity across markets.
+                  <span className="text-biz-charcoal-ink lg:text-xl font-bold">biznor</span><span className="text-biz-bronze/80 lg:text-xl font-bold">X</span> is more than a name—it’s a commitment to excellence, a promise of innovation, and a symbol of unity across markets.
                 </span>
               </p>
             </div>

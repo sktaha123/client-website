@@ -121,7 +121,7 @@ const ExpertiseBlock = ({ service, index, total }) => {
           }}
           className={`w-full lg:w-[44%] lg:h-auto z-20 p-8 lg:p-14 lg:absolute lg:top-1/2 lg:-translate-y-1/2 ${
             index % 2 === 0 ? "lg:right-0" : "lg:left-0"
-          } bg-white lg:rounded-[2.5rem] lg:shadow-[0_30px_60px_rgba(0,0,0,0.08)]`}
+          } bg-white lg:rounded-[2.5rem] `}
         >
           <h3 className="font-alix text-3xl lg:text-4xl font-bold text-biz-charcoal-ink mb-4 lg:mb-6 tracking-tight">
             {service.title}

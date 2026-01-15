@@ -4,7 +4,7 @@ import { MapPin, Mail, Linkedin, Instagram, Facebook } from "lucide-react";
 import { FaXTwitter, FaWhatsapp } from "react-icons/fa6";
 
 const SOCIAL_LINKS = [
-  { icon: Instagram, href: "#", label: "Instagram" },
+  { icon: Instagram, href: "https://www.instagram.com/biznorx?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==", label: "Instagram" },
   { icon: FaXTwitter, href: "#", label: "Twitter" },
   { icon: Linkedin, href: "#", label: "LinkedIn" },
   { icon: Facebook, href: "#", label: "Facebook" },
@@ -52,7 +52,7 @@ const ITEM_VARIANTS = {
 };
 
 const LocationItem = React.memo(({ title, city }) => (
-  <motion.div 
+  <motion.div
     variants={ITEM_VARIANTS}
     className="flex items-start gap-4 group/loc cursor-default"
   >
@@ -81,11 +81,11 @@ export function Contact() {
         viewport={{ once: true, margin: "-100px" }}
       >
         <div className="grid lg:grid-cols-12 gap-20 items-start">
-          
+
           {/* LEFT: BRANDING & NARRATIVE */}
           <motion.div variants={ITEM_VARIANTS} className="lg:col-span-5 space-y-10">
             <div className="space-y-4">
-              <motion.h2 
+              <motion.h2
                 initial={{ opacity: 0, letterSpacing: "0.2em" }}
                 whileInView={{ opacity: 1, letterSpacing: "0.5em" }}
                 transition={{ duration: 1.5 }}
@@ -104,7 +104,7 @@ export function Contact() {
                 </motion.span>
               </h3>
             </div>
-            
+
             <p className="text-biz-charcoal/60 text-xl leading-relaxed font-light max-w-md">
               Enterprise-grade workforce solutions built on 60+ years of legacy. Serving global organizations with discipline and precision.
             </p>
@@ -120,13 +120,15 @@ export function Contact() {
                     <motion.a
                       key={social.label}
                       href={social.href}
-                      whileHover={{ 
-                        y: -5, 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{
+                        y: -2,
                         scale: 1.2,
-                        rotate: 5
+                        rotate: 2
                       }}
                       whileTap={{ scale: 0.9 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 40 }}
                       className="text-biz-charcoal/40 hover:text-biz-bronze transition-colors duration-300"
                     >
                       <Icon className="h-5 w-5" />

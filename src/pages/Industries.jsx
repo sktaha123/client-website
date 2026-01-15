@@ -76,7 +76,7 @@ const MarqueeRow = ({ items, direction = "left", speed = 45 }) => {
                 group relative flex items-center gap-4
                 w-[280px] md:w-[320px] md:h-[120px] p-6 rounded-xl
                 border border-biz-charcoal-ink/10
-                shadow-sm transition-all duration-300
+                 transition-all duration-300
                 hover:shadow-lg hover:border-biz-bronze/50
                 overflow-hidden bg-white
                 translate-z-0 will-change-transform
@@ -87,7 +87,7 @@ const MarqueeRow = ({ items, direction = "left", speed = 45 }) => {
                 className="absolute inset-0"
                 style={{
                   backgroundImage: `
-                    linear-gradient(rgba(0,0,0,0.60), rgba(0,0,0,0.60)),
+                    linear-gradient(rgba(0,0,0,0.60), rgba(0,0,0,0.20)),
                     url(${industr[industry.name]})
                   `,
                   backgroundSize: "cover",
@@ -111,8 +111,7 @@ const MarqueeRow = ({ items, direction = "left", speed = 45 }) => {
       </motion.div>
 
       {/* Edge fades */}
-      <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-      <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+      
     </div>
   );
 };

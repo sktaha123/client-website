@@ -111,7 +111,7 @@ export function Process() {
                   >
                     <div className="grid md:grid-cols-12 gap-8 pt-4 pl-12 md:pl-16">
                       <div className="md:col-span-8">
-                        <p className="text-lg text-biz-bronze font-light leading-relaxed">
+                        <p className="text-lg text-biz-bronze font-normal leading-relaxed">
                           {step.desc}
                         </p>
 

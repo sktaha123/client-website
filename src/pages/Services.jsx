@@ -213,7 +213,7 @@ export function Services() {
                   >
                     <span
                       className={`
-                        text-[10px] font-bold font-serif italic
+                        text-[12px] font-bold font-mono 
                         transition-colors duration-300
                         ${
                           isActive

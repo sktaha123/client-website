@@ -78,7 +78,7 @@ const CV = () => {
 
       try {
         await fetch(
-          "https://script.google.com/macros/s/AKfycbxRZCCyxXQc7_OEeXvcXtzGYaKKVMZbwD_nbl0ifJrehPQeRLle8N8Xv7mPx409XLY/exec",
+          "  https://script.google.com/macros/s/AKfycbwAfEvirqqAbDjiZL58jsowiLolBGUWy3J69ciIKqNWS8PU5EYxE2G7wlETuVj7UXrl/exec",
           {
             method: "POST",
             mode: "no-cors",
@@ -256,6 +256,7 @@ const CV = () => {
     )}
   </AnimatePresence>
 </section>
+
 
   );
 };

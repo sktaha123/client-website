@@ -196,7 +196,7 @@ const Alix = () => {
     "
   >
     {/* Placeholder Icon */}
-    <Cpu className="w-7 h-7 text-[var(--color-biz-charcoal-soft)]" />
+    <Cpu className="w-7  h-7 text-[var(--color-biz-charcoal-soft)]" />
 
     {/* 🔁 Replace later with real avatar */}
     {/*
@@ -255,6 +255,7 @@ const Alix = () => {
             <div
               className="
       relative
+      hidden
       bg-white
       rounded-[var(--radius-biz)]
       border border-[var(--color-biz-sand-muted)]
@@ -268,7 +269,7 @@ const Alix = () => {
     "
             >
               {/* Avatar Placeholder */}
-              <div className="flex flex-col items-center text-center px-10">
+              <div className="flex  flex-col items-center text-center px-10">
                 <div
                   className="
           w-40

@@ -5,7 +5,7 @@ export function Philosophy() {
   const { ref, isVisible } = useInView();
 
   return (
-    <section className="pt-25 md:py-24 md:mt-24 bg-biz-cream relative overflow-hidden font-dm">
+    <section className="py-30 md:py-24 md:mt-24 bg-biz-cream relative overflow-hidden font-dm">
       {/* Structural Background Element */}
      
 
@@ -31,22 +31,25 @@ export function Philosophy() {
           <Quote className="absolute -top-10 left-1/2 -translate-x-1/2 h-12 w-12 text-biz-bronze/10" />
           
           <blockquote
-            className="
-              text-3xl
-              md:text-5xl
-              lg:text-6xl
-              text-biz-charcoal
-              mb-16
-              leading-[1.2]
-              font-light
-              tracking-tightest
-            "
-          >
-            “We believe exceptional businesses are built on{" "}
-            <span className="text-biz-bronze italic font-serif">exceptional people</span>. 
-            Our role is to connect ambition with opportunity — responsibly, 
-            strategically, and at scale.”
-          </blockquote>
+  className="
+    text-3xl
+    md:text-5xl
+    lg:text-6xl
+    text-biz-charcoal
+    mb-16
+    leading-[1.2]
+    font-light
+    tracking-tightest
+  "
+>
+  “We believe strong businesses are built through{" "}
+  <span className="text-biz-bronze italic font-serif">
+    clarity, collaboration, and consistent </span> execution.
+  
+  <br />
+  Our role is to align ideas with opportunity — responsibly, strategically, and at scale.”
+</blockquote>
+
         </div>
 
         {/* Philosophy Signature */}

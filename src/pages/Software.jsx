@@ -127,8 +127,17 @@ const Software = () => {
               whileTap={{ scale: 0.98 }}
               className="group relative cursor-pointer inline-flex items-center gap-4 overflow-hidden rounded-biz bg-biz-charcoal-ink px-12 py-6 font-bold text-biz-cream-light transition-colors duration-300 hover:bg-biz-bronze shadow-xl shadow-biz-charcoal-ink/25 mx-auto"
             >
-              <span className="relative z-10 tracking-widest uppercase text-sm">
-                Talk to Our Team  </span>
+              <a
+                href="mailto:hello@biznorx.com
+  ?subject=Inquiry%20about%20Digital%20Production
+  &body=Hello%20Team,%0D%0A%0D%0AI%20would%20like%20to%20discuss%20your%20digital%20production%20services.%20Please%20let%20me%20know%20a%20convenient%20time%20to%20connect.%0D%0A%0D%0AThank%20you,"
+                className="cursor-pointer"
+              >
+                <span className="relative z-10 tracking-widest uppercase text-sm">
+                  Talk to Our Team
+                </span>
+              </a>
+
 
               {/* Arrow Container */}
               <div className="relative z-10 flex h-7 w-7   aspect-square shrink-0 items-center justify-center rounded-full bg-biz-cream-light/20 transition-transform duration-500 transform group-hover:translate-x-1 group-hover:rotate-45">
@@ -214,9 +223,17 @@ const Software = () => {
                 whileTap={{ scale: 0.98 }}
                 className="group relative inline-flex items-center gap-4 overflow-hidden rounded-full bg-biz-bronze px-12 py-6 font-bold text-lg text-biz-cream-light transition-all hover:bg-biz-bronze-dark shadow-xl shadow-biz-bronze/30"
               >
-                <span className="relative z-10 tracking-widest uppercase text-sm">
-                  Start Your Project
-                </span>
+                <a
+                  href="mailto:hello@biznorx.com
+  ?subject=Start%20a%20New%20Project
+  &body=Hello%20Team,%0D%0A%0D%0AI%20am%20interested%20in%20starting%20a%20new%20project.%20Please%20reach%20out%20to%20me%20with%20next%20steps.%0D%0A%0D%0ARegards,"
+                  className="cursor-pointer"
+                >
+                  <span className="relative z-10 tracking-widest uppercase text-sm">
+                    Start Your Project
+                  </span>
+                </a>
+
 
                 <div className="relative z-10   aspect-square shrink-0 flex h-7 w-7 items-center justify-center rounded-full bg-biz-cream-light/20 transition-transform duration-500 group-hover:rotate-45">
                   <ArrowUpRight className="h-4 w-4" />
