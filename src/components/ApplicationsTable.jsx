@@ -81,31 +81,45 @@ export default function ApplicationsTable() {
 
 
   const downloadCSV = () => {
-    if (!rows || rows.length === 0) return;
+  // 1. Check processedRows instead of the raw rows
+  if (!processedRows || processedRows.length === 0) {
+    alert("No data available to export with current filters.");
+    return;
+  }
 
-    const headers = Object.keys(rows[0]);
+  // 2. Use the headers from the first item of the filtered data
+  const headers = Object.keys(processedRows[0]);
 
-    const csvContent = [
-      headers.join(","), // header row
-      ...rows.map(row =>
-        headers
-          .map(h => `"${(row[h] ?? "").toString().replace(/"/g, '""')}"`)
-          .join(",")
-      )
-    ].join("\n");
+  const csvContent = [
+    headers.join(","), // header row
+    ...processedRows.map(row =>
+      headers
+        .map(h => {
+          const cellValue = row[h] ?? "";
+          // Clean the data: handle quotes and ensure it's a string
+          return `"${cellValue.toString().replace(/"/g, '""')}"`;
+        })
+        .join(",")
+    )
+  ].join("\n");
 
-    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
-    const url = URL.createObjectURL(blob);
+  // 3. Create the download link
+  const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  
+  // Optional: Dynamic filename based on filters
+  const fileName = `applications_${category}_${country}.csv`.toLowerCase();
+  
+  link.href = url;
+  link.setAttribute("download", fileName);
+  document.body.appendChild(link);
+  link.click();
 
-    const link = document.createElement("a");
-    link.href = url;
-    link.setAttribute("download", "applications.csv");
-    document.body.appendChild(link);
-    link.click();
-
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
-  };
+  // Cleanup
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+};
 
 
   return (
