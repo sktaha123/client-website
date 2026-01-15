@@ -33,14 +33,20 @@ export default function ApplicationsTable() {
     async function loadData() {
       try {
         setLoading(true);
-        // FIX: Use API_URL (with token) instead of the hardcoded one
         const res = await fetch(API_URL);
         const data = await res.json();
 
-
-
         if (Array.isArray(data)) {
-          setRows(data);
+          // --- THE FIX: FILTER OUT EMPTY ROWS ---
+          // This checks if the 'Name' or 'Email' exists and isn't just whitespace.
+          // If a row is empty, it is removed, and the data below it shifts up.
+          const validRows = data.filter(row => {
+            const name = (row.Name || row.name || "").toString().trim();
+            const email = (row.Email || row.email || "").toString().trim();
+            return name !== "" || email !== "";
+          });
+
+          setRows(validRows);
         } else {
           console.error("Data received is not an array:", data);
           setRows([]);
@@ -263,24 +269,29 @@ export default function ApplicationsTable() {
                 </td>
 
                 <td className="px-6 py-4">
-                  <a
-                    href={row["CV Link"] || row.fileUrl}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="
-                  inline-flex items-center
-                  rounded-lg
-                  border border-[var(--color-biz-sand-muted)]
-                  px-3 py-1.5
-                  text-xs font-medium
-                  text-[var(--color-biz-charcoal)]
-                  transition
-                  hover:bg-[var(--color-biz-bronze)]
-                  hover:text-[var(--color-biz-cream-light)]
-                "
-                  >
-                    View CV
-                  </a>
+                  {/* Check if either CV Link or fileUrl exists before showing the button */}
+                  {(row["CV Link"] || row.fileUrl) ? (
+                    <a
+                      href={row["CV Link"] || row.fileUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="
+        inline-flex items-center
+        rounded-lg
+        border border-[var(--color-biz-sand-muted)]
+        px-3 py-1.5
+        text-xs font-medium
+        text-[var(--color-biz-charcoal)]
+        transition
+        hover:bg-[var(--color-biz-bronze)]
+        hover:text-[var(--color-biz-cream-light)]
+      "
+                    >
+                      View CV
+                    </a>
+                  ) : (
+                    <span className="text-gray-300">—</span> // Shows a dash if no CV exists
+                  )}
                 </td>
               </motion.tr>
             ))}
