@@ -11,6 +11,7 @@ export default function ApplicationsTable() {
   const [country, setCountry] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
   const [sortConfig, setSortConfig] = useState({ key: 'Timestamp', direction: 'desc' });
+  
 
   // Pagination State
   const [currentPage, setCurrentPage] = useState(1);
@@ -109,157 +110,274 @@ export default function ApplicationsTable() {
   if (loading) return <div className="p-10 text-center text-gray-400">Loading ATS Dashboard...</div>;
 
   return (
-    <div className="w-full min-h-screen space-y-10 bg-[var(--color-biz-cream)] p-6">
-      
-      {/* SEARCH & FILTERS */}
-      <div className="flex flex-wrap items-center justify-between gap-6 rounded-2xl bg-[var(--color-biz-cream-light)] px-8 py-6 shadow-sm">
-        <div className="flex items-center gap-6">
-          <div>
-            <h3 className="text-xl font-semibold tracking-tight text-[var(--color-biz-charcoal)]">Applications</h3>
-            <p className="mt-0.5 text-sm text-[var(--color-biz-charcoal-soft)]">
-              Showing {processedRows.length} of {rows.length} results
-            </p>
-          </div>
-          <div className="flex flex-col items-center justify-center bg-[var(--color-biz-bronze-pale)] px-3 py-1 rounded-full">
-            <span className="text-lg font-bold text-[var(--color-biz-bronze-dark)]">{rows.length}</span>
-          </div>
-        </div>
+   <div className="w-full min-h-screen space-y-8 bg-[var(--color-biz-cream)] p-4 sm:p-6">
 
-        <div className="flex flex-wrap items-center gap-3">
-          <button onClick={downloadCSV} className="rounded-xl border border-[var(--color-biz-sand-muted)] bg-[var(--color-biz-cream)] px-4 py-2.5 text-sm font-semibold text-[var(--color-biz-charcoal)] hover:bg-[var(--color-biz-bronze)] hover:text-white transition">
-            Export CSV
-          </button>
-          <input 
-            placeholder="Search by name" 
-            className="w-48 rounded-xl bg-[var(--color-biz-cream)] px-4 py-2.5 text-sm text-[var(--color-biz-charcoal)] outline-none focus:ring-1 focus:ring-[var(--color-biz-bronze-pale)]"
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          <select value={country} onChange={(e) => setCountry(e.target.value)} className="rounded-xl bg-[var(--color-biz-cream)] px-4 py-2.5 text-sm font-medium outline-none transition hover:bg-[var(--color-biz-cream-dark)]">
-            <option value="All">All Countries</option>
-            {[...new Set(rows.map(r => r.Country || r.country).filter(Boolean))].map(c => <option key={c} value={c}>{c}</option>)}
-          </select>
-          <select value={category} onChange={(e) => setCategory(e.target.value)} className="rounded-xl bg-[var(--color-biz-cream)] px-4 py-2.5 text-sm font-medium outline-none transition hover:bg-[var(--color-biz-cream-dark)]">
-            <option value="All">All Categories</option>
-            {[...new Set(rows.map(r => r.Categories || r.category).filter(Boolean))].map(c => <option key={c} value={c}>{c}</option>)}
-          </select>
-        </div>
+  {/* SEARCH & FILTERS */}
+  <div className="
+    flex flex-col lg:flex-row gap-6 
+    rounded-2xl bg-[var(--color-biz-cream-light)] 
+    px-5 py-6 sm:px-8 
+    shadow-sm
+  ">
+    {/* LEFT */}
+    <div className="flex items-center gap-5">
+      <div>
+        <h3 className="text-xl font-semibold text-[var(--color-biz-charcoal)]">
+          Applications
+        </h3>
+        <p className="mt-1 text-sm text-[var(--color-biz-charcoal-soft)]">
+          Showing {processedRows.length} of {rows.length} results
+        </p>
       </div>
 
-      {/* GROUPED TABLES */}
-      <div className="space-y-14">
-        {Object.entries(groupedRows).map(([groupName, groupData]) => groupData.length > 0 && (
-          <div key={groupName} className="space-y-6">
-            <div className="flex items-center gap-4">
-              <span className="h-px flex-1 bg-[var(--color-biz-sand-muted)]" />
-              <h4 className="text-[10px] font-black uppercase tracking-[0.25em] text-[var(--color-biz-charcoal-soft)]">
-                {groupName === 'Recent' ? 'Last 24 Hours' : groupName === 'ThisWeek' ? 'Last 7 Days' : 'Older Records'}
-              </h4>
-              <span className="h-px flex-1 bg-[var(--color-biz-sand-muted)]" />
-            </div>
-
-            <div className="overflow-x-auto rounded-2xl bg-[var(--color-biz-cream-light)] shadow-sm">
-              <table className="w-full text-sm">
-                <thead className="bg-[var(--color-biz-cream-dark)] text-[10px] uppercase tracking-wide text-[var(--color-biz-charcoal-soft)]">
-                  <tr>
-                    {[
-                      ['Timestamp', 'Timestamp'], ['Candidate', 'name'], ['Email', 'email'],
-                      ['Contact', 'contact'], ['Alt. Contact', 'alternate contact'], ['Location', 'location'],
-                      ['Country', 'country'], ['Category', 'category'], ['CV', 'CV Link']
-                    ].map(([label, key]) => (
-                      <th key={label} onClick={() => handleSort(key)} className="px-6 py-4 text-left cursor-pointer hover:text-[var(--color-biz-charcoal)]">
-                        <div className="flex items-center gap-1">
-                          {label} <span>{sortConfig.key === key ? (sortConfig.direction === 'asc' ? '↑' : '↓') : '↕'}</span>
-                        </div>
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-[var(--color-biz-sand)]">
-                  {groupData.map((row, i) => {
-                    const isNew = row.Timestamp && isWithinInterval(new Date(row.Timestamp), { start: subDays(new Date(), 0.5), end: new Date() });
-                    return (
-                      <tr key={i} className="transition hover:bg-[var(--color-biz-cream)]">
-                        <td className="px-6 py-4">
-                          <div className="font-medium">{row.Timestamp ? format(new Date(row.Timestamp), 'MMM dd, yyyy') : '—'}</div>
-                          <div className="text-[10px] text-gray-400">{row.Timestamp ? formatDistanceToNow(new Date(row.Timestamp), { addSuffix: true }) : ''}</div>
-                        </td>
-                        <td className="px-6 py-4 font-semibold">
-                          {row.name || row.Name} {isNew && <span className="ml-2 rounded-sm bg-green-500 px-1.5 py-0.5 text-[8px] text-white">NEW</span>}
-                        </td>
-                        <td className="px-6 py-4">{row.email || row.Email}</td>
-                        <td className="px-6 py-4">{row.contact || row.Contact}</td>
-                        <td className="px-6 py-4 italic text-gray-400">{row['alternate contact'] || '—'}</td>
-                        <td className="px-6 py-4">{row.location || row.Location}</td>
-                        <td className="px-6 py-4">{row.country || row.Country}</td>
-                        <td className="px-6 py-4"><span className="rounded-full bg-[var(--color-biz-bronze-pale)] px-3 py-1 text-[10px] font-bold text-[var(--color-biz-bronze-dark)]">{row.category || row.Categories}</span></td>
-                        <td className="px-6 py-4">
-                          <a href={row['CV Link'] || row.fileUrl} target="_blank" rel="noreferrer" className="rounded-lg bg-[var(--color-biz-charcoal)] px-3 py-1.5 text-[10px] font-bold text-white hover:bg-[var(--color-biz-bronze)]">View CV</a>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* PAGINATION CONTROLS */}
-      {/* STICKY PAGINATION CONTROLS */}
       <div className="
-        sticky bottom-2 z-10 
-        mt-8 flex items-center justify-between 
-        px-8 py-2 
-        bg-[var(--color-biz-cream-light)]/80 backdrop-blur-md
-        rounded-2xl shadow-[0_-4px_12px_rgba(0,0,0,0.05)] 
-        border border-[var(--color-biz-sand-muted)]
+        shrink-0 rounded-full 
+        bg-[var(--color-biz-bronze-pale)] 
+        px-4 py-2
       ">
-        <div className="flex flex-col">
-          <span className="text-[10px] uppercase tracking-widest text-[var(--color-biz-charcoal-soft)] font-bold">
-            Navigation
-          </span>
-          <span className="text-sm text-[var(--color-biz-charcoal-soft)] font-medium">
-            Page <span className="text-[var(--color-biz-charcoal)] font-bold">{currentPage}</span> of {totalPages || 1}
-          </span>
-        </div>
-
-        <div className="flex gap-3">
-          <button 
-            disabled={currentPage === 1} 
-            onClick={() => {
-              setCurrentPage(p => p - 1);
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }} 
-            className="
-              px-5 py-2.5 rounded-xl bg-white border border-[var(--color-biz-sand-muted)] 
-              text-[11px] font-black tracking-wider
-              disabled:opacity-30 disabled:cursor-not-allowed
-              hover:bg-[var(--color-biz-charcoal)] hover:text-white 
-              transition-all duration-200 active:scale-95
-            "
-          >
-            PREVIOUS
-          </button>
-          
-          <button 
-            disabled={currentPage === totalPages || totalPages === 0} 
-            onClick={() => {
-              setCurrentPage(p => p + 1);
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }} 
-            className="
-              px-5 py-2.5 rounded-xl bg-white border border-[var(--color-biz-sand-muted)] 
-              text-[11px] font-black tracking-wider
-              disabled:opacity-30 disabled:cursor-not-allowed
-              hover:bg-[var(--color-biz-charcoal)] hover:text-white 
-              transition-all duration-200 active:scale-95
-            "
-          >
-            NEXT
-          </button>
-        </div>
+        <span className="text-lg font-bold text-[var(--color-biz-bronze-dark)]">
+          {rows.length}
+        </span>
       </div>
     </div>
+
+    {/* RIGHT */}
+    <div className="
+      flex flex-col sm:flex-row 
+      flex-wrap gap-3 
+      sm:items-center
+    ">
+      <button
+        onClick={downloadCSV}
+        className="
+          shrink-0 rounded-xl border 
+          border-[var(--color-biz-sand-muted)] 
+          bg-[var(--color-biz-cream)]
+          px-5 py-2.5 text-sm font-semibold
+          hover:bg-[var(--color-biz-bronze)] hover:text-white
+          transition
+        "
+      >
+        Export CSV
+      </button>
+
+<div className="relative w-full sm:w-48">
+  <input
+    value={searchTerm}
+    placeholder="Search by name"
+    onChange={(e) => setSearchTerm(e.target.value)}
+    className="
+      w-full
+      rounded-xl bg-[var(--color-biz-cream)]
+      px-4 py-2.5 pr-10
+      text-sm
+      outline-none
+      focus:ring-1 focus:ring-[var(--color-biz-bronze-pale)]
+    "
+  />
+
+  {searchTerm && (
+    <button
+      onClick={() => setSearchTerm("")}
+      type="button"
+      className="
+        absolute right-3 top-1/2 -translate-y-1/2
+        flex items-center justify-center
+       cursor-pointer
+       h-10 w-3
+      "
+      aria-label="Clear search"
+    >
+      ×
+    </button>
+  )}
+</div>
+
+
+      <select
+        value={country}
+        onChange={(e) => setCountry(e.target.value)}
+        className="
+          w-full sm:w-auto shrink-0
+          rounded-xl bg-[var(--color-biz-cream)]
+          px-4 py-2.5 text-sm font-medium
+          hover:bg-[var(--color-biz-cream-dark)]
+        "
+      >
+        <option value="All">All Countries</option>
+        {[...new Set(rows.map(r => r.Country || r.country).filter(Boolean))]
+          .map(c => <option key={c} value={c}>{c}</option>)}
+      </select>
+
+      <select
+        value={category}
+        onChange={(e) => setCategory(e.target.value)}
+        className="
+          w-full sm:w-auto shrink-0
+          rounded-xl bg-[var(--color-biz-cream)]
+          px-4 py-2.5 text-sm font-medium
+          hover:bg-[var(--color-biz-cream-dark)]
+        "
+      >
+        <option value="All">All Categories</option>
+        {[...new Set(rows.map(r => r.Categories || r.category).filter(Boolean))]
+          .map(c => <option key={c} value={c}>{c}</option>)}
+      </select>
+    </div>
+  </div>
+
+  {/* GROUPED TABLES */}
+  <div className="space-y-12">
+    {Object.entries(groupedRows).map(([groupName, groupData]) =>
+      groupData.length > 0 && (
+        <div key={groupName} className="space-y-5">
+
+          {/* GROUP LABEL */}
+          <div className="flex items-center gap-4">
+            <span className="flex-1 h-px bg-[var(--color-biz-sand-muted)]" />
+            <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-[var(--color-biz-charcoal-soft)]">
+              {groupName === 'Recent'
+                ? 'Last 24 Hours'
+                : groupName === 'ThisWeek'
+                ? 'Last 7 Days'
+                : 'Older Records'}
+            </h4>
+            <span className="flex-1 h-px bg-[var(--color-biz-sand-muted)]" />
+          </div>
+
+          {/* TABLE */}
+          <div className="overflow-x-auto rounded-2xl bg-[var(--color-biz-cream-light)] shadow-sm">
+            <table className="min-w-[1100px] w-full text-sm">
+              <thead className="bg-[var(--color-biz-cream-dark)] text-[10px] uppercase tracking-wide">
+                <tr>
+                  {[
+                    ['Timestamp','Timestamp'],
+                    ['Candidate','name'],
+                    ['Email','email'],
+                    ['Contact','contact'],
+                    ['Alt. Contact','alternate contact'],
+                    ['Location','location'],
+                    ['Country','country'],
+                    ['Category','category'],
+                    ['CV','CV Link']
+                  ].map(([label,key]) => (
+                    <th
+                      key={label}
+                      onClick={() => handleSort(key)}
+                      className="px-6 py-4 text-left cursor-pointer whitespace-nowrap hover:text-[var(--color-biz-charcoal)]"
+                    >
+                      {label}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+
+              <tbody className="divide-y divide-[var(--color-biz-sand)]">
+                {groupData.map((row, i) => (
+                  <tr key={i} className="hover:bg-[var(--color-biz-cream)]">
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      {row.Timestamp
+                        ? format(new Date(row.Timestamp),'MMM dd, yyyy')
+                        : '—'}
+                    </td>
+
+                    <td className="px-6 py-4 font-semibold whitespace-nowrap">
+                      {row.name || row.Name}
+                    </td>
+
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      {row.email || row.Email}
+                    </td>
+
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      {row.contact || row.Contact}
+                    </td>
+
+                    <td className="px-6 py-4 italic text-gray-400 whitespace-nowrap">
+                      {row['alternate contact'] || '—'}
+                    </td>
+
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      {row.location || row.Location}
+                    </td>
+
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      {row.country || row.Country}
+                    </td>
+
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <span className="
+                        inline-block rounded-full
+                        bg-[var(--color-biz-bronze-pale)]
+                        px-3 py-1 text-[10px] font-bold
+                      ">
+                        {row.category || row.Categories}
+                      </span>
+                    </td>
+
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <a
+                        href={row['CV Link'] || row.fileUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="
+                          inline-block rounded-lg
+                          bg-[var(--color-biz-charcoal)]
+                          px-4 py-2 text-[10px] font-bold text-white
+                          hover:bg-[var(--color-biz-bronze)]
+                        "
+                      >
+                        View CV
+                      </a>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )
+    )}
+  </div>
+
+  {/* PAGINATION */}
+  <div className="
+  fixed bottom-4 left-1/2 -translate-x-1/2
+  z-50
+  w-[calc(100%-2rem)] max-w-7xl
+  flex
+  justify-between
+  items-center
+  px-6 py-3
+  bg-[var(--color-biz-cream-light)]/90
+  backdrop-blur-md
+  rounded-2xl
+  border border-[var(--color-biz-sand-muted)]
+  shadow-[0_-6px_20px_rgba(0,0,0,0.12)]
+">
+
+    <div className="text-sm font-medium">
+      Page <strong>{currentPage}</strong> of {totalPages || 1}
+    </div>
+
+    <div className="flex gap-3">
+      <button
+        disabled={currentPage === 1}
+        onClick={() => setCurrentPage(p => p - 1)}
+        className="px-5 py-2.5 rounded-xl border text-xs font-black disabled:opacity-40 hover:bg-black hover:text-white"
+      >
+        PREVIOUS
+      </button>
+      <button
+        disabled={currentPage === totalPages || totalPages === 0}
+        onClick={() => setCurrentPage(p => p + 1)}
+        className="px-5 py-2.5 rounded-xl border text-xs font-black disabled:opacity-40 hover:bg-black hover:text-white"
+      >
+        NEXT
+      </button>
+    </div>
+  </div>
+</div>
+
   );
 }
