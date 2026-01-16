@@ -14,94 +14,7 @@ import {
 
 
 const Alix = () => {
-  const [messages, setMessages] = useState([]);
-  const scrollContainerRef = useRef(null);
-
-  const chatScript = [
-    { type: 'user', content: 'How does BiznorX help with hiring?' },
-    {
-      type: 'alix',
-      content:
-        'BiznorX aligns company requirements with verified candidate profiles using structured evaluation. This reduces manual screening and ensures each match reflects both role expectations and long-term business objectives.'
-    },
-    { type: 'user', content: 'Is this only for large companies?' },
-    {
-      type: 'alix',
-      content:
-        'BiznorX is designed for businesses at every stage. From early teams to established organizations, the system adapts matching logic based on scale, role complexity, and growth intent.'
-    },
-    { type: 'user', content: 'Can you guide me through the process?' },
-    {
-      type: 'alix',
-      content:
-        'The process is built around clarity. I analyze your requirements or profile, validate them against our professional network, and present aligned outcomes with clear reasoning.'
-    },
-    { type: 'user', content: 'How do professionals benefit from this?' },
-    {
-      type: 'alix',
-      content:
-        'Professionals gain access to opportunities that align with their skills and direction. Matches prioritize relevance and intent, not volume.'
-    },
-    { type: 'user', content: 'How do I start?' },
-    {
-      type: 'alix',
-      content:
-        'You can begin by submitting your CV or business profile. Once integrated, the system initiates structured analysis to identify meaningful alignments within the BiznorX ecosystem.'
-    }
-  ];
-
-  useEffect(() => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollTo({
-        top: scrollContainerRef.current.scrollHeight,
-        behavior: 'smooth'
-      });
-    }
-  }, [messages]);
-
-  useEffect(() => {
-    let currentIdx = 0;
-    const timeouts = [];
-
-    const displayNextMessage = () => {
-      if (currentIdx < chatScript.length) {
-        const msg = chatScript[currentIdx];
-        const delay = currentIdx === 0 ? 800 : 1800;
-
-        const timeout = setTimeout(() => {
-          setMessages(prev => [...prev, { ...msg, displayedContent: '' }]);
-          typeMessage(currentIdx, 0);
-        }, delay);
-
-        timeouts.push(timeout);
-      }
-    };
-
-    const typeMessage = (msgIdx, charIdx) => {
-      const fullContent = chatScript[msgIdx].content;
-
-      if (charIdx <= fullContent.length) {
-        setMessages(prev => {
-          const updated = [...prev];
-          updated[msgIdx].displayedContent = fullContent.substring(0, charIdx);
-          return updated;
-        });
-
-        const speed = chatScript[msgIdx].type === 'user' ? 25 : 12;
-        const timeout = setTimeout(
-          () => typeMessage(msgIdx, charIdx + 1),
-          speed
-        );
-        timeouts.push(timeout);
-      } else {
-        currentIdx++;
-        displayNextMessage();
-      }
-    };
-
-    displayNextMessage();
-    return () => timeouts.forEach(clearTimeout);
-  }, []);
+  
 
   const capabilities = [
     {
@@ -125,7 +38,7 @@ const Alix = () => {
   ];
 
   return (
-    <section className="bg-[var(--color-biz-cream)] py-30 px-6 md:px-12 lg:px-24 font-['DM_Sans'] antialiased overflow-hidden relative">
+    <section className="bg-[var(--color-biz-cream)] py-20 px-6 md:px-12 lg:px-24 font-['DM_Sans'] antialiased overflow-hidden relative">
       <div
         className="absolute inset-0 opacity-[0.03] pointer-events-none"
         style={{
@@ -215,7 +128,7 @@ const Alix = () => {
 
 
               <p className="text-[19px] text-[var(--color-biz-charcoal-muted)] leading-relaxed max-w-lg">
-                Alix is the intelligence layer behind BiznorX. It evaluates talent,
+                Alix is the intelligence layer behind biznorX. It evaluates talent,
                 business needs, and growth intent to deliver structured,
                 trustworthy recruitment outcomes.
               </p>
@@ -250,66 +163,41 @@ const Alix = () => {
           {/* Alix Avatar Image Placeholder */}
           <div className="relative mx-auto w-full max-w-[420px]">
             {/* Soft ambient glow */}
-            <div className="absolute inset-0 bg-[var(--color-biz-bronze)] opacity-[0.06] blur-[140px] rounded-full pointer-events-none" />
+            <div className="absolute inset-0 bg-[var(--color-biz-bronze)] opacity-[0.06]  rounded-full pointer-events-none" />
 
             <div
               className="
       relative
-      hidden
-      bg-white
+      
+      bg-biz-cream
       rounded-[var(--radius-biz)]
-      border border-[var(--color-biz-sand-muted)]
-      shadow-[0_40px_100px_-30px_rgba(0,0,0,0.12)]
+     
       overflow-hidden
       h-[720px]
-      lg:h-[80vh]
+      lg:h-[92vh]
       flex
+              
       items-center
       justify-center
     "
             >
               {/* Avatar Placeholder */}
-              <div className="flex  flex-col items-center text-center px-10">
-                <div
-                  className="
-          w-40
-          h-40
-          rounded-full
-          bg-[var(--color-biz-sand)]
-          border border-[var(--color-biz-sand-muted)]
-          flex
-          items-center
-          justify-center
-          mb-8
-        "
-                >
-                  <Cpu className="w-16 h-16 text-[var(--color-biz-charcoal-soft)]" />
-                </div>
+              
 
-                <span className="text-[11px] font-bold uppercase tracking-[0.35em] text-[var(--color-biz-bronze)] mb-4">
-                  Alix AI
-                </span>
-
-                <p className="text-sm text-[var(--color-biz-charcoal-muted)] leading-relaxed max-w-xs">
-                  This space is reserved for the Alix avatar — a visual representation of
-                  the intelligence layer behind BiznorX.
-                </p>
-
-                {/* OPTIONAL: Uncomment when image is ready */}
-                {/*
+               
       <img
-        src="/images/alix-avatar.png"
+        src="/svgs/Alix.png"
         alt="Alix AI Avatar"
         className="absolute inset-0 w-full h-full object-cover"
       />
-      */}
+     
               </div>
             </div>
           </div>
 
 
         </div>
-      </div>
+      
     </section>
   );
 };

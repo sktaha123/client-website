@@ -36,7 +36,7 @@ export  function Trust() {
               return (
                 <div
                   key={index}
-                  className="group flex flex-col items-center  lg:items-start text-center lg:text-left space-y-4"
+                  className="group flex flex-col items-center  lg:items-center text-center lg:text-center space-y-4"
                 >
                   {/* Minimalist Icon Treatment */}
                   <div className="relative">

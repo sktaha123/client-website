@@ -22,7 +22,7 @@ const isAlixActive = useSectionInView("alix", 0.6);
       <main
         ref={contentRef}
         className={
-          isHome ? "" : "pt-[96px] pb-[200px] min-h-screen bg-biz-cream"
+          isHome ? "" : "pt-[96px] pb-[50px] min-h-screen bg-biz-cream"
         }
       >
         <Outlet />

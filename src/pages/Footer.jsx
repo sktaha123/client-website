@@ -14,7 +14,7 @@ const ITEM_VARIANTS = {
 
 export  function Footer() {
   return (
-    <footer className="bg-biz-cream border-t border-biz-stone/30 pb-12 font-dm">
+    <footer className="bg-biz-cream border-t border-biz-stone/30 pt-2 pb-12 font-dm">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           variants={ITEM_VARIANTS}

@@ -53,12 +53,12 @@ export function Hero() {
   };
 
   return (
-    <section className="relative min-h-[85vh] md:min-h-[80vh] px-4 md:px-8 md:pt-[10px] font-dm overflow-hidden bg-biz-cream">
+    <section className="relative min-h-[85vh] md:min-h-[80vh]  md:px-8 md:pt-[10px] font-dm overflow-hidden bg-biz-cream">
       <motion.div
         initial={{ opacity: 0, scale: 0.98 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1, ease: "easeOut" }}
-        className="relative h-full w-full overflow-hidden rounded-biz shadow-sm"
+        className="relative h-full w-full overflow-hidden md:rounded-biz shadow-sm"
       >
         {/* 🔥 Sliding Background Carousel */}
         <div className="absolute inset-0 overflow-hidden">
@@ -100,6 +100,10 @@ export function Hero() {
         <div className="relative z-30 flex h-full min-h-[85vh] md:min-h-[95vh] w-full flex-col justify-end pb-12 md:pb-24 px-6 md:px-16">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
             <div className="md:col-span-7">
+              <h1 className="sr-only">
+                Intelligent Recruitment & Workforce Solutions in India & UAE
+              </h1>
+
               <motion.span
                 custom={0}
                 initial="hidden"
@@ -110,7 +114,7 @@ export function Hero() {
                 Workforce Excellence
               </motion.span>
 
-              <h1 className="text-biz-cream-light text-6xl md:text-[7.5rem] leading-[1.1] font-light tracking-tightest h-[1.2em] flex items-center overflow-hidden">
+              <h2 className="text-biz-cream-light text-6xl md:text-[7.5rem] leading-[1.1] font-light tracking-tightest h-[1.2em] flex items-center overflow-hidden">
                 <AnimatePresence mode="wait">
                   <motion.span
                     key={words[index].text}
@@ -139,7 +143,7 @@ export function Hero() {
                     ))}
                   </motion.span>
                 </AnimatePresence>
-              </h1>
+              </h2>
             </div>
 
             <motion.div

@@ -163,7 +163,7 @@ const Software = () => {
 
 
       {/* --- FAQ SECTION WITH ANIMATION --- */}
-      <section className="py-32 bg-biz-cream">
+      <section className="py-18 bg-biz-cream">
         <div className=" max-w-[99vw] md:max-w-5xl mx-auto px-6">
           <div className="text-center mb-20">
             <span className="professional-label mb-4 block">Clear Answers</span>
@@ -215,13 +215,13 @@ const Software = () => {
               Ready to Build Something <span className="text-biz-bronze">Powerful?</span>
             </h2>
             <p className="text-biz-sand-muted text-lg mb-12 max-w-2xl mx-auto">
-              Partner with <span className="text-biz-bronze-pale lg:text-xl font-bold">biznor</span><span className="text-biz-bronze/80 lg:text-xl font-bold">X</span> and turn your digital vision into a scalable, high-impact solution that grows with your business.
+              Partner with <span className="text-biz-bronze-pale lg:text-xl font-bold">biznor</span><span className="text-biz-bronze-pale lg:text-xl font-bold">x</span> and turn your digital vision into a scalable, high-impact solution that grows with your business.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.button
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
-                className="group relative inline-flex items-center gap-4 overflow-hidden rounded-full bg-biz-bronze px-12 py-6 font-bold text-lg text-biz-cream-light transition-all hover:bg-biz-bronze-dark shadow-xl shadow-biz-bronze/30"
+                className="group relative inline-flex items-center gap-4 overflow-hidden rounded-full bg-biz-bronze  px-9 py-4 font-bold text-sm md:text-lg text-biz-cream-light transition-all hover:bg-biz-bronze-dark shadow-xl shadow-biz-bronze/30"
               >
                 <a
                   href="mailto:hello@biznorx.com
@@ -229,13 +229,12 @@ const Software = () => {
   &body=Hello%20Team,%0D%0A%0D%0AI%20am%20interested%20in%20starting%20a%20new%20project.%20Please%20reach%20out%20to%20me%20with%20next%20steps.%0D%0A%0D%0ARegards,"
                   className="cursor-pointer"
                 >
-                  <span className="relative z-10 tracking-widest uppercase text-sm">
+                  <span className="relative  z-10 tracking-widest uppercase text-sm">
                     Start Your Project
                   </span>
                 </a>
 
-
-                <div className="relative z-10   aspect-square shrink-0 flex h-7 w-7 items-center justify-center rounded-full bg-biz-cream-light/20 transition-transform duration-500 group-hover:rotate-45">
+                <div className="relative z-10   aspect-square shrink-0 flex size-10 md:h-7 md:w-7 items-center justify-center rounded-full bg-biz-cream-light/20 transition-transform duration-500 group-hover:rotate-45">
                   <ArrowUpRight className="h-4 w-4" />
                 </div>
 

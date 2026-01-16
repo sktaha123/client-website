@@ -51,7 +51,7 @@ const ExpertiseSection = ({ services }) => {
         </div>
 
         {/* SEO CONTENT BLOCK (Low Visual Impact, High SEO Value) */}
-        <div className="mt-24 lg:mt-50 max-w-5xl mx-auto px-6">
+        <div className="mt-20 lg:mt-40 max-w-5xl mx-auto px-6">
           <h3 className="sr-only">
             Custom Software Development and SaaS Solutions by BiznorX
           </h3>
@@ -89,7 +89,7 @@ const ExpertiseBlock = ({ service, index, total }) => {
   return (
     <motion.div
       ref={container}
-      className="sticky top-20 lg:relative lg:top-0 w-full mb-10 lg:mb-0"
+      className="sticky top-10 lg:relative lg:top-0 w-full mb-10 lg:mb-0"
       style={{ zIndex: index + 1 }}
     >
       <div
