@@ -9,6 +9,8 @@ import HomeContent from "./HomeContent.jsx";
 
 
 
+
+
 function Home() {
 
 
@@ -21,6 +23,8 @@ function Home() {
       <HomeContent />
       <Trust />
       <Philosophy />
+      
+     
       <Alix />
 
 

@@ -7,6 +7,10 @@ import {
   Zap, Globe, Cpu
 } from 'lucide-react';
 
+
+
+
+
 const services = [
   {
     title: "Software Development",
@@ -110,7 +114,7 @@ const Software = () => {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.4 }}
             className="text-center"
           >
             <span className="professional-label mb-6 block tracking-widest md:text-[13px] text-biz-bronze">

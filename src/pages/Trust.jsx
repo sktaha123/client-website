@@ -1,4 +1,24 @@
 import React from "react";
+import { motion } from "framer-motion";
+
+const cardVariants = {
+  hidden: {
+    opacity: 0,
+    y: 24,
+  },
+  visible: (index) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      ease: [0.22, 1, 0.36, 1],
+      delay: index * 0.08,
+    },
+  }),
+};
+
+
+
 import {
   Award,
   Globe,
@@ -25,7 +45,7 @@ const trustItems = [
 
 export  function Trust() {
   return (
-    <section className="pt-7 bg-biz-cream font-dm">
+    <section className="pt-7 md:pt-2 md:pb-10 bg-biz-cream font-dm">
       <div className="max-w-7xl mx-auto px-6">
         {/* Container with a subtle top border to create an architectural break */}
         <div className="pt-12 ">
@@ -34,10 +54,17 @@ export  function Trust() {
               const Icon = item.icon;
 
               return (
-                <div
-                  key={index}
-                  className="group flex flex-col items-center  lg:items-center text-center lg:text-center space-y-4"
-                >
+               <motion.div
+  key={index}
+  custom={index}
+  variants={cardVariants}
+  initial="hidden"
+  whileInView="visible"
+ viewport={{ once: true, amount: 0.3 }}
+
+  className="group flex flex-col items-center lg:items-center text-center space-y-4"
+>
+
                   {/* Minimalist Icon Treatment */}
                   <div className="relative">
                     {/* Background "Ghost" Circle that appears on hover */}
@@ -59,7 +86,8 @@ export  function Trust() {
                       {item.subtitle}
                     </p>
                   </div>
-                </div>
+                </motion.div>
+
               );
             })}
           </div>

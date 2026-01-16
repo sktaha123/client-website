@@ -158,8 +158,8 @@ export function Contact() {
                         {method.label}
                       </p>
                       <div className="flex items-center gap-6">
-                        <Icon className={`h-6 w-6 text-biz-charcoal/20 transition-all duration-500 ${method.accent} group-hover:scale-125 group-hover:rotate-[15deg]`} />
-                        <span className="text-3xl md:text-5xl text-biz-charcoal font-bold tracking-tighter transition-all duration-300 group-hover:text-biz-charcoal-ink group-hover:tracking-normal">
+                        <Icon className={`h-6 w-6 text-biz-charcoal/20 transition-all duration-500 ${method.accent} group-hover:scale-120 group-hover:rotate-[15deg]`} />
+                        <span className="text-3xl md:text-3xl text-biz-charcoal font-bold tracking-tighter transition-all duration-300 group-hover:text-biz-charcoal-ink group-hover:tracking-normal">
                           {method.value}
                         </span>
                       </div>

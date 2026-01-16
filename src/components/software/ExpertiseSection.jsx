@@ -2,6 +2,8 @@ import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowUpRight, Minus } from "lucide-react";
 
+
+
 const ExpertiseSection = ({ services }) => {
   return (
     <section
