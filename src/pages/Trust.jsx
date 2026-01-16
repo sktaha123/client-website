@@ -60,7 +60,7 @@ export  function Trust() {
   variants={cardVariants}
   initial="hidden"
   whileInView="visible"
- viewport={{ once: true, amount: 0.3 }}
+ viewport={{ once: true, amount: 0.5 }}
 
   className="group flex flex-col items-center lg:items-center text-center space-y-4"
 >

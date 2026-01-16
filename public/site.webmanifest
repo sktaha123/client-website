@@ -1,0 +1,23 @@
+{
+  "name": "biznorX – Recruitment & Workforce Solutions",
+  "short_name": "biznorX",
+  "description": "biznorX delivers intelligent recruitment, workforce, and business execution solutions across India and the UAE.",
+  "icons": [
+    {
+      "src": "/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "theme_color": "#7A1E1E",
+  "background_color": "#FBF8F6",
+  "display": "standalone",
+  "start_url": "/"
+}
