@@ -15,10 +15,10 @@ export function Hero() {
   ];
 
   const backgroundImages = [
-    "/svgs/h1.jpeg",
-    "/svgs/h2.jpeg",
-    "/svgs/h3.jpeg",
-    "/svgs/h4.jpeg",
+    "/svgs/h1.webp",
+    "/svgs/h2.webp",
+    "/svgs/h3.webp",
+    "/svgs/h4.webp",
   ];
 
   /* Background image slider */
