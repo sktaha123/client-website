@@ -41,7 +41,7 @@ const ExpertiseSection = ({ services }) => {
         </div>
 
         {/* The Stacking Container */}
-        <div className="relative flex flex-col gap-0 lg:gap-32">
+        <div className="relative  flex flex-col gap-0 lg:gap-32">
           {services.map((service, idx) => (
             <ExpertiseBlock
               key={idx}
@@ -91,7 +91,7 @@ const ExpertiseBlock = ({ service, index, total }) => {
   return (
     <motion.div
       ref={container}
-      className="sticky top-10 lg:relative lg:top-0 w-full mb-10 lg:mb-0"
+      className="sticky top-10 pt-12 lg:relative lg:top-0 w-full mb-10 lg:mb-0"
       style={{ zIndex: index + 1 }}
     >
       <div
