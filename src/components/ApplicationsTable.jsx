@@ -4,6 +4,76 @@ import { format, formatDistanceToNow, isToday, isWithinInterval, subDays } from 
 
 const API_URL = `https://script.google.com/macros/s/AKfycbwAfEvirqqAbDjiZL58jsowiLolBGUWy3J69ciIKqNWS8PU5EYxE2G7wlETuVj7UXrl/exec?token=${import.meta.env.VITE_ADMIN_TOKEN}`;
 
+const truncate = (text, limit = 12) =>
+  text.length > limit ? text.slice(0, limit) + "…" : text;
+
+
+const TableSkeleton = () => (
+  <motion.div
+    initial={{ opacity: 0, y: 16 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: -12 }}
+    transition={{
+      duration: 0.6,
+      ease: [0.22, 1, 0.36, 1], // ✅ smooth ease-out
+    }}
+    className="w-full space-y-6 animate-pulse"
+  >
+    {/* Header Skeleton */}
+    <div className="flex flex-col sm:flex-row justify-between gap-4">
+      <div className="space-y-2">
+        <div className="h-5 w-40 rounded bg-[var(--color-biz-sand-muted)]" />
+        <div className="h-3 w-64 rounded bg-[var(--color-biz-sand-muted)]" />
+      </div>
+
+      <div className="flex gap-3">
+        <div className="h-9 w-32 rounded-xl bg-[var(--color-biz-sand-muted)]" />
+        <div className="h-9 w-40 rounded-xl bg-[var(--color-biz-sand-muted)]" />
+      </div>
+    </div>
+
+    {/* Table Skeleton */}
+    <div className="overflow-hidden rounded-2xl border border-[var(--color-biz-sand-muted)] bg-[var(--color-biz-cream-light)]">
+      {/* Header */}
+      <div className="grid grid-cols-9 gap-4 px-6 py-4 bg-[var(--color-biz-cream-dark)]">
+        {Array.from({ length: 9 }).map((_, i) => (
+          <div key={i} className="h-3 rounded bg-[var(--color-biz-sand-muted)]" />
+        ))}
+      </div>
+
+      {/* Rows */}
+      {Array.from({ length: 6 }).map((_, rowIndex) => (
+        <div
+          key={rowIndex}
+          className="grid grid-cols-9 gap-4 px-6 py-4 border-t border-[var(--color-biz-sand-muted)]"
+        >
+          {Array.from({ length: 9 }).map((_, colIndex) => (
+            <div
+              key={colIndex}
+              className={`h-3 rounded ${
+                colIndex === 1
+                  ? "w-32"
+                  : colIndex === 7
+                  ? "w-20"
+                  : "w-full"
+              } bg-[var(--color-biz-sand-muted)]`}
+            />
+          ))}
+        </div>
+      ))}
+    </div>
+
+    {/* Pagination Skeleton */}
+    <div className="flex justify-between items-center">
+      <div className="h-4 w-32 rounded bg-[var(--color-biz-sand-muted)]" />
+      <div className="flex gap-3">
+        <div className="h-9 w-28 rounded-xl bg-[var(--color-biz-sand-muted)]" />
+        <div className="h-9 w-28 rounded-xl bg-[var(--color-biz-sand-muted)]" />
+      </div>
+    </div>
+  </motion.div>
+);
+
 export default function ApplicationsTable() {
   const [rows, setRows] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -45,22 +115,58 @@ export default function ApplicationsTable() {
 
   /* ---------------- 1. FILTER & SORT (FULL DATA) ---------------- */
   const processedRows = useMemo(() => {
-    let filtered = rows.filter(row => {
-      const matchesCat = category === "All" || (row.Categories || row.category) === category;
-      const matchesCountry = country === "All" || (row.Country || row.country) === country;
-      const matchesSearch = (row.Name || row.name || "").toLowerCase().includes(searchTerm.toLowerCase());
-      return matchesCat && matchesCountry && matchesSearch;
-    });
+  const keywords = searchTerm
+    .toLowerCase()
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean);
 
-    return filtered.sort((a, b) => {
-      let aVal = a[sortConfig.key] || "";
-      let bVal = b[sortConfig.key] || "";
-      if (sortConfig.key === 'Timestamp') { aVal = new Date(aVal); bVal = new Date(bVal); }
-      if (aVal < bVal) return sortConfig.direction === 'asc' ? -1 : 1;
-      if (aVal > bVal) return sortConfig.direction === 'asc' ? 1 : -1;
-      return 0;
-    });
-  }, [rows, category, country, searchTerm, sortConfig]);
+  let filtered = rows.filter((row) => {
+    const rowCategory = row.Categories || row.category || "";
+    const rowCountry = row.Country || row.country || "";
+
+    const matchesCat =
+      category === "All" || rowCategory === category;
+
+    const matchesCountry =
+      country === "All" || rowCountry === country;
+
+    // 🔍 NORMALIZED SEARCH TEXT (THIS IS THE FIX)
+    const searchableText = [
+      row.Name || row.name,
+      row.Email || row.email,
+      row.Location || row.location,
+      row.Country || row.country,
+      row.Categories || row.category,
+      row.contact || row.Contact,
+    ]
+      .filter(Boolean)
+      .join(" ")
+      .toLowerCase();
+
+    // ✅ keyword-based match (ANY keyword)
+    const matchesSearch =
+      keywords.length === 0 ||
+      keywords.some((word) => searchableText.includes(word));
+
+    return matchesCat && matchesCountry && matchesSearch;
+  });
+
+  return filtered.sort((a, b) => {
+    let aVal = a[sortConfig.key] || "";
+    let bVal = b[sortConfig.key] || "";
+
+    if (sortConfig.key === "Timestamp") {
+      aVal = new Date(aVal);
+      bVal = new Date(bVal);
+    }
+
+    if (aVal < bVal) return sortConfig.direction === "asc" ? -1 : 1;
+    if (aVal > bVal) return sortConfig.direction === "asc" ? 1 : -1;
+    return 0;
+  });
+}, [rows, category, country, searchTerm, sortConfig]);
+
 
   /* ---------------- 2. PAGINATION (LIMIT TO 20) ---------------- */
   const paginatedRows = useMemo(() => {
@@ -107,7 +213,15 @@ export default function ApplicationsTable() {
     URL.revokeObjectURL(url);
   };
 
-  if (loading) return <div className="p-10 text-center text-gray-400">Loading ATS Dashboard...</div>;
+const [expandedCategoryRow, setExpandedCategoryRow] = useState(null);
+
+
+  if (loading) return <div className="p-6 sm:p-10 bg-[var(--color-biz-cream)] min-h-screen">
+      <AnimatePresence mode="wait">
+        <TableSkeleton />
+      </AnimatePresence>
+    </div>;
+
 
   return (
    <div className="w-full min-h-screen space-y-8 bg-[var(--color-biz-cream)] p-4 sm:p-6">
@@ -164,7 +278,7 @@ export default function ApplicationsTable() {
 <div className="relative w-full sm:w-48">
   <input
     value={searchTerm}
-    placeholder="Search by name"
+    placeholder="Search by keywords"
     onChange={(e) => setSearchTerm(e.target.value)}
     className="
       w-full
@@ -306,14 +420,30 @@ export default function ApplicationsTable() {
                     </td>
 
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <span className="
-                        inline-block rounded-full
-                        bg-[var(--color-biz-bronze-pale)]
-                        px-3 py-1 text-[10px] font-bold
-                      ">
-                        {row.category || row.Categories}
-                      </span>
-                    </td>
+  <button
+    type="button"
+    onClick={() =>
+      setExpandedCategoryRow(
+        expandedCategoryRow === i ? null : i
+      )
+    }
+    className="
+      inline-block rounded-full
+      bg-[var(--color-biz-bronze-pale)]
+      px-3 py-1 text-[10px] font-bold
+      cursor-pointer
+      hover:bg-[var(--color-biz-bronze)]
+      hover:text-white
+      transition
+    "
+    title="Click to view full category"
+  >
+    {expandedCategoryRow === i
+      ? (row.category || row.Categories)
+      : truncate(row.category || row.Categories)}
+  </button>
+</td>
+
 
                     <td className="px-6 py-4 whitespace-nowrap">
                       <a
