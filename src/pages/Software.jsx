@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ExpertiseSection from '@/components/software/ExpertiseSection';
 import { motion, AnimatePresence } from 'framer-motion';
+
 import {
   Rocket, Monitor, Layers, Palette, BarChart,
   ArrowRight, ArrowUpRight, Plus, Minus, Check, ShieldCheck,
@@ -110,6 +111,9 @@ const Software = () => {
 
       {/* --- HERO SECTION --- */}
       <section className="relative pt-17 pb-20 lg:pt-7 lg:pb-32 px-6 overflow-hidden">
+
+
+        
         <div className="max-w-7xl mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
