@@ -14,15 +14,15 @@ const CONTACT_METHODS = [
   {
     icon: FaWhatsapp,
     label: "India Office",
-    value: "+91 9004378003",
-    href: "https://wa.me/919004378003",
+    value: "+91 9004072449",
+    href: "https://wa.me/919004072449",
     accent: "group-hover:text-green-600"
   },
   {
     icon: FaWhatsapp,
     label: "UAE Office",
-    value: "+971 506012581",
-    href: "https://wa.me/971506012581",
+    value: "+971 522585437",
+    href: "https://wa.me/971522585437",
     accent: "group-hover:text-green-600"
   },
   {

@@ -22,6 +22,8 @@ function HomeContent() {
       <div
         className="
           w-full
+          md:max-w-7xl
+          mx-auto
           md:px-8
           md:pt-8
           md:pb-24
