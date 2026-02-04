@@ -46,7 +46,7 @@ const Navbar = () => {
             {/* LEFT — LOGO */}
             <Link
               to="/"
-              className="flex items-center scale-90 md:scale-100 z-[60]"
+              className="flex items-center scale-90 md:scale-100 z-60"
             >
               <img
                 src="/svgs/Biznorlogo.png"
@@ -64,6 +64,7 @@ const Navbar = () => {
                   <NavLink
                     key={link.name}
                     to={link.to}
+                    onClick={() => window.lenis?.scrollTo(0)}
                     className={({ isActive }) =>
                       `
           font-dm text-[10px]
@@ -84,9 +85,10 @@ const Navbar = () => {
 
 
             {/* RIGHT — CTA + HAMBURGER */}
-            <div className="flex items-center space-x-4 z-[60]">
+            <div className="flex items-center space-x-4 z-60">
               <Link
                 to="/contact"
+                onClick={() => window.lenis?.scrollTo(0)}
                 className="
                   hidden md:flex items-center gap-3
                   rounded-full
@@ -131,24 +133,24 @@ const Navbar = () => {
 
           <nav className="flex flex-col space-y-6">
             {navLinks.map((link) => (
-    <NavLink
-      key={link.name}
-      to={link.to}
-      className={({ isActive }) =>
-        `
+              <NavLink
+                key={link.name}
+                to={link.to}
+                onClick={() => window.lenis?.scrollTo(0)}
+                className={({ isActive }) =>
+                  `
         text-4xl font-light
         transition-colors
-        ${
-          isActive
-            ? "text-biz-bronze"
-            : "text-biz-charcoal"
-        }
+        ${isActive
+                    ? "text-biz-bronze"
+                    : "text-biz-charcoal"
+                  }
         `
-      }
-    >
-      {link.name}
-    </NavLink>
-  ))}
+                }
+              >
+                {link.name}
+              </NavLink>
+            ))}
           </nav>
         </div>
       </div>

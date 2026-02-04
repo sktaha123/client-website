@@ -1,14 +1,14 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Clock, Shield, Sparkles } from "lucide-react";
-import { Button } from "../components/ui/button.jsx";
+import { Link } from "react-router-dom";
 
 export function Final() {
   // Optimized variants with reduced range for better paint performance
   const fadeInScale = {
     hidden: { opacity: 0, y: 15, scale: 0.98 },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
+    visible: {
+      opacity: 1,
+      y: 0,
       scale: 1,
       transition: { duration: 0.6, ease: [0.215, 0.61, 0.355, 1] } // Power3 ease-out
     }
@@ -43,22 +43,22 @@ export function Final() {
       </div>
 
       {/* Decorative Top Border - Optimized with will-change */}
-      <motion.div 
+      <motion.div
         initial={{ width: 0, opacity: 0 }}
         whileInView={{ width: 160, opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 1.2, ease: "easeInOut" }}
-        className="absolute top-0 left-1/2 -translate-x-1/2 h-[1px] bg-gradient-to-r from-transparent via-biz-bronze to-transparent will-change-[width]" 
+        className="absolute top-0 left-1/2 -translate-x-1/2 h-px bg-linear-to-r from-transparent via-biz-bronze to-transparent will-change-[width]"
       />
 
-      <motion.div 
+      <motion.div
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, margin: "-50px" }} 
+        viewport={{ once: true, margin: "-50px" }}
         className="relative z-10 max-w-5xl mx-auto px-6 text-center"
       >
-        <motion.div 
+        <motion.div
           variants={fadeInScale}
           className="inline-flex items-center gap-3 px-4 py-2 bg-biz-cream/5 rounded-full mb-10 border border-biz-cream/10 transform-gpu"
         >
@@ -68,7 +68,7 @@ export function Final() {
           </span>
         </motion.div>
 
-        <motion.h2 
+        <motion.h2
           variants={fadeInScale}
           className="text-4xl md:text-6xl lg:text-7xl text-biz-cream mb-8 leading-[1.1] font-light transform-gpu"
         >
@@ -76,7 +76,7 @@ export function Final() {
           <span className="text-biz-bronze italic font-serif">Workforce Strategy?</span>
         </motion.h2>
 
-        <motion.p 
+        <motion.p
           variants={fadeInScale}
           className="text-lg md:text-xl text-biz-cream/70 mb-14 max-w-2xl mx-auto leading-relaxed font-light transform-gpu"
         >
@@ -84,34 +84,35 @@ export function Final() {
           solutions built for organizations that value <span className="text-biz-cream font-medium">precision and legacy.</span>
         </motion.p>
 
-        <motion.div 
+        <motion.div
           variants={fadeInScale}
           className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-20"
         >
-          <Button
-            size="lg"
-            className="bg-biz-bronze text-biz-cream px-12 py-8 text-sm uppercase tracking-widest font-bold rounded-full group transition-all duration-300 hover:bg-biz-cream hover:text-biz-charcoal hover:-translate-y-1 transform-gpu"
+          <Link
+            to="/contact"
+            onClick={() => window.lenis?.scrollTo(0)}
+            className="inline-flex items-center justify-center bg-biz-bronze text-biz-cream px-12 py-8 text-sm uppercase tracking-widest font-bold rounded-full group transition-all duration-300 hover:bg-biz-cream hover:text-biz-charcoal hover:-translate-y-1 transform-gpu"
           >
             Contact Us
             <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-          </Button>
+          </Link>
 
-          <Button
-            size="lg"
-            variant="outline"
-            className="bg-transparent text-biz-cream border-biz-cream/20 px-12 py-8 text-sm uppercase tracking-widest font-bold rounded-full transition-all duration-300 hover:bg-biz-cream/10 hover:border-biz-cream hover:-translate-y-1 transform-gpu"
+          <Link
+            to="/cv"
+            onClick={() => window.lenis?.scrollTo(0)}
+            className="inline-flex items-center justify-center bg-transparent text-biz-cream border-biz-cream/20 px-12 py-8 text-sm uppercase tracking-widest font-bold rounded-full transition-all duration-300 hover:bg-biz-cream/10 hover:border-biz-cream hover:-translate-y-1 transform-gpu"
           >
             Submit CV
-          </Button>
+          </Link>
         </motion.div>
 
         {/* Trust Indicators - Optimized Interaction */}
-        <motion.div 
+        <motion.div
           variants={fadeInScale}
           className="flex flex-col md:flex-row items-center justify-center gap-12"
         >
           <div className="flex flex-col items-center gap-3 group cursor-default">
-            <motion.div 
+            <motion.div
               whileHover={{ rotate: 10, scale: 1.1 }}
               transition={{ type: "spring", stiffness: 400, damping: 20 }}
               className="w-10 h-10 rounded-full bg-biz-cream/5 flex items-center justify-center border border-biz-cream/10 transition-colors group-hover:border-biz-bronze/50 transform-gpu"
@@ -121,10 +122,10 @@ export function Final() {
             <span className="text-[10px] text-biz-bronze uppercase tracking-[0.2em] font-bold">24-Hour Response</span>
           </div>
 
-          <div className="hidden md:block w-[1px] h-12 bg-biz-cream/10" />
+          <div className="hidden md:block w-px h-12 bg-biz-cream/10" />
 
           <div className="flex flex-col items-center gap-3 group cursor-default">
-            <motion.div 
+            <motion.div
               whileHover={{ rotate: -10, scale: 1.1 }}
               transition={{ type: "spring", stiffness: 400, damping: 20 }}
               className="w-10 h-10 rounded-full bg-biz-cream/5 flex items-center justify-center border border-biz-cream/10 transition-colors group-hover:border-biz-bronze/50 transform-gpu"
@@ -137,18 +138,18 @@ export function Final() {
       </motion.div>
 
       {/* Floating Glow - Fixed Performance Bottleneck */}
-      <motion.div 
-        animate={{ 
+      <motion.div
+        animate={{
           scale: [1, 1.1, 1],
           opacity: [0.03, 0.05, 0.03],
           x: [0, 15, 0],
         }}
-        transition={{ 
-          duration: 12, 
-          repeat: Infinity, 
-          ease: "linear" 
+        transition={{
+          duration: 12,
+          repeat: Infinity,
+          ease: "linear"
         }}
-        className="absolute -bottom-24 -right-24 w-96 h-96 bg-biz-bronze blur-[80px] rounded-full pointer-events-none will-change-transform transform-gpu" 
+        className="absolute -bottom-24 -right-24 w-96 h-96 bg-biz-bronze blur-[80px] rounded-full pointer-events-none will-change-transform transform-gpu"
       />
     </section>
   );

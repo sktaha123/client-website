@@ -61,10 +61,12 @@ export function Hero() {
         className="relative h-full w-full overflow-hidden md:rounded-biz shadow-sm"
       >
         {/* 🔥 Sliding Background Carousel */}
-        <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute inset-0 overflow-hidden bg-[#2D2219]">
           <AnimatePresence initial={false} mode="sync">
-            <motion.div
+            <motion.img
               key={bgIndex}
+              src={backgroundImages[bgIndex]}
+              alt=""
               initial={{ x: "20%", opacity: 0.001 }}
               animate={{ x: "0%", opacity: 1 }}
               exit={{ x: "-20%", opacity: 0.001 }}
@@ -72,17 +74,12 @@ export function Hero() {
                 x: { duration: 1.4, ease: [0.215, 0.61, 0.355, 1] },
                 opacity: { duration: 0.8, ease: "linear" },
               }}
-              className="
-        absolute inset-0
-        bg-cover bg-center
-        will-change-transform
-        transform-gpu
-        backface-hidden
-      "
-              style={{
-                backgroundImage: `url(${backgroundImages[bgIndex]})`,
-                backgroundColor: "#2D2219",
-              }}
+              className="absolute inset-0 h-full w-full object-cover will-change-transform transform-gpu backface-hidden"
+              fetchPriority={bgIndex === 0 ? "high" : "auto"}
+              loading="eager"
+              decoding="async"
+              width="1920"
+              height="1080"
             />
           </AnimatePresence>
         </div>
@@ -160,7 +157,10 @@ export function Hero() {
               <motion.button
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
-                onClick={() => navigate("/upload-cv")}
+                onClick={() => {
+                  window.lenis?.scrollTo(0);
+                  navigate("/cv");
+                }}
                 className="group cursor-pointer relative inline-flex items-center gap-3 overflow-hidden rounded-full bg-biz-bronze px-8 py-4 text-biz-cream-light transition-all hover:bg-biz-charcoal shadow-xl shadow-biz-charcoal-ink/20"
               >
                 <span className="relative z-10 font-bold tracking-widest  uppercase text-sm">

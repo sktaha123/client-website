@@ -10,9 +10,9 @@ import ScrollToSection from "./ScrollToSection.jsx";
 function Layout() {
   const contentRef = useRef(null);
   const location = useLocation();
-const isAlixActive = useSectionInView("alix", 0.6);
+  const isAlixActive = useSectionInView("alix", 0.6);
   const isHome = location.pathname === "/";
-  
+
 
   return (
     <>
@@ -21,9 +21,8 @@ const isAlixActive = useSectionInView("alix", 0.6);
 
       <main
         ref={contentRef}
-        className={
-          isHome ? "" : "pt-[96px] pb-[50px] min-h-screen bg-biz-cream"
-        }
+        className={`${isHome ? "relative" : "pt-[96px] pb-[50px] min-h-screen bg-biz-cream relative"
+          }`}
       >
         <Outlet />
       </main>
