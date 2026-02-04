@@ -8,13 +8,15 @@
 @import "tailwindcss";
 
 @keyframes fadeIn {
-  to { opacity: 0.8; }
+  to {
+    opacity: 0.8;
+  }
 }
 
 
 
 :root {
-  --font-alix: "Plus Jakarta", "Inter Tight", "DM Sans","Space Grotesk", sans-serif;
+  --font-alix: "Plus Jakarta", "Inter Tight", "DM Sans", "Space Grotesk", sans-serif;
 }
 
 
@@ -22,7 +24,7 @@
   /* Fonts */
   --font-martel: "Martel Sans", "sans-serif";
   --font-dm: "DM Sans", "sans-serif";
-  
+
 
   --color-biz-cream: #FBF8F6;
   --color-biz-cream-light: #FFFFFF;
@@ -53,7 +55,7 @@
 
 @layer base {
   html {
-    scroll-behavior: smooth;
+    /* scroll-behavior: smooth; - Disabled for Lenis */
   }
 
   body {
@@ -62,6 +64,28 @@
     font-family: var(--font-dm);
     -webkit-font-smoothing: antialiased;
   }
+}
+
+/* Lenis Smooth Scroll Recommended CSS */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
 }
 
 @layer components {
@@ -75,20 +99,7 @@
 }
 
 .input-field {
-  @apply
-    w-full
-    p-4
-    rounded-xl
-    border
-    border-gray-200
-    bg-white
-    text-gray-900
-    placeholder-gray-400
-    focus:outline-none
-    focus:ring-2
-    focus:ring-black/10
-    focus:border-black
-    transition;
+  @apply w-full p-4 rounded-xl border border-gray-200 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-black/10 focus:border-black transition;
 }
 
 
@@ -97,9 +108,11 @@
   width: 100%;
   padding: 0.85rem 1rem;
   border-radius: 0.9rem;
-  border: 1px solid rgba(122, 30, 30, 0.18); /* bronze soft */
+  border: 1px solid rgba(122, 30, 30, 0.18);
+  /* bronze soft */
   background-color: #FFFFFF;
-  color: #180F0C; /* biz-charcoal-ink */
+  color: #180F0C;
+  /* biz-charcoal-ink */
   font-size: 0.95rem;
   font-weight: 500;
   transition: all 0.25s ease;
@@ -108,13 +121,15 @@
 
 /* Placeholder */
 .biz-input::placeholder {
-  color: #75665F; /* biz-charcoal-soft */
+  color: #75665F;
+  /* biz-charcoal-soft */
   font-weight: 400;
 }
 
 /* Focus state */
 .biz-input:focus {
-  border-color: #7A1E1E; /* biz-bronze */
+  border-color: #7A1E1E;
+  /* biz-bronze */
   box-shadow: 0 0 0 3px rgba(122, 30, 30, 0.12);
   background-color: #FFFFFF;
 }
@@ -130,3 +145,21 @@
   cursor: not-allowed;
 }
 
+/* Premium Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-biz-cream);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-biz-charcoal-muted);
+  border-radius: 10px;
+  border: 2px solid var(--color-biz-cream);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-biz-bronze);
+}
