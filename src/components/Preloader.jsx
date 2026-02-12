@@ -2,18 +2,34 @@ import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const imagesToPreload = [
-    // SVGs & WebPs in public/svgs/
-    "/svgs/Alix.png",
+    // Brand Assets
     "/svgs/Biznorlogo.png",
+    "/svgs/Alix.png",
+    "/favicon.ico",
+
+    // Hero Backgrounds
     "/svgs/h1.webp",
     "/svgs/h2.webp",
     "/svgs/h3.webp",
     "/svgs/h4.webp",
     "/svgs/heroimage.webp",
-    "/svgs/linkedincard.webp",
-    "/svgs/threads.png",
+    "/svgs/heroimage.jpg",
 
-    // Cards in public/cardsimages/
+    // Industry Cards
+    "/industries/manufacturing.webp",
+    "/industries/healthcare.webp",
+    "/industries/technology.webp",
+    "/industries/retail.webp",
+    "/industries/real-estate.webp",
+    "/industries/logistics.webp",
+    "/industries/education.webp",
+    "/industries/hospitality.webp",
+    "/industries/banking-finance.webp",
+    "/industries/energy.webp",
+    "/industries/aviation.webp",
+    "/industries/construction.webp",
+
+    // Service & About Cards
     "/cardsimages/about1.webp",
     "/cardsimages/about2.webp",
     "/cardsimages/about3.webp",
@@ -25,20 +41,14 @@ const imagesToPreload = [
     "/cardsimages/s6.webp",
     "/cardsimages/s7.webp",
     "/cardsimages/s8.webp",
+    "/cardsimages/softsaas.webp",
+    "/cardsimages/softsoft.webp",
+    "/cardsimages/softweb.webp",
 
-    // Industries in public/industries/
-    "/industries/aviation.webp",
-    "/industries/banking-finance.webp",
-    "/industries/construction.webp",
-    "/industries/education.webp",
-    "/industries/energy.webp",
-    "/industries/healthcare.webp",
-    "/industries/hospitality.webp",
-    "/industries/logistics.webp",
-    "/industries/manufacturing.webp",
-    "/industries/real-estate.webp",
-    "/industries/retail.webp",
-    "/industries/technology.webp"
+    // Other Visuals
+    "/svgs/linkedincard.webp",
+    "/svgs/threads.png",
+    "/svgs/extra/medal.svg"
 ];
 
 const Preloader = ({ onComplete }) => {
@@ -48,7 +58,6 @@ const Preloader = ({ onComplete }) => {
         let loadedCount = 0;
         const total = imagesToPreload.length;
 
-        // If no images, complete immediately
         if (total === 0) {
             onComplete();
             return;
@@ -58,21 +67,37 @@ const Preloader = ({ onComplete }) => {
             loadedCount++;
             const newProgress = Math.round((loadedCount / total) * 100);
             setProgress(newProgress);
-
-            if (loadedCount === total) {
-                // Add a small delay for the user to see 100%
-                setTimeout(() => {
-                    onComplete();
-                }, 800);
-            }
         };
 
-        imagesToPreload.forEach((src) => {
-            const img = new Image();
-            img.src = src;
-            img.onload = updateProgress;
-            img.onerror = updateProgress; // Proceed even if error
+        // Create an array of image load promises
+        const imagePromises = imagesToPreload.map((src) => {
+            return new Promise((resolve) => {
+                const img = new Image();
+                img.src = src;
+                // Force browser to treat these as critical
+                img.loading = "eager";
+                img.onload = () => {
+                    updateProgress();
+                    resolve();
+                };
+                img.onerror = () => {
+                    updateProgress();
+                    resolve(); // Resolve anyway to not block the loader
+                };
+            });
         });
+
+        // Wait for all images AND fonts
+        Promise.all([
+            ...imagePromises,
+            document.fonts.ready // Ensure high-quality typography is ready
+        ]).then(() => {
+            // Smooth exit: ensure the user sees 100% for a brief moment
+            setTimeout(() => {
+                onComplete();
+            }, 1000);
+        });
+
     }, [onComplete]);
 
     return (
@@ -80,6 +105,7 @@ const Preloader = ({ onComplete }) => {
             className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-biz-cream"
             exit={{
                 y: "-100%",
+                opacity: 0,
                 transition: { duration: 1.1, ease: [0.22, 1, 0.36, 1] }
             }}
 

@@ -63,6 +63,10 @@
     font-family: var(--font-dm);
     -webkit-font-smoothing: antialiased;
   }
+
+  button {
+    cursor: pointer;
+  }
 }
 
 /* Lenis Smooth Scroll Recommended CSS */
@@ -94,6 +98,31 @@ html.lenis body {
     text-transform: uppercase;
     letter-spacing: var(--tracking-ultra);
     color: var(--color-biz-bronze);
+  }
+
+  /* --- UNIFIED BUTTON SYSTEM --- */
+  .biz-btn {
+    @apply relative cursor-pointer inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-bold uppercase tracking-widest text-[11px] transition-all duration-500 overflow-hidden outline-hidden select-none;
+  }
+
+  /* Primary Variant: Bronze Focus */
+  .biz-btn-primary {
+    @apply bg-biz-bronze text-white shadow-xl shadow-biz-bronze/20 hover:bg-biz-bronze-dark hover:shadow-2xl hover:shadow-biz-bronze/30 hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  /* Secondary Variant: Charcoal Focus */
+  .biz-btn-secondary {
+    @apply bg-biz-charcoal text-white shadow-xl shadow-biz-charcoal/10 hover:bg-biz-charcoal-ink hover:shadow-2xl hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  /* Outline Variant: Transparent with Border */
+  .biz-btn-outline {
+    @apply bg-transparent border border-biz-bronze/20 text-biz-charcoal hover:border-biz-bronze hover:bg-biz-bronze/5 hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  /* Glossy Effect Overlay (Use with a <span> wrapper for text) */
+  .btn-gloss {
+    @apply absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000;
   }
 }
 

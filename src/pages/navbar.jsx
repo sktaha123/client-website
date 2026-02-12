@@ -89,20 +89,13 @@ const Navbar = () => {
               <Link
                 to="/contact"
                 onClick={() => window.lenis?.scrollTo(0)}
-                className="
-                  hidden md:flex items-center gap-3
-                  rounded-full
-                  bg-biz-charcoal-ink hover:bg-biz-bronze
-                  px-7 py-3
-                  text-biz-cream-light text-[10px]
-                  font-bold uppercase tracking-widest
-                  transition-all duration-500
-                  font-dm shadow-xl shadow-biz-charcoal-ink/10
-                  group
-                "
+                className="biz-btn biz-btn-primary px-5! py-2.5! gap-2.5! group hidden md:flex"
               >
-                Contact
-                <ArrowRight className="size-3 transition-transform group-hover:translate-x-1" />
+                <span className="relative z-10">Contact</span>
+                <div className="relative z-10 bg-white/20 p-1.5 rounded-full group-hover:bg-white group-hover:text-biz-bronze transition-all duration-500">
+                  <ArrowRight className="size-3" />
+                </div>
+                <div className="btn-gloss" />
               </Link>
 
               {/* HAMBURGER */}

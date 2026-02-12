@@ -61,9 +61,18 @@ const MarqueeRow = ({ items, direction = "left", speed = 45 }) => {
     <div className="flex overflow-hidden relative w-full py-4 contain-paint">
       <motion.div
         className="flex gap-6 whitespace-nowrap translate-z-0"
-        initial={{ x: direction === "left" ? "0%" : "-50%" }}
-        animate={{ x: direction === "left" ? "-50%" : "0%" }}
-        transition={{ repeat: Infinity, ease: "linear", duration: speed }}
+        initial={{
+          x: direction === "left" ? "0%" : "-50%",
+          opacity: 0
+        }}
+        animate={{
+          x: direction === "left" ? "-50%" : "0%",
+          opacity: 1
+        }}
+        transition={{
+          x: { repeat: Infinity, ease: "linear", duration: speed },
+          opacity: { duration: 1.2, ease: "easeOut" }
+        }}
         style={{ width: "max-content", willChange: "transform" }}
       >
         {[...items, ...items, ...items].map((industry, index) => {
@@ -111,7 +120,7 @@ const MarqueeRow = ({ items, direction = "left", speed = 45 }) => {
       </motion.div>
 
       {/* Edge fades */}
-      
+
     </div>
   );
 };
@@ -150,10 +159,22 @@ export function Industries() {
       </motion.div>
 
       {/* Marquees */}
-      <div className="flex flex-col">
-        <MarqueeRow items={row1} direction="left" />
-        <MarqueeRow items={row2} direction="right" />
-      </div>
+      <motion.div
+        className="flex flex-col"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{
+          duration: 0.8,
+          delay: 0.2,
+          ease: [0.22, 1, 0.36, 1]
+        }}
+        viewport={{ once: true }}
+      >
+        <div className="space-y-2">
+          <MarqueeRow items={row1} direction="left" speed={50} />
+          <MarqueeRow items={row2} direction="right" speed={50} />
+        </div>
+      </motion.div>
 
       {/* Trigger */}
       <div className="text-center mt-12">
@@ -163,11 +184,11 @@ export function Industries() {
 
         <button
           onClick={() => setIsOpen(true)}
-          className="relative inline-flex items-center gap-2 text-biz-charcoal-ink font-bold hover:text-biz-bronze transition-colors group"
+          className="biz-btn biz-btn-outline group"
         >
           <span>View All Industries</span>
-          <ArrowUpRight className="h-4 w-4 text-biz-bronze group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-          <span className="absolute left-0 -bottom-1 h-[2px] w-full bg-biz-bronze scale-x-0 origin-left group-hover:scale-x-100 transition-transform" />
+          <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+          <div className="btn-gloss" />
         </button>
       </div>
 
@@ -244,7 +265,7 @@ export function Industries() {
                           </span>
                         </div>
 
-                        
+
                       </div>
                     );
                   })}

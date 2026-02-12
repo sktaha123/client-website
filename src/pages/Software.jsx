@@ -113,7 +113,7 @@ const Software = () => {
       <section className="relative pt-17 pb-20 lg:pt-7 lg:pb-32 px-6 overflow-hidden">
 
 
-        
+
         <div className="max-w-7xl mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -130,36 +130,18 @@ const Software = () => {
             </h1>
             <p className="text-biz-charcoal-muted text-xl max-w-3xl mx-auto mb-12 leading-relaxed">
               From custom software to SaaS platforms and high-performance websites, we build digital systems that help businesses operate smarter, scale faster, and stay competitive in a changing market.            </p>
-            <motion.button
+            <motion.a
+              href="mailto:hello@biznorx.com?subject=Inquiry about Digital Production&body=Hello Team,%0D%0A%0D%0AI would like to discuss your digital production services. Please let me know a convenient time to connect.%0D%0A%0D%0AThank you,"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
-              className="group relative cursor-pointer inline-flex items-center gap-4 overflow-hidden rounded-biz bg-biz-charcoal-ink px-12 py-6 font-bold text-biz-cream-light transition-colors duration-300 hover:bg-biz-bronze shadow-xl shadow-biz-charcoal-ink/25 mx-auto"
+              className="biz-btn biz-btn-secondary group mx-auto"
             >
-              <a
-                href="mailto:hello@biznorx.com
-  ?subject=Inquiry%20about%20Digital%20Production
-  &body=Hello%20Team,%0D%0A%0D%0AI%20would%20like%20to%20discuss%20your%20digital%20production%20services.%20Please%20let%20me%20know%20a%20convenient%20time%20to%20connect.%0D%0A%0D%0AThank%20you,"
-                className="cursor-pointer"
-              >
-                <span className="relative z-10 tracking-widest uppercase text-sm">
-                  Talk to Our Team
-                </span>
-              </a>
-
-
-              {/* Arrow Container */}
-              <div className="relative z-10 flex h-7 w-7   aspect-square shrink-0 items-center justify-center rounded-full bg-biz-cream-light/20 transition-transform duration-500 transform group-hover:translate-x-1 group-hover:rotate-45">
+              <span className="relative z-10">Talk to Our Team</span>
+              <div className="relative z-10 bg-white/20 p-2 rounded-full group-hover:bg-white group-hover:text-biz-charcoal transition-all duration-500">
                 <ArrowUpRight className="h-4 w-4" />
               </div>
-
-              {/* Light Sweep */}
-              <motion.div
-                initial={{ x: "-105%" }}
-                whileHover={{ x: "105%" }}
-                transition={{ duration: 0.6, ease: "easeInOut" }}
-                className="pointer-events-none absolute inset-0 bg-gradient-to-r from-transparent via-biz-cream-light/10 to-transparent"
-              />
-            </motion.button>
+              <div className="btn-gloss" />
+            </motion.a>
 
 
           </motion.div>
@@ -226,35 +208,18 @@ const Software = () => {
               Partner with <span className="text-biz-bronze-pale lg:text-xl font-bold">biznor</span><span className="text-biz-bronze-pale lg:text-xl font-bold">x</span> and turn your digital vision into a scalable, high-impact solution that grows with your business.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="mailto:hello@biznorx.com
-  ?subject=Inquiry%20about%20Digital%20Production
-  &body=Hello%20Team,%0D%0A%0D%0AI%20would%20like%20to%20discuss%20your%20digital%20production%20services.%20Please%20let%20me%20know%20a%20convenient%20time%20to%20connect.%0D%0A%0D%0AThank%20you,"
-                className="cursor-pointer"
-              >
-              <motion.button
+              <motion.a
+                href="mailto:hello@biznorx.com?subject=Inquiry about Digital Production&body=Hello Team,%0D%0A%0D%0AI would like to discuss your digital production services. Please let me know a convenient time to connect.%0D%0A%0D%0AThank you,"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
-                className="group relative cursor-pointer inline-flex items-center gap-4 overflow-hidden rounded-full bg-biz-bronze  px-9 py-4 font-bold text-sm md:text-lg text-biz-cream-light transition-all hover:bg-biz-bronze-dark shadow-xl shadow-biz-bronze/30"
+                className="biz-btn biz-btn-primary group"
               >
-                
-                <span className="relative z-10 tracking-widest uppercase text-sm">
-                  Start your Project
-                </span>
-             
-
-                <div className="relative z-10   aspect-square shrink-0 flex size-10 md:h-7 md:w-7 items-center justify-center rounded-full bg-biz-cream-light/20 transition-transform duration-500 group-hover:rotate-45">
+                <span className="relative z-10">Start your Project</span>
+                <div className="relative z-10 bg-white/20 p-2 rounded-full group-hover:bg-white group-hover:text-biz-bronze transition-all duration-500">
                   <ArrowUpRight className="h-4 w-4" />
                 </div>
-
-                <motion.div
-                  initial={{ x: "-105%" }}
-                  whileHover={{ x: "105%" }}
-                  transition={{ duration: 0.6, ease: "easeInOut" }}
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-biz-cream-light/10 to-transparent pointer-events-none"
-                />
-              </motion.button>
-              </a>
+                <div className="btn-gloss" />
+              </motion.a>
 
 
             </div>

@@ -1,7 +1,7 @@
 import { useEffect, lazy, Suspense, useState } from "react";
 import Lenis from "lenis";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Layout from "./components/Layout.jsx";
 import Preloader from "./components/Preloader.jsx";
 
@@ -54,8 +54,11 @@ function App() {
       document.body.classList.add("overflow-hidden");
       window.scrollTo(0, 0);
     } else {
-      if (window.lenis) window.lenis.start();
-      document.body.classList.remove("overflow-hidden");
+      // Small delay to let the preloader exit animation start before unlocking Lenis
+      setTimeout(() => {
+        if (window.lenis) window.lenis.start();
+        document.body.classList.remove("overflow-hidden");
+      }, 500);
     }
   }, [loading]);
 
@@ -65,31 +68,37 @@ function App() {
         {loading && <Preloader key="preloader" onComplete={() => setLoading(false)} />}
       </AnimatePresence>
 
-      <Suspense fallback={<div className="h-screen w-full bg-biz-cream flex items-center justify-center">
-        <div className="w-12 h-12 border-4 border-biz-bronze border-t-transparent rounded-full animate-spin"></div>
-      </div>}>
-        <Routes>
-          <Route element={<Layout />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/industries" element={<Industries />} />
-            <Route path="/process" element={<Process />} />
-            <Route path="/whychooseus" element={<Whychooseus />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/software" element={<Software />} />
-            <Route path="/cv" element={<CV />} />
-            <Route
-              path="/admin/applications"
-              element={
-                <AdminRoute>
-                  <ApplicationsTable />
-                </AdminRoute>
-              }
-            />
-          </Route>
-        </Routes>
-      </Suspense>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={!loading ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+      >
+        <Suspense fallback={<div className="h-screen w-full bg-biz-cream flex items-center justify-center">
+          <div className="w-12 h-12 border-4 border-biz-bronze border-t-transparent rounded-full animate-spin"></div>
+        </div>}>
+          <Routes>
+            <Route element={<Layout />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/services" element={<Services />} />
+              <Route path="/industries" element={<Industries />} />
+              <Route path="/process" element={<Process />} />
+              <Route path="/whychooseus" element={<Whychooseus />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/software" element={<Software />} />
+              <Route path="/cv" element={<CV />} />
+              <Route
+                path="/admin/applications"
+                element={
+                  <AdminRoute>
+                    <ApplicationsTable />
+                  </AdminRoute>
+                }
+              />
+            </Route>
+          </Routes>
+        </Suspense>
+      </motion.div>
     </BrowserRouter>
   );
 }
