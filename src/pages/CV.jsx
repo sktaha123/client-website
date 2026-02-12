@@ -219,6 +219,7 @@ const CV = () => {
                 <div>
                   <h2 className="text-3xl font-bold text-biz-charcoal tracking-tight">Submit Your CV</h2>
                   <p className="text-biz-charcoal-muted text-sm mt-1">Join our network of global talent.</p>
+                  <p className="text-biz-bronze text-sm mt-1">Don't submit your CV twice.</p>
                 </div>
                 <div className="flex flex-col items-end">
                   <span className="text-[10px] font-bold text-biz-bronze uppercase tracking-widest mb-1">
@@ -426,15 +427,12 @@ const CV = () => {
                 disabled={loading}
                 className="biz-btn biz-btn-primary w-full mt-2 group"
               >
-                {loading ? (
-                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                ) : (
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                  </svg>
-                )}
+                
                 <span>{loading ? "Submitting..." : "Submit Application"}</span>
                 <div className="btn-gloss" />
+                {loading && (
+                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                )}
               </button>
             </motion.form>
           )}
