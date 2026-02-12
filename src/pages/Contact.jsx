@@ -60,7 +60,7 @@ const LocationItem = React.memo(({ title, city }) => (
       <MapPin className="h-4 w-4" />
     </div>
     <div className="flex flex-col">
-      <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-biz-bronze/60 mb-1">
+      <span className="text-[10px] font-bold uppercase tracking-widest text-biz-bronze/60 mb-1">
         {title}
       </span>
       <p className="text-base text-biz-charcoal font-medium group-hover/loc:text-biz-bronze transition-colors">
@@ -72,7 +72,7 @@ const LocationItem = React.memo(({ title, city }) => (
 
 export function Contact() {
   return (
-    <section id="contact" className="bg-biz-cream pt-8 pb-24 font-dm overflow-hidden">
+    <section id="contact" className="bg-biz-cream pt-8 pb-10 font-dm overflow-hidden">
       <motion.div
         className="max-w-7xl mx-auto px-6 lg:px-12"
         variants={CONTAINER_VARIANTS}
@@ -110,7 +110,7 @@ export function Contact() {
             </p>
 
             <div className="pt-6 space-y-4">
-              <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-biz-charcoal/30">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-biz-charcoal/30">
                 Network
               </p>
               <div className="flex gap-6">
@@ -158,7 +158,7 @@ export function Contact() {
                         {method.label}
                       </p>
                       <div className="flex items-center gap-6">
-                        <Icon className={`h-6 w-6 text-biz-charcoal/20 transition-all duration-500 ${method.accent} group-hover:scale-120 group-hover:rotate-[15deg]`} />
+                        <Icon className={`h-6 w-6 text-biz-charcoal/20 transition-all duration-500 ${method.accent} group-hover:scale-120 group-hover:rotate-15`} />
                         <span className="text-3xl md:text-3xl text-biz-charcoal font-bold tracking-tighter transition-all duration-300 group-hover:text-biz-charcoal-ink group-hover:tracking-normal">
                           {method.value}
                         </span>

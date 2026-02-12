@@ -21,7 +21,7 @@ function Layout() {
 
       <main
         ref={contentRef}
-        className={`${isHome ? "relative" : "pt-[96px] pb-[50px] min-h-screen bg-biz-cream relative"
+        className={`${isHome ? "relative" : "pt-[96px] pb-4 min-h-screen bg-biz-cream relative"
           }`}
       >
         <Outlet />

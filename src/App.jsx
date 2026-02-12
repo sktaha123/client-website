@@ -1,7 +1,9 @@
-import { useEffect, lazy, Suspense } from "react";
+import { useEffect, lazy, Suspense, useState } from "react";
 import Lenis from "lenis";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 import Layout from "./components/Layout.jsx";
+import Preloader from "./components/Preloader.jsx";
 
 // Lazy loading pages for route-based code splitting
 const Home = lazy(() => import("./pages/Home.jsx"));
@@ -17,6 +19,8 @@ const AdminRoute = lazy(() => import("./routes/AdminRoute.jsx").then(module => (
 const ApplicationsTable = lazy(() => import("./components/ApplicationsTable.jsx"));
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const lenis = new Lenis({
       duration: 0.7,
@@ -35,14 +39,32 @@ function App() {
 
     requestAnimationFrame(raf);
 
+    // Preload critical chunks
+    import("./pages/Home.jsx");
+
     return () => {
       lenis.destroy();
       window.lenis = null;
     };
   }, []);
 
+  useEffect(() => {
+    if (loading) {
+      if (window.lenis) window.lenis.stop();
+      document.body.classList.add("overflow-hidden");
+      window.scrollTo(0, 0);
+    } else {
+      if (window.lenis) window.lenis.start();
+      document.body.classList.remove("overflow-hidden");
+    }
+  }, [loading]);
+
   return (
     <BrowserRouter>
+      <AnimatePresence mode="wait">
+        {loading && <Preloader key="preloader" onComplete={() => setLoading(false)} />}
+      </AnimatePresence>
+
       <Suspense fallback={<div className="h-screen w-full bg-biz-cream flex items-center justify-center">
         <div className="w-12 h-12 border-4 border-biz-bronze border-t-transparent rounded-full animate-spin"></div>
       </div>}>
