@@ -173,7 +173,7 @@ const CV = () => {
 
   /* ================= RENDER ================= */
   return (
-    <section className="min-h-[80vh] flex items-center justify-center bg-biz-cream font-dm overflow-hidden py-20 px-6">
+    <section className="min-h-[80vh] flex items-center justify-center bg-biz-cream font-dm overflow-hidden pb-10 px-6">
       <div className="w-full max-w-2xl bg-white p-8 md:p-12 rounded-[2.5rem] shadow-xl border border-biz-bronze/5 relative overflow-hidden">
         {/* Decorative elements to replace the lost panel aesthetic */}
         <div className="absolute top-0 right-0 w-48 h-48 bg-biz-bronze/5 blur-[80px] rounded-full pointer-events-none" />
