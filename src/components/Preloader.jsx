@@ -80,8 +80,9 @@ const Preloader = ({ onComplete }) => {
             className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-biz-cream"
             exit={{
                 y: "-100%",
-                transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] }
+                transition: { duration: 1.1, ease: [0.22, 1, 0.36, 1] }
             }}
+
         >
             {/* Animated Background Gradient (Subtle) */}
             <div className="absolute inset-0 bg-linear-to-tr from-transparent via-biz-sand/20 to-transparent opacity-50 pointer-events-none" />
