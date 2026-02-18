@@ -131,7 +131,7 @@ const Preloader = ({ onComplete }) => {
                 >
                     {/* Text Logo */}
                     <h1 className="text-5xl font-bold tracking-tight text-biz-charcoal">
-                        Biznor<span className="text-biz-bronze">X</span>
+                        biznor<span className="text-biz-bronze">X</span>
                     </h1>
                 </motion.div>
 

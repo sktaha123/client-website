@@ -1,9 +1,8 @@
 import { Outlet, useLocation } from "react-router-dom";
 import { useRef } from "react";
 
-import Navbar from "../pages/navbar.jsx";
-import { useSectionInView } from "./useSectionInView.jsx";
-import Alix from "@/pages/Alix.jsx";
+import Navbar from "./Navbar.jsx";
+import { useSectionInView } from "../../hooks/useSectionInView.jsx";
 import { Footer } from "./Footer.jsx";
 import ScrollToSection from "./ScrollToSection.jsx";
 
@@ -12,7 +11,6 @@ function Layout() {
   const location = useLocation();
   const isAlixActive = useSectionInView("alix", 0.6);
   const isHome = location.pathname === "/";
-
 
   return (
     <>

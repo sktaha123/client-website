@@ -166,70 +166,48 @@ const Navbar = () => {
 
       {/* MOBILE MENU */}
       <div
-  className={`
-    fixed inset-0 bg-biz-cream z-40 lg:hidden overflow-hidden
+        className={`
+          fixed inset-0 bg-biz-cream z-40 lg:hidden overflow-hidden
+          transition-all duration-700 ease-[cubic-bezier(0.85,0,0.15,1)]
+          ${isOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-50"}
+        `}
+      >
+        <div className="flex flex-col h-full pt-32 px-8 pb-12 overflow-y-auto">
+          <span className="text-biz-bronze text-[10px] font-bold uppercase tracking-ultra mb-10 block opacity-50">
+            Menu
+          </span>
 
-    /* smoother container animation */
-    transition-[transform,opacity,filter]
-    duration-500 ease-[cubic-bezier(.32,.72,0,1)]
-
-    ${isOpen
-      ? "translate-y-0 opacity-100 blur-0"
-      : "-translate-y-full opacity-0 blur-sm pointer-events-none"}
-  `}
->
-  <div className="flex flex-col h-full pt-32 px-8 pb-12 overflow-y-auto">
-
-    {/* Menu Label */}
-    <span className="
-      text-biz-bronze text-[10px] font-bold uppercase
-      tracking-ultra mb-12 block opacity-50
-      transition-opacity duration-500
-    ">
-      Menu
-    </span>
-
-    <nav className="flex flex-col space-y-7">
-
-      {mobileLinks.map((link, idx) => (
-        <div
-          key={link.name}
-          className={`
-            transform transition-[transform,opacity]
-            duration-500 ease-[cubic-bezier(.22,1,.36,1)]
-
-            ${isOpen
-              ? "translate-y-0 scale-100 opacity-100"
-              : "translate-y-10 scale-95 opacity-0"}
-          `}
-          style={{
-            transitionDelay: `${80 + idx * 70}ms`
-          }}
-        >
-          <NavLink
-            to={link.to}
-            onClick={() => window.lenis?.scrollTo(0)}
-            className={({ isActive }) => `
-              text-4xl font-light tracking-tight inline-block
-              transition-all duration-300
-
-              ${
-                isActive
-                  ? "text-biz-bronze"
-                  : "text-biz-charcoal hover:text-biz-bronze hover:translate-x-1 active:scale-95"
-              }
-            `}
-          >
-            {link.name}
-          </NavLink>
+          <nav className="flex flex-col space-y-6">
+            {mobileLinks.map((link, idx) => (
+              <div
+                key={link.name}
+                className={`
+                  transform transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]
+                  ${isOpen ? "translate-y-0 opacity-100" : "translate-y-12 opacity-0"}
+                `}
+                style={{ transitionDelay: `${100 + idx * 60}ms` }}
+              >
+                <NavLink
+                  to={link.to}
+                  onClick={() => window.lenis?.scrollTo(0)}
+                  className={({ isActive }) =>
+                    `
+        text-4xl font-light tracking-tight
+        transition-colors inline-block
+        ${isActive
+                      ? "text-biz-bronze  font-normal "
+                      : "text-biz-charcoal hover:text-biz-bronze active:scale-95 duration-200"
+                    }
+        `
+                  }
+                >
+                  {link.name}
+                </NavLink>
+              </div>
+            ))}
+          </nav>
         </div>
-      ))}
-
-    </nav>
-
-  </div>
-</div>
-
+      </div>
     </>
   );
 };
