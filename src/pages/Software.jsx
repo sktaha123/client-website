@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   Rocket, Monitor, Layers, Palette, BarChart,
   ArrowRight, ArrowUpRight, Plus, Minus, Check, ShieldCheck,
-  Zap, Globe, Cpu
+  Zap, Globe, Cpu, Headset, Code
 } from 'lucide-react';
 
 
@@ -138,7 +138,7 @@ const Software = () => {
             >
               <span className="relative z-10">Talk to Our Team</span>
               <div className="relative z-10 bg-white/20 p-2 rounded-full group-hover:bg-white group-hover:text-biz-charcoal transition-all duration-500">
-                <ArrowUpRight className="h-4 w-4" />
+                <Headset className="h-4 w-4" />
               </div>
               <div className="btn-gloss" />
             </motion.a>
@@ -216,7 +216,7 @@ const Software = () => {
               >
                 <span className="relative z-10">Start your Project</span>
                 <div className="relative z-10 bg-white/20 p-2 rounded-full group-hover:bg-white group-hover:text-biz-bronze transition-all duration-500">
-                  <ArrowUpRight className="h-4 w-4" />
+                  <Code className="h-4 w-4" />
                 </div>
                 <div className="btn-gloss" />
               </motion.a>

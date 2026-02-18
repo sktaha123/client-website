@@ -92,39 +92,110 @@ html.lenis body {
 }
 
 @layer components {
+
+  /* =========================================
+     PROFESSIONAL LABEL — CLEANER TYPOGRAPHY
+     ========================================= */
+
   .professional-label {
-    font-size: 10px;
-    font-weight: 700;
+    font-size: 11px;
+    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: var(--tracking-ultra);
+    letter-spacing: 0.25em;
     color: var(--color-biz-bronze);
+    opacity: 0.9;
   }
 
-  /* --- UNIFIED BUTTON SYSTEM --- */
+
+  /* =========================================
+     BASE BUTTON — MINIMAL + PREMIUM
+     ========================================= */
+
   .biz-btn {
-    @apply relative cursor-pointer inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-bold uppercase tracking-widest text-[11px] transition-all duration-500 overflow-hidden outline-hidden select-none;
+    @apply relative cursor-pointer inline-flex items-center justify-center gap-2 sm:gap-3
+    px-5 sm:px-6 lg:px-8
+    py-3 sm:py-3.5 lg:py-4
+    rounded-full font-medium uppercase tracking-[0.22em]
+    text-[10px] sm:text-[11px] lg:text-[12px]
+    transition-all duration-300 ease-[cubic-bezier(.4,0,.2,1)]
+    overflow-hidden select-none whitespace-nowrap
+    border border-transparent
+    outline-none
+    bg-white
+    shadow-[0_2px_10px_rgba(0,0,0,0.06)]
+    focus:ring-2 focus:ring-biz-bronze/40 focus:ring-offset-2
+    hover:shadow-[0_6px_18px_rgba(0,0,0,0.08)]
+    hover:-translate-y-0.5
+    active:scale-[0.96];
   }
 
-  /* Primary Variant: Bronze Focus */
+
+  /* =========================================
+     PRIMARY — SOLID LUXURY BRONZE
+     ========================================= */
+
   .biz-btn-primary {
-    @apply bg-biz-bronze text-white shadow-xl shadow-biz-bronze/20 hover:bg-biz-bronze-dark hover:shadow-2xl hover:shadow-biz-bronze/30 hover:-translate-y-0.5 active:translate-y-0;
+    @apply text-white
+    bg-biz-bronze
+    border border-biz-bronze
+    shadow-[0_4px_14px_rgba(0,0,0,0.12)]
+    hover:bg-biz-bronze-dark
+    hover:border-biz-bronze-dark
+    hover:shadow-[0_8px_24px_rgba(0,0,0,0.18)]
+    hover:-translate-y-0.5
+    active:translate-y-0;
   }
 
-  /* Secondary Variant: Charcoal Focus */
+
+  /* =========================================
+     SECONDARY — MATTE CHARCOAL BUTTON
+     ========================================= */
+
   .biz-btn-secondary {
-    @apply bg-biz-charcoal text-white shadow-xl shadow-biz-charcoal/10 hover:bg-biz-charcoal-ink hover:shadow-2xl hover:-translate-y-0.5 active:translate-y-0;
+    @apply text-white
+    bg-biz-charcoal
+    border border-biz-charcoal
+    shadow-[0_4px_14px_rgba(0,0,0,0.15)]
+    hover:bg-biz-charcoal-ink
+    hover:border-biz-charcoal-ink
+    hover:shadow-[0_8px_24px_rgba(0,0,0,0.25)]
+    hover:-translate-y-0.5
+    active:translate-y-0;
   }
 
-  /* Outline Variant: Transparent with Border */
+
+  /* =========================================
+     OUTLINE — PREMIUM GLASS STYLE
+     ========================================= */
+
   .biz-btn-outline {
-    @apply bg-transparent border border-biz-bronze/20 text-biz-charcoal hover:border-biz-bronze hover:bg-biz-bronze/5 hover:-translate-y-0.5 active:translate-y-0;
+    @apply bg-white/60 backdrop-blur-md
+    border border-biz-bronze/40
+    text-biz-charcoal
+    shadow-[0_2px_10px_rgba(0,0,0,0.05)]
+    hover:bg-white
+    hover:border-biz-bronze
+    hover:shadow-[0_6px_18px_rgba(0,0,0,0.08)]
+    hover:-translate-y-0.5
+    active:translate-y-0;
   }
 
-  /* Glossy Effect Overlay (Use with a <span> wrapper for text) */
+
+  /* =========================================
+     GLOSS OVERLAY — SOFT LIGHT SWEEP
+     ========================================= */
+
   .btn-gloss {
-    @apply absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-600;
+    @apply absolute inset-0
+    bg-gradient-to-r from-transparent via-white/20 to-transparent
+    -translate-x-[140%]
+    group-hover:translate-x-[140%]
+    transition-transform duration-500 ease-[cubic-bezier(.4,0,.2,1)]
+    pointer-events-none;
   }
+
 }
+
 
 .input-field {
   @apply w-full p-4 rounded-xl border border-gray-200 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-black/10 focus:border-black transition;

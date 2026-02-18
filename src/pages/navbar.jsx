@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ArrowRight, Menu, X } from "lucide-react";
+import { ArrowRight, Menu, X, Headset, MessageCircleMore } from "lucide-react";
 import { Link, useLocation, NavLink } from "react-router-dom";
 
 const Navbar = () => {
@@ -43,17 +43,17 @@ const Navbar = () => {
   return (
     <>
       {/* NAVBAR */}
-      <div className="fixed top-0 md:top-1 left-0 right-0 z-50 flex justify-center px-0 md:px-6">
+      <div className="fixed top-0 md:top-0 left-0 right-0 z-50 flex justify-center px-0 md:px-6">
         <div
           className="
-            w-full md:w-[99vw] max-w-7xl
-            bg-biz-cream/90 backdrop-blur-xl border-b border-white/40 md:border-white/20
-            md:rounded-biz
+            w-full md:w-[99vw] max-w-5xl
+            bg-biz-cream/90 backdrop-blur-xl sm:border-b md:border-0 border-white/40 md:border-white/20
+            md:rounded-biz 
             shadow-[0_2px_40px_rgba(45,34,25,0.04)]
             transition-all duration-500
           "
         >
-          <div className="px-6 md:px-10 h-20 flex items-center justify-between">
+          <div className="px-6 md:px-6 h-18 flex items-center justify-between">
             {/* LEFT — LOGO */}
             <Link
               to="/"
@@ -88,7 +88,7 @@ const Navbar = () => {
                   </span>
 
                   {/* Dropdown Panel */}
-                  <div className="absolute top-full right-0 pt-2 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 ease-out">
+                  <div className="absolute top-full right-0 pt-0 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 ease-out">
                     <div className="bg-white rounded-2xl shadow-xl p-2 min-w-[200px] flex flex-col gap-1">
                       {menuGroups.company.map((link) => (
                         <NavLink
@@ -113,7 +113,7 @@ const Navbar = () => {
                     <span className="text-[9px] opacity-50 group-hover:rotate-180 transition-transform duration-300">▼</span>
                   </span>
 
-                  <div className="absolute top-full right-0 pt-2 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 ease-out">
+                  <div className="absolute top-full right-0 pt-0 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 ease-out">
                     <div className="bg-white rounded-2xl shadow-xl p-2 min-w-[220px] flex flex-col gap-1">
                       {menuGroups.solutions.map((link) => (
                         <NavLink
@@ -132,8 +132,7 @@ const Navbar = () => {
                 </div>
               </nav>
 
-              {/* DIVIDER */}
-              <div className="h-4 w-px bg-biz-charcoal/10 mx-2"></div>
+              
 
               {/* CONTACT & HAMBURGER */}
               <div className="flex items-center space-x-4">
@@ -144,7 +143,7 @@ const Navbar = () => {
                 >
                   <span className="relative z-10">Get in Touch</span>
                   <div className="relative z-10 bg-white/20 p-1 rounded-full group-hover:bg-white group-hover:text-biz-bronze transition-all duration-500">
-                    <ArrowRight className="size-3" />
+                    <MessageCircleMore className="size-5" />
                   </div>
                   <div className="btn-gloss" />
                 </Link>

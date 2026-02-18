@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Upload, FileUser } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -58,7 +58,7 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, ease: "easeOut" }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
           className="relative h-full w-full overflow-hidden md:rounded-biz shadow-sm"
         >
           {/* 🔥 Sliding Background Carousel */}
@@ -183,8 +183,8 @@ export function Hero() {
                   className="biz-btn biz-btn-primary group"
                 >
                   <span className="relative z-10">Upload Your CV</span>
-                  <div className="relative z-10 bg-white/20 p-2 rounded-full group-hover:bg-white group-hover:text-biz-bronze transition-all duration-500">
-                    <ArrowUpRight className="h-4 w-4" />
+                  <div className="relative z-10 bg-white/10 p-2 rounded-full group-hover:bg-white group-hover:text-biz-bronze transition-all duration-300">
+                    <FileUser className="h-5 w-5" />
                   </div>
                   <div className="btn-gloss" />
                 </motion.button>
