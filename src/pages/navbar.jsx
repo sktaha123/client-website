@@ -29,6 +29,7 @@ const Navbar = () => {
       { name: "Industries", to: "/industries" },
       { name: "Software Solutions", to: "/software" },
     ],
+    
   };
 
   // Flat list for Mobile
@@ -88,7 +89,7 @@ const Navbar = () => {
 
                   {/* Dropdown Panel */}
                   <div className="absolute top-full right-0 pt-2 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 ease-out">
-                    <div className="bg-white/95 backdrop-blur-md rounded-2xl shadow-xl border border-biz-sand-muted p-2 min-w-[200px] flex flex-col gap-1">
+                    <div className="bg-white rounded-2xl shadow-xl p-2 min-w-[200px] flex flex-col gap-1">
                       {menuGroups.company.map((link) => (
                         <NavLink
                           key={link.name}
@@ -113,7 +114,7 @@ const Navbar = () => {
                   </span>
 
                   <div className="absolute top-full right-0 pt-2 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 ease-out">
-                    <div className="bg-white/95 backdrop-blur-md rounded-2xl shadow-xl border border-biz-sand-muted p-2 min-w-[220px] flex flex-col gap-1">
+                    <div className="bg-white rounded-2xl shadow-xl p-2 min-w-[220px] flex flex-col gap-1">
                       {menuGroups.solutions.map((link) => (
                         <NavLink
                           key={link.name}

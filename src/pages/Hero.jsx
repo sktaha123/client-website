@@ -63,17 +63,17 @@ export function Hero() {
         >
           {/* 🔥 Sliding Background Carousel */}
           <div className="absolute inset-0 overflow-hidden bg-[#2D2219]">
-            <AnimatePresence initial={false} mode="sync">
+            <AnimatePresence>
               <motion.img
                 key={bgIndex}
                 src={backgroundImages[bgIndex]}
                 alt=""
-                initial={{ x: "20%", opacity: 0.001 }}
-                animate={{ x: "0%", opacity: 1 }}
-                exit={{ x: "-20%", opacity: 0.001 }}
+                initial={{ opacity: 0, scale: 1 }}
+                animate={{ opacity: 1, scale: 1.15 }}
+                exit={{ opacity: 0 }}
                 transition={{
-                  x: { duration: 1.4, ease: [0.215, 0.61, 0.355, 1] },
-                  opacity: { duration: 0.8, ease: "linear" },
+                  scale: { duration: 8, ease: "linear" },
+                  opacity: { duration: 1.5, ease: "easeInOut" },
                 }}
                 className="absolute inset-0 h-full w-full object-cover will-change-transform transform-gpu backface-hidden"
                 fetchPriority={bgIndex === 0 ? "high" : "auto"}
@@ -88,7 +88,7 @@ export function Hero() {
 
 
           {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-r  from-black/80 from-5%
+          <div className="absolute inset-0 rounded-4xl bg-gradient-to-r  from-black/80 from-5%
   via-black/30 via-40%
   via-black/30 via-60%
   to-black/30 to-95%
