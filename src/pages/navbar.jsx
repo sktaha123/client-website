@@ -196,7 +196,7 @@ const Navbar = () => {
         text-4xl font-light tracking-tight
         transition-colors inline-block
         ${isActive
-                      ? "text-biz-bronze  font-normal translate-x-2"
+                      ? "text-biz-bronze  font-normal "
                       : "text-biz-charcoal hover:text-biz-bronze active:scale-95 duration-200"
                     }
         `
