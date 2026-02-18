@@ -100,8 +100,6 @@ export function Hero() {
             </AnimatePresence>
           </div>
 
-
-
           {/* Gradient Overlay */}
           <div className="absolute inset-0 md:rounded-4xl 
             bg-gradient-to-b from-black/80 via-black/20 to-black/80
