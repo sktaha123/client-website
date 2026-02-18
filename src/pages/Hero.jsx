@@ -103,7 +103,7 @@ export function Hero() {
           {/* Gradient Overlay */}
 
           {/* Mobile Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/90 from-10% via-black/30 via-40% to-black/90 to-90% md:hidden pointer-events-none" />
+          <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/90 from-0% via-black/40 via-50% to-black/90 to-100% md:hidden pointer-events-none" />
 
           {/* Desktop Gradient Overlay */}
           <div className="hidden md:absolute md:inset-0 md:block md:rounded-4xl 
