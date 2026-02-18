@@ -103,11 +103,12 @@ export function Hero() {
 
 
           {/* Gradient Overlay */}
-          <div className="absolute inset-0 md:rounded-4xl bg-gradient-to-r  from-black/80 from-5%
-  via-black/30 via-40%
-  via-black/30 via-60%
-  to-black/30 to-95%
-  pointer-events-none" />
+          <div className="absolute inset-0 md:rounded-4xl 
+            bg-gradient-to-b from-black/80 via-black/20 to-black/80
+            md:bg-gradient-to-r md:from-black/80 md:from-5% 
+            md:via-black/30 md:via-40% 
+            md:to-black/30 md:to-95%
+            pointer-events-none" />
 
           {/* Content */}
           <div className="relative z-30 flex h-full min-h-[85vh] md:min-h-[95vh] w-full flex-col justify-end pb-12 md:pb-24 px-6 md:px-16">
