@@ -1,4 +1,4 @@
-import { useEffect, lazy, Suspense, useState } from "react";
+import { useEffect, lazy, Suspense, useState, useCallback } from "react";
 import Lenis from "lenis";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
@@ -59,10 +59,12 @@ function App() {
     }
   }, [loading]);
 
+  const handleLoadingComplete = useCallback(() => setLoading(false), []);
+
   return (
     <BrowserRouter>
       <AnimatePresence mode="wait">
-        {loading && <Preloader key="preloader" onComplete={() => setLoading(false)} />}
+        {loading && <Preloader key="preloader" onComplete={handleLoadingComplete} />}
       </AnimatePresence>
 
       <Suspense fallback={<div className="h-screen w-full bg-biz-cream flex items-center justify-center">
