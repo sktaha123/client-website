@@ -101,11 +101,15 @@ export function Hero() {
           </div>
 
           {/* Gradient Overlay */}
-          <div className="absolute inset-0 md:rounded-4xl 
-            bg-gradient-to-b from-black/80 via-black/20 to-black/80
-            md:bg-gradient-to-r md:from-black/80 md:from-5% 
-            md:via-black/30 md:via-40% 
-            md:to-black/30 md:to-95%
+
+          {/* Mobile Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/90 from-10% via-black/30 via-40% to-black/90 to-90% md:hidden pointer-events-none" />
+
+          {/* Desktop Gradient Overlay */}
+          <div className="hidden md:absolute md:inset-0 md:block md:rounded-4xl 
+            bg-gradient-to-r from-black/80 from-5% 
+            via-black/30 via-40% 
+            to-black/30 to-95%
             pointer-events-none" />
 
           {/* Content */}
