@@ -53,60 +53,68 @@ const imagesToPreload = [
 
 const Preloader = ({ onComplete }) => {
     const [progress, setProgress] = useState(0);
+    const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
-        let loadedCount = 0;
-        const total = imagesToPreload.length;
+        // Start loading assets immediately
+        const loadAssets = async () => {
+            const imagePromises = imagesToPreload.map((src) => {
+                return new Promise((resolve) => {
+                    const img = new Image();
+                    img.src = src;
+                    img.loading = "eager";
+                    img.onload = resolve;
+                    img.onerror = resolve;
+                });
+            });
 
-        if (total === 0) {
-            onComplete();
-            return;
-        }
-
-        const updateProgress = () => {
-            loadedCount++;
-            const newProgress = Math.round((loadedCount / total) * 100);
-            setProgress(newProgress);
+            await Promise.all([...imagePromises, document.fonts.ready]);
+            setIsLoaded(true);
         };
 
-        // Create an array of image load promises
-        const imagePromises = imagesToPreload.map((src) => {
-            return new Promise((resolve) => {
-                const img = new Image();
-                img.src = src;
-                // Force browser to treat these as critical
-                img.loading = "eager";
-                img.onload = () => {
-                    updateProgress();
-                    resolve();
-                };
-                img.onerror = () => {
-                    updateProgress();
-                    resolve(); // Resolve anyway to not block the loader
-                };
-            });
-        });
+        if (imagesToPreload.length === 0) {
+            setIsLoaded(true);
+        } else {
+            loadAssets();
+        }
+    }, []);
 
-        // Wait for all images AND fonts
-        Promise.all([
-            ...imagePromises,
-            document.fonts.ready // Ensure high-quality typography is ready
-        ]).then(() => {
-            // Smooth exit: ensure the user sees 100% for a brief moment
-            setTimeout(() => {
-                onComplete();
-            }, 1000);
-        });
+    useEffect(() => {
+        let timeoutId;
 
-    }, [onComplete]);
+        if (isLoaded) {
+            // When loaded, complete the progress bar
+            if (progress < 100) {
+                // Smoothly but quickly finish
+                timeoutId = setTimeout(() => setProgress(100), 100);
+            } else {
+                // Once at 100%, wait briefly then exit
+                timeoutId = setTimeout(onComplete, 800);
+            }
+        } else {
+            // Still loading
+            if (progress < 80) {
+                // Phase 1: Fast load to 80% (approx 400ms)
+                timeoutId = setTimeout(() => {
+                    setProgress(prev => Math.min(prev + 4, 80));
+                }, 20);
+            } else if (progress < 95) {
+                // Phase 2: Slow crawl while waiting for real assets
+                timeoutId = setTimeout(() => {
+                    setProgress(prev => prev + 1);
+                }, 150);
+            }
+        }
+
+        return () => clearTimeout(timeoutId);
+    }, [progress, isLoaded, onComplete]);
 
     return (
         <motion.div
             className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-biz-cream"
             exit={{
                 y: "-100%",
-                opacity: 0,
-                transition: { duration: 1.1, ease: [0.22, 1, 0.36, 1] }
+                transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] }
             }}
 
         >

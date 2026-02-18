@@ -68,11 +68,7 @@ function App() {
         {loading && <Preloader key="preloader" onComplete={() => setLoading(false)} />}
       </AnimatePresence>
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={!loading ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-      >
+      <motion.div>
         <Suspense fallback={<div className="h-screen w-full bg-biz-cream flex items-center justify-center">
           <div className="w-12 h-12 border-4 border-biz-bronze border-t-transparent rounded-full animate-spin"></div>
         </div>}>
