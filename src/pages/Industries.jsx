@@ -140,13 +140,7 @@ export function Industries() {
       style={{ minHeight: "calc(90vh - 96px)" }}
     >
       {/* Heading */}
-      <motion.div
-        className="max-w-7xl mx-auto px-6 mb-16 text-center"
-        initial={{ opacity: 0, y: 48 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: [0.215, 0.61, 0.355, 1] }}
-        viewport={{ once: true, margin: "-80px" }}
-      >
+      <div className="max-w-7xl mx-auto px-6 mb-16 text-center">
         <span className="text-biz-bronze font-bold tracking-ultra uppercase text-[10px] block mb-4">
           Sector Expertise
         </span>
@@ -156,25 +150,15 @@ export function Industries() {
             every major vertical
           </span>
         </h2>
-      </motion.div>
+      </div>
 
       {/* Marquees */}
-      <motion.div
-        className="flex flex-col"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{
-          duration: 0.8,
-          delay: 0.2,
-          ease: [0.22, 1, 0.36, 1]
-        }}
-        viewport={{ once: true }}
-      >
+      <div className="flex flex-col">
         <div className="space-y-2">
           <MarqueeRow items={row1} direction="left" speed={50} />
           <MarqueeRow items={row2} direction="right" speed={50} />
         </div>
-      </motion.div>
+      </div>
 
       {/* Trigger */}
       <div className="text-center mt-12">
