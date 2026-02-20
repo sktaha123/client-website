@@ -34,7 +34,7 @@ export function Footer() {
         {/* Bottom Legal Bar */}
         <motion.div
           variants={ITEM_VARIANTS}
-          className="pt-30 border-t border-[#8B7E6A]/10 flex flex-col md:flex-row justify-between items-center gap-6 text-[8px] md:text-[11px] font-bold uppercase tracking-widest text-[#8B7E6A]"
+          className="pt-30 border-t border-[#8B7E6A]/10 flex flex-col md:flex-row justify-between items-center gap-6 text-[9px] md:text-[11px] font-bold uppercase tracking-widest text-[#8B7E6A]"
         >
           <p>© 2026 BiznorX. All rights reserved.</p>
 
