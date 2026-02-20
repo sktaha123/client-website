@@ -12,6 +12,7 @@ const Services = lazy(() => import("./pages/Services.jsx"));
 const Industries = lazy(() => import("./pages/Industries.jsx"));
 const Contact = lazy(() => import("./pages/Contact.jsx"));
 const Process = lazy(() => import("./pages/Process.jsx"));
+const Digital = lazy(() => import("./pages/Digital.jsx"));
 const Whychooseus = lazy(() => import("./pages/Whychooseus.jsx").then(module => ({ default: module.Whychooseus })));
 const Software = lazy(() => import("./pages/Software.jsx"));
 const CV = lazy(() => import("./pages/CV.jsx"));
@@ -81,6 +82,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/software" element={<Software />} />
             <Route path="/cv" element={<CV />} />
+            <Route path="/digital" element={<Digital />} />
             <Route
               path="/admin/applications"
               element={

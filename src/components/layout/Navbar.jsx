@@ -28,8 +28,9 @@ const Navbar = () => {
       { name: "Services", to: "/services" },
       { name: "Industries", to: "/industries" },
       { name: "Software Solutions", to: "/software" },
+      { name: "Digital Solutions", to: "/digital" },
     ],
-    
+
   };
 
   // Flat list for Mobile
@@ -44,6 +45,9 @@ const Navbar = () => {
     <>
       {/* NAVBAR */}
       <div className="fixed top-0 md:top-0 left-0 right-0 z-50 flex justify-center px-0 md:px-6">
+
+    
+
         <div
           className="
             w-full md:w-[99vw] max-w-5xl
@@ -132,7 +136,7 @@ const Navbar = () => {
                 </div>
               </nav>
 
-              
+
 
               {/* CONTACT & HAMBURGER */}
               <div className="flex items-center space-x-4">
@@ -166,66 +170,66 @@ const Navbar = () => {
 
       {/* MOBILE MENU */}
       <div
-  className={`
+        className={`
     fixed inset-0 z-40 lg:hidden
     backdrop-blur-xl bg-biz-cream
     transition-all duration-700 ease-[cubic-bezier(0.83,0,0.17,1)]
     ${isOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"}
   `}
->
-  <div className="flex flex-col h-full pt-28 px-10 pb-10">
+      >
+        <div className="flex flex-col h-full pt-28 px-10 pb-10">
 
-    {/* Menu Label */}
-    <span className="text-[11px] font-semibold uppercase tracking-[0.3em] text-gray-400 mb-12">
-      Menu
-    </span>
+          {/* Menu Label */}
+          <span className="text-[11px] font-semibold uppercase tracking-[0.3em] text-gray-400 mb-12">
+            Menu
+          </span>
 
-    {/* Navigation */}
-    <nav className="flex flex-col space-y-8">
+          {/* Navigation */}
+          <nav className="flex flex-col space-y-8">
 
-      {mobileLinks.map((link, idx) => (
-        <div
-          key={link.name}
-          className={`
+            {mobileLinks.map((link, idx) => (
+              <div
+                key={link.name}
+                className={`
             transform transition-all duration-700
             ${isOpen ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}
           `}
-          style={{ transitionDelay: `${150 + idx * 70}ms` }}
-        >
-          <NavLink
-            to={link.to}
-            onClick={() => window.lenis?.scrollTo(0)}
-            className={({ isActive }) => `
+                style={{ transitionDelay: `${150 + idx * 70}ms` }}
+              >
+                <NavLink
+                  to={link.to}
+                  onClick={() => window.lenis?.scrollTo(0)}
+                  className={({ isActive }) => `
               group relative text-3xl font-light tracking-tight
               transition-all duration-300
               ${isActive ? "text-biz-bronze" : "text-gray-800"}
             `}
-          >
-            {({ isActive }) => (
-              <>
-                {link.name}
+                >
+                  {({ isActive }) => (
+                    <>
+                      {link.name}
 
-                {/* Premium underline animation */}
-                <span
-                  className={`
+                      {/* Premium underline animation */}
+                      <span
+                        className={`
                     absolute left-0 -bottom-2 h-[1px] bg-biz-bronze
                     transition-all duration-300
                     ${isActive ? "w-full" : "w-0 group-hover:w-full"}
                   `}
-                />
-              </>
-            )}
-          </NavLink>
+                      />
+                    </>
+                  )}
+                </NavLink>
+              </div>
+            ))}
+
+          </nav>
+
+          {/* Bottom Section (Optional Branding / Footer) */}
+
+
         </div>
-      ))}
-
-    </nav>
-
-    {/* Bottom Section (Optional Branding / Footer) */}
-    
-
-  </div>
-</div>
+      </div>
     </>
   );
 };
