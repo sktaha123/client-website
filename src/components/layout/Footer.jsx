@@ -34,22 +34,11 @@ export function Footer() {
         {/* Bottom Legal Bar */}
         <motion.div
           variants={ITEM_VARIANTS}
-          className="pt-10 border-t border-[#8B7E6A]/10 flex flex-col md:flex-row justify-between items-center gap-6 text-[11px] font-bold uppercase tracking-widest text-[#8B7E6A]"
+          className="pt-30 border-t border-[#8B7E6A]/10 flex flex-col md:flex-row justify-between items-center gap-6 text-[8px] md:text-[11px] font-bold uppercase tracking-widest text-[#8B7E6A]"
         >
           <p>© 2026 BiznorX. All rights reserved.</p>
 
-          <div className="flex gap-8">
-            {LEGAL_LINKS.map((link) => (
-              <motion.a
-                key={link}
-                href="#"
-                whileHover={{ color: "#2D2219" }}
-                className="transition-colors duration-200"
-              >
-                {link}
-              </motion.a>
-            ))}
-          </div>
+          
         </motion.div>
       </motion.div>
     </footer>

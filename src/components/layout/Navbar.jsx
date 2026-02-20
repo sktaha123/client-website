@@ -22,7 +22,7 @@ const Navbar = () => {
     company: [
       { name: "About Us", to: "/about" },
       { name: "Process", to: "/process" },
-      { name: "Why BiznorX", to: "/whychooseus" },
+      { name: "Why biznorX", to: "/whychooseus" },
     ],
     solutions: [
       { name: "Services", to: "/services" },
@@ -222,11 +222,7 @@ const Navbar = () => {
     </nav>
 
     {/* Bottom Section (Optional Branding / Footer) */}
-    <div className="mt-auto pt-16 border-t border-gray-200">
-      <p className="text-sm text-gray-400">
-        © {new Date().getFullYear()} Biznorx
-      </p>
-    </div>
+    
 
   </div>
 </div>
