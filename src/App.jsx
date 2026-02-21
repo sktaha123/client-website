@@ -6,7 +6,7 @@ import Layout from "./components/layout/Layout.jsx";
 import Preloader from "./components/layout/Preloader.jsx";
 import { loadBackgroundAssets } from "./utils/preloadAssets";
 
-// Lazy loading pages for route-based code splitting
+// Lazy loading pages for route-based code splittings
 const Home = lazy(() => import("./pages/Home.jsx"));
 const About = lazy(() => import("./pages/About.jsx"));
 const Services = lazy(() => import("./pages/Services.jsx"));
