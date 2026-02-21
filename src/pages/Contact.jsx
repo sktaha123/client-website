@@ -6,7 +6,7 @@ import { FaXTwitter, FaWhatsapp } from "react-icons/fa6";
 const SOCIAL_LINKS = [
   { icon: Instagram, href: "https://www.instagram.com/biznorx?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==", label: "Instagram" },
   { icon: FaXTwitter, href: "#", label: "Twitter" },
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
+  { icon: Linkedin, href: "https://www.linkedin.com/company/biznorx/", label: "LinkedIn" },
   { icon: Facebook, href: "#", label: "Facebook" },
 ];
 

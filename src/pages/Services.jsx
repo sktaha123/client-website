@@ -105,13 +105,7 @@ export function Services() {
       className="relative bg-biz-cream font-dm flex items-center overflow-hidden"
       style={{ minHeight: "calc(90vh - 96px)" }}
     >
-      <motion.div
-        className="max-w-7xl mx-auto px-6 w-full"
-        initial={{ opacity: 0, y: 48 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: [0.215, 0.61, 0.355, 1] }}
-        viewport={{ once: true, margin: "-80px" }}
-      >
+      <div className="max-w-7xl mx-auto px-6 w-full">
         {/* SECTION HEADING */}
         <div className="mb-10 md:mb-0 text-center lg:text-left">
           <span className="text-biz-bronze font-bold tracking-ultra uppercase text-[10px]">
@@ -258,7 +252,7 @@ export function Services() {
             </div>
           </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

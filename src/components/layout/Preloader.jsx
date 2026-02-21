@@ -154,6 +154,7 @@ const Preloader = ({ onComplete }) => {
                         animate={{ opacity: 1 }}
                         className="text-biz-charcoal font-dm text-sm font-semibold tracking-tighter"
                     >
+                        
                         {progress}%
                     </motion.span>
                    

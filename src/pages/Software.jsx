@@ -115,12 +115,7 @@ const Software = () => {
 
 
         <div className="max-w-7xl mx-auto relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="text-center"
-          >
+          <div className="text-center">
             <span className="professional-label mb-6 block tracking-widest md:text-[13px] text-biz-bronze">
               Software That Moves Businesses Forward
 
@@ -144,7 +139,7 @@ const Software = () => {
             </motion.a>
 
 
-          </motion.div>
+          </div>
         </div>
       </section>
 

@@ -50,16 +50,7 @@ export const About = () => {
       className="relative w-full flex pb-5 items-center justify-center overflow-hidden bg-biz-cream"
       style={{ minHeight: "calc(90vh - 96px)" }}
     >
-      <motion.div
-        className="max-w-7xl mx-auto px-6 w-full relative z-10"
-        initial={{ opacity: 0, y: 48 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{
-          duration: 0.6,
-          ease: [0.215, 0.61, 0.355, 1],
-        }}
-        viewport={{ once: true, margin: "-80px" }}
-      >
+      <div className="max-w-7xl mx-auto px-6 w-full relative z-10" >
         <div className="grid lg:grid-cols-12 gap-12 items-center">
 
           {/* LEFT: STATIC TEXT */}
@@ -176,7 +167,7 @@ export const About = () => {
           </div>
 
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 };
