@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { ArrowRight, Menu, X, Headset, MessageCircleMore } from "lucide-react";
+import { Menu, X, MessageCircleMore } from "lucide-react";
+
 import { Link, useLocation, NavLink } from "react-router-dom";
 
 const Navbar = () => {
@@ -46,7 +47,7 @@ const Navbar = () => {
       {/* NAVBAR */}
       <div className="fixed top-0 md:top-0 left-0 right-0 z-50 flex justify-center px-0 md:px-6">
 
-    
+
 
         <div
           className="

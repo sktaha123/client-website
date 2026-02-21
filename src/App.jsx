@@ -1,10 +1,10 @@
-import { useEffect, lazy, Suspense, useState } from "react";
+import { useEffect, lazy, Suspense, useState, useCallback } from "react";
 import Lenis from "lenis";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import Layout from "./components/layout/Layout.jsx";
 import Preloader from "./components/layout/Preloader.jsx";
-import { imagesToPreload, preloadImages } from "./utils/preloadAssets";
+import { loadBackgroundAssets } from "./utils/preloadAssets";
 
 // Lazy loading pages for route-based code splitting
 const Home = lazy(() => import("./pages/Home.jsx"));
@@ -33,7 +33,7 @@ const ApplicationsTable = lazy(() =>
 function App() {
   const [loading, setLoading] = useState(true);
 
-  // Lenis setup (unchanged)
+  // ─── Lenis Smooth Scroll ──────────────────────────────────────────────────
   useEffect(() => {
     const lenis = new Lenis({
       duration: 0.7,
@@ -58,40 +58,37 @@ function App() {
     };
   }, []);
 
-  // ⭐ NEW: Image preloading logic (only change)
-  useEffect(() => {
-    const loadAssets = async () => {
-      try {
-        await preloadImages(imagesToPreload);
-      } catch (error) {
-        console.error("Image preload failed:", error);
-      } finally {
-        // small delay for smooth UX
-        setTimeout(() => setLoading(false), 500);
-      }
-    };
-
-    loadAssets();
+  // ─── Preloader complete callback ──────────────────────────────────────────
+  // Called by <Preloader> once Tier 1 images are loaded.
+  // We then kick off Tier 2 + Tier 3 background loading silently.
+  const handlePreloaderComplete = useCallback(() => {
+    setLoading(false);
+    // Load Tier 2 (industry/service cards) & Tier 3 (About/Software images)
+    // in the background after the preloader dismisses — never blocks the UI.
+    loadBackgroundAssets();
   }, []);
 
-  // Lock scroll when loading (unchanged)
+  // ─── Scroll lock during preloader ────────────────────────────────────────
   useEffect(() => {
     if (loading) {
       if (window.lenis) window.lenis.stop();
       document.body.classList.add("overflow-hidden");
       window.scrollTo(0, 0);
     } else {
+      // Wait for the slide-out exit animation to finish before unlocking
       setTimeout(() => {
         if (window.lenis) window.lenis.start();
         document.body.classList.remove("overflow-hidden");
-      }, 500);
+      }, 950); // slightly longer than Preloader exit duration (0.9s)
     }
   }, [loading]);
 
   return (
     <BrowserRouter>
       <AnimatePresence mode="wait">
-        {loading && <Preloader key="preloader" />}
+        {loading && (
+          <Preloader key="preloader" onComplete={handlePreloaderComplete} />
+        )}
       </AnimatePresence>
 
       <Suspense

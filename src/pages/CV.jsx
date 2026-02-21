@@ -3,24 +3,15 @@ import { motion, AnimatePresence } from "framer-motion";
 
 /* ================= COUNTRIES (BROWSER DEPENDENT) ================= */
 const getAllCountries = () => {
-  // Modern browsers (Chrome 120+, Edge, Firefox 120+)
   if (typeof Intl.supportedValuesOf === "function") {
     try {
       const regionNames = new Intl.DisplayNames(["en"], { type: "region" });
-
       return Intl.supportedValuesOf("region")
-        .map((code) => ({
-          code,
-          name: regionNames.of(code),
-        }))
+        .map((code) => ({ code, name: regionNames.of(code) }))
         .filter((c) => c.name)
         .sort((a, b) => a.name.localeCompare(b.name));
-    } catch {
-      // fall through to fallback
-    }
+    } catch { /* fall through */ }
   }
-
-  // ---------- FALLBACK (ALL COUNTRIES, NO DEPENDENCY) ----------
   return [
     "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda",
     "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain",
@@ -54,10 +45,12 @@ const getAllCountries = () => {
     "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay",
     "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia",
     "Zimbabwe"
-  ]
-    .map((name) => ({ code: name, name }))
-    .sort((a, b) => a.name.localeCompare(b.name));
+  ].map((name) => ({ code: name, name })).sort((a, b) => a.name.localeCompare(b.name));
 };
+
+const STATIC_COUNTRIES = getAllCountries();
+
+
 
 
 /* ================= COMPONENT ================= */
@@ -94,7 +87,8 @@ const CV = () => {
     "Other",
   ];
 
-  const countries = getAllCountries();
+  const countries = React.useMemo(() => STATIC_COUNTRIES, []);
+
 
   /* ---------------- PROGRESS ---------------- */
   const filledFields =
@@ -427,7 +421,7 @@ const CV = () => {
                 disabled={loading}
                 className="biz-btn biz-btn-primary w-full mt-2 group"
               >
-                
+
                 <span>{loading ? "Submitting..." : "Submit Application"}</span>
                 <div className="btn-gloss" />
                 {loading && (

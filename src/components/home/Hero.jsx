@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { ArrowUpRight, Upload, FileUser } from "lucide-react";
+import { ArrowUpRight, FileUser } from "lucide-react";
+
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -205,4 +206,3 @@ export function Hero() {
 }
 
 export default Hero;
-  
