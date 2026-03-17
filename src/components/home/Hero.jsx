@@ -55,7 +55,7 @@ export function Hero() {
 
   return (
     <section className="relative min-h-[85vh] md:min-h-[80vh] font-dm overflow-hidden bg-biz-cream">
-      <div className="w-full md:max-w-[90rem] mx-auto md:px-8 md:pt-[10px]">
+      <div className="w-full md:max-w-[90rem] mx-auto md:px-8 md:pt-2.5">
         <motion.div
           initial={{ opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -108,7 +108,7 @@ export function Hero() {
 
           {/* Desktop Gradient Overlay */}
           <div className="hidden md:absolute md:inset-0 md:block md:rounded-4xl 
-            bg-gradient-to-r from-black/80 from-5% 
+            bg-linear-to-r from-black/80 from-5% 
             via-black/30 via-40% 
             to-black/30 to-95%
             pointer-events-none" />
