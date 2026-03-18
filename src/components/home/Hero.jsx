@@ -5,204 +5,206 @@ import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
 export function Hero() {
-  const [index, setIndex] = useState(0);
-  const [bgIndex, setBgIndex] = useState(0);
-  const navigate = useNavigate();
+    const [index, setIndex] = useState(0);
+    const [bgIndex, setBgIndex] = useState(0);
+    const navigate = useNavigate();
 
-  const words = [
-    { text: "Innovate", class: "text-biz-cream-light" },
-    { text: "Integrity", class: "text-biz-bronze font-dm" },
-    { text: "Inspire", class: "font-semibold text-biz-cream-light" },
-  ];
+    const words = [
+        { text: "Innovate", class: "text-biz-cream-light" },
+        { text: "Integrity", class: "text-biz-bronze font-dm" },
+        { text: "Inspire", class: "font-semibold text-biz-cream-light" },
+    ];
 
-  const backgroundImages = [
-    "/svgs/h1.webp",
-    "/svgs/h2.webp",
-    "/svgs/h3.webp",
-    "/svgs/h4.webp",
-  ];
+    const backgroundImages = [
+        "/svgs/h1.webp",
+        "/svgs/h2.webp",
+        "/svgs/h3.webp",
+        "/svgs/h4.webp",
+    ];
 
-  /* Background image slider */
-  useEffect(() => {
-    const bgTimer = setInterval(() => {
-      setBgIndex((prev) => (prev + 1) % backgroundImages.length);
-    }, 6000);
+    /* Background image slider */
+    useEffect(() => {
+        const bgTimer = setInterval(() => {
+            setBgIndex((prev) => (prev + 1) % backgroundImages.length);
+        }, 6000);
 
-    return () => clearInterval(bgTimer);
-  }, [backgroundImages.length]);
+        return () => clearInterval(bgTimer);
+    }, [backgroundImages.length]);
 
-  /* Word animation */
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setIndex((prev) => (prev + 1) % words.length);
-    }, 4000);
+    /* Word animation */
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setIndex((prev) => (prev + 1) % words.length);
+        }, 4000);
 
-    return () => clearInterval(timer);
-  }, [words.length]);
+        return () => clearInterval(timer);
+    }, [words.length]);
 
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 30 },
-    visible: (i) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: 0.2 + i * 0.08,
-        duration: 0.8,
-        ease: [0.215, 0.61, 0.355, 1],
-      },
-    }),
-  };
+    const fadeInUp = {
+        hidden: { opacity: 0, y: 30 },
+        visible: (i) => ({
+            opacity: 1,
+            y: 0,
+            transition: {
+                delay: 0.2 + i * 0.08,
+                duration: 0.8,
+                ease: [0.215, 0.61, 0.355, 1],
+            },
+        }),
+    };
 
-  return (
-    <section className="relative min-h-[85vh] md:min-h-[80vh] font-dm overflow-hidden bg-biz-cream">
-      <div className="w-full md:max-w-[90rem] mx-auto md:px-8 md:pt-2.5">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.98 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
-          className="relative h-full w-full overflow-hidden md:rounded-biz shadow-sm"
-        >
-          {/* 🔥 Sliding Background Carousel */}
-          <div className="absolute inset-0 overflow-hidden bg-[#2D2219]">
-            <AnimatePresence mode="popLayout">
-              <motion.img
-                key={bgIndex}
-                src={backgroundImages[bgIndex]}
-                alt=""
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                variants={{
-                  initial: { opacity: 0, scale: 1 },
-                  animate: {
-                    opacity: 1,
-                    scale: 1.15,
-                    transition: {
-                      scale: { duration: 8, ease: "linear" },
-                      opacity: { duration: 1.5, ease: "easeInOut" }
-                    }
-                  },
-                  exit: {
-                    opacity: 0,
-                    scale: 1.15,
-                    transition: {
-                      scale: { duration: 1.5, ease: "linear" },
-                      opacity: { duration: 1.5, ease: "easeInOut" }
-                    }
-                  }
-                }}
-                className="absolute inset-0 h-full w-full object-cover will-change-transform transform-gpu backface-hidden"
-                fetchPriority={bgIndex === 0 ? "high" : "auto"}
-                loading="eager"
-                decoding="async"
-                width="1920"
-                height="1080"
-              />
-            </AnimatePresence>
-          </div>
-
-          {/* Gradient Overlay */}
-
-          {/* Mobile Gradient Overlay */}
-          <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/90 from-0% via-black/40 via-50% to-black/90 to-100% md:hidden pointer-events-none" />
-
-          {/* Desktop Gradient Overlay */}
-          <div className="hidden md:absolute md:inset-0 md:block md:rounded-4xl 
-            bg-linear-to-r from-black/80 from-5% 
-            via-black/30 via-40% 
-            to-black/30 to-95%
-            pointer-events-none" />
-
-          {/* Content */}
-          <div className="relative z-30 flex h-full min-h-[85vh] md:min-h-[95vh] w-full flex-col justify-end pb-12 md:pb-24 px-6 md:px-16">
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
-              <div className="md:col-span-7">
-                <h1 className="sr-only">
-                  Intelligent Recruitment & Workforce Solutions in India & UAE
-                </h1>
-
-                <motion.span
-                  custom={0}
-                  initial="hidden"
-                  animate="visible"
-                  variants={fadeInUp}
-                  className="text-biz-cream-light/90 uppercase tracking-ultra text-[10px] md:text-[14px] font-bold mb-6 block"
+    return (
+        <section className="relative min-h-[85vh] md:min-h-[80vh] font-dm overflow-hidden bg-biz-cream">
+            <div className="w-full md:max-w-[90rem] mx-auto md:px-8 md:pt-2.5">
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.98 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                    className="relative h-full w-full overflow-hidden md:rounded-biz shadow-sm"
                 >
-                  Workforce Excellence
-                </motion.span>
+                    {/* 🔥 Sliding Background Carousel */}
+                    <div className="absolute inset-0 overflow-hidden bg-[#2D2219]">
+                        <AnimatePresence mode="popLayout">
+                            <motion.img
+                                key={bgIndex}
+                                src={backgroundImages[bgIndex]}
+                                alt=""
+                                initial="initial"
+                                animate="animate"
+                                exit="exit"
+                                variants={{
+                                    initial: { opacity: 0, scale: 1 },
+                                    animate: {
+                                        opacity: 1,
+                                        scale: 1.15,
+                                        transition: {
+                                            scale: { duration: 8, ease: "linear" },
+                                            opacity: { duration: 1.5, ease: "easeInOut" }
+                                        }
+                                    },
+                                    exit: {
+                                        opacity: 0,
+                                        scale: 1.15,
+                                        transition: {
+                                            scale: { duration: 1.5, ease: "linear" },
+                                            opacity: { duration: 1.5, ease: "easeInOut" }
+                                        }
+                                    }
+                                }}
+                                className="absolute inset-0 h-full w-full object-cover will-change-transform transform-gpu backface-hidden"
+                                fetchpriority={bgIndex === 0 ? "high" : "auto"}
+                                loading="eager"
+                                decoding="async"
+                                width="1920"
+                                height="1080"
+                            />
+                        </AnimatePresence>
+                    </div>
 
-                <h2 className="text-biz-cream-light text-6xl md:text-[7.5rem] leading-[1.1] font-light tracking-tightest h-[1.2em] flex items-center overflow-hidden">
-                  <AnimatePresence mode="wait">
-                    <motion.span
-                      key={words[index].text}
-                      className={`flex ${words[index].class}`}
-                      initial="initial"
-                      animate="animate"
-                      exit="exit"
-                    >
-                      {words[index].text.split("").map((char, i) => (
-                        <motion.span
-                          key={i}
-                          variants={{
-                            initial: { y: "100%", opacity: 0, rotateX: -90 },
-                            animate: { y: 0, opacity: 1, rotateX: 0 },
-                            exit: { y: "-100%", opacity: 0, rotateX: 90 },
-                          }}
-                          transition={{
-                            duration: 0.5,
-                            delay: i * 0.04,
-                            ease: [0.215, 0.61, 0.355, 1],
-                          }}
-                          className="inline-block origin-bottom"
-                        >
-                          {char}
-                        </motion.span>
-                      ))}
-                    </motion.span>
-                  </AnimatePresence>
-                </h2>
-              </div>
+                    {/* Gradient Overlay */}
 
-              <motion.div
-                custom={4}
-                initial="hidden"
-                animate="visible"
-                variants={fadeInUp}
-                className="md:col-span-5 md:pl-12 flex flex-col items-start gap-8"
-              >
-                <p className="text-biz-cream/80 text-lg md:text-xl leading-relaxed max-w-sm font-light">
-                  Bridging decades of business wisdom with modern execution to help organizations scale with confidence.
-                </p>
+                    {/* Mobile Gradient Overlay */}
+                    <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/90 from-0% via-black/40 via-50% to-black/90 to-100% md:hidden pointer-events-none" />
 
-                <motion.button
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() => {
-                    window.lenis?.scrollTo(0);
-                    navigate("/cv");
-                  }}
-                  className="biz-btn biz-btn-primary group"
-                >
-                  <span className="relative z-10">Upload Your CV</span>
-                  <div className="relative z-10 bg-white/10 p-2 rounded-full group-hover:bg-white group-hover:text-biz-bronze transition-all duration-300">
-                    <FileUser className="h-5 w-5" />
-                  </div>
-                  <div className="btn-gloss" />
-                </motion.button>
-              </motion.div>
+                    {/* Desktop Gradient Overlay */}
+                    <div className="hidden md:absolute md:inset-0 md:block md:rounded-4xl 
+            bg-linear-to-r from-black/80 from-5% 
+            via-black/30 via-40% 
+            to-black/30 to-95%
+            pointer-events-none" />
+
+                    {/* Content */}
+                    <div className="relative z-30 flex h-full min-h-[85vh] md:min-h-[95vh] w-full flex-col justify-end pb-12 md:pb-24 px-6 md:px-16">
+                        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
+                            <div className="md:col-span-7">
+                                <h1 className="sr-only">
+                                    Intelligent Recruitment & Workforce Solutions in India & UAE
+                                </h1>
+
+                                <motion.span
+                                    custom={0}
+                                    initial="hidden"
+                                    animate="visible"
+                                    variants={fadeInUp}
+                                    className="text-biz-cream-light/90 uppercase tracking-ultra text-[10px] md:text-[14px] font-bold mb-6 block"
+                                >
+                                    Workforce Excellence
+                                </motion.span>
+
+                                <h2 className="text-biz-cream-light text-6xl md:text-[7.5rem] leading-[1.1] font-light tracking-tightest h-[1.2em] flex items-center overflow-hidden">
+                                    <AnimatePresence mode="wait">
+                                        <motion.span
+                                            key={words[index].text}
+                                            className={`flex ${words[index].class}`}
+                                            initial="initial"
+                                            animate="animate"
+                                            exit="exit"
+                                        >
+                                            {words[index].text.split("").map((char, i) => (
+                                                <motion.span
+                                                    key={i}
+                                                    variants={{
+                                                        initial: { y: "100%", opacity: 0, rotateX: -90 },
+                                                        animate: { y: 0, opacity: 1, rotateX: 0 },
+                                                        exit: { y: "-100%", opacity: 0, rotateX: 90 },
+                                                    }}
+                                                    transition={{
+                                                        duration: 0.5,
+                                                        delay: i * 0.04,
+                                                        ease: [0.215, 0.61, 0.355, 1],
+                                                    }}
+                                                    className="inline-block origin-bottom"
+                                                >
+                                                    {char}
+                                                </motion.span>
+                                            ))}
+                                        </motion.span>
+                                    </AnimatePresence>
+                                </h2>
+                            </div>
+
+                            <motion.div
+                                custom={4}
+                                initial="hidden"
+                                animate="visible"
+                                variants={fadeInUp}
+                                className="md:col-span-5 md:pl-12 flex flex-col items-start gap-8"
+                            >
+                                <p className="text-biz-cream/80 text-lg md:text-xl leading-relaxed max-w-sm font-light">
+                                    Bridging decades of business wisdom with modern execution to help organizations scale with confidence.
+                                </p>
+
+                                <motion.button
+                                    whileHover={{ scale: 1.03 }}
+                                    whileTap={{ scale: 0.98 }}
+                                    onClick={() => {
+                                        window.lenis?.scrollTo(0);
+                                        navigate("/cv");
+                                    }}
+                                    className="biz-btn biz-btn-primary group"
+                                >
+                                    <span className="relative z-10">Upload Your CV</span>
+                                    <div className="relative z-10 bg-white/10 p-2 rounded-full group-hover:bg-white group-hover:text-biz-bronze transition-all duration-300">
+                                        <FileUser className="h-5 w-5" />
+                                    </div>
+                                    <div className="btn-gloss" />
+                                </motion.button>
+                            </motion.div>
+                        </div>
+                    </div>
+
+                    {/* Ambient Glow */}
+                    <motion.div
+                        animate={{ scale: [1, 1.05, 1], opacity: [0.15, 0.25, 0.15] }}
+                        transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                        className="absolute -bottom-20 -left-20 h-80 w-80 rounded-full bg-biz-bronze blur-[100px] pointer-events-none"
+                    />
+                </motion.div>
             </div>
-          </div>
-
-          {/* Ambient Glow */}
-          <motion.div
-            animate={{ scale: [1, 1.05, 1], opacity: [0.15, 0.25, 0.15] }}
-            transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-            className="absolute -bottom-20 -left-20 h-80 w-80 rounded-full bg-biz-bronze blur-[100px] pointer-events-none"
-          />
-        </motion.div>
-      </div>
-    </section>
-  );
+        </section>
+    );
 }
 
 export default Hero;
+
+

@@ -5,11 +5,16 @@ import path from "path";
 export default defineConfig({
   plugins: [react()],
 
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-    },
+ resolve: {
+  alias: {
+    "@": path.resolve(__dirname, "./src"),
+
+    // 🔥 ADD THESE LINES
+    react: path.resolve(__dirname, "node_modules/react"),
+    "react-dom": path.resolve(__dirname, "node_modules/react-dom"),
   },
+  dedupe: ["react", "react-dom"],
+},
 
   // ─── Dev Server ────────────────────────────────────────────────────────────
   server: {

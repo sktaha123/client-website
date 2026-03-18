@@ -24,25 +24,25 @@
   --font-dm: "DM Sans", "sans-serif";
 
 
-  --color-biz-cream: #FBF8F6;
-  --color-biz-cream-light: #FFFFFF;
-  --color-biz-cream-dark: #F1ECE9;
+--color-biz-cream: #FBF8F6;
+--color-biz-cream-light: #FFFFFF;
+--color-biz-cream-dark: #F1ECE9;
 
-  /* CHARCOAL: Primary Text & Depth */
-  --color-biz-charcoal: #2A1E1A;
-  --color-biz-charcoal-muted: #4A3A34;
-  --color-biz-charcoal-soft: #75665F;
-  --color-biz-charcoal-ink: #180F0C;
+/* CHARCOAL: Primary Text & Depth */
+--color-biz-charcoal: #2A1E1A;
+--color-biz-charcoal-muted: #4A3A34;
+--color-biz-charcoal-soft: #75665F;
+--color-biz-charcoal-ink: #180F0C;
 
-  /* BRONZE: Accents & Branding */
-  --color-biz-bronze: #7A1E1E;
-  --color-biz-bronze-light: #A84A4A;
-  --color-biz-bronze-dark: #5E1414;
-  --color-biz-bronze-pale: #E9D6D6;
+/* BRONZE (REFINED REDS): Accents & Branding */
+--color-biz-bronze: #6E1C23;        /* Deep wine red */
+--color-biz-bronze-light: #9C4A52;  /* Muted rose */
+--color-biz-bronze-dark: #4B1217;   /* Rich burgundy */
+--color-biz-bronze-pale: #F2E4E6;   /* Soft blush */
 
-  /* SAND/STONE: Supporting neutrals */
-  --color-biz-sand: #EFE2DE;
-  --color-biz-sand-muted: #D8C5C1;
+/* SAND/STONE: Supporting neutrals */
+--color-biz-sand: #EFE2DE;
+--color-biz-sand-muted: #D8C5C1;
 
 
   /* Custom Animations & Spacing */

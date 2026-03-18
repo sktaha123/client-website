@@ -17,7 +17,7 @@ const revealVariants = {
   }),
 };
 
-export function Philosophy() {
+export default function Philosophy() {
   return (
     <section className="py-30 md:py-12 md:mt-24 bg-biz-cream relative overflow-hidden font-dm">
       <motion.div
@@ -97,4 +97,4 @@ export function Philosophy() {
   );
 }
 
-export default Philosophy;
+

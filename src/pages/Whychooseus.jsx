@@ -89,6 +89,8 @@ export function Whychooseus() {
     resetTimer(); // Reset countdown on click
   };
 
+  const formatNum = (n) => (n < 10 ? `0${n}` : n);
+
   return (
    <section className="py-3 bg-[#FAF9F6] font-dm overflow-hidden">
   <motion.div
@@ -140,7 +142,7 @@ export function Whychooseus() {
 
     {/* MOBILE — Counter aligned opposite */}
     <span className="font-mono text-xs text-white/40 lg:hidden">
-      0{index + 1} / 0{benefits.length}
+      {formatNum(index + 1)} / {formatNum(benefits.length)}
     </span>
   </div>
 
@@ -149,7 +151,7 @@ export function Whychooseus() {
 
   {/* DESKTOP — Counter */}
   <span className="hidden lg:block font-mono text-xs text-white/40">
-    0{index + 1} / 0{benefits.length}
+    {formatNum(index + 1)} / {formatNum(benefits.length)}
   </span>
 
 </div>
@@ -241,3 +243,5 @@ export function Whychooseus() {
     </section >
   );
 }
+
+export default Whychooseus;

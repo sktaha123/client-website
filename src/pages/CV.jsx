@@ -101,7 +101,7 @@ const CV = () => {
 
     if (!selectedFile) return;
 
-    if (!/(\.pdf|\.doc)$/i.test(selectedFile.name)) {
+    if (!/\.(pdf|doc)$/i.test(selectedFile.name)) {
       setError("Only PDF or DOC files are allowed.");
       return;
     }
@@ -302,6 +302,7 @@ const CV = () => {
                   <div className="relative">
                     <select
                       required
+                      value={formData.category}
                       onChange={(e) => setFormData({ ...formData, category: e.target.value })}
                       className="biz-input !rounded-2xl appearance-none bg-white pr-10 cursor-pointer"
                     >

@@ -9,7 +9,8 @@ const Navbar = () => {
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
-    document.body.style.overflow = isOpen ? "hidden" : "unset";
+    document.body.classList.toggle("overflow-hidden", isOpen);
+    return () => document.body.classList.remove("overflow-hidden");
   }, [isOpen]);
 
   // Close mobile menu on route change
@@ -28,7 +29,6 @@ const Navbar = () => {
     solutions: [
       { name: "Services", to: "/services" },
       { name: "Industries", to: "/industries" },
-      { name: "Software Solutions", to: "/software" },
       { name: "Digital Solutions", to: "/digital" },
     ],
 

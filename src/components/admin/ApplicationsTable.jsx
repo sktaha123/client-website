@@ -101,10 +101,16 @@ export default function ApplicationsTable() {
     loadData();
   }, []);
 
-  // Reset to page 1 when filters change
+  // Reset to page 1 and close expanded rows when filters change
   useEffect(() => {
     setCurrentPage(1);
+    setExpandedCategoryRow(null);
   }, [searchTerm, category, country]);
+
+  // Close expanded rows when changing pages manually
+  useEffect(() => {
+    setExpandedCategoryRow(null);
+  }, [currentPage]);
 
   const handleSort = (key) => {
     setSortConfig(prev => ({

@@ -1,10 +1,7 @@
 import { motion } from "framer-motion";
 
 const revealVariants = {
-  hidden: {
-    opacity: 0,
-    y: 28,
-  },
+  hidden: { opacity: 0, y: 28 },
   visible: (index = 0) => ({
     opacity: 1,
     y: 0,
@@ -16,37 +13,90 @@ const revealVariants = {
   }),
 };
 
-function HomeContent() {
+export default function HomeContent() {
+  const sections = [
+    {
+      label: "Core Focus",
+      title: () => (
+        <>
+          What biznor
+          <span className="text-biz-bronze lg:text-2xl font-bold">x</span>
+        </>
+      ),
+      content: () => (
+        <>
+          biznor
+          <span className="text-biz-bronze lg:text-1xl font-bold">x</span>{" "}
+          focuses on{" "}
+          <span className="font-medium text-biz-charcoal">
+            structured recruitment execution
+          </span>{" "}
+          rather than volume-based hiring. Each engagement begins with
+          understanding role intent, organizational structure, and business direction.
+        </>
+      ),
+    },
+    {
+      label: "Solutions",
+      title: () => "Recruitment & Workforce Solutions",
+      content: () => (
+        <>
+          Our recruitment solutions are built around{" "}
+          <span className="font-medium text-biz-charcoal">
+            clarity and accountability
+          </span>
+          . biznor
+          <span className="text-biz-bronze lg:text-1xl font-bold">x</span>{" "}
+          assists organizations with talent acquisition, workforce planning,
+          and hiring optimization using consistent evaluation frameworks.
+        </>
+      ),
+    },
+    {
+      label: "Experience",
+      title: () => "Industries We Serve",
+      content: () => (
+        <>
+          biznor
+          <span className="text-biz-bronze lg:text-1xl font-bold">x</span>{" "}
+          works across technology, manufacturing, logistics, finance,
+          healthcare, and professional services, adapting strategies based on{" "}
+          <span className="italic">
+            sector-specific workforce complexity
+          </span>
+          .
+        </>
+      ),
+    },
+    {
+      label: "Differentiation",
+      title: () => (
+        <>
+          Why Choose biznor
+          <span className="text-biz-bronze lg:text-2xl font-bold">x</span>
+        </>
+      ),
+      content: () => (
+        <>
+          biznor
+          <span className="text-biz-bronze lg:text-1xl font-bold">x</span>{" "}
+          prioritizes{" "}
+          <span className="font-medium text-biz-charcoal">
+            execution integrity
+          </span>
+          . Every recommendation is supported by verified data and clear reasoning.
+          Speed is never chosen over alignment.
+        </>
+      ),
+    },
+  ];
+
   return (
     <section className="bg-biz-cream font-dm relative">
-      <div
-        className="
-          w-full
-          md:max-w-[90rem]
-          mx-auto
-          md:px-8
-          md:pt-8
-          md:pb-24
-          md:min-h-[70vh]
-          flex
-          items-start
-          justify-center
-        "
-      >
-        {/* Framed container */}
-        <div
-          className="
-            w-full
-            bg-white/70
-            md:rounded-[var(--radius-biz)]
-            md:shadow-[0_30px_20px_-40px_rgba(0,0,0,0.25)]
-            px-8
-            py-14
-            md:px-16
-            md:py-20
-          "
-        >
-          {/* Intro */}
+      <div className="w-full md:max-w-[90rem] mx-auto md:px-8 md:pt-8 md:pb-24 md:min-h-[70vh] flex items-start justify-center">
+        
+        <div className="w-full bg-white/70 md:rounded-[var(--radius-biz)] px-8 py-14 md:px-16 md:py-20">
+          
           <motion.div
             variants={revealVariants}
             initial="hidden"
@@ -79,100 +129,8 @@ function HomeContent() {
             </p>
           </motion.div>
 
-          {/* Content Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-16">
-            {[
-              {
-                label: "Core Focus",
-                title: (
-                  <>
-                    What biznor
-                    <span className="text-biz-bronze lg:text-2xl font-bold">
-                      x
-                    </span>{" "}
-                    Does
-                  </>
-                ),
-                content: (
-                  <>
-                    biznor
-                    <span className="text-biz-bronze lg:text-1xl font-bold">
-                      x
-                    </span>{" "}
-                    focuses on{" "}
-                    <span className="font-medium text-biz-charcoal">
-                      structured recruitment execution
-                    </span>{" "}
-                    rather than volume-based hiring. Each engagement begins with
-                    understanding role intent, organizational structure, and
-                    business direction.
-                  </>
-                ),
-              },
-              {
-                label: "Solutions",
-                title: "Recruitment & Workforce Solutions",
-                content: (
-                  <>
-                    Our recruitment solutions are built around{" "}
-                    <span className="font-medium text-biz-charcoal">
-                      clarity and accountability
-                    </span>
-                    . biznor
-                    <span className="text-biz-bronze lg:text-1xl font-bold">
-                      x
-                    </span>{" "}
-                    assists organizations with talent acquisition, workforce
-                    planning, and hiring optimization using consistent evaluation
-                    frameworks.
-                  </>
-                ),
-              },
-              {
-                label: "Experience",
-                title: "Industries We Serve",
-                content: (
-                  <>
-                    biznor
-                    <span className="text-biz-bronze lg:text-1xl font-bold">
-                      x
-                    </span>{" "}
-                    works across technology, manufacturing, logistics, finance,
-                    healthcare, and professional services, adapting strategies
-                    based on{" "}
-                    <span className="italic">
-                      sector-specific workforce complexity
-                    </span>
-                    .
-                  </>
-                ),
-              },
-              {
-                label: "Differentiation",
-                title: (
-                  <>
-                    Why Choose biznor
-                    <span className="text-biz-bronze lg:text-2xl font-bold">
-                      x
-                    </span>
-                  </>
-                ),
-                content: (
-                  <>
-                    biznor
-                    <span className="text-biz-bronze lg:text-1xl font-bold">
-                      x
-                    </span>{" "}
-                    prioritizes{" "}
-                    <span className="font-medium text-biz-charcoal">
-                      execution integrity
-                    </span>
-                    . Every recommendation is supported by verified data and
-                    clear reasoning. Speed is never chosen over alignment.
-                  </>
-                ),
-              },
-            ].map((item, index) => (
+            {sections.map((item, index) => (
               <motion.div
                 key={index}
                 custom={index}
@@ -184,19 +142,20 @@ function HomeContent() {
                 <span className="professional-label mb-4 block">
                   {item.label}
                 </span>
+
                 <h2 className="text-2xl font-bold mb-4 tracking-tight">
-                  {item.title}
+                  {item.title()}
                 </h2>
+
                 <p className="text-biz-charcoal-muted leading-relaxed">
-                  {item.content}
+                  {item.content()}
                 </p>
               </motion.div>
             ))}
           </div>
+
         </div>
       </div>
     </section>
   );
 }
-
-export default HomeContent;
