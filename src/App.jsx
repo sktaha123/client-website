@@ -8,7 +8,6 @@ import Industries from "./pages/Industries.jsx";
 import Process from "./pages/Process.jsx";
 import Whychooseus from "./pages/Whychooseus.jsx";
 import Contact from "./pages/Contact.jsx";
-import Software from "./pages/Software.jsx";
 import Digital from "./pages/Digital.jsx";
 import CV from "./pages/CV.jsx";
 
@@ -24,7 +23,6 @@ function App() {
           <Route path="process" element={<Process />} />
           <Route path="whychooseus" element={<Whychooseus />} />
           <Route path="contact" element={<Contact />} />
-          <Route path="software" element={<Software />} />
           <Route path="digital" element={<Digital />} />
           <Route path="cv" element={<CV />} />
         </Route>

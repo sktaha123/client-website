@@ -1,264 +1,221 @@
 @import "tailwindcss";
 
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-
+/* ═══════════════════════════════════════════════════════════════
+   BIZNORX — MASTER COLOR THEME
+   ▸ All color decisions live here as CSS variables.
+   ▸ Tailwind reads these via tailwind.config.js (see that file).
+   ▸ To retheme the ENTIRE site: only edit the values in :root.
+   ═══════════════════════════════════════════════════════════════ */
 
 :root {
-  --font-alix: "Plus Jakarta", "Inter Tight", "DM Sans", "Space Grotesk", sans-serif;
+
+  /* ════════════════════════════════════════════════════════════
+     BIZNORX COLOR PALETTE
+     Base:    #F7F5F5  ·  #050505  ·  #5E1111  ·  #A31515
+     ════════════════════════════════════════════════════════════ */
+
+  /* ── PAGE BACKGROUNDS (derived from #F7F5F5) ──────────────── */
+  --biz-cream:        #F7F5F5;   /* Main page / section bg        */
+  --biz-cream-light:  #FFFFFF;   /* Pure white surfaces & cards   */
+  --biz-cream-dark:   #EDE9E9;   /* Toned section panels          */
+
+  /* ── DARK BACKGROUNDS (derived from #050505) ──────────────── */
+  --biz-dark:         #050505;   /* Near-black hero / CTA sections*/
+  --biz-dark-surface: #110808;   /* Dark card surface (red-tinted)*/
+  --biz-dark-panel:   #1C0C0C;   /* Slightly lighter dark panel   */
+
+  /* ── PRIMARY BRAND RED — VIVID (base: #A31515) ────────────── */
+  --biz-bronze:       #A31515;   /* Primary accent (buttons, labels, highlights) */
+  --biz-bronze-light: #D05050;   /* Lighter tint — icons on dark bg              */
+  --biz-bronze-dark:  #5E1111;   /* Deep crimson — hover / pressed states        */
+  --biz-bronze-pale:  #F5DADA;   /* Pale blush — ghost borders, tags             */
+
+  /* ── DERIVED RED SHADES ────────────────────────────────────── */
+  --biz-red-ultra:    #3D0B0B;   /* Darkest red — deepest pressed / shadow       */
+  --biz-red-muted:    #C07070;   /* Desaturated red — soft icon tints            */
+  --biz-red-blush:    #FAF0F0;   /* Barely-there blush — section alt bg          */
+
+  /* ── PRIMARY TEXT (derived from #050505) ──────────────────── */
+  --biz-charcoal:       #1A0606; /* Main headings & body text (red-tinted black) */
+  --biz-charcoal-muted: #3D1515; /* Secondary / sub-text                         */
+  --biz-charcoal-soft:  #7A4040; /* Captions, labels, placeholders               */
+  --biz-charcoal-ink:   #050505; /* Absolute darkest text / dark section text    */
+
+  /* ── NEUTRAL — SAND/STONE (warm off-red neutrals) ─────────── */
+  --biz-sand:         #EDE0E0;   /* Card / tag backgrounds                       */
+  --biz-sand-muted:   #DCC8C8;   /* Dividers & subtle borders                    */
+
+  /* ── BORDER PRIMITIVES ─────────────────────────────────────── */
+  --biz-border:       rgba(26, 6, 6, 0.08);    /* Standard border on light bg    */
+  --biz-border-dark:  rgba(255, 255, 255, 0.06); /* Border on dark bg            */
+
+  /* ── TYPOGRAPHY ────────────────────────────────────────────── */
+  --font-dm:   "DM Sans",            "Inter", sans-serif;
+  --font-alix: "Plus Jakarta Sans",  "DM Sans", sans-serif;
 }
 
+
+/* ═══════════════════════════════════════════════════════════════
+   TAILWIND v4 THEME BRIDGE
+   Maps the CSS vars above into Tailwind's @theme layer so every
+   utility (bg-biz-cream, text-biz-bronze, border-biz-sand…)
+   automatically resolves to the var defined in :root.
+   ═══════════════════════════════════════════════════════════════ */
 
 @theme {
+
   /* Fonts */
-  --font-martel: "Martel Sans", "sans-serif";
-  --font-dm: "DM Sans", "sans-serif";
+  --font-dm:   "DM Sans",           "Inter", sans-serif;
+  --font-alix: "Plus Jakarta Sans",  "DM Sans", sans-serif;
 
+  /* ── Light backgrounds ───────────────────────────── */
+  --color-biz-cream:        var(--biz-cream);
+  --color-biz-cream-light:  var(--biz-cream-light);
+  --color-biz-cream-dark:   var(--biz-cream-dark);
 
---color-biz-cream: #FBF8F6;
---color-biz-cream-light: #FFFFFF;
---color-biz-cream-dark: #F1ECE9;
+  /* ── Dark backgrounds ────────────────────────────── */
+  --color-biz-dark:         var(--biz-dark);
+  --color-biz-dark-surface: var(--biz-dark-surface);
+  --color-biz-dark-panel:   var(--biz-dark-panel);
 
-/* CHARCOAL: Primary Text & Depth */
---color-biz-charcoal: #2A1E1A;
---color-biz-charcoal-muted: #4A3A34;
---color-biz-charcoal-soft: #75665F;
---color-biz-charcoal-ink: #180F0C;
+  /* ── Brand red (mapped to biz-bronze for backward compat) ─ */
+  --color-biz-bronze:       var(--biz-bronze);
+  --color-biz-bronze-light: var(--biz-bronze-light);
+  --color-biz-bronze-dark:  var(--biz-bronze-dark);
+  --color-biz-bronze-pale:  var(--biz-bronze-pale);
 
-/* BRONZE (REFINED REDS): Accents & Branding */
---color-biz-bronze: #6E1C23;        /* Deep wine red */
---color-biz-bronze-light: #9C4A52;  /* Muted rose */
---color-biz-bronze-dark: #4B1217;   /* Rich burgundy */
---color-biz-bronze-pale: #F2E4E6;   /* Soft blush */
+  /* ── Derived red shades ──────────────────────────── */
+  --color-biz-red-ultra:  var(--biz-red-ultra);
+  --color-biz-red-muted:  var(--biz-red-muted);
+  --color-biz-red-blush:  var(--biz-red-blush);
 
-/* SAND/STONE: Supporting neutrals */
---color-biz-sand: #EFE2DE;
---color-biz-sand-muted: #D8C5C1;
+  /* ── Text / charcoal ─────────────────────────────── */
+  --color-biz-charcoal:       var(--biz-charcoal);
+  --color-biz-charcoal-muted: var(--biz-charcoal-muted);
+  --color-biz-charcoal-soft:  var(--biz-charcoal-soft);
+  --color-biz-charcoal-ink:   var(--biz-charcoal-ink);
 
+  /* ── Warm neutrals ───────────────────────────────── */
+  --color-biz-sand:       var(--biz-sand);
+  --color-biz-sand-muted: var(--biz-sand-muted);
 
-  /* Custom Animations & Spacing */
-  --tracking-widest: 0.3em;
-  --tracking-ultra: 0.5em;
-  --radius-biz: 2.5rem;
+  /* Letter spacing extras */
+  --tracking-tightest: -0.04em;
+  --tracking-ultra:     0.5em;
 }
 
-@layer base {
-  html {
-    /* scroll-behavior: smooth; - Disabled for Lenis */
-    position: relative;
-  }
 
-  body {
-    background-color: var(--color-biz-cream);
-    color: var(--color-biz-charcoal);
-    font-family: var(--font-dm);
-    -webkit-font-smoothing: antialiased;
-  }
+/* ═══════════════════════════════════════════════════════════════
+   BASE STYLES
+   ═══════════════════════════════════════════════════════════════ */
 
-  button {
-    cursor: pointer;
-  }
+html {
+  scroll-padding-top: 64px;
+  position: relative;
 }
 
-/* Lenis Smooth Scroll Recommended CSS */
-html.lenis,
-html.lenis body {
-  height: auto;
+body {
+  font-family: var(--font-dm);
+  background-color: var(--biz-cream);
+  color: var(--biz-charcoal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
+button { cursor: pointer; }
+
+::selection {
+  background: var(--biz-bronze);
+  color: #fff;
 }
 
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
+/* ── Lenis smooth scroll ─────────────────────────────────── */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth         { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped        { overflow: hidden; }
+.lenis.lenis-scrolling iframe { pointer-events: none; }
+
+/* ── Scrollbar ───────────────────────────────────────────── */
+::-webkit-scrollbar        { width: 6px; }
+::-webkit-scrollbar-track  { background: var(--biz-cream); }
+::-webkit-scrollbar-thumb  { background: var(--biz-charcoal-soft); border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--biz-bronze); }
+
+/* ── Keyframes ───────────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
 
-.lenis.lenis-scrolling iframe {
-  pointer-events: none;
-}
+/* ═══════════════════════════════════════════════════════════════
+   COMPONENT LAYER
+   Reusable utility classes that reference the CSS vars above.
+   ═══════════════════════════════════════════════════════════════ */
 
 @layer components {
 
-  /* =========================================
-     PROFESSIONAL LABEL — CLEANER TYPOGRAPHY
-     ========================================= */
-
+  /* ── Typography label ────────────────────────────── */
   .professional-label {
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.25em;
-    color: var(--color-biz-bronze);
-    opacity: 0.9;
+    @apply text-[11px] font-semibold uppercase tracking-[0.25em];
+    color: var(--biz-bronze);
   }
 
-
-  /* =========================================
-     BASE BUTTON — MINIMAL + PREMIUM
-     ========================================= */
-
+  /* ── Base button ─────────────────────────────────── */
   .biz-btn {
-    @apply relative cursor-pointer inline-flex items-center justify-center gap-2 sm:gap-3
-    px-5 sm:px-6 lg:px-8
-    py-3 sm:py-3.5 lg:py-4
-    rounded-full font-medium uppercase tracking-[0.22em]
-    text-[10px] sm:text-[11px] lg:text-[12px]
-    transition-all duration-300 ease-[cubic-bezier(.4,0,.2,1)]
-    overflow-hidden select-none whitespace-nowrap
-    border border-transparent
-    outline-none
-    bg-white
-    shadow-[0_2px_10px_rgba(0,0,0,0.06)]
-    focus:ring-2 focus:ring-biz-bronze/40 focus:ring-offset-2
-    hover:shadow-[0_6px_18px_rgba(0,0,0,0.08)]
-    hover:-translate-y-0.5
-    active:scale-[0.96];
+    @apply relative cursor-pointer inline-flex items-center justify-center
+           gap-2.5 px-6 py-3 rounded-full font-medium text-[13px]
+           transition-all duration-200 ease-out overflow-hidden
+           select-none whitespace-nowrap border border-transparent outline-none;
   }
 
-
-  /* =========================================
-     PRIMARY — SOLID LUXURY BRONZE
-     ========================================= */
-
+  /* Bronze filled */
   .biz-btn-primary {
-    @apply text-white
-    bg-biz-bronze
-    border border-biz-bronze
-    shadow-[0_4px_14px_rgba(0,0,0,0.12)]
-    hover:bg-biz-bronze-dark
-    hover:border-biz-bronze-dark
-    hover:shadow-[0_8px_24px_rgba(0,0,0,0.18)]
-    hover:-translate-y-0.5
-    active:translate-y-0;
+    @apply text-white bg-biz-bronze border-biz-bronze
+           hover:bg-biz-bronze-dark hover:border-biz-bronze-dark;
   }
 
-
-  /* =========================================
-     SECONDARY — MATTE CHARCOAL BUTTON
-     ========================================= */
-
+  /* Charcoal filled */
   .biz-btn-secondary {
-    @apply text-white
-    bg-biz-charcoal
-    border border-biz-charcoal
-    shadow-[0_4px_14px_rgba(0,0,0,0.15)]
-    hover:bg-biz-charcoal-ink
-    hover:border-biz-charcoal-ink
-    hover:shadow-[0_8px_24px_rgba(0,0,0,0.25)]
-    hover:-translate-y-0.5
-    active:translate-y-0;
+    @apply text-white bg-biz-charcoal-ink border-biz-charcoal-ink
+           hover:bg-biz-charcoal hover:border-biz-charcoal;
   }
 
-
-  /* =========================================
-     OUTLINE — PREMIUM GLASS STYLE
-     ========================================= */
-
+  /* Ghost outline */
   .biz-btn-outline {
-    @apply bg-white/60 backdrop-blur-md
-    border border-biz-bronze/40
-    text-biz-charcoal
-    shadow-[0_2px_10px_rgba(0,0,0,0.05)]
-    hover:bg-white
-    hover:border-biz-bronze
-    hover:shadow-[0_6px_18px_rgba(0,0,0,0.08)]
-    hover:-translate-y-0.5
-    active:translate-y-0;
+    @apply text-biz-charcoal border border-biz-charcoal/15
+           hover:border-biz-bronze hover:text-biz-bronze;
   }
 
-
-  /* =========================================
-     GLOSS OVERLAY — SOFT LIGHT SWEEP
-     ========================================= */
-
+  /* Gloss sweep overlay (add inside btn) */
   .btn-gloss {
     @apply absolute inset-0
-    bg-gradient-to-r from-transparent via-white/20 to-transparent
-    -translate-x-[140%]
-    group-hover:translate-x-[140%]
-    transition-transform duration-500 ease-[cubic-bezier(.4,0,.2,1)]
-    pointer-events-none;
+           bg-linear-to-r from-transparent via-white/20 to-transparent
+           -translate-x-[140%]
+           group-hover:translate-x-[140%]
+           transition-transform duration-500 ease-out
+           pointer-events-none;
   }
 
-}
+  /* ── Form input ──────────────────────────────────── */
+  .biz-input {
+    @apply w-full rounded-xl text-[15px] font-normal outline-none
+           transition-all duration-200;
+    padding: 0.85rem 1rem;
+    border: 1px solid rgba(139, 126, 106, 0.2);   /* --biz-bronze at 20% */
+    background-color: var(--biz-cream-light);
+    color: var(--biz-charcoal-ink);
+  }
+  .biz-input::placeholder { color: var(--biz-charcoal-soft); }
+  .biz-input:hover  { border-color: rgba(139, 126, 106, 0.4); }
+  .biz-input:focus  {
+    border-color: var(--biz-bronze);
+    box-shadow: 0 0 0 3px rgba(139, 126, 106, 0.12);
+  }
+  .biz-input:disabled {
+    background-color: var(--biz-cream-dark);
+    cursor: not-allowed;
+  }
 
-
-.input-field {
-  @apply w-full p-4 rounded-xl border border-gray-200 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-black/10 focus:border-black transition;
-}
-
-
-/* Premium Input Style – BiznorX */
-.biz-input {
-  width: 100%;
-  padding: 0.85rem 1rem;
-  border-radius: 0.9rem;
-  border: 1px solid rgba(122, 30, 30, 0.18);
-  /* bronze soft */
-  background-color: #FFFFFF;
-  color: #180F0C;
-  /* biz-charcoal-ink */
-  font-size: 0.95rem;
-  font-weight: 500;
-  transition: all 0.25s ease;
-  outline: none;
-}
-
-/* Placeholder */
-.biz-input::placeholder {
-  color: #75665F;
-  /* biz-charcoal-soft */
-  font-weight: 400;
-}
-
-/* Focus state */
-.biz-input:focus {
-  border-color: #7A1E1E;
-  /* biz-bronze */
-  box-shadow: 0 0 0 3px rgba(122, 30, 30, 0.12);
-  background-color: #FFFFFF;
-}
-
-/* Hover (subtle, not noisy) */
-.biz-input:hover {
-  border-color: rgba(122, 30, 30, 0.35);
-}
-
-/* Disabled */
-.biz-input:disabled {
-  background-color: #F1ECE9;
-  cursor: not-allowed;
-}
-
-/* Premium Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--color-biz-cream);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--color-biz-charcoal-muted);
-  border-radius: 10px;
-  border: 2px solid var(--color-biz-cream);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-biz-bronze);
 }

@@ -9,7 +9,7 @@ function Layout() {
       <ScrollToSection />
       <Navbar />
 
-      <main className="mt-[56px] md:mt-[80px]">
+      <main className="pt-[64px]">
         <Outlet />
       </main>
 

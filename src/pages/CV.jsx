@@ -50,8 +50,8 @@ const getAllCountries = () => {
 
 const STATIC_COUNTRIES = getAllCountries();
 
-
-
+// Apple's signature smooth ease curve
+const appleEase = [0.16, 1, 0.3, 1];
 
 /* ================= COMPONENT ================= */
 const CV = () => {
@@ -89,10 +89,8 @@ const CV = () => {
 
   const countries = React.useMemo(() => STATIC_COUNTRIES, []);
 
-
   /* ---------------- PROGRESS ---------------- */
-  const filledFields =
-    Object.values(formData).filter(Boolean).length + (file ? 1 : 0);
+  const filledFields = Object.values(formData).filter(Boolean).length + (file ? 1 : 0);
   const progress = Math.min(100, Math.round((filledFields / 9) * 100));
 
   /* ---------------- FILE ---------------- */
@@ -165,236 +163,264 @@ const CV = () => {
     };
   };
 
+  /* ---------------- SHARED INPUT CLASSES ---------------- */
+  const inputBaseClasses = "w-full bg-biz-charcoal/5 border border-transparent focus:bg-white focus:border-biz-bronze/40 focus:ring-4 focus:ring-biz-bronze/10 rounded-xl px-4 py-3.5 text-[15px] text-biz-charcoal-ink placeholder:text-biz-charcoal-soft/40 outline-none transition-all duration-300";
+  const labelBaseClasses = "block text-[10px] font-bold text-biz-charcoal-soft/60 uppercase tracking-[0.15em] mb-2 pl-1";
+
   /* ================= RENDER ================= */
   return (
-    <section className="min-h-[80vh] flex items-center justify-center bg-biz-cream font-dm overflow-hidden pb-10 px-6">
-      <div className="w-full max-w-2xl bg-white p-8 md:p-12 rounded-[2.5rem] shadow-xl border border-biz-bronze/5 relative overflow-hidden">
-        {/* Decorative elements to replace the lost panel aesthetic */}
-        <div className="absolute top-0 right-0 w-48 h-48 bg-biz-bronze/5 blur-[80px] rounded-full pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-biz-bronze/3 blur-[100px] rounded-full pointer-events-none" />
+    <section className="min-h-screen flex flex-col items-center justify-center bg-biz-cream font-dm py-20 px-6 selection:bg-biz-bronze selection:text-white">
 
+      {/* ── Page Header ── */}
+      <div className="w-full max-w-3xl mb-10 text-center">
+        <motion.p 
+          initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ ease: appleEase, duration: 0.6 }}
+          className="text-[10px] font-bold uppercase tracking-[0.25em] text-biz-bronze mb-3"
+        >
+          Join Our Network
+        </motion.p>
+        <motion.h1 
+          initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ ease: appleEase, duration: 0.6, delay: 0.1 }}
+          className="text-4xl md:text-5xl font-light text-biz-charcoal-ink leading-tight tracking-tight"
+        >
+          Submit Your CV
+        </motion.h1>
+      </div>
+
+      {/* ── Main Form Card ── */}
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ ease: appleEase, duration: 0.8, delay: 0.2 }}
+        className="w-full max-w-3xl bg-white p-8 md:p-12 lg:p-16 rounded-[2rem] shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-biz-charcoal/5 relative overflow-hidden"
+      >
         <AnimatePresence mode="wait">
           {success ? (
-            /* ---------- SUCCESS ---------- */
+            /* ---------- SUCCESS STATE ---------- */
             <motion.div
               key="success"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="text-center"
+              initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.5, ease: appleEase }}
+              className="text-center py-12"
             >
-              <div className="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center mx-auto mb-6">
-                <svg className="w-10 h-10 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="w-20 h-20 bg-biz-bronze/10 rounded-full flex items-center justify-center mx-auto mb-8 border border-biz-bronze/20">
+                <svg className="w-10 h-10 text-biz-bronze" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h2 className="text-3xl font-bold text-biz-charcoal mb-4">Application Received</h2>
-              <p className="text-biz-charcoal-muted max-w-md mx-auto">
+              <h2 className="text-3xl font-medium text-biz-charcoal-ink tracking-tight mb-4">Application Received</h2>
+              <p className="text-[16px] text-biz-charcoal-soft font-light leading-[1.8] max-w-md mx-auto mb-10">
                 Thank you for trusting BiznorX. Our intelligent systems have received your profile and will start the matching process immediately.
               </p>
               <button
-                onClick={() => setSuccess(false)}
-                className="biz-btn biz-btn-secondary mt-8 group"
+                onClick={() => { setSuccess(false); setFormData({name: "", email: "", contact: "", altContact: "", City: "", country: "", category: "", otherCategory: ""}); setFile(null); }}
+                className="bg-biz-charcoal-ink text-white text-[14px] font-medium px-8 py-3.5 rounded-full hover:bg-biz-bronze transition-colors duration-300"
               >
-                Submit Another
-                <div className="btn-gloss" />
+                Submit Another Profile
               </button>
             </motion.div>
           ) : (
-            /* ---------- FORM ---------- */
+            /* ---------- FORM STATE ---------- */
             <motion.form
               key="form"
               onSubmit={handleSubmit}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="flex flex-col gap-6 relative z-10"
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+              className="flex flex-col gap-8 relative z-10"
             >
-              <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-2">
+              
+              {/* Form Header & Progress */}
+              <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-biz-charcoal/5">
                 <div>
-                  <h2 className="text-3xl font-bold text-biz-charcoal tracking-tight">Submit Your CV</h2>
-                  <p className="text-biz-charcoal-muted text-sm mt-1">Join our network of global talent.</p>
-                  <p className="text-biz-bronze text-sm mt-1">Don't submit your CV twice.</p>
+                  <h3 className="text-xl font-medium text-biz-charcoal-ink tracking-tight mb-1">Your Profile</h3>
+                  <p className="text-[14px] text-biz-charcoal-soft font-light">Join our network of global talent.</p>
                 </div>
-                <div className="flex flex-col items-end">
-                  <span className="text-[10px] font-bold text-biz-bronze uppercase tracking-widest mb-1">
-                    Progress {progress}%
-                  </span>
-                  <div className="w-32 h-1 bg-biz-sand rounded-full overflow-hidden">
+                <div className="flex flex-col items-start md:items-end w-full md:w-48">
+                  <div className="flex justify-between w-full mb-2">
+                    <span className="text-[10px] font-bold text-biz-charcoal-soft/60 uppercase tracking-widest">
+                      Completion
+                    </span>
+                    <span className="text-[10px] font-bold text-biz-bronze font-mono">
+                      {progress}%
+                    </span>
+                  </div>
+                  <div className="w-full h-1.5 bg-biz-charcoal/5 rounded-full overflow-hidden">
                     <motion.div
-                      className="h-full bg-biz-bronze"
+                      className="h-full bg-biz-bronze rounded-full"
                       animate={{ width: `${progress}%` }}
-                      transition={{ duration: 0.5 }}
+                      transition={{ duration: 0.6, ease: appleEase }}
                     />
                   </div>
                 </div>
               </div>
 
               {/* Grid Layout for Inputs */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                {[
-                  ["Full Name", "name", true],
-                  ["Email Address", "email", true, "email"],
-                ].map(([placeholder, key, required, type = "text"]) => (
-                  <div key={key} className="space-y-1.5">
-                    <label className="text-[10px] font-bold text-biz-charcoal-muted ml-0.5 uppercase tracking-wider">{placeholder}</label>
-                    <input
-                      type={type}
-                      required={required}
-                      value={formData[key]}
-                      onChange={(e) => setFormData({ ...formData, [key]: e.target.value })}
-                      className="biz-input !rounded-2xl"
-                      placeholder={placeholder === "Full Name" ? "e.g. John Doe" : "e.g. john@example.com"}
-                    />
-                  </div>
-                ))}
-
-                <div className="space-y-1.5">
-                  <label className="text-[10px] font-bold text-biz-charcoal-muted ml-0.5 uppercase tracking-wider">Contact Number</label>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-8">
+                
+                {/* Name */}
+                <div>
+                  <label className={labelBaseClasses}>Full Name</label>
                   <input
-                    type="tel"
-                    required
+                    type="text" required
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className={inputBaseClasses}
+                    placeholder="e.g. John Doe"
+                  />
+                </div>
+
+                {/* Email */}
+                <div>
+                  <label className={labelBaseClasses}>Email Address</label>
+                  <input
+                    type="email" required
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className={inputBaseClasses}
+                    placeholder="e.g. john@example.com"
+                  />
+                </div>
+
+                {/* Contact */}
+                <div>
+                  <label className={labelBaseClasses}>Contact Number</label>
+                  <input
+                    type="tel" required
                     value={formData.contact}
-                    onChange={(e) =>
-                      setFormData({
-                        ...formData,
-                        contact: e.target.value.replace(/[^\d+ ]/g, ""),
-                      })
-                    }
-                    className="biz-input !rounded-2xl"
+                    onChange={(e) => setFormData({ ...formData, contact: e.target.value.replace(/[^\d+ ]/g, "") })}
+                    className={inputBaseClasses}
                     placeholder="+91 9876543210"
                   />
                 </div>
 
-                <div className="space-y-1.5">
-                  <label className="text-[10px] font-bold text-biz-charcoal-muted ml-0.5 uppercase tracking-wider">City</label>
+                {/* Alt Contact */}
+                <div>
+                  <label className={labelBaseClasses}>Alt. Contact (Optional)</label>
                   <input
-                    type="text"
-                    required
+                    type="tel"
+                    value={formData.altContact}
+                    onChange={(e) => setFormData({ ...formData, altContact: e.target.value.replace(/[^\d+ ]/g, "") })}
+                    className={inputBaseClasses}
+                    placeholder="+91 9876543210 (WhatsApp)"
+                  />
+                </div>
+
+                {/* City */}
+                <div>
+                  <label className={labelBaseClasses}>City</label>
+                  <input
+                    type="text" required
                     value={formData.City}
                     onChange={(e) => setFormData({ ...formData, City: e.target.value })}
-                    className="biz-input !rounded-2xl"
+                    className={inputBaseClasses}
                     placeholder="Current City"
                   />
                 </div>
 
-                <div className="space-y-1.5">
-                  <label className="text-[10px] font-bold text-biz-charcoal-muted ml-0.5 uppercase tracking-wider">Country</label>
+                {/* Country Dropdown */}
+                <div>
+                  <label className={labelBaseClasses}>Country</label>
                   <div className="relative">
                     <select
                       required
                       value={formData.country}
                       onChange={(e) => setFormData({ ...formData, country: e.target.value })}
-                      className="biz-input !rounded-2xl appearance-none bg-white pr-10 cursor-pointer"
+                      className={`${inputBaseClasses} appearance-none pr-10 cursor-pointer`}
                     >
-                      <option value="">Select Country</option>
+                      <option value="" disabled>Select Country</option>
                       {countries.map((c) => (
                         <option key={c.code} value={c.name}>{c.name}</option>
                       ))}
                     </select>
-                    <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-biz-charcoal-muted">
+                    <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-biz-charcoal-soft/50">
                       <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
                     </div>
                   </div>
                 </div>
 
-                <div className="space-y-1.5">
-                  <label className="text-[10px] font-bold text-biz-charcoal-muted ml-0.5 uppercase tracking-wider">Industry Category</label>
+                {/* Industry Dropdown */}
+                <div className="md:col-span-2">
+                  <label className={labelBaseClasses}>Industry Category</label>
                   <div className="relative">
                     <select
                       required
                       value={formData.category}
                       onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                      className="biz-input !rounded-2xl appearance-none bg-white pr-10 cursor-pointer"
+                      className={`${inputBaseClasses} appearance-none pr-10 cursor-pointer`}
                     >
-                      <option value="">Select Category</option>
+                      <option value="" disabled>Select Category</option>
                       {categories.map((c) => (
                         <option key={c} value={c}>{c}</option>
                       ))}
                     </select>
-                    <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-biz-charcoal-muted">
+                    <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-biz-charcoal-soft/50">
                       <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Full Width Inputs */}
-              {formData.category === "Other" && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  className="space-y-1.5"
-                >
-                  <label className="text-[10px] font-bold text-biz-charcoal-muted ml-0.5 uppercase tracking-wider">Specify Category</label>
-                  <input
-                    placeholder="Please specify your industry"
-                    maxLength={40}
-                    required
-                    onChange={(e) => setFormData({ ...formData, otherCategory: e.target.value })}
-                    className="biz-input !rounded-2xl"
-                  />
-                </motion.div>
-              )}
-
-              <div className="space-y-1.5">
-                <label className="text-[10px] font-bold text-biz-charcoal-muted ml-0.5 uppercase tracking-wider">Alt. Contact (Optional)</label>
-                <input
-                  type="tel"
-                  value={formData.altContact}
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      altContact: e.target.value.replace(/[^\d+ ]/g, ""),
-                    })
-                  }
-                  className="biz-input !rounded-2xl"
-                  placeholder="+91 9876543210 (WhatsApp preferred)"
-                />
+                {/* Dynamic "Other" Industry Input */}
+                <AnimatePresence>
+                  {formData.category === "Other" && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }}
+                      className="md:col-span-2 overflow-hidden"
+                    >
+                      <div className="pt-2">
+                        <label className={labelBaseClasses}>Specify Category</label>
+                        <input
+                          type="text" required maxLength={40}
+                          value={formData.otherCategory}
+                          onChange={(e) => setFormData({ ...formData, otherCategory: e.target.value })}
+                          className={inputBaseClasses}
+                          placeholder="Please specify your industry"
+                        />
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
 
               {/* ---------- CV UPLOAD AREA ---------- */}
-              <div className="space-y-2 mt-2">
-                <label className="text-[10px] font-bold text-biz-charcoal-muted ml-0.5 uppercase tracking-wider">Upload Resume (PDF/DOC)</label>
+              <div className="mt-2">
+                <label className={labelBaseClasses}>Upload Resume (PDF/DOC)</label>
                 <div
                   onDrop={handleDrop}
                   onDragOver={(e) => e.preventDefault()}
                   className={`
                     relative group cursor-pointer
-                    border-2 border-dashed ${file ? "border-biz-bronze bg-biz-bronze/5" : "border-biz-sand-muted hover:border-biz-bronze"}
-                    rounded-2xl p-6 md:p-10
+                    border border-dashed ${file ? "border-biz-bronze bg-biz-bronze/5" : "border-biz-charcoal/20 bg-biz-charcoal/5 hover:border-biz-bronze/50 hover:bg-biz-bronze/5"}
+                    rounded-2xl p-8 md:p-12
                     text-center transition-all duration-300
                   `}
                 >
                   <input
                     type="file"
-                    accept=".pdf,.doc"
+                    accept=".pdf,.doc,.docx"
                     onChange={(e) => handleFile(e.target.files[0])}
                     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
                   />
 
-                  <div className="flex flex-col items-center gap-3">
+                  <div className="flex flex-col items-center gap-4">
                     {file ? (
                       <>
-                        <div className="w-12 h-12 bg-biz-bronze text-white rounded-full flex items-center justify-center shadow-lg shadow-biz-bronze/20">
-                          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <div className="w-12 h-12 bg-white text-biz-bronze rounded-full flex items-center justify-center shadow-sm border border-biz-bronze/20">
+                          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                           </svg>
                         </div>
                         <div>
-                          <p className="font-bold text-biz-charcoal">{file.name}</p>
-                          <span className="text-xs text-biz-charcoal-muted">{(file.size / 1024 / 1024).toFixed(2)} MB</span>
+                          <p className="font-medium text-[15px] text-biz-charcoal-ink">{file.name}</p>
+                          <span className="text-[12px] text-biz-charcoal-soft font-mono">{(file.size / 1024 / 1024).toFixed(2)} MB</span>
                         </div>
                       </>
                     ) : (
                       <>
-                        <div className="w-12 h-12 bg-biz-cream text-biz-charcoal-muted group-hover:bg-biz-bronze group-hover:text-white rounded-full flex items-center justify-center transition-all duration-300">
-                          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                        <div className="w-12 h-12 bg-white text-biz-charcoal-soft/50 group-hover:text-biz-bronze rounded-full flex items-center justify-center shadow-sm border border-biz-charcoal/10 group-hover:border-biz-bronze/20 transition-all duration-300">
+                          <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
                           </svg>
                         </div>
                         <div>
-                          <p className="font-semibold text-biz-charcoal">Click to Upload or Drag & Drop</p>
-                          <span className="text-xs text-biz-charcoal-muted">PDF or DOC files only (Max 5MB)</span>
+                          <p className="font-medium text-[15px] text-biz-charcoal-ink">Click to Upload or Drag & Drop</p>
+                          <span className="text-[13px] text-biz-charcoal-soft font-light">PDF or DOC files only (Max 5MB)</span>
                         </div>
                       </>
                     )}
@@ -405,34 +431,37 @@ const CV = () => {
               {/* ---------- ERROR MESSAGE ---------- */}
               <AnimatePresence>
                 {error && (
-                  <motion.p
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0 }}
-                    className="text-xs font-semibold text-red-600 bg-red-50 p-3 rounded-xl flex items-center gap-2"
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }}
+                    className="overflow-hidden"
                   >
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                    {error}
-                  </motion.p>
+                    <div className="text-[13px] font-medium text-red-600 bg-red-50 border border-red-100 p-4 rounded-xl flex items-center gap-3">
+                      <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                      {error}
+                    </div>
+                  </motion.div>
                 )}
               </AnimatePresence>
 
               {/* ---------- SUBMIT BUTTON ---------- */}
               <button
                 disabled={loading}
-                className="biz-btn biz-btn-primary w-full mt-2 group"
+                className="w-full bg-biz-charcoal-ink text-white font-medium text-[15px] py-4 rounded-xl hover:bg-biz-bronze active:scale-[0.98] transition-all duration-300 flex justify-center items-center gap-3 mt-4 disabled:opacity-70 disabled:cursor-not-allowed"
               >
-
-                <span>{loading ? "Submitting..." : "Submit Application"}</span>
-                <div className="btn-gloss" />
-                {loading && (
-                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                {loading ? (
+                  <>
+                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    <span>Securely Submitting...</span>
+                  </>
+                ) : (
+                  <span>Submit Application</span>
                 )}
               </button>
+
             </motion.form>
           )}
         </AnimatePresence>
-      </div>
+      </motion.div>
     </section>
   );
 };

@@ -3,183 +3,167 @@ import { motion } from "framer-motion";
 import { MapPin, Mail, Linkedin, Instagram, Facebook } from "lucide-react";
 import { FaXTwitter, FaWhatsapp } from "react-icons/fa6";
 
-const SOCIAL_LINKS = [
-  { icon: Instagram, href: "https://www.instagram.com/biznorx?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==", label: "Instagram" },
-  { icon: FaXTwitter, href: "#", label: "Twitter" },
-  { icon: Linkedin, href: "https://www.linkedin.com/company/biznorx/", label: "LinkedIn" },
-  { icon: Facebook, href: "#", label: "Facebook" },
-];
-
 const CONTACT_METHODS = [
-  {
-    icon: FaWhatsapp,
-    label: "India Office",
-    value: "+91 9004072449",
-    href: "https://wa.me/919004072449",
-    accent: "group-hover:text-green-600"
-  },
-  {
-    icon: FaWhatsapp,
-    label: "UAE Office",
-    value: "+971 522585437",
-    href: "https://wa.me/971522585437",
-    accent: "group-hover:text-green-600"
-  },
-  {
-    icon: Mail,
-    label: "General Inquiry",
-    value: "hello@biznorx.com",
-    href: "mailto:hello@biznorx.com",
-    accent: "group-hover:text-biz-bronze"
-  },
+  { Icon: FaWhatsapp, label: "India Office", value: "+91 9004072449",  href: "https://wa.me/919004072449",  color: "hover:text-green-600" },
+  { Icon: FaWhatsapp, label: "UAE Office",   value: "+971 522585437", href: "https://wa.me/971522585437",  color: "hover:text-green-600" },
+  { Icon: Mail,       label: "Email",        value: "hello@biznorx.com", href: "mailto:hello@biznorx.com", color: "hover:text-biz-bronze" },
 ];
 
-const CONTAINER_VARIANTS = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.15, delayChildren: 0.3 },
-  },
-};
+const SOCIAL_LINKS = [
+  { Icon: Instagram,  href: "https://www.instagram.com/biznorx", label: "Instagram" },
+  { Icon: FaXTwitter, href: "#",                                  label: "Twitter" },
+  { Icon: Linkedin,   href: "https://www.linkedin.com/company/biznorx/", label: "LinkedIn" },
+  { Icon: Facebook,   href: "#",                                  label: "Facebook" },
+];
 
-const ITEM_VARIANTS = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 1, ease: [0.16, 1, 0.3, 1] }
-  },
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (i = 0) => ({
+    opacity: 1, y: 0,
+    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: i * 0.12 },
+  }),
 };
-
-const LocationItem = React.memo(({ title, city }) => (
-  <motion.div
-    variants={ITEM_VARIANTS}
-    className="flex items-start gap-4 group/loc cursor-default"
-  >
-    <div className="mt-1 text-biz-bronze transition-transform duration-500 group-hover/loc:-translate-y-1 group-hover/loc:scale-110">
-      <MapPin className="h-4 w-4" />
-    </div>
-    <div className="flex flex-col">
-      <span className="text-[10px] font-bold uppercase tracking-widest text-biz-bronze/60 mb-1">
-        {title}
-      </span>
-      <p className="text-base text-biz-charcoal font-medium group-hover/loc:text-biz-bronze transition-colors">
-        {city}
-      </p>
-    </div>
-  </motion.div>
-));
 
 export function Contact() {
   return (
-    <section id="contact" className="bg-biz-cream pt-8 pb-10 font-dm overflow-hidden">
-      <motion.div
-        className="max-w-7xl mx-auto px-6 lg:px-12"
-        variants={CONTAINER_VARIANTS}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-      >
-        <div className="grid lg:grid-cols-12 gap-20 items-start">
+    <div className="bg-biz-cream font-dm min-h-screen">
 
-          {/* LEFT: BRANDING & NARRATIVE */}
-          <motion.div variants={ITEM_VARIANTS} className="lg:col-span-5 space-y-10">
-            <div className="space-y-4">
-              <motion.h2
-                initial={{ opacity: 0, letterSpacing: "0.2em" }}
-                whileInView={{ opacity: 1, letterSpacing: "0.5em" }}
-                transition={{ duration: 1.5 }}
-                className="text-biz-bronze text-[12px] font-bold uppercase"
-              >
-                Contact
-              </motion.h2>
-              <h3 className="text-6xl lg:text-7xl text-biz-charcoal tracking-tighter font-bold  leading-[0.85] overflow-hidden">
-                <motion.span
-                  initial={{ y: "100%" }}
-                  whileInView={{ y: 0 }}
-                  transition={{ duration: 0.8, ease: "circOut" }}
-                  className="inline-block"
-                >
-                  biznor<span className="text-biz-bronze/80">X</span>
-                </motion.span>
-              </h3>
-            </div>
+      {/* ── Header ───────────────────────────────────── */}
+      <div className="max-w-[1200px] mx-auto px-6 lg:px-8 pt-16 pb-12 md:pt-10 md:pb-16">
+        <motion.p
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="text-[11px] font-semibold uppercase tracking-[0.25em] text-biz-bronze mb-4"
+        >
+          Contact
+        </motion.p>
+        <motion.h1
+          custom={1}
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="text-[52px] md:text-[80px] font-light text-biz-charcoal-ink leading-[1.0] tracking-[-0.03em]"
+        >
+          biznor<span className="text-biz-bronze">X</span>
+        </motion.h1>
+        <motion.p
+          custom={2}
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="mt-4 text-[16px] text-biz-charcoal-soft leading-[1.75] max-w-[440px]"
+        >
+          Enterprise-grade workforce solutions built on 60+ years of legacy. Serving global organisations with discipline and precision.
+        </motion.p>
+      </div>
 
-            <p className="text-biz-charcoal/60 text-xl leading-relaxed font-light max-w-md">
-              Enterprise-grade workforce solutions built on 60+ years of legacy. Serving global organizations with discipline and precision.
+      {/* ── Main Grid ────────────────────────────────── */}
+      <div className="max-w-[1200px] mx-auto px-6 lg:px-8 pb-24 md:pb-32">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 border-t border-biz-charcoal/8 pt-12">
+
+          {/* Left: Contact methods */}
+          <div>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-biz-charcoal/30 mb-8">
+              Reach Us
             </p>
+            <div className="space-y-10">
+              {CONTACT_METHODS.map((method, i) => {
+                const Icon = method.Icon;
+                return (
+                  <motion.a
+                    key={i}
+                    custom={i}
+                    variants={fadeUp}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    href={method.href}
+                    target={method.href.startsWith("http") ? "_blank" : undefined}
+                    rel="noopener noreferrer"
+                    className="group block"
+                  >
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-biz-charcoal/30 mb-2 group-hover:text-biz-bronze transition-colors">
+                      {method.label}
+                    </p>
+                    <div className="flex items-center gap-4">
+                      <Icon size={18} className={`text-biz-charcoal/20 transition-all duration-300 ${method.color}`} />
+                      <span className={`text-[22px] md:text-[28px] font-light text-biz-charcoal-ink tracking-tight transition-all duration-300 ${method.color.replace("hover:", "group-hover:")}`}>
+                        {method.value}
+                      </span>
+                    </div>
+                  </motion.a>
+                );
+              })}
+            </div>
+          </div>
 
-            <div className="pt-6 space-y-4">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-biz-charcoal/30">
-                Network
+          {/* Right: Locations + Social */}
+          <div className="flex flex-col gap-14">
+
+            {/* Locations */}
+            <motion.div
+              custom={0}
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-biz-charcoal/30 mb-8">
+                Our Offices
               </p>
-              <div className="flex gap-6">
-                {SOCIAL_LINKS.map((social) => {
-                  const Icon = social.icon;
-                  return (
-                    <motion.a
-                      key={social.label}
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{
-                        y: -2,
-                        scale: 1.2,
-                        rotate: 2
-                      }}
-                      whileTap={{ scale: 0.9 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 40 }}
-                      className="text-biz-charcoal/40 hover:text-biz-bronze transition-colors duration-300"
-                    >
-                      <Icon className="h-5 w-5" />
-                    </motion.a>
-                  );
-                })}
+              <div className="grid grid-cols-2 gap-8">
+                {[
+                  { title: "India Office", city: "Mumbai, Maharashtra" },
+                  { title: "UAE Office",   city: "Dubai, UAE" },
+                ].map((loc, i) => (
+                  <div key={i} className="flex items-start gap-3 group">
+                    <MapPin size={16} className="text-biz-bronze mt-1 shrink-0 group-hover:-translate-y-0.5 transition-transform duration-300" />
+                    <div>
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-biz-charcoal/30 mb-1">{loc.title}</p>
+                      <p className="text-[15px] font-medium text-biz-charcoal">{loc.city}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
 
-          {/* RIGHT: DIRECT COMMUNICATION */}
-          <motion.div variants={ITEM_VARIANTS} className="lg:col-span-7">
-            <div className="space-y-16">
-              {/* Communication Links */}
-              <div className="space-y-12">
-                {CONTACT_METHODS.map((method) => {
-                  const Icon = method.icon;
-                  return (
-                    <motion.a
-                      key={method.label}
-                      href={method.href}
-                      className="group block transform-gpu origin-left"
-                      whileHover={{ x: 20 }}
-                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                    >
-                      <p className="text-[10px] text-biz-bronze font-bold uppercase tracking-[0.4em] mb-3 opacity-50 group-hover:opacity-100 transition-opacity">
-                        {method.label}
-                      </p>
-                      <div className="flex items-center gap-6">
-                        <Icon className={`h-6 w-6 text-biz-charcoal/20 transition-all duration-500 ${method.accent} group-hover:scale-120 group-hover:rotate-15`} />
-                        <span className="text-3xl md:text-3xl text-biz-charcoal font-bold tracking-tighter transition-all duration-300 group-hover:text-biz-charcoal-ink group-hover:tracking-normal">
-                          {method.value}
-                        </span>
-                      </div>
-                    </motion.a>
-                  );
-                })}
+            {/* Social */}
+            <motion.div
+              custom={1}
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-biz-charcoal/30 mb-6">
+                Follow Us
+              </p>
+              <div className="flex gap-5">
+                {SOCIAL_LINKS.map(({ Icon, href, label }) => (
+                  <motion.a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    whileHover={{ y: -2 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                    className="w-10 h-10 rounded-full border border-biz-charcoal/10 flex items-center justify-center text-biz-charcoal/40 hover:text-biz-bronze hover:border-biz-bronze/30 transition-colors duration-200"
+                  >
+                    <Icon size={16} />
+                  </motion.a>
+                ))}
               </div>
+            </motion.div>
 
-              {/* Physical Footprint */}
-              <div className="pt-8 border-t border-biz-charcoal/5">
-                <div className="grid md:grid-cols-2 gap-12">
-                  <LocationItem title="India Office" city="Mumbai, MH" />
-                  <LocationItem title="UAE Office" city="Dubai, UAE" />
-                </div>
-              </div>
-            </div>
-          </motion.div>
+          </div>
         </div>
-      </motion.div>
-    </section>
+      </div>
+    </div>
   );
 }
 

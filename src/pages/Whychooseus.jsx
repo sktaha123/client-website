@@ -1,246 +1,130 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useState, useCallback, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
 const benefits = [
-  {
-    title: "Proven Legacy",
-    text: "Built on over six decades of operational excellence, industry relationships, and institutional trust that consistently delivers stability, foresight, and long-term value to partners.",
-    highlight: "60+ Years"
-  },
-  {
-    title: "Global Standards",
-    text: "End-to-end compliance aligned with international labor laws, data protection policies, and regulatory frameworks across India, UAE, and global markets.",
-    highlight: "100% Compliant"
-  },
-  {
-    title: "Strategic Reach",
-    text: "A dual-market operational presence that combines deep regional insight with global execution capability, enabling seamless cross-border workforce solutions.",
-    highlight: "Cross-Border"
-  },
-  {
-    title: "Digital First",
-    text: "Technology-enabled hiring, workforce management, and reporting systems designed for transparency, speed, accuracy, and real-time decision making.",
-    highlight: "Tech-Enabled"
-  },
-  {
-    title: "Human Centric",
-    text: "People-first engagement model with dedicated account leadership, responsive support teams, and continuous alignment to client objectives.",
-    highlight: "Always On"
-  },
-  {
-    title: "Execution Precision",
-    text: "Process-driven delivery frameworks that ensure predictable outcomes, minimized risk, and consistent service quality across all engagement stages.",
-    highlight: "Process-Led"
-  },
-  {
-    title: "Scalable Solutions",
-    text: "Flexible workforce models engineered to scale rapidly with business demand—without compromising compliance, quality, or cultural alignment.",
-    highlight: "Built to Scale"
-  },
-  {
-    title: "Market Intelligence",
-    text: "Data-backed insights, salary benchmarking, and talent availability analysis that empower informed workforce and expansion decisions.",
-    highlight: "Insight Driven"
-  },
-  {
-    title: "Risk Mitigation",
-    text: "Proactive governance, contractual safeguards, and compliance monitoring designed to reduce operational, legal, and reputational exposure.",
-    highlight: "Risk Secure"
-  },
-  {
-    title: "Partnership Mindset",
-    text: "We operate as an extension of your organization—aligning strategy, execution, and accountability to deliver long-term business outcomes.",
-    highlight: "Trusted Ally"
-  }
+  { title: "Proven Legacy",         highlight: "60+ Years",       text: "Built on over six decades of operational excellence, industry relationships, and institutional trust that consistently delivers stability, foresight, and long-term value to partners." },
+  { title: "Global Standards",      highlight: "100% Compliant",  text: "End-to-end compliance aligned with international labour laws, data protection policies, and regulatory frameworks across India, UAE, and global markets." },
+  { title: "Strategic Reach",       highlight: "Cross-Border",    text: "A dual-market operational presence combining deep regional insight with global execution capability, enabling seamless cross-border workforce solutions." },
+  { title: "Digital First",         highlight: "Tech-Enabled",    text: "Technology-enabled hiring, workforce management, and reporting systems designed for transparency, speed, accuracy, and real-time decision making." },
+  { title: "Human Centric",         highlight: "Always On",       text: "People-first engagement model with dedicated account leadership, responsive support teams, and continuous alignment to client objectives." },
+  { title: "Execution Precision",   highlight: "Process-Led",     text: "Process-driven delivery frameworks that ensure predictable outcomes, minimised risk, and consistent service quality across all engagement stages." },
+  { title: "Scalable Solutions",    highlight: "Built to Scale",  text: "Flexible workforce models engineered to scale rapidly with business demand — without compromising compliance, quality, or cultural alignment." },
+  { title: "Market Intelligence",   highlight: "Insight Driven",  text: "Data-backed insights, salary benchmarking, and talent availability analysis that empower informed workforce and expansion decisions." },
+  { title: "Risk Mitigation",       highlight: "Risk Secure",     text: "Proactive governance, contractual safeguards, and compliance monitoring designed to reduce operational, legal, and reputational exposure." },
+  { title: "Partnership Mindset",   highlight: "Trusted Ally",    text: "We operate as an extension of your organisation — aligning strategy, execution, and accountability to deliver long-term business outcomes." },
 ];
-
 
 export function Whychooseus() {
   const [index, setIndex] = useState(0);
-  const [direction, setDirection] = useState(0);
+  const [direction, setDirection] = useState(1);
   const timerRef = useRef(null);
 
-  // Function to clear and restart the timer
   const resetTimer = useCallback(() => {
-    if (timerRef.current) clearInterval(timerRef.current);
+    clearInterval(timerRef.current);
     timerRef.current = setInterval(() => {
       setDirection(1);
-      setIndex((prev) => (prev + 1) % benefits.length);
-    }, 5000); // 5 seconds
+      setIndex((p) => (p + 1) % benefits.length);
+    }, 5000);
   }, []);
 
   useEffect(() => {
     resetTimer();
-    return () => {
-      if (timerRef.current) clearInterval(timerRef.current);
-    };
+    return () => clearInterval(timerRef.current);
   }, [resetTimer]);
 
-  const next = () => {
-    setDirection(1);
-    setIndex((prev) => (prev + 1) % benefits.length);
-    resetTimer(); // Reset countdown on click
+  const go = (dir) => {
+    setDirection(dir);
+    setIndex((p) => (p + dir + benefits.length) % benefits.length);
+    resetTimer();
   };
 
-  const prev = () => {
-    setDirection(-1);
-    setIndex((prev) => (prev - 1 + benefits.length) % benefits.length);
-    resetTimer(); // Reset countdown on click
-  };
-
-  const formatNum = (n) => (n < 10 ? `0${n}` : n);
+  const fmt = (n) => (n < 10 ? `0${n}` : n);
 
   return (
-   <section className="py-3 bg-[#FAF9F6] font-dm overflow-hidden">
-  <motion.div
-    className="max-w-7xl mx-auto px-6 w-full relative z-10"
-    initial={{ opacity: 0, y: 48 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{
-      duration: 0.6,
-      ease: [0.215, 0.61, 0.355, 1],
-    }}
-    viewport={{ once: true, margin: "-80px" }}
-  >
+    <div className="bg-biz-cream font-dm min-h-screen">
 
-        <div className="flex flex-col lg:flex-row items-stretch min-h-[450px] gap-0 border border-biz-charcoal-ink/10 rounded-[2rem] overflow-hidden bg-white shadow-2xl shadow-biz-charcoal-ink/5">
+      {/* Header */}
+      <div className="max-w-[1200px] mx-auto px-6 lg:px-8 pt-16 pb-10 md:pt-10">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-biz-bronze mb-4">
+          The Advantage
+        </p>
+        <h1 className="text-[48px] md:text-[64px] font-light text-biz-charcoal-ink leading-[1.05] tracking-[-0.03em] max-w-[560px]">
+          Why industry leaders trust{" "}
+          <em className="text-biz-bronze not-italic">BiznorX.</em>
+        </h1>
+      </div>
 
-          {/* --- Left Column: The Anchor --- */}
-          <div className="lg:w-2/5 p-12 md:p-16 flex flex-col justify-between bg-biz-charcoal-ink text-white">
+      {/* Split Card */}
+      <div className="max-w-[1200px] mx-auto px-6 lg:px-8 pb-24 md:pb-32">
+        <div className="grid lg:grid-cols-12 overflow-hidden rounded-2xl border border-biz-charcoal/8 bg-white shadow-[0_4px_40px_rgba(45,34,25,0.06)]">
+
+          {/* Left Dark Pane */}
+          <div className="lg:col-span-4 bg-biz-charcoal-ink p-10 md:p-14 flex flex-col justify-between">
             <div>
-              <span className="text-biz-bronze text-[10px] font-bold uppercase tracking-[0.4em] mb-6 block">
-                The Advantage
-              </span>
-              <h2 className="text-4xl md:text-5xl font-light leading-tight">
-                Why Industry <br />
-                Leaders Trust <br />
-                <span className="font-serif  text-biz-bronze">biznorX</span>
-              </h2>
+              
+
+              {/* Visible list mini */}
+              <div className="space-y-3 mt-4">
+                {benefits.map((b, i) => (
+                  <button
+                    key={i}
+                    onClick={() => { setDirection(i > index ? 1 : -1); setIndex(i); resetTimer(); }}
+                    className={`block w-full text-left text-[13px] font-medium transition-all duration-300 ${i === index ? "text-white" : "text-white/25 hover:text-white/50"}`}
+                  >
+                    {b.title}
+                  </button>
+                ))}
+              </div>
             </div>
 
-            <div className="mt-12 flex flex-col gap-6 lg:flex-row lg:items-center">
-
-  {/* LEFT — Buttons */}
-  <div className="flex justify-between items-center lg:justify-start lg:gap-6">
-    <div className="flex gap-2">
-      
-      <button
-        onClick={prev}
-        className="p-4 rounded-full group border border-white/10 hover:bg-white/10 transition-all active:scale-95"
-      >
-        <ArrowLeft size={20} className="text-bronze group-hover:text-biz-bronze transition-colors"  />
-      </button>
-
-      <button
-        onClick={next}
-        className="p-4 rounded-full border border-white/10 hover:bg-white/10 transition-all active:scale-95"
-      >
-        <ArrowRight size={20} className="text-bronze group-hover:text-biz-bronze transition-colors" />
-      </button>
-    </div>
-
-    {/* MOBILE — Counter aligned opposite */}
-    <span className="font-mono text-xs text-white/40 lg:hidden">
-      {formatNum(index + 1)} / {formatNum(benefits.length)}
-    </span>
-  </div>
-
-  {/* DESKTOP — Divider */}
-  <div className="hidden lg:block h-px flex-1 bg-white/10" />
-
-  {/* DESKTOP — Counter */}
-  <span className="hidden lg:block font-mono text-xs text-white/40">
-    {formatNum(index + 1)} / {formatNum(benefits.length)}
-  </span>
-
-</div>
-
+            {/* Nav */}
+            <div className="flex items-center gap-4 mt-10">
+              <button onClick={() => go(-1)} className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/8 transition-colors active:scale-95">
+                <ArrowLeft size={16} className="text-white/60" />
+              </button>
+              <button onClick={() => go(1)} className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:bg-white/8 transition-colors active:scale-95">
+                <ArrowRight size={16} className="text-white/60" />
+              </button>
+              <span className="ml-auto text-[11px] font-mono text-white/25">
+                {fmt(index + 1)} / {fmt(benefits.length)}
+              </span>
+            </div>
           </div>
 
-          {/* --- Right Column: The Stage --- */}
-          <div className="lg:w-3/5 relative bg-white flex items-center p-12 md:p-20 overflow-hidden">
+          {/* Right Content Pane */}
+          <div className="lg:col-span-8 p-10 md:p-20 flex items-center min-h-[400px] relative overflow-hidden">
             <AnimatePresence mode="wait" custom={direction}>
               <motion.div
                 key={index}
                 custom={direction}
-                initial={{ x: direction > 0 ? 24 : -24, opacity: 0 }}
+                initial={{ x: direction > 0 ? 40 : -40, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
-                exit={{ x: direction > 0 ? -24 : 24, opacity: 0 }}
-                transition={{
-                  duration: 0.32,
-                  ease: [0.215, 0.61, 0.355, 1], // premium cubic easing
-                }}
-                className="flex flex-col gap-6"
+                exit={{ x: direction > 0 ? -40 : 40, opacity: 0 }}
+                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                className="max-w-[500px]"
               >
-                {/* Highlight */}
-                <motion.span
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    delay: 0.08,
-                    duration: 0.22,
-                    ease: "easeOut",
-                  }}
-                  className="text-biz-bronze font-serif italic text-2xl"
-                >
+                <p className="text-biz-bronze text-[18px] md:text-[22px] font-light italic mb-4">
                   {benefits[index].highlight}
-                </motion.span>
-
-                {/* Title */}
-                <motion.h3
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    delay: 0.14,
-                    duration: 0.24,
-                    ease: "easeOut",
-                  }}
-                  className="text-3xl md:text-5xl font-light text-biz-charcoal-ink tracking-tight"
-                >
+                </p>
+                <h2 className="text-[38px] md:text-[52px] font-light text-biz-charcoal-ink leading-tight tracking-[-0.02em] mb-6">
                   {benefits[index].title}
-                </motion.h3>
-
-                {/* Description */}
-                <motion.p
-                  initial={{ opacity: 0, y: 6 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    delay: 0.2,
-                    duration: 0.26,
-                    ease: "easeOut",
-                  }}
-                  className="text-lg md:text-xl text-biz-charcoal-soft font-light leading-relaxed max-w-lg"
-                >
+                </h2>
+                <p className="text-[15px] md:text-[16px] text-biz-charcoal-soft leading-[1.8]">
                   {benefits[index].text}
-                </motion.p>
+                </p>
               </motion.div>
             </AnimatePresence>
 
-
+            {/* Big number watermark */}
+            <div className="absolute -right-4 -bottom-6 text-[160px] font-light text-biz-charcoal/4 leading-none select-none pointer-events-none">
+              {fmt(index + 1)}
+            </div>
           </div>
+
         </div>
-
-      </motion.div>
-
-      {/* Progress Dots */}
-      <div className="flex justify-center gap-3 mt-12">
-        {benefits.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => {
-              setDirection(i > index ? 1 : -1);
-              setIndex(i);
-              resetTimer();
-            }}
-            className={`h-1.5 transition-all duration-500 rounded-full ${i === index ? 'w-12 bg-biz-bronze' : 'w-3 bg-biz-charcoal-ink/10 hover:bg-biz-charcoal-ink/30'}`}
-          />
-        ))}
       </div>
-
-    
-    
-    </section >
+    </div>
   );
 }
 

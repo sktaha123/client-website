@@ -1,160 +1,86 @@
 import { motion } from "framer-motion";
 
-const revealVariants = {
-  hidden: { opacity: 0, y: 28 },
-  visible: (index = 0) => ({
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (i = 0) => ({
     opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.75,
-      ease: [0.22, 1, 0.36, 1],
-      delay: index * 0.1,
-    },
+    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: i * 0.1 },
   }),
 };
 
+const sections = [
+  {
+    label: "Core Focus",
+    title: "What biznorX Does",
+    body: "biznorX focuses on structured recruitment execution rather than volume-based hiring. Each engagement begins with understanding role intent, organizational structure, and business direction.",
+  },
+  {
+    label: "Solutions",
+    title: "Recruitment & Workforce",
+    body: "Our solutions are built around clarity and accountability — assisting organizations with talent acquisition, workforce planning, and hiring optimization using consistent evaluation frameworks.",
+  },
+  {
+    label: "Experience",
+    title: "Industries We Serve",
+    body: "We work across technology, manufacturing, logistics, finance, healthcare, and professional services — adapting strategies based on sector-specific workforce complexity.",
+  },
+  {
+    label: "Differentiation",
+    title: "Why Choose BiznorX",
+    body: "We prioritize execution integrity. Every recommendation is supported by verified data and clear reasoning. Speed is never chosen over alignment.",
+  },
+];
+
 export default function HomeContent() {
-  const sections = [
-    {
-      label: "Core Focus",
-      title: () => (
-        <>
-          What biznor
-          <span className="text-biz-bronze lg:text-2xl font-bold">x</span>
-        </>
-      ),
-      content: () => (
-        <>
-          biznor
-          <span className="text-biz-bronze lg:text-1xl font-bold">x</span>{" "}
-          focuses on{" "}
-          <span className="font-medium text-biz-charcoal">
-            structured recruitment execution
-          </span>{" "}
-          rather than volume-based hiring. Each engagement begins with
-          understanding role intent, organizational structure, and business direction.
-        </>
-      ),
-    },
-    {
-      label: "Solutions",
-      title: () => "Recruitment & Workforce Solutions",
-      content: () => (
-        <>
-          Our recruitment solutions are built around{" "}
-          <span className="font-medium text-biz-charcoal">
-            clarity and accountability
-          </span>
-          . biznor
-          <span className="text-biz-bronze lg:text-1xl font-bold">x</span>{" "}
-          assists organizations with talent acquisition, workforce planning,
-          and hiring optimization using consistent evaluation frameworks.
-        </>
-      ),
-    },
-    {
-      label: "Experience",
-      title: () => "Industries We Serve",
-      content: () => (
-        <>
-          biznor
-          <span className="text-biz-bronze lg:text-1xl font-bold">x</span>{" "}
-          works across technology, manufacturing, logistics, finance,
-          healthcare, and professional services, adapting strategies based on{" "}
-          <span className="italic">
-            sector-specific workforce complexity
-          </span>
-          .
-        </>
-      ),
-    },
-    {
-      label: "Differentiation",
-      title: () => (
-        <>
-          Why Choose biznor
-          <span className="text-biz-bronze lg:text-2xl font-bold">x</span>
-        </>
-      ),
-      content: () => (
-        <>
-          biznor
-          <span className="text-biz-bronze lg:text-1xl font-bold">x</span>{" "}
-          prioritizes{" "}
-          <span className="font-medium text-biz-charcoal">
-            execution integrity
-          </span>
-          . Every recommendation is supported by verified data and clear reasoning.
-          Speed is never chosen over alignment.
-        </>
-      ),
-    },
-  ];
-
   return (
-    <section className="bg-biz-cream font-dm relative">
-      <div className="w-full md:max-w-[90rem] mx-auto md:px-8 md:pt-8 md:pb-24 md:min-h-[70vh] flex items-start justify-center">
-        
-        <div className="w-full bg-white/70 md:rounded-[var(--radius-biz)] px-8 py-14 md:px-16 md:py-20">
-          
-          <motion.div
-            variants={revealVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.7 }}
-            className="max-w-3xl mb-16"
-          >
-            <p className="text-lg md:text-xl leading-relaxed text-biz-charcoal-muted">
-              <span className="text-biz-charcoal font-medium">
-                <span className="text-biz-charcoal-ink lg:text-2xl font-bold">
-                  biznor
-                </span>
-                <span className="text-biz-bronze lg:text-2xl font-bold">X</span>{" "}
-                is a recruitment and workforce solutions platform
-              </span>{" "}
-              designed to help organizations make confident hiring decisions. By
-              combining{" "}
-              <span className="text-biz-bronze font-medium">
-                structured evaluation, business intelligence, and human judgment
-              </span>
-              , biznor
-              <span className="text-biz-bronze lg:text-xl font-bold">x</span>{" "}
-              ensures that every recruitment outcome aligns with both immediate
-              role requirements and long-term organizational goals. Operating
-              across{" "}
-              <span className="font-medium text-biz-charcoal">
-                India and the UAE
-              </span>
-              , biznorx supports companies at every stage of growth.
-            </p>
-          </motion.div>
+    <section className="bg-biz-cream py-24 md:py-32">
+      <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-20 gap-y-16">
-            {sections.map((item, index) => (
-              <motion.div
-                key={index}
-                custom={index}
-                variants={revealVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.2 }}
-              >
-                <span className="professional-label mb-4 block">
-                  {item.label}
-                </span>
+        {/* Intro */}
+        <motion.div
+          variants={fadeUp}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.5 }}
+          className="max-w-[680px] mb-20 md:mb-28"
+        >
+          <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-biz-bronze mb-5">
+            About BiznorX
+          </p>
+          <h2 className="text-[36px] md:text-[48px] font-light text-biz-charcoal-ink leading-[1.15] tracking-[-0.02em]">
+            A recruitment and workforce solutions platform designed to help organizations make confident hiring decisions.
+          </h2>
+        </motion.div>
 
-                <h2 className="text-2xl font-bold mb-4 tracking-tight">
-                  {item.title()}
-                </h2>
-
-                <p className="text-biz-charcoal-muted leading-relaxed">
-                  {item.content()}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-
+        {/* Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-16 border-t border-biz-charcoal/8 pt-16">
+          {sections.map((item, i) => (
+            <motion.div
+              key={i}
+              custom={i}
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              className="group"
+            >
+              <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-biz-bronze/70 mb-4">
+                {item.label}
+              </p>
+              <h3 className="text-[22px] font-medium text-biz-charcoal-ink mb-3 leading-tight">
+                {item.title}
+              </h3>
+              <p className="text-[15px] text-biz-charcoal-soft leading-[1.75]">
+                {item.body}
+              </p>
+            </motion.div>
+          ))}
         </div>
+
+        {/* Stats strip */}
+        
+
       </div>
     </section>
   );

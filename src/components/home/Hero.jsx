@@ -1,210 +1,111 @@
 import React, { useState, useEffect } from "react";
 import { ArrowUpRight, FileUser } from "lucide-react";
-
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
+const words = ["Innovate.", "Integrity.", "Inspire."];
+const backgroundImages = ["/svgs/he1.webp", "/svgs/he2.webp", "/svgs/he3.webp"];
+
 export function Hero() {
-    const [index, setIndex] = useState(0);
-    const [bgIndex, setBgIndex] = useState(0);
-    const navigate = useNavigate();
+  const [wordIndex, setWordIndex] = useState(0);
+  const [bgIndex, setBgIndex] = useState(0);
+  const navigate = useNavigate();
 
-    const words = [
-        { text: "Innovate", class: "text-biz-cream-light" },
-        { text: "Integrity", class: "text-biz-bronze font-dm" },
-        { text: "Inspire", class: "font-semibold text-biz-cream-light" },
-    ];
+  useEffect(() => {
+    const t = setInterval(() => setBgIndex((p) => (p + 1) % backgroundImages.length), 6000);
+    return () => clearInterval(t);
+  }, []);
 
-    const backgroundImages = [
-        "/svgs/h1.webp",
-        "/svgs/h2.webp",
-        "/svgs/h3.webp",
-        "/svgs/h4.webp",
-    ];
+  useEffect(() => {
+    const t = setInterval(() => setWordIndex((p) => (p + 1) % words.length), 4000);
+    return () => clearInterval(t);
+  }, []);
 
-    /* Background image slider */
-    useEffect(() => {
-        const bgTimer = setInterval(() => {
-            setBgIndex((prev) => (prev + 1) % backgroundImages.length);
-        }, 6000);
+  return (
+    <section className="relative w-full h-screen min-h-[600px] overflow-hidden bg-biz-charcoal-ink">
+      {/* Background */}
+      <div className="absolute inset-0">
+        <AnimatePresence mode="popLayout">
+          <motion.img
+            key={bgIndex}
+            src={backgroundImages[bgIndex]}
+            alt=""
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, scale: 1.06 }}
+            exit={{ opacity: 0 }}
+            transition={{ opacity: { duration: 1.5 }, scale: { duration: 8, ease: "linear" } }}
+            className="absolute inset-0 w-full h-full object-cover"
+            fetchpriority={bgIndex === 0 ? "high" : "auto"}
+          />
+        </AnimatePresence>
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/80" />
+      </div>
 
-        return () => clearInterval(bgTimer);
-    }, [backgroundImages.length]);
+      {/* Content */}
+      <div className="relative z-10 h-full flex flex-col justify-end max-w-[1200px] mx-auto px-6 lg:px-8 pb-20 md:pb-28">
 
-    /* Word animation */
-    useEffect(() => {
-        const timer = setInterval(() => {
-            setIndex((prev) => (prev + 1) % words.length);
-        }, 4000);
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="text-white/50 text-[12px] font-medium uppercase tracking-[0.3em] mb-6"
+        >
+          Workforce Excellence · Est. 1966
+        </motion.p>
 
-        return () => clearInterval(timer);
-    }, [words.length]);
+        <h1 className="sr-only">Intelligent Recruitment & Workforce Solutions in India & UAE</h1>
 
-    const fadeInUp = {
-        hidden: { opacity: 0, y: 30 },
-        visible: (i) => ({
-            opacity: 1,
-            y: 0,
-            transition: {
-                delay: 0.2 + i * 0.08,
-                duration: 0.8,
-                ease: [0.215, 0.61, 0.355, 1],
-            },
-        }),
-    };
-
-    return (
-        <section className="relative min-h-[85vh] md:min-h-[80vh] font-dm overflow-hidden bg-biz-cream">
-            <div className="w-full md:max-w-[90rem] mx-auto md:px-8 md:pt-2.5">
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.98 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
-                    className="relative h-full w-full overflow-hidden md:rounded-biz shadow-sm"
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-10">
+          {/* Left: Animated word */}
+          <div>
+            <h2 className="text-white text-[72px] md:text-[110px] lg:text-[130px] font-light leading-[0.9] tracking-[-0.03em] overflow-hidden">
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={words[wordIndex]}
+                  initial={{ y: "100%", opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: "-100%", opacity: 0 }}
+                  transition={{ duration: 0.6, ease: [0.215, 0.61, 0.355, 1] }}
+                  className="block"
                 >
-                    {/* 🔥 Sliding Background Carousel */}
-                    <div className="absolute inset-0 overflow-hidden bg-[#2D2219]">
-                        <AnimatePresence mode="popLayout">
-                            <motion.img
-                                key={bgIndex}
-                                src={backgroundImages[bgIndex]}
-                                alt=""
-                                initial="initial"
-                                animate="animate"
-                                exit="exit"
-                                variants={{
-                                    initial: { opacity: 0, scale: 1 },
-                                    animate: {
-                                        opacity: 1,
-                                        scale: 1.15,
-                                        transition: {
-                                            scale: { duration: 8, ease: "linear" },
-                                            opacity: { duration: 1.5, ease: "easeInOut" }
-                                        }
-                                    },
-                                    exit: {
-                                        opacity: 0,
-                                        scale: 1.15,
-                                        transition: {
-                                            scale: { duration: 1.5, ease: "linear" },
-                                            opacity: { duration: 1.5, ease: "easeInOut" }
-                                        }
-                                    }
-                                }}
-                                className="absolute inset-0 h-full w-full object-cover will-change-transform transform-gpu backface-hidden"
-                                fetchpriority={bgIndex === 0 ? "high" : "auto"}
-                                loading="eager"
-                                decoding="async"
-                                width="1920"
-                                height="1080"
-                            />
-                        </AnimatePresence>
-                    </div>
+                  {words[wordIndex]}
+                </motion.span>
+              </AnimatePresence>
+            </h2>
+          </div>
 
-                    {/* Gradient Overlay */}
-
-                    {/* Mobile Gradient Overlay */}
-                    <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/90 from-0% via-black/40 via-50% to-black/90 to-100% md:hidden pointer-events-none" />
-
-                    {/* Desktop Gradient Overlay */}
-                    <div className="hidden md:absolute md:inset-0 md:block md:rounded-4xl 
-            bg-linear-to-r from-black/80 from-5% 
-            via-black/30 via-40% 
-            to-black/30 to-95%
-            pointer-events-none" />
-
-                    {/* Content */}
-                    <div className="relative z-30 flex h-full min-h-[85vh] md:min-h-[95vh] w-full flex-col justify-end pb-12 md:pb-24 px-6 md:px-16">
-                        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-end">
-                            <div className="md:col-span-7">
-                                <h1 className="sr-only">
-                                    Intelligent Recruitment & Workforce Solutions in India & UAE
-                                </h1>
-
-                                <motion.span
-                                    custom={0}
-                                    initial="hidden"
-                                    animate="visible"
-                                    variants={fadeInUp}
-                                    className="text-biz-cream-light/90 uppercase tracking-ultra text-[10px] md:text-[14px] font-bold mb-6 block"
-                                >
-                                    Workforce Excellence
-                                </motion.span>
-
-                                <h2 className="text-biz-cream-light text-6xl md:text-[7.5rem] leading-[1.1] font-light tracking-tightest h-[1.2em] flex items-center overflow-hidden">
-                                    <AnimatePresence mode="wait">
-                                        <motion.span
-                                            key={words[index].text}
-                                            className={`flex ${words[index].class}`}
-                                            initial="initial"
-                                            animate="animate"
-                                            exit="exit"
-                                        >
-                                            {words[index].text.split("").map((char, i) => (
-                                                <motion.span
-                                                    key={i}
-                                                    variants={{
-                                                        initial: { y: "100%", opacity: 0, rotateX: -90 },
-                                                        animate: { y: 0, opacity: 1, rotateX: 0 },
-                                                        exit: { y: "-100%", opacity: 0, rotateX: 90 },
-                                                    }}
-                                                    transition={{
-                                                        duration: 0.5,
-                                                        delay: i * 0.04,
-                                                        ease: [0.215, 0.61, 0.355, 1],
-                                                    }}
-                                                    className="inline-block origin-bottom"
-                                                >
-                                                    {char}
-                                                </motion.span>
-                                            ))}
-                                        </motion.span>
-                                    </AnimatePresence>
-                                </h2>
-                            </div>
-
-                            <motion.div
-                                custom={4}
-                                initial="hidden"
-                                animate="visible"
-                                variants={fadeInUp}
-                                className="md:col-span-5 md:pl-12 flex flex-col items-start gap-8"
-                            >
-                                <p className="text-biz-cream/80 text-lg md:text-xl leading-relaxed max-w-sm font-light">
-                                    Bridging decades of business wisdom with modern execution to help organizations scale with confidence.
-                                </p>
-
-                                <motion.button
-                                    whileHover={{ scale: 1.03 }}
-                                    whileTap={{ scale: 0.98 }}
-                                    onClick={() => {
-                                        window.lenis?.scrollTo(0);
-                                        navigate("/cv");
-                                    }}
-                                    className="biz-btn biz-btn-primary group"
-                                >
-                                    <span className="relative z-10">Upload Your CV</span>
-                                    <div className="relative z-10 bg-white/10 p-2 rounded-full group-hover:bg-white group-hover:text-biz-bronze transition-all duration-300">
-                                        <FileUser className="h-5 w-5" />
-                                    </div>
-                                    <div className="btn-gloss" />
-                                </motion.button>
-                            </motion.div>
-                        </div>
-                    </div>
-
-                    {/* Ambient Glow */}
-                    <motion.div
-                        animate={{ scale: [1, 1.05, 1], opacity: [0.15, 0.25, 0.15] }}
-                        transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-                        className="absolute -bottom-20 -left-20 h-80 w-80 rounded-full bg-biz-bronze blur-[100px] pointer-events-none"
-                    />
-                </motion.div>
+          {/* Right: Description + CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col gap-6 md:max-w-[380px] shrink-0"
+          >
+            <p className="text-white/70 text-[16px] leading-[1.7] font-light">
+              Bridging decades of business wisdom with modern execution to help organizations scale with confidence.
+            </p>
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => { window.lenis?.scrollTo(0); navigate("/cv"); }}
+                className="flex items-center gap-2.5 bg-white text-biz-charcoal-ink text-[13px] font-medium px-6 py-3 rounded-full hover:bg-biz-cream transition-colors duration-200"
+              >
+                Upload CV
+                <FileUser size={15} />
+              </button>
+              <button
+                onClick={() => { window.lenis?.scrollTo(0); navigate("/services"); }}
+                className="flex items-center gap-2 text-white/70 text-[13px] hover:text-white transition-colors duration-200"
+              >
+                Our services
+                <ArrowUpRight size={15} />
+              </button>
             </div>
-        </section>
-    );
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
 }
 
 export default Hero;
-
-

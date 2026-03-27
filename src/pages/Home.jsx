@@ -7,7 +7,7 @@ import Alix from "../components/home/Alix.jsx";
 function Home() {
   return (
     <>
-    <div className="mt-[-80px] md:mt-[-80px]">
+    <div className="md:mt-[-64px]">
       <Hero />
       <HomeContent />
       <Trust />

@@ -1,174 +1,125 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
-
-const slideImages = [
-  "/cardsimages/about1.webp",
-  "/cardsimages/about2.webp",
-  "/cardsimages/about3.webp",
-];
-
 
 const slides = [
   {
-    tag: "THE HERITAGE",
+    tag: "Heritage",
     title: "Rooted in Integrity",
-    content:
-      "For over six decades, our legacy has been shaped by resilience and accountability. We unite the wisdom of the past with the intelligence of tomorrow's technology."
+    body: "For over six decades, our legacy has been shaped by resilience and accountability. We unite the wisdom of the past with the intelligence of tomorrow's technology.",
+    img: "/cardsimages/about1.webp",
   },
   {
-    tag: "THE VISION",
+    tag: "Vision",
     title: "Thoughtful Innovation",
-    content:
-      "A place where reputation is currency. We bridge traditional business ethics with digital precision, scalability, and global reach across India and the UAE."
+    body: "A place where reputation is currency. We bridge traditional business ethics with digital precision, scalability, and global reach across India and the UAE.",
+    img: "/cardsimages/about2.webp",
   },
   {
-    tag: "THE COMMITMENT",
+    tag: "Commitment",
     title: "Character-Led Growth",
-    content:
-      "Growth should never come at the cost of character. We are a unifying force connecting ambitions—building businesses that last, not just scale."
-  }
+    body: "Growth should never come at the cost of character. We are a unifying force connecting ambitions — building businesses that last, not just scale.",
+    img: "/cardsimages/about3.webp",
+  },
 ];
 
+const pillars = [
+  { num: "01", label: "Integrity first", body: "Every recommendation is grounded in verified data and honest reasoning — always." },
+  { num: "02", label: "Built to last", body: "60+ years of operational experience shape every decision we make today." },
+  { num: "03", label: "Global precision", body: "Dual-market operations across India and UAE with seamless cross-border execution." },
+];
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 28 },
+  visible: (i = 0) => ({
+    opacity: 1, y: 0,
+    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: i * 0.1 },
+  }),
+};
 
 export const About = () => {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setIndex((prev) => (prev + 1) % slides.length);
-    }, 6000);
-    return () => clearInterval(timer);
-  }, [index]);
-
-  const handleNext = () => setIndex((prev) => (prev + 1) % slides.length);
-  const handlePrev = () => setIndex((prev) => (prev - 1 + slides.length) % slides.length);
+    const t = setInterval(() => setIndex((p) => (p + 1) % slides.length), 5500);
+    return () => clearInterval(t);
+  }, []);
 
   return (
-    <section
-      id="about"
-      className="relative w-full flex pb-5 items-center justify-center overflow-hidden bg-biz-cream"
-      style={{ minHeight: "calc(90vh - 96px)" }}
-    >
-      <div className="max-w-7xl mx-auto px-6 w-full relative z-10" >
-        <div className="grid lg:grid-cols-12 gap-12 items-center">
+    <div className="bg-biz-cream font-dm">
 
-          {/* LEFT: STATIC TEXT */}
-          <div className="lg:col-span-5 space-y-6">
-            <div className="flex items-center gap-4">
-              <span className="text-biz-bronze text-[10px] font-black uppercase tracking-ultra">
-                The Narrative
-              </span>
-              <div className="h-[1px] w-12 bg-biz-bronze-pale" />
-            </div>
+      {/* ── Hero Section ─────────────────────────────── */}
+      <section className="max-w-[1200px] mx-auto px-6 lg:px-8 pt-16 pb-12 md:pt-4 md:pb-16">
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
 
-            <h2 className="text-5xl md:text-6xl text-biz-charcoal-ink font-light leading-[1.1] tracking-tightest">
-              A modern <br />
-              revival of <br />
-              <span className="text-biz-bronze italic font-serif">old ethics.</span>
-            </h2>
-
-            <div className="flex items-start gap-3 text-biz-charcoal-soft">
-              <Quote className="h-5 w-5 text-biz-bronze/40 shrink-0" />
-              <p className="text-lg font-light flex flex-col leading-relaxed">
-                <span className="mb-2">
-                  At <span className="text-biz-charcoal-ink lg:text-xl font-bold">biznor</span><span className="text-biz-bronze/80 lg:text-xl font-bold">X</span>, we are more than a platform—we are a new old business street. Rooted in integrity and honor, we blend the legacy of past generations with the speed and innovation of tomorrow’s technology.
-                </span>
-                
-                <span className="mb-2">
-                  For over 60 years, our legacy has been built on trust and resilience. Today, we carry it forward by empowering entrepreneurs and enterprises with solutions that unite tradition and digital agility.
-                </span>
-               
-                <span>
-                  <span className="text-biz-charcoal-ink lg:text-xl font-bold">biznor</span><span className="text-biz-bronze/80 lg:text-xl font-bold">X</span> is more than a name—it’s a commitment to excellence, a promise of innovation, and a symbol of unity across markets.
-                </span>
-              </p>
-            </div>
+          {/* Left */}
+          <div>
+            
+            <h1 className="text-[52px] md:text-[68px] font-light text-biz-charcoal-ink leading-[1.05] tracking-[-0.03em] mb-8">
+              A modern revival<br />of{" "}
+              <em className="text-biz-bronze not-italic">old ethics.</em>
+            </h1>
+            <p className="text-[16px] text-biz-charcoal-soft leading-[1.8] max-w-[480px]">
+              At <strong className="text-biz-charcoal-ink font-semibold">biznor</strong>
+              <strong className="text-biz-bronze font-semibold">X</strong>, we are more than a platform — we are a new old business street. Rooted in integrity and honour, we blend the legacy of past generations with the speed and innovation of tomorrow's technology.
+            </p>
+            <p className="text-[16px] text-biz-charcoal-soft leading-[1.8] max-w-[480px] mt-4">
+              For over 60 years, our legacy has been built on trust and resilience. Today, we carry it forward by empowering entrepreneurs and enterprises with solutions that unite tradition and digital agility.
+            </p>
           </div>
 
-          {/* RIGHT: ANIMATED CARD */}
-          <div className="lg:col-span-7 md:pb-20 relative">
-            <div className="relative h-[450px] w-full flex items-center justify-center">
+          {/* Right – Cycling card */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9, delay: 0.2 }}
+            className="relative h-[480px] lg:h-[540px]"
+          >
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={index}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+                className="absolute inset-0 rounded-2xl overflow-hidden"
+              >
+                <img
+                  src={slides[index].img}
+                  alt={slides[index].title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-8 md:p-10">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-biz-bronze/80 mb-3">
+                    {slides[index].tag}
+                  </p>
+                  <h2 className="text-[26px] font-medium text-white mb-3 leading-tight">
+                    {slides[index].title}
+                  </h2>
+                  <p className="text-[14px] text-white/70 leading-[1.7]">{slides[index].body}</p>
 
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: 15 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -15 }}
-                  transition={{ duration: 0.3, ease: "easeOut" }}
-                  className="relative w-full p-12 md:p-16 rounded-biz overflow-hidden border border-biz-bronze-pale/20 shadow-[20px_20px_60px_rgba(0,0,0,0.03)]"
-                >
-                  {/* 🔹 BACKGROUND IMAGE PLACEHOLDER */}
-                  {/* Background Image */}
-                  <div className="absolute inset-0 z-0">
-                    <img
-                      src={slideImages[index]}
-                      alt=""
-                      loading="eager"
-                      className="w-full h-full object-cover opacity-0 animate-[fadeIn_0.6s_ease-out_forwards]"
-                    />
-
-                    <div className="absolute inset-0 bg-black/60" />
+                  {/* Dots */}
+                  <div className="flex gap-2 mt-6">
+                    {slides.map((_, i) => (
+                      <button
+                        key={i}
+                        onClick={() => setIndex(i)}
+                        className={`h-1.5 rounded-full transition-all duration-500 ${i === index ? "w-8 bg-biz-bronze" : "w-2 bg-white/30"}`}
+                      />
+                    ))}
                   </div>
-
-
-                  {/* 🔹 CONTENT */}
-                  <div className="relative z-10 flex flex-col h-full text-white">
-                    <div className="flex justify-between items-center mb-10">
-                      <span className="text-biz-bronze-pale text-[15px] font-bold tracking-[0.2em]">
-                        {slides[index].tag}
-                      </span>
-                      <span className="text-white/100 font-serif  text-sm">
-                        0{index + 1}
-                      </span>
-                    </div>
-
-                    <h3 className="text-3xl md:text-4xl font-medium mb-6 tracking-tight">
-                      {slides[index].title}
-                    </h3>
-
-                    <p className="text-lg font-light leading-relaxed mb-10 text-white/80">
-                      {slides[index].content}
-                    </p>
-
-                    <div className="mt-auto flex items-center justify-between">
-                      <div className="flex gap-4">
-                        <button
-                          onClick={handlePrev}
-                          className="group p-2 border-b border-white/20 hover:border-biz-bronze transition-all"
-                        >
-                          <ChevronLeft className="text-white group-hover:text-biz-bronze transition-colors" size={20} />
-                        </button>
-                        <button
-                          onClick={handleNext}
-                          className="group p-2 border-b border-white/20 hover:border-biz-bronze transition-all"
-                        >
-                          <ChevronRight className="text-white group-hover:text-biz-bronze transition-colors" size={20} />
-                        </button>
-                      </div>
-
-                      <div className="flex gap-2">
-                        {slides.map((_, i) => (
-                          <div
-                            key={i}
-                            className={`h-1.5 rounded-full transition-all duration-300 ${index === i ? "w-6 bg-biz-bronze-pale" : "w-1.5 bg-white/30"
-                              }`}
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-
-              <div className="absolute -z-10 inset-0 border-biz-bronze/5 translate-x-4 translate-y-4 rounded-biz" />
-            </div>
-          </div>
-
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </motion.div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* ── Pillars ──────────────────────────────────── */}
+
+
+    </div>
   );
 };
 

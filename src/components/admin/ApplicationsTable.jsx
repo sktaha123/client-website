@@ -51,10 +51,10 @@ const TableSkeleton = () => (
             <div
               key={colIndex}
               className={`h-3 rounded ${colIndex === 1
-                  ? "w-32"
-                  : colIndex === 7
-                    ? "w-20"
-                    : "w-full"
+                ? "w-32"
+                : colIndex === 7
+                  ? "w-20"
+                  : "w-full"
                 } bg-[var(--color-biz-sand-muted)]`}
             />
           ))}

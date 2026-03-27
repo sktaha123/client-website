@@ -1,234 +1,124 @@
 import React, { useState, useEffect } from "react";
-import { Menu, X, MessageCircleMore } from "lucide-react";
-
+import { Menu, X } from "lucide-react";
 import { Link, useLocation, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
-    document.body.classList.toggle("overflow-hidden", isOpen);
-    return () => document.body.classList.remove("overflow-hidden");
+    const handleScroll = () => setIsScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
   }, [isOpen]);
 
-  // Close mobile menu on route change
-  useEffect(() => {
-    setIsOpen(false);
-  }, [location.pathname]);
+  useEffect(() => { setIsOpen(false); }, [location.pathname]);
 
-  // 🔗 LINK STRUCTURE
-  // Groups for Desktop Dropdowns
-  const menuGroups = {
-    company: [
-      { name: "About Us", to: "/about" },
-      { name: "Process", to: "/process" },
-      { name: "Why biznorX", to: "/whychooseus" },
-    ],
-    solutions: [
-      { name: "Services", to: "/services" },
-      { name: "Industries", to: "/industries" },
-      { name: "Digital Solutions", to: "/digital" },
-    ],
-
-  };
-
-  // Flat list for Mobile
-  const mobileLinks = [
+  const navLinks = [
     { name: "Home", to: "/" },
-    ...menuGroups.company,
-    ...menuGroups.solutions,
-    { name: "Contact Us", to: "/contact" },
+    { name: "About", to: "/about" },
+    { name: "Services", to: "/services" },
+    { name: "Industries", to: "/industries" },
+    { name: "Process", to: "/process" },
+    { name: "Why Us", to: "/whychooseus" },
+    { name: "Digital Solution", to: "/digital" },
+
   ];
 
   return (
     <>
-      {/* NAVBAR */}
-      <div className="fixed top-0 md:top-0 left-0 right-0 z-50 flex justify-center px-0 md:px-6">
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
+            ? "bg-biz-cream/95 backdrop-blur-2xl border-b border-biz-charcoal/8 shadow-[0_1px_0_rgba(26,6,6,0.04)]"
+            : "bg-biz-cream/95 border-b border-biz-charcoal/6"
+          }`}
+      >
+        <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
+          <div className="h-[64px] flex items-center justify-between">
 
-
-
-        <div
-          className="
-            w-full md:w-[99vw] max-w-5xl
-            bg-biz-cream/90 backdrop-blur-xl sm:border-b md:border-0 border-white/40 md:border-white/20
-            md:rounded-biz 
-            shadow-[0_2px_40px_rgba(45,34,25,0.04)]
-            transition-all duration-500
-          "
-        >
-          <div className="px-6 md:px-6 h-18 flex items-center justify-between">
-            {/* LEFT — LOGO */}
-            <Link
-              to="/"
-              className="flex items-center scale-90 md:scale-100 z-60 mr-auto"
-            >
+            {/* Logo */}
+            <Link to="/" onClick={() => window.lenis?.scrollTo(0)} className="flex items-center shrink-0">
               <img
                 src="/svgs/Biznorlogo.png"
                 alt="BiznorX"
-                className="h-20 md:h-20 shrink-0 opacity-90 hover:opacity-100 transition-opacity"
+                className="h-[52px] w-auto object-contain"
               />
             </Link>
 
-            {/* RIGHT SIDE GROUP: NAV + CTA */}
-            <div className="hidden lg:flex items-center gap-8">
-
-              <nav className="flex items-center gap-6">
+            {/* Desktop Nav */}
+            <nav className="hidden lg:flex items-center gap-8">
+              {navLinks.map((link) => (
                 <NavLink
-                  to="/"
-                  onClick={() => window.lenis?.scrollTo(0)}
-                  className={({ isActive }) =>
-                    `font-dm text-[11px] uppercase tracking-widest font-bold transition-colors ${isActive ? "text-biz-bronze" : "text-biz-charcoal/60 hover:text-biz-bronze"}`
-                  }
-                >
-                  Home
-                </NavLink>
-
-                {/* Company Dropdown Group */}
-                <div className="group relative h-20 flex items-center cursor-pointer">
-                  <span className="font-dm text-[11px] uppercase tracking-widest font-bold text-biz-charcoal/60 group-hover:text-biz-bronze transition-colors flex items-center gap-1">
-                    Company
-                    <span className="text-[9px] opacity-50 group-hover:rotate-180 transition-transform duration-300">▼</span>
-                  </span>
-
-                  {/* Dropdown Panel */}
-                  <div className="absolute top-full right-0 pt-0 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 ease-out">
-                    <div className="bg-white rounded-2xl shadow-xl p-2 min-w-[200px] flex flex-col gap-1">
-                      {menuGroups.company.map((link) => (
-                        <NavLink
-                          key={link.name}
-                          to={link.to}
-                          onClick={() => window.lenis?.scrollTo(0)}
-                          className={({ isActive }) =>
-                            `block px-4 py-2.5 rounded-xl text-sm font-medium transition-colors ${isActive ? "bg-biz-cream-dark text-biz-bronze" : "text-biz-charcoal hover:bg-biz-cream hover:text-biz-bronze"}`
-                          }
-                        >
-                          {link.name}
-                        </NavLink>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Solutions Dropdown Group */}
-                <div className="group relative h-20 flex items-center cursor-pointer">
-                  <span className="font-dm text-[11px] uppercase tracking-widest font-bold text-biz-charcoal/60 group-hover:text-biz-bronze transition-colors flex items-center gap-1">
-                    Solutions
-                    <span className="text-[9px] opacity-50 group-hover:rotate-180 transition-transform duration-300">▼</span>
-                  </span>
-
-                  <div className="absolute top-full right-0 pt-0 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 ease-out">
-                    <div className="bg-white rounded-2xl shadow-xl p-2 min-w-[220px] flex flex-col gap-1">
-                      {menuGroups.solutions.map((link) => (
-                        <NavLink
-                          key={link.name}
-                          to={link.to}
-                          onClick={() => window.lenis?.scrollTo(0)}
-                          className={({ isActive }) =>
-                            `block px-4 py-2.5 rounded-xl text-sm font-medium transition-colors ${isActive ? "bg-biz-cream-dark text-biz-bronze" : "text-biz-charcoal hover:bg-biz-cream hover:text-biz-bronze"}`
-                          }
-                        >
-                          {link.name}
-                        </NavLink>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </nav>
-
-
-
-              {/* CONTACT & HAMBURGER */}
-              <div className="flex items-center space-x-4">
-                <Link
-                  to="/contact"
-                  onClick={() => window.lenis?.scrollTo(0)}
-                  className="biz-btn biz-btn-primary px-6! py-2.5! gap-2! group hidden md:flex text-[10px]"
-                >
-                  <span className="relative z-10">Get in Touch</span>
-                  <div className="relative z-10 bg-white/20 p-1 rounded-full group-hover:bg-white group-hover:text-biz-bronze transition-all duration-500">
-                    <MessageCircleMore className="size-5" />
-                  </div>
-                  <div className="btn-gloss" />
-                </Link>
-              </div>
-            </div>
-
-            {/* MOBILE ONLY: HAMBURGER (Since desktop nav is hidden on mobile) */}
-            <div className="flex lg:hidden items-center ml-auto">
-              <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="p-2 text-biz-charcoal-ink active:scale-90"
-                aria-label="Toggle Menu"
-              >
-                {isOpen ? <X className="size-7" /> : <Menu className="size-7" />}
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* MOBILE MENU */}
-      <div
-        className={`
-    fixed inset-0 z-40 lg:hidden
-    backdrop-blur-xl bg-biz-cream
-    transition-all duration-700 ease-[cubic-bezier(0.83,0,0.17,1)]
-    ${isOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"}
-  `}
-      >
-        <div className="flex flex-col h-full pt-28 px-10 pb-10">
-
-          {/* Menu Label */}
-          <span className="text-[11px] font-semibold uppercase tracking-[0.3em] text-gray-400 mb-12">
-            Menu
-          </span>
-
-          {/* Navigation */}
-          <nav className="flex flex-col space-y-8">
-
-            {mobileLinks.map((link, idx) => (
-              <div
-                key={link.name}
-                className={`
-            transform transition-all duration-700
-            ${isOpen ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}
-          `}
-                style={{ transitionDelay: `${150 + idx * 70}ms` }}
-              >
-                <NavLink
+                  key={link.name}
                   to={link.to}
                   onClick={() => window.lenis?.scrollTo(0)}
-                  className={({ isActive }) => `
-              group relative text-3xl font-light tracking-tight
-              transition-all duration-300
-              ${isActive ? "text-biz-bronze" : "text-gray-800"}
-            `}
+                  className={({ isActive }) =>
+                    `text-[13px] font-medium transition-colors duration-200 ${isActive
+                      ? "text-biz-charcoal-ink"
+                      : "text-biz-charcoal/50 hover:text-biz-charcoal"
+                    }`
+                  }
                 >
-                  {({ isActive }) => (
-                    <>
-                      {link.name}
-
-                      {/* Premium underline animation */}
-                      <span
-                        className={`
-                    absolute left-0 -bottom-2 h-[1px] bg-biz-bronze
-                    transition-all duration-300
-                    ${isActive ? "w-full" : "w-0 group-hover:w-full"}
-                  `}
-                      />
-                    </>
-                  )}
+                  {link.name}
                 </NavLink>
-              </div>
+              ))}
+            </nav>
+
+            {/* CTA */}
+            <div className="hidden lg:flex items-center">
+              <Link
+                to="/contact"
+                onClick={() => window.lenis?.scrollTo(0)}
+                className="text-[13px] font-medium bg-biz-bronze text-white px-5 py-2.5 rounded-full hover:bg-biz-bronze-dark transition-colors duration-200"
+              >
+                Get in Touch
+              </Link>
+            </div>
+
+            {/* Mobile Toggle */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="lg:hidden p-2 -mr-1 text-biz-charcoal"
+              aria-label="Toggle menu"
+            >
+              {isOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Mobile Menu */}
+      <div
+        className={`fixed inset-0 z-40 lg:hidden bg-biz-cream transition-all duration-500 ease-[cubic-bezier(0.83,0,0.17,1)] ${isOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+          }`}
+      >
+        <div className="flex flex-col h-full pt-24 px-8 pb-12">
+          <nav className="flex flex-col gap-2">
+            {[...navLinks, { name: "Contact", to: "/contact" }].map((link, i) => (
+              <NavLink
+                key={link.name}
+                to={link.to}
+                onClick={() => window.lenis?.scrollTo(0)}
+                style={{
+                  transitionDelay: isOpen ? `${i * 50}ms` : "0ms",
+                }}
+                className={({ isActive }) => `
+                  py-4 border-b border-biz-charcoal/8 text-[28px] font-light tracking-tight
+                  transition-all duration-500
+                  ${isOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
+                  ${isActive ? "text-biz-bronze" : "text-biz-charcoal"}
+                `}
+              >
+                {link.name}
+              </NavLink>
             ))}
-
           </nav>
-
-          {/* Bottom Section (Optional Branding / Footer) */}
-
-
         </div>
       </div>
     </>

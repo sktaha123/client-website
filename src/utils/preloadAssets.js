@@ -27,13 +27,15 @@ const IMAGE_CACHE = new Map(); // url → HTMLImageElement
 // already in the browser's network cache → resolve almost instantly.
 export const TIER_1_CRITICAL = [
     "/svgs/h1.webp",
-    "/svgs/h2.webp",
-    "/svgs/h3.webp",
-    "/svgs/h4.webp",
+    "/svgs/Biznorlogo.png",
 ];
 
 // ─── TIER 2: Important — Loaded right after preloader dismisses ──────────────
 export const TIER_2_IMPORTANT = [
+    "/svgs/h2.webp",
+    "/svgs/h3.webp",
+    "/svgs/h4.webp",
+
     // Industry cards (marquee on /industries)
     "/industries/manufacturing.webp",
     "/industries/healthcare.webp",
