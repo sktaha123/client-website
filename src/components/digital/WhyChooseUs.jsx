@@ -4,7 +4,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useNavigate } from "react-router-dom";
 import { ArrowUpRight, Plus } from "lucide-react";
 
-
 gsap.registerPlugin(ScrollTrigger);
 
 const reasons = [
@@ -12,28 +11,28 @@ const reasons = [
     num: "01",
     title: "Strategy before execution",
     body: "We refuse to operate on assumptions. Every engagement begins with a comprehensive audit of your digital ecosystem to ensure we are solving the right problems.",
-    img: "/svgs/digital/brand.webp",
+    img: "/svgs/digital/strategy.webp",
     tag: "Audit-driven",
   },
   {
     num: "02",
     title: "Premium design standards",
     body: "Your digital presence is your first impression. We engineer products that don't just function perfectly, but look and feel exceptional, stopping users mid-scroll.",
-    img: "/svgs/digital/digitald.webp",
+    img: "/svgs/digital/premiumd.webp",
     tag: "Award-quality",
   },
   {
     num: "03",
     title: "Measurable, revenue-focused results",
     body: "We map every campaign to your actual business revenue. No vanity metrics—just transparent reporting on rankings, traffic, qualified leads, and conversions.",
-    img: "/svgs/digital/marketing.webp",
+    img: "/svgs/digital/reven.webp",
     tag: "Data-backed",
   },
   {
     num: "04",
     title: "A long-term growth partner",
     body: "We don't deliver and disappear. We operate as an extension of your team, continually adapting, optimising, and scaling strategies as your business evolves.",
-    img: "/svgs/digital/team.webp",
+    img: "/digital/why-growth.webp",
     tag: "Always on",
   },
 ];
@@ -136,12 +135,7 @@ const WhyChooseUs = () => {
                   <div className="grid grid-cols-1 md:grid-cols-[1fr_340px] gap-8 pb-10 pl-[calc(12px+2.5rem)] md:pl-[calc(12px+4rem)]">
                     <p className="text-[16px] text-white/55 leading-[1.85] font-light">{r.body}</p>
                     <div className="w-full aspect-video rounded-2xl overflow-hidden bg-white/5 border border-white/8">
-                      <img
-                        src={r.img}
-                        alt={r.title}
-                        loading="lazy"
-                        className="w-full h-full object-cover opacity-80"
-                      />
+                      <img src={r.img} alt={r.title} loading="lazy" className="w-full h-full object-cover opacity-80" />
                     </div>
                   </div>
                 </div>

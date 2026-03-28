@@ -1,7 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-
 const stats = [
   { num: "5+", label: "Years of expertise" },
   { num: "120+", label: "Projects delivered" },
@@ -82,10 +81,9 @@ const AboutSection = () => {
                 src="/svgs/digital/team.webp"
                 alt="BiznorX Team"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-[2s] ease-out"
-                loading="lazy"
                 onError={(e) => { e.currentTarget.style.display = "none"; }}
               />
-              <div className="absolute inset-0 bg-linear-to-t from-biz-charcoal-ink/60 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-biz-charcoal-ink/60 via-transparent to-transparent pointer-events-none" />
               
               <div className="absolute bottom-8 left-8 right-8">
                 <p className="text-white text-[18px] font-medium tracking-tight mb-1">BiznorX Team</p>
@@ -117,16 +115,15 @@ const AboutSection = () => {
           {/* Middle: Editorial Image */}
           <motion.div 
             variants={blurReveal}
-            className="w-full aspect-square md:aspect-4/3 rounded-[2rem] overflow-hidden bg-biz-sand relative shadow-lg border border-biz-charcoal/5"
+            className="w-full aspect-square md:aspect-[4/3] rounded-[2rem] overflow-hidden bg-biz-sand relative shadow-lg border border-biz-charcoal/5"
           >
             <img
               src="/svgs/digital/team.webp"
               alt="BiznorX Team"
               className="w-full h-full object-cover"
-              loading="lazy"
               onError={(e) => { e.currentTarget.style.display = "none"; }}
             />
-            <div className="absolute inset-0 bg-linear-to-t from-biz-charcoal-ink/60 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-t from-biz-charcoal-ink/60 via-transparent to-transparent pointer-events-none" />
             <div className="absolute bottom-6 left-6 right-6">
               <p className="text-white text-[16px] font-medium tracking-tight mb-0.5">BiznorX Team</p>
               <p className="text-white/70 text-[12px] font-light">Built for long-term partnerships</p>

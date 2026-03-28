@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-
 gsap.registerPlugin(ScrollTrigger);
 
 const services = [
@@ -17,7 +16,7 @@ const services = [
     num: "02",
     title: "Digital Design",
     desc: "Websites and digital experiences that convert. We design with purpose, creating user journeys that turn visitors into customers.",
-    img: "/svgs/digital/digitald.webp",
+    img: "/svgs/digital/webf.webp",
     categories: ["Web Design", "Landing Pages", "E-commerce", "UI/UX Audit", "Wireframing", "Prototyping"],
   },
   {
@@ -177,12 +176,11 @@ export function ServicesSection() {
                   className="flex flex-col scroll-mt-32"
                 >
                   {/* Image */}
-                  <div className="srv-img w-full aspect-[4/3] md:aspect-[19/10] bg-biz-dark-surface overflow-hidden mb-8 md:mb-12 border border-white/5 rounded-3xl opacity-0">
+                  <div className="srv-img w-full aspect-[4/3] md:aspect-[19/10] bg-biz-dark-surface overflow-hidden mb-8 md:mb-12 border border-white/5 rounded-[1.5rem] opacity-0">
                     <img
                       src={s.img}
                       alt={s.title}
-                      className="w-full h-full object-cover transition-all duration-700"
-                      loading="lazy"
+                      className="w-full h-full object-cover  transition-all duration-700 hover:scale-102"
                       onError={(e) => { e.currentTarget.style.display = "none"; }}
                     />
                   </div>
@@ -206,7 +204,7 @@ export function ServicesSection() {
                         {s.categories.map((cat, idx) => (
                           <span
                             key={idx}
-                            className="srv-tag px-4 py-2 border border-white/10 rounded-2xl text-white/70 text-[12px] font-light tracking-wide bg-white/2 hover:border-biz-bronze/50 hover:text-white transition-all duration-300 opacity-0"
+                            className="srv-tag px-4 py-2 border border-white/10 rounded-[1rem] text-white/70 text-[12px] font-light tracking-wide bg-white/[0.02] hover:border-biz-bronze/50 hover:text-white transition-all duration-300 opacity-0"
                           >
                             {cat}
                           </span>

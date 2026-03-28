@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import BlurReveal from "../common/BlurReveal";
-import OptimizedImage from "../common/OptimizedImage";
 
 const appleEase = [0.16, 1, 0.3, 1];
 
@@ -53,6 +52,8 @@ const HeroSection = () => {
                 src="/svgs/digital/hero.webp"
                 alt="Digital Agency Work"
                 className="w-full h-full object-cover"
+                loading="eager"
+                decoding="async"
               />
               <div className="absolute inset-0 border border-white/10 rounded-[2rem] pointer-events-none" />
             </div>

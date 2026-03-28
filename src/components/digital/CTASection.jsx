@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-
 gsap.registerPlugin(ScrollTrigger);
 
 const CTASection = () => {
@@ -108,7 +107,7 @@ const CTASection = () => {
           {/* RIGHT */}
           <div ref={rightRef} className="relative opacity-0 min-h-[300px]">
             <img
-              src="/svgs/digital/team.webp"
+              src="/digital/cta-bg.webp"
               alt="Strategy session"
               loading="lazy"
               className="absolute inset-0 w-full h-full object-cover"

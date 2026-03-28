@@ -1,14 +1,13 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-
 const steps = [
   {
     num: "01",
     phase: "Discovery",
     title: "We learn your business inside out.",
     body: "Every great project starts with listening. We conduct a thorough discovery session covering your goals, target audience, competitive landscape, and digital footprint.",
-    img: "/svgs/digital/brand.webp",
+    img: "/digital/process-1.webp",
     color: "#A31515",
   },
   {
@@ -16,7 +15,7 @@ const steps = [
     phase: "Strategy",
     title: "We build a roadmap, not a guess.",
     body: "Before a single pixel is pushed, we deliver a clear, phased digital strategy. You see exactly what we will do, why we are doing it, and the expected outcomes.",
-    img: "/svgs/digital/productd.webp",
+    img: "/digital/process-2.webp",
     color: "#7B1010",
   },
   {
@@ -24,7 +23,7 @@ const steps = [
     phase: "Execution",
     title: "We build and launch with precision.",
     body: "Our specialists execute across design, development, and content. Every deliverable is rigorously QA-tested and reviewed against your core business objectives.",
-    img: "/svgs/digital/devel.webp",
+    img: "/digital/process-3.webp",
     color: "#5E1111",
   },
 ];
@@ -127,12 +126,12 @@ export const ApproachSection = () => {
                   >
                     <div className="w-full aspect-[4/3] rounded-[2rem] overflow-hidden bg-biz-sand relative shadow-xl border border-biz-charcoal-ink/5 group">
                       <img
-                          src={s.img}
-                          alt={s.phase}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s] ease-out"
-                          loading="lazy"
-                          onError={(e) => { e.currentTarget.style.display = "none"; }}
-                        />
+                        src={s.img}
+                        alt={s.phase}
+                        loading="lazy"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s] ease-out"
+                        onError={(e) => { e.currentTarget.style.display = "none"; }}
+                      />
                       {/* Premium Color Tint Overlay */}
                       <div
                         className="absolute inset-0 opacity-40 mix-blend-multiply pointer-events-none transition-opacity duration-500 group-hover:opacity-20"
@@ -166,8 +165,8 @@ export const ApproachSection = () => {
                   <img
                     src={s.img}
                     alt={s.phase}
-                    className="w-full h-full object-cover"
                     loading="lazy"
+                    className="w-full h-full object-cover"
                     onError={(e) => { e.currentTarget.style.display = "none"; }}
                   />
                   <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-md px-4 py-2 rounded-full flex items-center gap-3 shadow-sm">
