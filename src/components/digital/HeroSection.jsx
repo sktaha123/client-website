@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import BlurReveal from "../common/BlurReveal";
+import OptimizedImage from "../common/OptimizedImage";
 
 const appleEase = [0.16, 1, 0.3, 1];
 
@@ -9,14 +10,14 @@ const HeroSection = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="relative w-full bg-[#050505] pt-32 pb-20 md:pt-14 md:pb-32 overflow-hidden">
+    <section className="relative w-full bg-[#050505] pt-32 pb-20 md:pt-20 md:pb-32 overflow-hidden">
       <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
 
           {/* Left: Content */}
           <div className="flex flex-col z-10">
             <BlurReveal delay={0} duration={0.8}>
-              
+
             </BlurReveal>
 
             <BlurReveal delay={0.08} duration={0.9}>
@@ -40,16 +41,16 @@ const HeroSection = () => {
                 >
                   Start a Project <ArrowUpRight size={16} />
                 </button>
-                
+
               </div>
             </BlurReveal>
           </div>
 
           {/* Right: Image */}
           <BlurReveal delay={0.2} duration={1.1} direction="left" className="w-full">
-            <div className="relative w-full aspect-[4/5] lg:aspect-[6/5] rounded-[2rem] overflow-hidden shadow-2xl">
+            <div className="relative w-full aspect-[4/5] lg:aspect-[5/5] rounded-[2rem] overflow-hidden shadow-2xl">
               <img
-                src="/digital/hero-image.webp"
+                src="/svgs/digital/hero.webp"
                 alt="Digital Agency Work"
                 className="w-full h-full object-cover"
               />

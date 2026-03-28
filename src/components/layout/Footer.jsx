@@ -24,11 +24,11 @@ export function Footer() {
 
         {/* Email */}
         <a
-          href="mailto:hello@biznorx.com"
+          href="mailto:business@biznorx.com"
           className="text-[12px] text-white/20 hover:text-biz-bronze transition-colors duration-200 flex items-center gap-1.5"
         >
           <Mail size={12} />
-          hello@biznorx.com
+          business@biznorx.com
         </a>
 
       </div>

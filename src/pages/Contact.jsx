@@ -6,7 +6,7 @@ import { FaXTwitter, FaWhatsapp } from "react-icons/fa6";
 const CONTACT_METHODS = [
   { Icon: FaWhatsapp, label: "India Office", value: "+91 9004072449",  href: "https://wa.me/919004072449",  color: "hover:text-green-600" },
   { Icon: FaWhatsapp, label: "UAE Office",   value: "+971 522585437", href: "https://wa.me/971522585437",  color: "hover:text-green-600" },
-  { Icon: Mail,       label: "Email",        value: "hello@biznorx.com", href: "mailto:hello@biznorx.com", color: "hover:text-biz-bronze" },
+  { Icon: Mail,       label: "Email",        value: "business@biznorx.com", href: "mailto:business@biznorx.com", color: "hover:text-biz-bronze" },
 ];
 
 const SOCIAL_LINKS = [

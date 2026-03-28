@@ -1,15 +1,18 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "./Navbar.jsx";
 import { Footer } from "./Footer.jsx";
 import ScrollToSection from "./ScrollToSection.jsx";
 
 function Layout() {
+  const { pathname } = useLocation();
+  const isDigital = pathname === "/digital";
+
   return (
     <>
       <ScrollToSection />
-      <Navbar />
+      {!isDigital && <Navbar />}
 
-      <main className="pt-[64px]">
+      <main className={isDigital ? "" : "pt-[64px]"}>
         <Outlet />
       </main>
 
