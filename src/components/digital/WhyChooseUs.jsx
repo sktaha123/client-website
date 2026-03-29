@@ -119,9 +119,6 @@ const WhyChooseUs = () => {
                     </span>
                   </div>
                   <div className="flex items-center gap-5 shrink-0">
-                    <span className="hidden md:inline-block text-[11px] border border-white/15 text-white/40 rounded-full px-3 py-1 group-hover:border-biz-bronze/40 group-hover:text-biz-bronze/70 transition-all duration-300">
-                      {r.tag}
-                    </span>
                     <span className={`w-7 h-7 rounded-full border flex items-center justify-center transition-all duration-300 ${isOpen ? "bg-biz-bronze border-biz-bronze rotate-45" : "border-white/20 group-hover:border-white/50"}`}>
                       <Plus size={13} />
                     </span>

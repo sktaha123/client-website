@@ -30,8 +30,8 @@ const steps = [
 
 const appleEase = [0.16, 1, 0.3, 1];
 
-// ── Individual Card Component for the Scroll Stack ──
-const Card = ({ step, i, progress, range, targetScale }) => {
+// ── DESKTOP: Performance-Optimized Stacking Card ──
+const DesktopCard = ({ step, i, progress, range, targetScale }) => {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -40,19 +40,22 @@ const Card = ({ step, i, progress, range, targetScale }) => {
 
   const imageScale = useTransform(scrollYProgress, [0, 1], [1.1, 1]);
   const cardScale = useTransform(progress, range, [1, targetScale]);
-
-  // Creates a slight parallax effect so the cards feel like they are sliding under
-  const yParallax = useTransform(progress, range, [0, -30 * i]);
+  const yParallax = useTransform(progress, range, [0, -40 * i]);
 
   return (
-    <div ref={containerRef} className="h-screen flex items-center justify-center sticky top-0">
+    <div ref={containerRef} className="h-screen w-full flex items-center justify-center sticky top-0 origin-top">
       <motion.div
-        style={{ scale: cardScale, y: yParallax, top: `calc(10vh + ${i * 30}px)` }}
-        className="w-full relative flex flex-col md:flex-row items-stretch bg-white border border-biz-charcoal/5 rounded-[2rem] shadow-[0_20px_60px_rgba(0,0,0,0.05)] overflow-hidden"
+        style={{ 
+          scale: cardScale, 
+          y: yParallax, 
+          top: `calc(12vh + ${i * 30}px)`,
+          willChange: "transform" // Hardware acceleration for 120fps scrolling
+        }}
+        className="w-full relative flex flex-row items-stretch bg-white border border-biz-charcoal/10 rounded-[2rem] shadow-[0_20px_60px_rgba(0,0,0,0.06)] overflow-hidden"
       >
         {/* Text Side */}
-        <div className="w-full md:w-[45%] p-10 lg:p-14 flex flex-col justify-center">
-          <div className="flex items-center gap-4 mb-6 md:mb-10">
+        <div className="w-[45%] p-14 flex flex-col justify-center">
+          <div className="flex items-center gap-4 mb-10">
             <div
               className="w-10 h-10 rounded-full flex items-center justify-center text-[12px] font-bold text-white shadow-lg shrink-0"
               style={{ background: step.color }}
@@ -64,7 +67,7 @@ const Card = ({ step, i, progress, range, targetScale }) => {
             </span>
           </div>
 
-          <h3 className="text-[28px] lg:text-[40px] font-medium text-biz-charcoal-ink leading-[1.1] tracking-tight mb-4">
+          <h3 className="text-[36px] lg:text-[42px] font-medium text-biz-charcoal-ink leading-[1.1] tracking-tight mb-5">
             {step.title}
           </h3>
           <p className="text-[16px] text-biz-charcoal-soft font-light leading-[1.8] max-w-sm">
@@ -73,18 +76,18 @@ const Card = ({ step, i, progress, range, targetScale }) => {
         </div>
 
         {/* Image Side */}
-        <div className="w-full md:w-[55%] relative overflow-hidden bg-biz-sand min-h-[300px] md:min-h-full border-l border-biz-charcoal/5">
-          <motion.div style={{ scale: imageScale }} className="w-full h-full">
+        <div className="w-[55%] relative overflow-hidden bg-biz-sand border-l border-biz-charcoal/5 group">
+          <motion.div style={{ scale: imageScale, willChange: "transform" }} className="w-full h-full">
             <img
               src={step.img}
               alt={step.phase}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[2s] ease-out"
               onError={(e) => { e.currentTarget.style.display = "none"; }}
             />
-            {/* Color Tint Overlay */}
+            {/* Optimized Tint Overlay (No mix-blend-mode) */}
             <div
-              className="absolute inset-0 opacity-40 mix-blend-multiply pointer-events-none"
-              style={{ background: `linear-gradient(135deg, ${step.color} 0%, transparent 60%)` }}
+              className="absolute inset-0 opacity-30 transition-opacity duration-500 group-hover:opacity-10 pointer-events-none"
+              style={{ background: `linear-gradient(135deg, ${step.color} 0%, #050505 100%)` }}
             />
           </motion.div>
         </div>
@@ -101,19 +104,14 @@ export const ApproachSection = () => {
   });
 
   return (
-    <section ref={containerRef} className="bg-biz-cream relative">
+    <section ref={containerRef} className="bg-biz-cream relative border-t border-biz-charcoal/5 selection:bg-biz-bronze selection:text-white">
       <div className="max-w-[1300px] mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
 
-        {/* ── LEFT: Sticky Header ── */}
+        {/* ── LEFT: Sticky Editorial Header (Desktop) ── */}
         <div className="hidden lg:block lg:col-span-4 relative h-full">
           <div className="sticky top-0 h-screen flex flex-col justify-center py-20">
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, ease: appleEase }}
-              className="text-[10px] font-bold uppercase tracking-[0.25em] text-biz-bronze mb-5"
-            >
-              How We Work
-            </motion.p>
+            
 
             <motion.h2
               initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, ease: appleEase, delay: 0.1 }}
@@ -134,18 +132,37 @@ export const ApproachSection = () => {
             <div className="w-px h-32 bg-biz-charcoal/10 relative overflow-hidden">
               <motion.div
                 className="absolute top-0 left-0 w-full bg-biz-bronze origin-top"
-                style={{ scaleY: scrollYProgress, bottom: 0 }}
+                style={{ scaleY: scrollYProgress, bottom: 0, willChange: "transform" }}
               />
             </div>
 
           </div>
         </div>
 
-        {/* ── RIGHT: Scrolling Card Stack ── */}
-        <div className="lg:col-span-8 relative">
+        {/* ── RIGHT: Scrolling Card Stack (Desktop) ── */}
+        <div className="hidden lg:block lg:col-span-8 relative">
+          <div className="pb-[10vh]">
+            {steps.map((step, i) => {
+              const targetScale = 1 - ((steps.length - i) * 0.04);
+              return (
+                <DesktopCard
+                  key={i}
+                  i={i}
+                  step={step}
+                  progress={scrollYProgress}
+                  range={[i * 0.33, 1]}
+                  targetScale={targetScale}
+                />
+              );
+            })}
+          </div>
+        </div>
 
-          {/* Mobile Header (Hidden on Desktop) */}
-          <div className="lg:hidden pt-24 pb-12">
+        {/* ═════════════════════════════════════════════════════════ */}
+        {/* ── MOBILE LAYOUT (Swipe Gallery - No Sticky Scroll Lag) ── */}
+        <div className="lg:hidden col-span-1 pt-20 pb-16">
+          
+          <div className="mb-12">
             <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-biz-bronze mb-4">
               How We Work
             </p>
@@ -154,26 +171,52 @@ export const ApproachSection = () => {
             </h2>
           </div>
 
-          <div className="mt-[-10vh] lg:mt-0 pb-[10vh]">
-            {steps.map((step, i) => {
-              // Calculate target scale so cards get progressively smaller as they stack backwards
-              const targetScale = 1 - ((steps.length - i) * 0.04);
-              return (
-                <Card
+          <div className="-mx-6 px-6">
+            <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-8 hide-scrollbar">
+              {steps.map((s, i) => (
+                <motion.div
                   key={i}
-                  i={i}
-                  step={step}
-                  progress={scrollYProgress}
-                  // The range defines when the specific card should start scaling down
-                  range={[i * 0.33, 1]}
-                  targetScale={targetScale}
-                />
-              );
-            })}
-          </div>
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, ease: appleEase, delay: i * 0.1 }}
+                  className="w-[85vw] md:w-[60vw] shrink-0 snap-center flex flex-col bg-white border border-biz-charcoal/5 rounded-[2rem] overflow-hidden shadow-sm"
+                >
+                  <div className="w-full aspect-[4/3] relative overflow-hidden bg-biz-sand">
+                    <img
+                      src={s.img}
+                      alt={s.phase}
+                      className="w-full h-full object-cover"
+                      onError={(e) => { e.currentTarget.style.display = "none"; }}
+                    />
+                    <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-md px-4 py-2 rounded-full flex items-center gap-3 shadow-sm">
+                      <span className="w-2 h-2 rounded-full" style={{ background: s.color }} />
+                      <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-biz-charcoal-ink">
+                        Phase {s.num}
+                      </span>
+                    </div>
+                  </div>
 
+                  <div className="p-8">
+                    <h3 className="text-[24px] font-medium text-biz-charcoal-ink leading-[1.15] mb-4 tracking-tight">
+                      {s.title}
+                    </h3>
+                    <p className="text-[15px] text-biz-charcoal-soft font-light leading-[1.7]">
+                      {s.body}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
         </div>
+
       </div>
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      `}} />
     </section>
   );
 };

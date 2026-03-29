@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import useLenis from "./hooks/useLenis";
 
 import Layout from "./components/layout/Layout.jsx";
 import Home from "./pages/Home.jsx";
@@ -12,6 +13,10 @@ import Digital from "./pages/Digital.jsx";
 import CV from "./pages/CV.jsx";
 
 function App() {
+  // Initialise Lenis smooth scroll once for the entire app.
+  // Proxied into GSAP ScrollTrigger inside the hook.
+  useLenis();
+
   return (
     <BrowserRouter>
       <Routes>
@@ -31,4 +36,4 @@ function App() {
   );
 }
 
-export default App;
+export default App;

@@ -176,7 +176,7 @@ export function ServicesSection() {
                   className="flex flex-col scroll-mt-32"
                 >
                   {/* Image */}
-                  <div className="srv-img w-full aspect-[4/3] md:aspect-[19/10] bg-biz-dark-surface overflow-hidden mb-8 md:mb-12 border border-white/5 rounded-[1.5rem] opacity-0">
+                  <div className="srv-img w-full aspect-[4/3] md:aspect-[19/10] bg-biz-dark-surface overflow-hidden mb-8 md:mb-12 border border-white/5 rounded-3xl opacity-0">
                     <img
                       src={s.img}
                       alt={s.title}
@@ -204,7 +204,7 @@ export function ServicesSection() {
                         {s.categories.map((cat, idx) => (
                           <span
                             key={idx}
-                            className="srv-tag px-4 py-2 border border-white/10 rounded-[1rem] text-white/70 text-[12px] font-light tracking-wide bg-white/[0.02] hover:border-biz-bronze/50 hover:text-white transition-all duration-300 opacity-0"
+                            className="srv-tag px-4 py-2 border border-white/10 rounded-2xl text-white/70 text-[12px] font-light tracking-wide bg-white/2 hover:border-biz-bronze/50 hover:text-white transition-all duration-300 opacity-0"
                           >
                             {cat}
                           </span>
