@@ -93,23 +93,23 @@ export function ServicesSection() {
         const text = card.querySelector(".srv-desc");
 
         const tl = gsap.timeline({
-          scrollTrigger: { trigger: card, start: "top 78%", once: true },
+          scrollTrigger: { trigger: card, start: "top 90%", once: true },
         });
         tl.fromTo(img,
           { opacity: 0, y: 40, scale: 0.97, filter: "blur(12px)" },
-          { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 1.1, ease: "power3.out" }
+          { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 0.6, ease: "power3.out" }
         )
           .fromTo(heading,
             { opacity: 0, x: -20 },
-            { opacity: 1, x: 0, duration: 0.8, ease: "power3.out" }, "-=0.6"
+            { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, "-=0.9"
           )
           .fromTo(text,
             { opacity: 0, y: 16 },
-            { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, "-=0.5"
+            { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, "-=0.8"
           )
           .fromTo(tags,
             { opacity: 0, scale: 0.85, y: 8 },
-            { opacity: 1, scale: 1, y: 0, duration: 0.5, ease: "back.out(1.7)", stagger: 0.05 }, "-=0.4"
+            { opacity: 1, scale: 1, y: 0, duration: 0.5, ease: "back.out(1.7)", stagger: 0.05 }, "-=0.7"
           );
       });
     });
