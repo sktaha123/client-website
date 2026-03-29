@@ -18,7 +18,7 @@ const reasons = [
     num: "02",
     title: "Premium design standards",
     body: "Your digital presence is your first impression. We engineer products that don't just function perfectly, but look and feel exceptional, stopping users mid-scroll.",
-    img: "/svgs/digital/premiumd.webp",
+    img: "/svgs/digital/webf.webp",
     tag: "Award-quality",
   },
   {
@@ -32,7 +32,7 @@ const reasons = [
     num: "04",
     title: "A long-term growth partner",
     body: "We don't deliver and disappear. We operate as an extension of your team, continually adapting, optimising, and scaling strategies as your business evolves.",
-    img: "/digital/why-growth.webp",
+    img: "/svgs/digital/handshake.webp",
     tag: "Always on",
   },
 ];

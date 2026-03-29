@@ -16,7 +16,7 @@ const services = [
     num: "02",
     title: "Digital Design",
     desc: "Websites and digital experiences that convert. We design with purpose, creating user journeys that turn visitors into customers.",
-    img: "/svgs/digital/webf.webp",
+    img: "/svgs/digital/digitald.webp",
     categories: ["Web Design", "Landing Pages", "E-commerce", "UI/UX Audit", "Wireframing", "Prototyping"],
   },
   {
