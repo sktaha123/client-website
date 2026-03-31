@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Seo from "../components/seo/Seo.jsx";
+import { pageSeo } from "../utils/pageSeo.js";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -98,6 +100,7 @@ export function Services() {
 
   return (
     <div className="bg-biz-cream font-dm min-h-screen selection:bg-biz-bronze selection:text-white">
+      <Seo {...pageSeo.services} />
 
       {/* ── Page wrapper — padding-top for navbar ── */}
       <div className="w-full max-w-[1200px] mx-auto px-6 lg:px-12 pt-12 pb-16 md:pt-8 md:pb-0 md:h-[calc(100vh-64px)] md:flex md:flex-col">

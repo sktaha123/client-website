@@ -1,6 +1,8 @@
 import React, { useState, useCallback, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import Seo from "../components/seo/Seo.jsx";
+import { pageSeo } from "../utils/pageSeo.js";
 
 const benefits = [
   { title: "Proven Legacy",         highlight: "60+ Years",       text: "Built on over six decades of operational excellence, industry relationships, and institutional trust that consistently delivers stability, foresight, and long-term value to partners." },
@@ -43,6 +45,7 @@ export function Whychooseus() {
 
   return (
     <div className="bg-biz-cream font-dm min-h-screen">
+      <Seo {...pageSeo.whyChooseUs} />
 
       {/* Header */}
       <div className="max-w-[1200px] mx-auto px-6 lg:px-8 pt-16 pb-10 md:pt-10">

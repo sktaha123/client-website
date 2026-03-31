@@ -2,6 +2,8 @@ import React from "react";
 import { motion } from "framer-motion";
 import { MapPin, Mail, Linkedin, Instagram, Facebook } from "lucide-react";
 import { FaXTwitter, FaWhatsapp } from "react-icons/fa6";
+import Seo from "../components/seo/Seo.jsx";
+import { pageSeo } from "../utils/pageSeo.js";
 
 const CONTACT_METHODS = [
   { Icon: FaWhatsapp, label: "India Office", value: "+91 9004072449",  href: "https://wa.me/919004072449",  color: "hover:text-green-600" },
@@ -27,6 +29,8 @@ const fadeUp = {
 export function Contact() {
   return (
     <div className="bg-biz-cream font-dm min-h-screen">
+      <Seo {...pageSeo.contact} />
+      <h1 className="sr-only">Contact BiznorX in India and the UAE</h1>
 
       {/* ── Header ───────────────────────────────────── */}
       <div className="max-w-[1200px] mx-auto px-6 lg:px-8 pt-16 pb-12 md:pt-10 md:pb-16">

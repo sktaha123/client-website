@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ArrowUpRight, FileUser } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
 const words = ["Innovate.", "Integrity.", "Inspire."];
@@ -9,7 +9,6 @@ const backgroundImages = ["/svgs/he1.webp", "/svgs/he2.webp", "/svgs/he3.webp"];
 export function Hero() {
   const [wordIndex, setWordIndex] = useState(0);
   const [bgIndex, setBgIndex] = useState(0);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const t = setInterval(() => setBgIndex((p) => (p + 1) % backgroundImages.length), 6000);
@@ -86,20 +85,20 @@ export function Hero() {
               Bridging decades of business wisdom with modern execution to help organizations scale with confidence.
             </p>
             <div className="flex items-center gap-3">
-              <button
-                onClick={() => { window.lenis?.scrollTo(0); navigate("/cv"); }}
+              <Link
+                to="/cv"
                 className="flex items-center gap-2.5 bg-white text-biz-charcoal-ink text-[13px] font-medium px-6 py-3 rounded-full hover:bg-biz-cream transition-colors duration-200"
               >
                 Upload CV
                 <FileUser size={15} />
-              </button>
-              <button
-                onClick={() => { window.lenis?.scrollTo(0); navigate("/services"); }}
+              </Link>
+              <Link
+                to="/services"
                 className="flex items-center gap-2 text-white/70 text-[13px] hover:text-white transition-colors duration-200"
               >
                 Our services
                 <ArrowUpRight size={15} />
-              </button>
+              </Link>
             </div>
           </motion.div>
         </div>

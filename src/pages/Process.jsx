@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus } from "lucide-react";
+import Seo from "../components/seo/Seo.jsx";
+import { pageSeo } from "../utils/pageSeo.js";
 
 const steps = [
   {
@@ -71,6 +73,8 @@ export function Process() {
 
   return (
     <div className="bg-biz-cream font-dm py-16 md:pt-10 md:pb-20 selection:bg-biz-bronze selection:text-white flex justify-center">
+      <Seo {...pageSeo.process} />
+      <h1 className="sr-only">BiznorX recruitment and workforce delivery process</h1>
       
       {/* ── Constraint Container ── */}
       <div className="w-full max-w-[1100px] mx-auto px-6 lg:px-12">

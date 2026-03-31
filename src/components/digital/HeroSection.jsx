@@ -1,13 +1,11 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import BlurReveal from "../common/BlurReveal";
 
 const appleEase = [0.16, 1, 0.3, 1];
 
 const HeroSection = () => {
-  const navigate = useNavigate();
-
   return (
     <section className="relative w-full bg-[#050505] pt-32 pb-20 md:pt-20 md:pb-32 overflow-hidden">
       <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
@@ -34,12 +32,12 @@ const HeroSection = () => {
 
             <BlurReveal delay={0.22} duration={0.9}>
               <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-                <button
-                  onClick={() => navigate("/contact")}
+                <Link
+                  to="/contact"
                   className="inline-flex items-center justify-center gap-2 bg-white text-black text-[14px] font-medium px-8 py-4 rounded-full hover:bg-biz-bronze hover:text-white transition-all duration-300"
                 >
                   Start a Project <ArrowUpRight size={16} />
-                </button>
+                </Link>
 
               </div>
             </BlurReveal>

@@ -3,55 +3,55 @@
   xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
-    <loc>https://client-website-weld.vercel.app/</loc>
+    <loc>https://biznorx.com/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://client-website-weld.vercel.app/about</loc>
+    <loc>https://biznorx.com/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://client-website-weld.vercel.app/services</loc>
+    <loc>https://biznorx.com/services</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://client-website-weld.vercel.app/industries</loc>
+    <loc>https://biznorx.com/industries</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://client-website-weld.vercel.app/process</loc>
+    <loc>https://biznorx.com/process</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://client-website-weld.vercel.app/whychooseus</loc>
+    <loc>https://biznorx.com/whychooseus</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://client-website-weld.vercel.app/software</loc>
+    <loc>https://biznorx.com/digital</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <url>
-    <loc>https://client-website-weld.vercel.app/contact</loc>
+    <loc>https://biznorx.com/contact</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <url>
-    <loc>https://client-website-weld.vercel.app/upload-cv</loc>
+    <loc>https://biznorx.com/cv</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

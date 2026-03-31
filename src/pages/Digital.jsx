@@ -8,6 +8,8 @@ import WhyChooseUs from "../components/digital/WhyChooseUs";
 import ApproachSection from "../components/digital/ApproachSection";
 import CTASection from "../components/digital/CTASection";
 import DigitalNavbar from "../components/digital/DigitalNavbar";
+import Seo from "../components/seo/Seo.jsx";
+import { pageSeo } from "../utils/pageSeo.js";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -89,6 +91,7 @@ function ResultsStrip() {
 
 const Digital = () => (
   <div className="font-dm bg-white selection:bg-biz-bronze selection:text-white">
+    <Seo {...pageSeo.digital} />
     {/* Dark navbar only for Digital page */}
     <DigitalNavbar />
     <HeroSection />

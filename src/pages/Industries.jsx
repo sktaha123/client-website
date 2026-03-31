@@ -6,6 +6,8 @@ import {
   X, ArrowUpRight,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import Seo from "../components/seo/Seo.jsx";
+import { pageSeo } from "../utils/pageSeo.js";
 
 const allIndustries = [
   { icon: Factory, name: "Manufacturing" },
@@ -98,6 +100,8 @@ export function Industries() {
 
   return (
     <div className="bg-biz-cream font-dm py-24 md:py-10 selection:bg-biz-bronze selection:text-white overflow-hidden">
+      <Seo {...pageSeo.industries} />
+      <h1 className="sr-only">Industries BiznorX serves across India and the UAE</h1>
 
       {/* ── Cinematic Header ── */}
       <div className="max-w-[1200px] mx-auto px-6 lg:px-8 mb-16 md:mb-20 flex flex-col items-center text-center">

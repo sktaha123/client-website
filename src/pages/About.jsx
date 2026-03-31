@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Seo from "../components/seo/Seo.jsx";
+import { pageSeo } from "../utils/pageSeo.js";
 
 const slides = [
   {
@@ -46,6 +48,7 @@ export const About = () => {
 
   return (
     <div className="bg-biz-cream font-dm">
+      <Seo {...pageSeo.about} />
 
       {/* ── Hero Section ─────────────────────────────── */}
       <section className="max-w-[1200px] mx-auto px-6 lg:px-8 pt-16 pb-12 md:pt-4 md:pb-16">

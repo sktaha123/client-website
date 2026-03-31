@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Seo from "../components/seo/Seo.jsx";
+import { pageSeo } from "../utils/pageSeo.js";
 
 /* ================= COUNTRIES (BROWSER DEPENDENT) ================= */
 const getAllCountries = () => {
@@ -170,6 +172,8 @@ const CV = () => {
   /* ================= RENDER ================= */
   return (
     <section className="min-h-screen flex flex-col items-center justify-center bg-biz-cream font-dm py-20 px-6 selection:bg-biz-bronze selection:text-white">
+      <Seo {...pageSeo.cv} />
+      <h1 className="sr-only">Upload your CV to join the BiznorX talent network</h1>
 
       {/* ── Page Header ── */}
       <div className="w-full max-w-3xl mb-10 text-center">
